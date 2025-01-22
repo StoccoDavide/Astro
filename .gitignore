@@ -1,3 +1,6 @@
+# VS Code
+.vscode
+
 # Prerequisites
 *.d
 
@@ -30,3 +33,21 @@
 *.exe
 *.out
 *.app
+
+# CLion
+.idea
+
+# Ipe
+*autosave.ipe
+
+# Matlab
+*.asv
+*.mltbx
+
+# Maple
+*.mla
+*.bak
+
+# Temporary directories
+bin/
+tmp/
