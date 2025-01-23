@@ -51,3 +51,28 @@
 # Temporary directories
 bin/
 tmp/
+
+# LaTeX
+*.pdf
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.spl
+*.snm
+*.toc
+*.md5
+*.dpth
+*.run.xml
+*.nav
+*.bcf
+*.auxlock
+*.gz
+*.synctex.gz
+*.synctex(busy)
+
+*-eps-converted-to.pdf
+*article.pdf
+*autosave.ipe
+externalized/

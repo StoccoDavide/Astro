@@ -170,6 +170,7 @@ end
 task :clean_gen do
   FileUtils.rm_rf 'lib'
   FileUtils.rm_rf 'lib3rd'
+  FileUtils.rm_rf 'build'
 end
 
 desc "Clean for OsX"
@@ -181,9 +182,7 @@ task :clean_linux => :clean_gen do
 end
 
 desc "Clean for Windows"
-task :clean_win do
-  FileUtils.rm_rf 'lib'
-  FileUtils.rm_rf 'lib3rd'
+task :clean_win => :clean_gen do
   FileUtils.rm_rf 'vs_*'
 end
 
@@ -194,9 +193,9 @@ task :clean do
     Rake::Task["clean_linux"].invoke
   elsif (/darwin/ =~ RUBY_PLATFORM) != nil then
     # OsX
-    Rake::Task["clean_linux"].invoke
+    Rake::Task["clean_osx"].invoke
   else
     # Windows
-    Rake::Task["clean_linux"].invoke
+    Rake::Task["clean_win"].invoke
   end
 end

@@ -3,6 +3,6 @@
 
 int main()
 {
-  std::cout << Astro::Info(std::cout) << std::endl;
+  Astro::Info(std::cout);
   return 0;
 }

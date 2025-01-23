@@ -14,3 +14,7 @@ include(AstroMatplot)
 file(GLOB_RECURSE ORBIT_TESTS "${CMAKE_CURRENT_SOURCE_DIR}/Orbit/test_*.cc")
 add_executable(test_orbit ${ORBIT_TESTS})
 target_link_libraries(test_orbit PRIVATE Astro GTest::gtest)
+
+#file(GLOB_RECURSE UNITS_TESTS "${CMAKE_CURRENT_SOURCE_DIR}/Units/test_*.cc")
+#add_executable(test_unit ${UNITS_TESTS})
+#target_link_libraries(test_unit PRIVATE Astro GTest::gtest)
