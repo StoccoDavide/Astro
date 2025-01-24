@@ -82,8 +82,8 @@ namespace Astro
    |
   \*/
 
-  using Real = double; /**< Real number type. */
-  using Size = int;    /**< Size number type. */
+  using Real    = double; /**< Real number type. */
+  using Integer = int;    /**< Size number type. */
 
   using Vector0 = Eigen::Vector<Real, 0>;    /**< \f$ 0 \times 1 \f$ vector of Real number type (column vector). */
   using Matrix0 = Eigen::Matrix<Real, 0, 0>; /**< \f$ 0 \times 0 \f$ matrix of Real number type. */
@@ -210,10 +210,11 @@ namespace Astro
   static Matrix9 const IDENTITY_MAT9 = Matrix9::Identity();          /**< Identity \f$ 9 \times 9 \f$ matrix static constant object. */
 
   /**
-  * Print Astro library information.
-  * \param[in] os Output stream.
+  * Print Astro library information on a string.
+  * \return A string with the Astro library information.
   */
-  void Info(std::ostream &os) {
+  std::string Info() {
+    std::ostringstream os;
     os
       << "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *" << std::endl
       << "* Copyright (c) 2025, Davide Stocco and Enrico Bertolazzi.                                      *" << std::endl
@@ -224,7 +225,14 @@ namespace Astro
       << "* University of Trento                                                     University of Trento *" << std::endl
       << "* e-mail: davide.stocco@unitn.it                             e-mail: enrico.bertolazzi@unitn.it *" << std::endl
       << "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *" << std::endl;
+    return os.str();
   }
+
+  /**
+  * Print Astro library information on a stream.
+  * \param[in] os Output stream.
+  */
+  void Info(std::ostream &os) {os << Info();}
 
 } // namespace Astro
 

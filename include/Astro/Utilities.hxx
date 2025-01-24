@@ -60,7 +60,7 @@ namespace Astro {
   * \param[in] x Angle in degrees.
   * \return Angle in radiants.
   */
-  Real degrees_to_radiants(Real x) {return DEG2RAD*x;}
+  Real deg_to_rad(Real x) {return DEG2RAD*x;}
 
   /**
   * Convert an angle in radiants to degrees using the formula \f$ \text{deg} =
@@ -68,14 +68,15 @@ namespace Astro {
   * \param[in] x Angle in radiants.
   * \return Angle in degrees.
   */
-  Real radiants_to_degrees(Real x) {return RAD2DEG*x;}
+  Real rad_to_deg(Real x) {return RAD2DEG*x;}
 
   /**
   * Add or remove multiple of \f$ 2\pi \f$ to an angle in order to clamp it in
   * the range \f$ [0, 2\pi] \f$.
   * \param[in] x Angle to be normalized.
   */
-  void angle_in_range(Real x) {
+  void angle_in_range(Real & x)
+  {
     x = std::fmod(x, PIMUL2);
     while (x < Real(0.0)) {x += PIMUL2;}
     while (x > PIMUL2) {x -= PIMUL2;}
@@ -86,7 +87,8 @@ namespace Astro {
   * the range \f$ [-\pi, \pi] \f$.
   * \param[in] x Angle to be normalized.
   */
-  void angle_in_range_sym(Real x) {
+  void angle_in_range_sym(Real & x)
+  {
     x = std::fmod(x, PIMUL2);
     while (x < -PI) {x += PIMUL2;}
     while (x > PI) {x -= PIMUL2;}

@@ -24,6 +24,7 @@ namespace Astro
   */
   namespace OrbitalElements
   {
+    using Factor = enum class Factor : Integer {POSIGRADE = 1, RETROGRADE = -1}; /**< Orbit type. */
 
     /*\
      |     ____           _            _
@@ -37,8 +38,12 @@ namespace Astro
     /**
     * \brief Class container for the Cartesian orbital parameters.
     *
-    * Class container for the Cartesian orbit parameters, which are the position vector \f$
-    * \mathbf{r} \f$ and the velocity vector \f$ \mathbf{v} \f$.
+    * Class container for the Cartesian orbit parameters, which are:
+    *   - the position vector \f$ \mathbf{r} \f$ (UA),
+    *   - the velocity vector \f$ \mathbf{v} \f$ (UA/day).
+    *
+    * \note For more information on orbital elements, refer to *"Survey of Orbital Elements"*, by
+    * G. R. Hintz, Journal of Guidance, Control, and Dynamics, Vol. 31, No. 3, May-June 2008.
     */
     class Cartesian
     {
@@ -50,14 +55,26 @@ namespace Astro
       /**
       * Class constructor for Cartesian orbit parameters.
       */
-      Cartesian(){}
+      Cartesian() {}
 
       /**
-      * Class constructor from Cartesian orbit parameters.
+      * Class constructor for Cartesian orbit parameters.
       * \param r Position vector \f$ \mathbf{r} \f$.
       * \param v Velocity vector \f$ \mathbf{v} \f$.
       */
       Cartesian(Vector3 const &r, Vector3 const &v) : m_r(r), m_v(v) {}
+
+      /**
+      * Class constructor for Cartesian orbit parameters.
+      * \param r_x Position vector \f$ x \f$-axis component.
+      * \param r_y Position vector \f$ y \f$-axis component.
+      * \param r_z Position vector \f$ z \f$-axis component.
+      * \param v_x Velocity vector \f$ x \f$-axis component.
+      * \param v_y Velocity vector \f$ y \f$-axis component.
+      * \param v_z Velocity vector \f$ z \f$-axis component.
+      */
+      Cartesian(Real r_x, Real r_y, Real r_z, Real v_x, Real v_y, Real v_z) :
+        m_r(r_x, r_y, r_z), m_v(v_x, v_y, v_z) {}
 
       /**
       * Enable the default Cartesian orbit parameters copy constructor.
@@ -81,37 +98,45 @@ namespace Astro
 
       /**
       * Get the position vector \f$ \mathbf{r} \f$.
-      * \return Position vector \f$ \mathbf{r} \f$.
+      * \return The position vector \f$ \mathbf{r} \f$.
       */
       Vector3 const & r() const {return this->m_r;}
 
       /**
       * Set the position vector \f$ \mathbf{r} \f$.
-      * \param[in] t_r Position vector \f$ \mathbf{r} \f$.
+      * \param[in] t_r The position vector \f$ \mathbf{r} \f$.
       */
       void r(Vector3 const & t_r) {this->m_r = t_r;}
 
       /**
       * Get the velocity vector \f$ \mathbf{v} \f$.
-      * \return Velocity vector \f$ \mathbf{v} \f$.
+      * \return The velocity vector \f$ \mathbf{v} \f$.
       */
       Vector3 const & v() const {return this->m_v;}
 
       /**
       * Get the velocity vector \f$ \mathbf{v} \f$.
-      * \param[in] t_v Velocity vector \f$ \mathbf{v} \f$.
+      * \param[in] t_v The velocity vector \f$ \mathbf{v} \f$.
       */
       void v(Vector3 const & t_v) {this->m_v = t_v;}
 
       /**
-      * Print the orbit parameters.
-      * \param[in,out] os Output stream.
+      * Print the Cartesian orbit parameters on a string.
+      * \return The Cartesian orbit parameters string.
       */
-      void info(std::ostream &os) const {
+      std::string info() const {
+        std::ostringstream os;
         os <<
           "r = " << this->m_r.transpose() << " (UA)" << std::endl <<
           "v = " << this->m_v.transpose() << " (UA/day)" << std::endl;
+          return os.str();
       }
+
+      /**
+      * Print the Cartesian orbit parameters on a stream.
+      * \param[in,out] os Output stream.
+      */
+      void info(std::ostream &os) {os << this->info();}
 
     }; // class Cartesian
 
@@ -125,33 +150,51 @@ namespace Astro
     \*/
 
     /**
-    * \brief Class container for the Keplerian orbital parameters.
+    * \brief Class container for the (modified) Keplerian (or classical) orbital parameters.
+    *
+    * Class container for the (modified) Keplerian (or classical) orbit parameters, which are:
+    *   - the semi-major axis \f$ a \f$ (UA),
+    *   - the eccentricity \f$ e \in [0, 1] \f$ (-),
+    *   - the inclination \f$ i \f$ (rad),
+    *   - the right ascension of the ascending node \f$ \Omega \f$ (rad),
+    *   - the argument of periapsis \f$ \omega \f$ (rad).
+    *   - the anomaly, which can be:
+    *     - the true anomaly \f$ \nu \f$ (rad),
+    *     - the mean anomaly \f$ M \f$ (rad),
+    *     - the eccentric anomaly \f$ E \f$ (rad).
+    * Singular at \f$ e = 0 \f$, or \f$ 1 \f$, \f$ i = 0 \f$, or \f$ \pi \f$.
+    *
+    * \note For more information on orbital elements, refer to *"Survey of Orbital Elements"*, by
+    * G. R. Hintz, Journal of Guidance, Control, and Dynamics, Vol. 31, No. 3, May-June 2008.
     */
     class Keplerian
     {
-      Real m_a{QUIET_NAN};        /**< Semi-major axis \f$ a \f$ (UA). */
-      Real m_e{QUIET_NAN};        /**< Eccentricity \f$ e \in [0, 1] \f$ (-). */
-      Real m_i{QUIET_NAN};        /**< Inclination \f$ i \f$ (rad). */
-      Real m_uc_Omega{QUIET_NAN}; /**< Longitude of the ascending node \f$ \Omega \f$ (rad). */
-      Real m_lc_omega{QUIET_NAN}; /**< Argument of periapsis \f$ \omega \f$ (rad). */
+      Real m_a{QUIET_NAN};     /**< Semi-major axis \f$ a \f$ (UA). */
+      Real m_e{QUIET_NAN};     /**< Eccentricity \f$ e \in [0, 1] \f$ (-). */
+      Real m_i{QUIET_NAN};     /**< Inclination \f$ i \f$ (rad). */
+      Real m_Omega{QUIET_NAN}; /**< Right ascension of the ascending node \f$ \Omega \f$ (rad). */
+      Real m_omega{QUIET_NAN}; /**< Argument of periapsis \f$ \omega \f$ (rad). */
+      Real m_nu{QUIET_NAN};    /**< True anomaly \f$ \nu \f$ (rad). */
+      Real m_M{QUIET_NAN};     /**< Mean anomaly \f$ M \f$ (rad). */
+      Real m_E{QUIET_NAN};     /**< Eccentric anomaly \f$ E \f$ (rad). */
 
     public:
 
       /**
-      * Class constructor for Keplerian orbit parameters.
+      * Class constructor for the (modified) Keplerian orbit parameters.
       */
-      Keplerian(){}
+      Keplerian() {}
 
       /**
-      * Class constructor from Keplerian orbit parameters.
-      * \param[in] a Semi-major axis \f$ a \f$.
-      * \param[in] e Eccentricity \f$ e \f$.
-      * \param[in] i Inclination \f$ i \f$.
-      * \param[in] uc_Omega Longitude of the ascending node \f$ \Omega \f$.
-      * \param[in] lc_omega Argument of periapsis \f$ \omega \f$.
+      * Class constructor for the (modified) Keplerian orbit parameters.
+      * \param[in] t_a The semi-major axis \f$ a \f$.
+      * \param[in] t_e The eccentricity \f$ e \f$.
+      * \param[in] t_i The inclination \f$ i \f$.
+      * \param[in] t_Omega The longitude of the ascending node \f$ \Omega \f$.
+      * \param[in] t_omega The argument of periapsis \f$ \omega \f$.
       */
-      Keplerian(Real a, Real e, Real i, Real uc_Omega, Real lc_omega)
-        : m_a(a), m_e(e), m_i(i), m_uc_Omega(uc_Omega), m_lc_omega(lc_omega)
+      Keplerian(Real t_a, Real t_e, Real t_i, Real t_Omega, Real t_omega)
+        : m_a(t_a), m_e(t_e), m_i(t_i), m_Omega(t_Omega), m_omega(t_omega)
       {}
 
       /**
@@ -176,76 +219,278 @@ namespace Astro
 
       /**
       * Get the semi-major axis \f$ a \f$.
-      * \return Semi-major axis \f$ a \f$.
+      * \return The semi-major axis \f$ a \f$.
       */
       Real a() const {return this->m_a;}
 
       /**
       * Set the semi-major axis \f$ a \f$.
-      * \param[in] t_a Semi-major axis \f$ a \f$.
+      * \param[in] t_a The semi-major axis \f$ a \f$.
       */
-      void a(Real t_a) {this->m_a = a;}
+      void a(Real t_a) {this->m_a = t_a;}
 
       /**
       * Get the eccentricity \f$ e \f$.
-      * \return Eccentricity \f$ e \f$.
+      * \return The eccentricity \f$ e \f$.
       */
       Real e() const {return this->m_e;}
 
       /**
       * Set the eccentricity \f$ e \f$.
-      * \param[in] t_e Eccentricity \f$ e \f$.
+      * \param[in] t_e The eccentricity \f$ e \f$.
       */
-      void e(Real t_e) {this->m_e = e;}
+      void e(Real t_e) {this->m_e = t_e;}
 
       /**
       * Get the inclination \f$ i \f$.
-      * \return Inclination \f$ i \f$.
+      * \return The inclination \f$ i \f$.
       */
-      Real i() const {return this->m_e;}
+      Real i() const {return this->m_i;}
 
       /**
       * Set the inclination \f$ i \f$.
-      * \param[in] t_i Inclination \f$ i \f$.
+      * \param[in] t_i The inclination \f$ i \f$.
       */
-      void i(Real t_i) {this->m_e = i;}
+      void i(Real t_i) {this->m_i = t_i;}
 
       /**
       * Get the longitude of the ascending node \f$ \Omega \f$.
-      * \return Longitude of the ascending node \f$ \Omega \f$.
+      * \return The longitude of the ascending node \f$ \Omega \f$.
       */
-      Real uc_Omega() const {return this->m_uc_Omega;}
+      Real Omega() const {return this->m_Omega;}
 
       /**
       * Set the longitude of the ascending node \f$ \Omega \f$.
-      * \param[in] t_uc_Omega Longitude of the ascending node \f$ \Omega \f$.
+      * \param[in] t_Omega The longitude of the ascending node \f$ \Omega \f$.
       */
-      void uc_Omega(Real t_uc_Omega) {this->m_uc_Omega = uc_Omega;}
+      void Omega(Real t_Omega) {this->m_Omega = t_Omega;}
 
       /**
       * Get the argument of periapsis \f$ \Omega \f$
-      * \return Argument of periapsis \f$ \Omega \f$
+      * \return The argument of periapsis \f$ \Omega \f$
       */
-      Real lc_omega() const {return this->m_lc_omega;}
+      Real omega() const {return this->m_omega;}
 
       /**
       * Set the argument of periapsis \f$ \omega \f$.
-      * \param[in] t_lc_omega Argument of periapsis \f$ \omega \f$.
+      * \param[in] t_omega The argument of periapsis \f$ \omega \f$.
       */
-      void lc_omega(Real t_lc_omega) {this->m_lc_omega = lc_omega;}
+      void omega(Real t_omega) {this->m_omega = t_omega;}
 
       /**
-      * Print the orbit parameters.
+      * \brief Compute the mean anomaly \f$ M \f$ from the eccentric anomaly \f$ E \f$.
+      *
+      * Compute the mean anomaly \f$ M \f$ from the eccentric anomaly \f$ E \f$ as
+      * \f[ M = \nu - 2\arctan\left(\frac{\sin(\nu)}{\beta + \cos(\nu)}\right) -
+      * \frac{e\sqrt{1 - e^2}\sin(\nu)}{1 + e\cos(\nu)} \text{,} \f]
+      * with \f$ \beta = \frac{1 + \sqrt{1 - e^2}}{e} \f$. That is equivalent to
+      *
+      * \note Refer to *"A note on the relations between true and eccentric anomalies in the two-body
+      * problem"* by R. Broucke and P. Cefola, Celestial Mechanics, Vol. 7, pp. 300-389, 1973.
+      * \param[in] t_nu The true anomaly \f$ \nu \f$.
+      */
+      Real nu_to_M(Real t_nu) const
+      {
+        Real beta{(1.0 + std::sqrt(1.0 - this->m_e*this->m_e)) / this->m_e};
+        return t_nu - 2.0 * std::atan(std::sin(t_nu) / (beta + std::cos(t_nu))) -
+          (this->m_e * std::sqrt(1.0 - this->m_e*this->m_e) * std::sin(t_nu)) /
+          (1.0 + this->m_e * std::cos(t_nu));
+      }
+
+      /**
+      * \brief Compute the true anomaly \f$ \nu \f$ from the eccentric anomaly \f$ E \f$.
+      *
+      * Compute the true anomaly \f$ \nu \f$ from the eccentric anomaly \f$ E \f$ as
+      * \f[ \tan\left(\frac{\nu - E}{2}\right) = \frac{\sin(\nu)}{\beta + \cos(\nu)} \text{,} \f]
+      * with \f$ \beta = \frac{1 + \sqrt{1 - e^2}}{e} \f$. That is equivalent to
+      * \f[ E = -\nu - 2\arctan\left(\frac{\sin(\nu)}{\beta + \cos(\nu)}\right) \text{.} \f]
+      *
+      \note Refer to *"A note on the relations between true and eccentric anomalies in the two-body
+      * problem"* by R. Broucke and P. Cefola, Celestial Mechanics, Vol. 7, pp. 300-389, 1973.
+      * \param[in] t_nu The true anomaly \f$ \nu \f$.
+      */
+      Real nu_to_E(Real t_nu) const
+      {
+        Real beta{(1.0 + std::sqrt(1.0 - this->m_e*this->m_e)) / this->m_e};
+        return -t_nu - 2.0 * std::atan(std::sin(t_nu) / (beta + std::cos(t_nu)));
+      }
+
+      /**
+      * Get the true anomaly \f$ \nu \f$.
+      * \return The true anomaly \f$ \nu \f$.
+      */
+      Real nu() const {return this->m_nu;}
+
+      /**
+      * Set the true anomaly \f$ \nu \f$.
+      * \param[in] t_nu The true anomaly \f$ \nu \f$.
+      */
+      void nu(Real t_nu)
+      {
+        this->m_nu = t_nu;
+        this->m_M  = this->nu_to_M(t_nu);
+        this->m_E  = this->nu_to_E(t_nu);
+      }
+
+      /**
+      * Get the mean anomaly \f$ M \f$.
+      * \return The mean anomaly \f$ M \f$.
+      */
+      Real M() const {return this->m_M;}
+
+      /**
+      * \brief Compute the mean anomaly \f$ M \f$ from the true anomaly \f$ \nu \f$.
+      *
+      * Compute the mean anomaly \f$ M \f$ from the true anomaly \f$ \nu \f$ by solving the Kepler
+      * equation 1f$ M = E - e\sin(E) \f$ for \f$ E \f$. The solution is found through a basic Newton
+      * method. Then, the mean anomaly is computed as \f$ M = E - e\sin(E) \f$.
+      * \param[in] t_M The mean anomaly \f$ M \f$.
+      * \param[in] t_E The eccentric anomaly \f$ E \f$ (default is computed from \f$ M \f$).
+      */
+      Real M_to_nu(Real t_M, Real t_E = FIXME) const
+      {
+        return this->E_to_nu(t_E);
+      }
+
+      /**
+      * \brief Compute the eccentric anomaly \f$ E \f$ from the mean anomaly \f$ M \f$.
+      *
+      * Compute the eccentric anomaly \f$ E \f$ from the mean anomaly \f$ M \f$ through a the solution
+      * of the nonlinear equation \f$ E = M + e\sin(E) \f$ for \f$ E \f$. The solution is found through
+      * a basic Newton method.
+      * \param[in] t_M The mean anomaly \f$ M \f$.
+      */
+      Real M_to_E(Real t_M) const
+      {
+
+        #define CMD "Astro::OrbitalElements::Keplerian::M_to_E(...): "
+
+        angle_in_range(t_M);
+
+        // Solve Kepler equation through a basic Newton method
+        Real dE{0.0}, E{t_M};
+        for (Integer k{0}; k < 100; ++k)
+        {
+          dE = (E - this->m_e * std::sin(E) - t_M) / (1.0 - this->m_e * std::cos(E));
+          // Saturate if steps are too large
+          dE = std::min(dE,  0.1);
+          dE = std::max(dE, -0.1);
+          E -= dE;
+          // Break if the error is small enough
+          if (std::abs(dE) < EPSILON_LOW) {break;}
+          // Covergence should be reached at E ~ 1
+        }
+
+        ASTRO_ASSERT(std::abs(dE) < EPSILON_MEDIUM,
+          CMD "convergence not reached: E = " << E << ", dE = " << dE << ", M = " << t_M << ", e = "
+          << this->m_e << ".");
+
+        return E;
+
+        #undef CMD
+      }
+
+      /**
+      * Set the mean anomaly \f$ M \f$.
+      * \param[in] t_M The mean anomaly \f$ M \f$.
+      */
+      void M(Real t_M)
+      {
+        this->m_M  = t_M;
+        this->m_E  = this->M_to_E(t_M);
+        this->m_nu = this->M_to_nu(t_M, this->m_E);
+      }
+
+      /**
+      * Get the eccentric anomaly \f$ E \f$.
+      * \return The eccentric anomaly \f$ E \f$.
+      */
+      Real E() const {return this->m_E;}
+
+      /**
+      * \brief Compute the true anomaly \f$ \nu \f$ from the eccentric anomaly \f$ E \f$.
+      *
+      * Compute the true anomaly \f$ \nu \f$ from the eccentric anomaly \f$ E \f$ as
+      * \f[ \tan\left(\frac{\nu - E}{2}\right) = \frac{\sin(E)}{\beta - \cos(E)} \text{,} \f]
+      * with \f$ \beta = \frac{1 + \sqrt{1 - e^2}}{e} \f$. That is equivalent to
+      * \f[ \nu = E + 2\arctan\left(\frac{\sin(E)}{\beta - \cos(E)}\right) \text{.} \f]
+      *
+      \note Refer to *"A note on the relations between true and eccentric anomalies in the two-body
+      * problem"* by R. Broucke and P. Cefola, Celestial Mechanics, Vol. 7, pp. 300-389, 1973.
+      * \param[in] t_E The eccentric anomaly \f$ E \f$.
+      */
+      Real E_to_nu(Real t_E) const
+      {
+        Real beta{(1.0 + std::sqrt(1.0 - this->m_e*this->m_e)) / this->m_e};
+        return t_E + 2.0 * std::atan(std::sin(t_E) / (beta - std::cos(t_E)));
+      }
+
+      /**
+      * \brief Compute the mean anomaly \f$ M \f$ from the eccentric anomaly \f$ E \f$.
+      *
+      * Compute the mean anomaly \f$ M \f$ from the eccentric anomaly \f$ E \f$ as
+      * \f[ M = E - e\sin(E) \text{.} \f]
+      * \param[in] t_E The eccentric anomaly \f$ E \f$.
+      */
+      Real E_to_M(Real t_E) const {return t_E - this->m_e * std::sin(t_E);}
+
+      /**
+      \brief Set the eccentric anomaly \f$ E \f$.
+      *
+      * Set the eccentric anomaly \f$ E \f$, and compute the mean anomaly \f$ M \f$ and the true anomaly
+      * \f$ \nu \f$ accordingly.
+      *
+      \note Refer to *"A note on the relations between true and eccentric anomalies in the two-body
+      * problem"* by R. Broucke and P. Cefola, Celestial Mechanics, Vol. 7, pp. 300-389, 1973.
+      * \param[in] t_E The eccentric anomaly \f$ E \f$.
+      */
+      void E(Real t_E)
+      {
+        this->m_E  = t_E;
+        this->m_M  = this->E_to_M(t_E);
+        this->m_nu = this->E_to_nu(t_E);
+      }
+
+      /**
+      * Print the Keplerian orbit parameters on a string.
+      * \return The Keplerian orbit parameters string.
+      */
+      std::string info() const {
+        std::ostringstream os;
+        os <<
+          "a : semi-major axis   = " << this->m_a << std::endl <<
+          "e : eccentricity      = " << this->m_e << std::endl <<
+          "i : inclination       = " << this->m_i << " (rad) = " << rad_to_deg(this->m_i) << " (deg)" << std::endl <<
+          "Ω : right ascension … = " << this->m_Omega << " (rad) = " << rad_to_deg(this->m_Omega) << " (deg)" << std::endl <<
+          "ω : arg. of periapsis = " << this->m_omega << " (rad) = " << rad_to_deg(this->m_omega) << " (deg)" << std::endl <<
+          "θ : true anomaly      = " << this->m_nu << " (rad) = " << rad_to_deg(this->m_nu) << " (deg)" << std::endl <<
+          "M : mean anomaly      = " << this->m_M << " (rad) = " << rad_to_deg(this->m_M) << " (deg)" << std::endl <<
+          "E : eccentric anomaly = " << this->m_E << " (rad) = " << rad_to_deg(this->m_E) << " (deg)" << std::endl;
+          return os.str();
+      }
+
+      /**
+      * Print the Keplerian orbit parameters on a stream.
       * \param[in,out] os Output stream.
       */
-      void info(std::ostream & os) const {
-        os <<
-          "a = " << this->m_a << std::endl <<
-          "e = " << this->m_e << std::endl <<
-          "i = " << this->m_i        << " (rad) = " << radiants_to_degrees(this->m_i)        << " (deg)" << std::endl <<
-          "Ω = " << this->m_uc_Omega << " (rad) = " << radiants_to_degrees(this->m_uc_Omega) << " (deg)" << std::endl <<
-          "ω = " << this->m_lc_omega << " (rad) = " << radiants_to_degrees(this->m_lc_omega) << " (deg)" << std::endl;
+      void info(std::ostream &os) {os << this->info();}
+
+      /**
+      * Check if the Keplerian orbit parameters are nonsingular (*i.e.*, far from  singularities).
+      * \param[in] tol Tolerance for the singulary check.
+      * \return True if the Keplerian orbit parameters are nonsingular, false otherwise.
+      */
+      bool is_nonsingular(Real tol = EPSILON_LOW) const {
+        return this->m_e > tol && this->m_e < 1.0 - tol &&
+               this->m_i > tol && this->m_i < PI - tol;
       }
+
+      /**
+      * Check if the Keplerian orbit parameters are singular (*i.e.*, close to singularities).
+      * \param[in] tol Tolerance for the singulary check.
+      * \return True if the Keplerian orbit parameters are singular, false otherwise.
+      */
+      bool is_singular(Real tol = EPSILON_LOW) const {return !this->is_nonsingular(tol);}
 
     }; // class Keplerian
 
@@ -259,42 +504,49 @@ namespace Astro
     \*/
 
     /**
-    * \brief Class container for the Equinoctical orbital parameters.
+    * \brief Class container for the (modified) Equinoctical orbital parameters.
     *
-    * The Equinoctical orbital parameters are defined as follows:
-    * - \f$ p \f$: Semi-latus rectum (UA).
-    * - \f$ f \f$: Equinoctical element.
-    * - \f$ g \f$: Equinoctical element.
-    * - \f$ h \f$: Equinoctical element.
-    * - \f$ k \f$: Equinoctical element.
-    * - Retrograde flag.
+    * The (modified) Equinoctical orbital parameters are defined as follows:
+    *   - the semi-latus rectum \f$ p \f$ (UA).
+    *   - the \f$ x \f$-axis component of the eccentricity vector in the orbital frame \f$ f \f$ (-).
+    *   - the \f$ y \f$-axis component of the eccentricity vector in the orbital frame \f$ g \f$ (-).
+    *   - the \f$ x \f$-axis component of the node vector in the orbital frame \f$ h \f$ (-).
+    *   - the \f$ y \f$-axis component of the node vector in the orbital frame \f$ k \f$ (-).
+    *   - the true longitude \f$ L \f$ (rad).
+    *   - the posigrade/retrograde factor \f$ I = +1 \f$ (posigrade) or \f$ I = -1 \f$ (retrograde) (-).
+    * Singular at \f$ i = \pi \f$.
+    *
+    * \note For more information on orbital elements, refer to *"Survey of Orbital Elements"*, by
+    * G. R. Hintz, Journal of Guidance, Control, and Dynamics, Vol. 31, No. 3, May-June 2008.
     */
     class Equinoctical
     {
-      Real m_p{QUIET_NAN}; /**< Semi-latus rectum \f$ p \f$ (UA). */
-      Real m_f{QUIET_NAN}; /**< Equinoctical element \f$ f \f$ (-). */
-      Real m_g{QUIET_NAN}; /**< Equinoctical element \f$ g \f$ (-). */
-      Real m_h{QUIET_NAN}; /**< Equinoctical element \f$ h \f$ (-). */
-      Real m_k{QUIET_NAN}; /**< Equinoctical element \f$ k \f$ (-). */
-      bool m_r{false};     /**< Retrograde flag. */
+      Real   m_p{QUIET_NAN};              /**< Semi-latus rectum \f$ p \f$ (UA). */
+      Real   m_f{QUIET_NAN};              /**< \f$ X \f$-axis component of the eccentricity vector in the orbital frame (-). */
+      Real   m_g{QUIET_NAN};              /**< \f$ Y \f$-axis component of the eccentricity vector in the orbital frame (-). */
+      Real   m_h{QUIET_NAN};              /**< \f$ X \f$-axis component of the node vector in the orbital frame (-). */
+      Real   m_k{QUIET_NAN};              /**< \f$ Y \f$-axis component of the node vector in the orbital frame (-). */
+      Real   m_true_longitude{QUIET_NAN}; /**< True longitude \f$ L \f$ (rad). */
+      Factor m_factor{Factor::POSIGRADE}; /**< Posigrade/retrograde factor (-). */
 
     public:
-      /**
-      * Class constructor for Equinoctical orbit parameters.
-      */
-      Equinoctical(){}
 
       /**
-      * Class constructor for Equinoctical orbit parameters.
-      * \param p Semi-latus rectum.
-      * \param f Equinoctical element.
-      * \param g Equinoctical element.
-      * \param h Equinoctical element.
-      * \param k Equinoctical element.
-      * \param r Retrograde flag.
+      * Class constructor for the (modified) Equinoctical orbit parameters.
       */
-      Equinoctical(Real p, Real f, Real g, Real h, Real k, bool r = false)
-        : m_p(p), m_f(f), m_g(g), m_h(h), m_k(k), m_r(r) {}
+      Equinoctical() {}
+
+      /**
+      * Class constructor for the (modified) Equinoctical orbit parameters.
+      * \param[in] t_p The semi-latus rectum \f$ p \f$.
+      * \param[in] t_f The \f$ x \f$-axis component of the eccentricity vector in the orbital frame.
+      * \param[in] t_g The \f$ y \f$-axis component of the eccentricity vector in the orbital frame.
+      * \param[in] t_h The \f$ x \f$-axis component of the node vector in the orbital frame.
+      * \param[in] t_k The \f$ y \f$-axis component of the node vector in the orbital frame.
+      * \param[in] t_factor The posigrade/retrograde factor.
+      */
+      Equinoctical(Real t_p, Real t_f, Real t_g, Real t_h, Real t_k, Factor t_factor = Factor::POSIGRADE)
+        : m_p(t_p), m_f(t_f), m_g(t_g), m_h(t_h), m_k(t_k), m_factor(t_factor) {}
 
       /**
       * Enable the default Equinoctical orbit parameters copy constructor.
@@ -317,102 +569,133 @@ namespace Astro
       Equinoctical & operator=(Equinoctical &&) = default;
 
       /**
-      * Get the semi-latus rectum.
-      * \return Semi-latus rectum.
+      * Get the semi-latus rectum \f$ p \f$.
+      * \return The semi-latus rectum \f$ p \f$.
       */
       Real p() const {return this->m_p;}
 
       /**
-      * Set the semi-latus rectum.
-      * \param[in] t_p Semi-latus rectum.
+      * Set the semi-latus rectum \f$ p \f$.
+      * \param[in] t_p The semi-latus rectum \f$ p \f$.
       */
       void p(Real t_p) {this->m_p = t_p;}
 
       /**
-      * Get the Equinoctical element \f$ f \f$.
-      * \return Equinoctical element \f$ f \f$.
+      * Get the \f$ x \f$-axis component of the eccentricity vector in the orbital frame \f$ f \f$.
+      * \return The \f$ x \f$-axis component of the eccentricity vector in the orbital frame \f$ f \f$.
       */
       Real f() const {return this->m_f;}
 
       /**
-      * Set the Equinoctical element \f$ f \f$.
-      * \param[in] t_f Equinoctical element \f$ f \f$.
+      * Set the \f$ x \f$-axis component of the eccentricity vector in the orbital frame \f$ f \f$.
+      * \param[in] t_f The \f$ x \f$-axis component of the eccentricity vector in the orbital frame \f$ f \f$.
       */
       void f(Real t_f) {this->m_f = t_f;}
 
       /**
-      * Get the Equinoctical element \f$ g \f$.
-      * \return Equinoctical element \f$ g \f$.
+      * Get the \f$ y \f$-axis component of the eccentricity vector in the orbital frame \f$ g \f$.
+      * \return The \f$ y \f$-axis component of the eccentricity vector in the orbital frame \f$ g \f$.
       */
       Real g() const {return this->m_g;}
 
       /**
-      * Set the Equinoctical element \f$ g \f$.
-      * \param[in] t_g Equinoctical element \f$ g \f$.
+      * Set the \f$ y \f$-axis component of the eccentricity vector in the orbital frame \f$ g \f$.
+      * \param[in] t_g The \f$ y \f$-axis component of the eccentricity vector in the orbital frame \f$ g \f$.
       */
       void g(Real t_g) {this->m_g = t_g;}
 
       /**
-      * Get the Equinoctical element \f$ h \f$.
-      * \return Equinoctical element \f$ h \f$.
+      * Get the \f$ x \f$-axis component of the node vector in the orbital frame \f$ h \f$.
+      * \return The \f$ x \f$-axis component of the node vector in the orbital frame \f$ h \f$.
       */
       Real h() const {return this->m_h;}
 
       /**
-      * Set the Equinoctical element \f$ h \f$.
-      * \param[in] t_h Equinoctical element \f$ h \f$.
+      * Set the \f$ x \f$-axis component of the node vector in the orbital frame \f$ h \f$.
+      * \param[in] t_h The \f$ x \f$-axis component of the node vector in the orbital frame \f$ h \f$.
       */
       void h(Real t_h) {this->m_h = t_h;}
 
       /**
-      * Get the Equinoctical element \f$ k \f$.
-      * \return Equinoctical element \f$ k \f$.
+      * Get the \f$ y \f$-axis component of the node vector in the orbital frame \f$ k \f$.
+      * \return The \f$ y \f$-axis component of the node vector in the orbital frame \f$ k \f$.
       */
       Real k() const {return this->m_k;}
 
       /**
-      * Set the Equinoctical element \f$ k \f$.
-      * \param[in] t_k Equinoctical element \f$ k \f$.
+      * Set the \f$ y \f$-axis component of the node vector in the orbital frame \f$ k \f$.
+      * \param[in] t_k The \f$ y \f$-axis component of the node vector in the orbital frame \f$ k \f$.
       */
       void k(Real t_k) {this->m_k = t_k;}
 
       /**
-      * Get the Equinoctical retrograde flag.
-      * \return Retrograde flag.
+      * Get the true longitude \f$ L \f$.
+      * \return The true longitude \f$ L \f$.
       */
-      bool retrograde() const {return this->m_r;}
+      Real true_longitude() const {return this->m_true_longitude;}
 
       /**
-      * Set the Equinoctical retrograde flag.
-      * \param[in] t_r Retrograde flag.
+      * Set the true longitude \f$ L \f$.
+      * \param[in] t_true_long The true longitude \f$ L \f$.
       */
-      void retrograde(bool t_r) {this->m_r = t_r;}
+      void true_longitude(Real t_true_long) {this->m_true_longitude = t_true_long;}
 
       /**
-      * Check if the Equinoctical orbit is retrograde.
-      * \return True if the Equinoctical orbit is retrograde, false otherwise.
+      * Get the posigrade/retrograde factor \f$ I \f$.
+      * \return The posigrade/retrograde factor \f$ I \f$.
       */
-      bool is_retrograde() const {return this->m_r;}
+      Factor retrograde() const {return this->m_factor;}
 
       /**
-      * Check if the Equinoctical orbit is posigrade.
-      * \return True if the Equinoctical orbit is posigrade, false otherwise.
+      * Set the posigrade/retrograde factor \f$ I \f$.
+      * \param[in] t_factor The posigrade/retrograde factor \f$ I \f$.
       */
-      bool is_posigrade() const {return !this->m_r;}
+      void retrograde(Factor t_factor) {this->m_factor = t_factor;}
 
       /**
-      * Print the Equinoctical orbit parameters.
+      * Check if the orbit is posigrade.
+      * \return True if the orbit is posigrade, false otherwise.
+      */
+      bool is_posigrade() const {return this->m_factor == Factor::POSIGRADE;}
+
+      /**
+      * Check if the orbit is retrograde.
+      * \return True if the orbit is retrograde, false otherwise.
+      */
+      bool is_retrograde() const {return this->m_factor == Factor::RETROGRADE;}
+
+      /**
+      * Set the orbit as posigrade.
+      */
+      void set_posigrade() {this->m_factor = Factor::POSIGRADE;}
+
+      /**
+      * Set the orbit as retrograde.
+      */
+      void set_retrograde() {this->m_factor = Factor::RETROGRADE;}
+
+      /**
+      * Print the Equinoctical orbit parameters on a string.
+      * \return Equinoctical orbit parameters string.
+      */
+      std::string info() const {
+        std::ostringstream os;
+        os <<
+          "p : semi-latus rectum  = " << this->m_p << " (UA)" << std::endl <<
+          "f : x-axis ecc. vector = " << this->m_f << " (-)" << std::endl <<
+          "g : y-axis ecc. vector = " << this->m_g << " (-)" << std::endl <<
+          "h : x-axis node vector = " << this->m_h << " (-)" << std::endl <<
+          "k : y-axis node vector = " << this->m_k << " (-)" << std::endl <<
+          "L : true longitude     = " << this->m_true_longitude << " (rad)" << std::endl <<
+          "I = " << (this->m_factor == Factor::POSIGRADE ? "POSIGRADE" : "RETROGRADE") << std::endl;
+          return os.str();
+      }
+
+      /**
+      * Print the Equinoctical orbit parameters on a stream.
       * \param[in,out] os Output stream.
       */
-      void info(std::ostream & os) const {
-        os <<
-          "p = " << this->m_p << " (UA)" << std::endl <<
-          "f = " << this->m_f << " (-)" << std::endl <<
-          "g = " << this->m_g << " (-)" << std::endl <<
-          "h = " << this->m_h << " (-)" << std::endl <<
-          "k = " << this->m_k << " (-)" << std::endl <<
-          "r = " << std::boolalpha << this->m_r << std::endl;
-      }
+      void info(std::ostream &os) {os << this->info();}
 
     }; // class Equinoctical
 
@@ -427,17 +710,94 @@ namespace Astro
     \*/
 
     /**
-    * \brief Class container for the Quaternionic orbital parameters.
+    * \brief Class container for the quaternionic orbital parameters.
+    *
+    * Class container for the quaternionic orbit parameters, which is made of four quaternionic
+    * parameters: \f$ [q¹, q², q³, q⁴] \f$.
+    *
+    * \note For more information on the quaternionic orbital elements, refer to *"Alternative Set of
+    * Nonsingular Quaternionic Orbital Elements"*, by J. Roa and J. Kasdin, Journal of Guidance,
+    * Control, and Dynamics, Vol. 40, No. 11, November 2017.
     */
     class Quaternionic
     {
+      Vector4 m_q{NAN_VEC4}; /**< Quaternionic orbit parameters. */
+
+    public:
+
+      /**
+      * Class constructor for quaternionic orbit parameters.
+      */
+      Quaternionic() {}
+
+      /**
+      * Class constructor for quaternionic orbit parameters.
+      * \param[in] t_q The quaternionic orbit parameters.
+      */
+      Quaternionic(Vector4 const &t_q) : m_q(t_q) {}
+
+      /**
+      * Class constructor for quaternionic orbit parameters.
+      * \param[in] t_q_1 The first quaternionic orbit parameter.
+      * \param[in] t_q_2 The second quaternionic orbit parameter.
+      * \param[in] t_q_3 The third quaternionic orbit parameter.
+      * \param[in] t_q_4 The fourth quaternionic orbit parameter.
+      */
+      Quaternionic(Real t_q_1, Real t_q_2, Real t_q_3, Real t_q_4) : m_q(t_q_1, t_q_2, t_q_3, t_q_4) {}
+
+      /**
+      * Enable the default quaternionic orbit parameters copy constructor.
+      */
+      Quaternionic(Quaternionic const &) = default;
+
+      /**
+      * Enable the default quaternionic orbit parameters move constructor.
+      */
+      Quaternionic(Quaternionic &&) = default;
+
+      /**
+      * Enable the default quaternionic orbit parameters assignment operator.
+      */
+      Quaternionic & operator=(const Quaternionic &) = default;
+
+      /**
+      * Enable the default quaternionic orbit parameters move assignment operator.
+      */
+      Quaternionic & operator=(Quaternionic &&) = default;
+
+      /**
+      * Get the quaternionic orbit parameters.
+      * \return The quaternionic orbit parameters.
+      */
+      Vector4 const & q() const {return this->m_q;}
+
+      /**
+      * Set the quaternionic orbit parameters.
+      * \param[in] t_q The quaternionic orbit parameters.
+      */
+      void q(Vector4 const & t_q) {this->m_q = t_q;}
+
+      /**
+      * Print the quaternionic orbit parameters on a string.
+      * \return The quaternionic orbit parameters string.
+      */
+      std::string info() const {
+        std::ostringstream os;
+        os <<
+          "q¹ : 1st parameter = " << this->m_q(0) << " (-)" << std::endl <<
+          "q² : 2nd parameter = " << this->m_q(1) << " (-)" << std::endl <<
+          "q³ : 3rd parameter = " << this->m_q(2) << " (-)" << std::endl <<
+          "q⁴ : 4yh parameter = " << this->m_q(3) << " (-)" << std::endl;
+          return os.str();
+      }
+
+      /**
+      * Print the quaternionic orbit parameters on a stream.
+      * \param[in,out] os Output stream.
+      */
+      void info(std::ostream &os) {os << this->info();}
 
     }; // class Quaternionic
-
-
-
-
-
 
 
     //! Compute the Keplerian semi-major axis \f$ a \f$ from Equinoctical elements.
@@ -454,12 +814,12 @@ namespace Astro
 
     //! Compute the Keplerian longitude of the ascending node \f$ \Omega \f$ from
     //! Equinoctical elements.
-    Real keplerian_uc_Omega() const;
+    Real keplerian_Omega() const;
 
     //! Compute the Keplerian longitude of the ascending node \f$ \omega \f$ from
     //! Equinoctical elements.
     //! \return Longitude of the ascending node \f$ \omega \f$ (rad).
-    Real keplerian_lc_omega() const;
+    Real keplerian_omega() const;
 
     //! Compute the Keplerian angular momentum vector \f$ \mathbf{L} \f$ from
     //! Equinoctical elements.
@@ -522,28 +882,6 @@ namespace Astro
   } // namespace OrbitalElements
 
   /*\
-   |      _                                _
-   |     / \   _ __   ___  _ __ ___   __ _| |_   _
-   |    / _ \ | '_ \ / _ \| '_ ` _ \ / _` | | | | |
-   |   / ___ \| | | | (_) | | | | | | (_| | | |_| |
-   |  /_/   \_\_| |_|\___/|_| |_| |_|\__,_|_|\__, |
-   |                                         |___/
-  \*/
-
-  /**
-  * \brief Anomaly class container.
-  *
-  * \includedoc Anomaly.md
-  */
-  struct Anomaly
-  {
-    Real m_theta{QUIET_NAN}; /**< True anomaly \f$ \theta \f$ (rad). */
-    Real M{QUIET_NAN};       /**< Mean anomaly \f$ M \f$ (rad). */
-    Real E{QUIET_NAN};       /**< Eccentric anomaly \f$ E \f$ (rad). */
-    Real H{QUIET_NAN};       /**< Hyperbolic anomaly \f$ H \f$ (rad). */
-  }
-
-  /*\
    |    ___       _     _ _
    |   / _ \ _ __| |__ (_) |_
    |  | | | | '__| '_ \| | __|
@@ -588,7 +926,7 @@ namespace Astro
     Real
     H_to_true_anomaly(Real H, Real e);
     Real
-    true_anomaly_to_mean_anomaly(Real theta, Real e);
+    true_anomaly_to_M(Real theta, Real e);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
