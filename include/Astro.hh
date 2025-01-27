@@ -43,7 +43,7 @@
 #define ASTRO_ASSERT(COND, MSG) \
   if (!(COND))                  \
   {                             \
-    SANDALS_ERROR(MSG);         \
+    ASTRO_ERROR(MSG);           \
   }
 #endif
 

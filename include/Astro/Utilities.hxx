@@ -74,24 +74,28 @@ namespace Astro {
   * Add or remove multiple of \f$ 2\pi \f$ to an angle in order to clamp it in
   * the range \f$ [0, 2\pi] \f$.
   * \param[in] x Angle to be normalized.
+  * \return Normalized angle.
   */
-  void angle_in_range(Real & x)
+  Real angle_in_range(Real x)
   {
     x = std::fmod(x, PIMUL2);
     while (x < Real(0.0)) {x += PIMUL2;}
     while (x > PIMUL2) {x -= PIMUL2;}
+    return x;
   }
 
   /**
   * Add or remove multiple of \f$ 2\pi \f$ to an angle in order to clamp it in
   * the range \f$ [-\pi, \pi] \f$.
   * \param[in] x Angle to be normalized.
+  * \return Normalized angle.
   */
-  void angle_in_range_sym(Real & x)
+  Real angle_in_range_sym(Real x)
   {
     x = std::fmod(x, PIMUL2);
     while (x < -PI) {x += PIMUL2;}
     while (x > PI) {x -= PIMUL2;}
+    return x;
   }
 
   /*\

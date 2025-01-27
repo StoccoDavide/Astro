@@ -12,6 +12,10 @@
 
 int main()
 {
+  Astro::OrbitalElements::Cartesian cart;
+  Astro::OrbitalElements::Keplerian kepl;
+  Astro::OrbitalElements::Equinoctical equi;
+  Astro::OrbitalElements::Quaternionic quat;
 
   std::cout << "Hello World!" << std::endl;
 
