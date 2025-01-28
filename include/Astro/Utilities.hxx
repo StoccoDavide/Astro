@@ -54,6 +54,12 @@ namespace Astro {
    |                 |___/
   \*/
 
+  static Real const PI      = Real(3.141592653589793238462643383279502884197); /**< Pi static constant value. */
+  static Real const PIMUL2  = Real(6.283185307179586476925286766559005768394); /**< The value of \f$ 2\pi \f$. */
+  static Real const PIDIV2  = Real(1.570796326794896619231321691639751442098); /**< The value of \f$ \pi/2 \f$. */
+  static Real const DEG2RAD = Real(0.017453292519943295769236907684886127134); /**< The value of \f$ \pi/180 \f$. */
+  static Real const RAD2DEG = Real(57.29577951308232087679815481410517033240); /**< The value of \f$ 180/\pi \f$. */
+
   /**
   * Convert an angle in degrees to radiants using the formula \f$ \text{rad} =
   * \pi/180 \text{deg} \f$.
@@ -142,7 +148,11 @@ namespace Astro {
 
   static Real const muSun_km3s2{1.32712440018E11}; // Km^3/s^2
   static Real const muSun_AU3DAY2{muSun_km3s2*(KM_TO_AU*KM_TO_AU*KM_TO_AU)/(SEC_TO_DAY*SEC_TO_DAY)}; // Km^3/s^2
-
+//#define ASTRO_MU_SUN 1.32712440018e20
+//#define ASTRO_MU_EARTH 398600441800000.0
+//#define ASTRO_EARTH_VELOCITY 29784.6905
+//#define ASTRO_EARTH_J2 1.08262668E-03
+//#define ASTRO_EARTH_RADIUS 6378137
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   Real AU_to_KM(Real x) {return x * AU_TO_KM;}

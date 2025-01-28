@@ -21,6 +21,7 @@
 
 // Eigen library
 #include <Eigen/Dense>
+#include <Eigen/Geometry>
 
 // Sandals library
 #ifdef ASTRO_ENABLE_SANDALS
@@ -65,7 +66,6 @@
 #endif
 
 /**
-* \namespace Astro
 * \brief The namespace for the Astro library.
 *
 * The namespace contains all the classes and functions of the Astro library.
@@ -109,10 +109,12 @@ namespace Astro
   using VectorX = Eigen::Vector<Real, Eigen::Dynamic>;                 /**< \f$ N \times 1 \f$ vector of Real number type (column vector). */
   using MatrixX = Eigen::Matrix<Real, Eigen::Dynamic, Eigen::Dynamic>; /**< \f$ N \times N \f$ matrix of Real number type. */
 
-  using Scale     = Eigen::DiagonalMatrix<Real, 3>;           /**< 3D scaling transformation type. */
-  using Translate = Eigen::Translation<Real, 3>;              /**< 3D translation transformation type. */
-  using AngleAxis = Eigen::AngleAxis<Real>;                   /**< 3D rotation transformation type. */
-  using Affine    = Eigen::Transform<Real, 3, Eigen::Affine>; /**< 3D affine transformation type. */
+  using Rotation   = Eigen::Matrix<Real, 3, 3>;                /**< 3D rotation matrix type. */
+  using Quaternion = Eigen::Quaternion<Real>;                  /**< 3D quaternion type. */
+  using Scale      = Eigen::DiagonalMatrix<Real, 3>;           /**< 3D scaling transformation type. */
+  using Translate  = Eigen::Translation<Real, 3>;              /**< 3D translation transformation type. */
+  using AngleAxis  = Eigen::AngleAxis<Real>;                   /**< 3D rotation transformation type. */
+  using Affine     = Eigen::Transform<Real, 3, Eigen::Affine>; /**< 3D affine transformation type. */
 
   /*\
    |    ____                _              _
@@ -131,11 +133,6 @@ namespace Astro
   static Real const EPSILON_LOW    = Real(1.0e-08);                                   /**< Low precision epsilon static constant value. */
   static Real const INFTY          = std::numeric_limits<Real>::infinity();           /**< Infinity static constant value. */
   static Real const QUIET_NAN      = std::numeric_limits<Real>::quiet_NaN();          /**< Not-a-number static constant value. */
-  static Real const PI             = Real(3.141592653589793238462643383279502884197); /**< Pi static constant value. */
-  static Real const PIMUL2         = Real(6.283185307179586476925286766559005768394); /**< The value of \f$ 2\pi \f$. */
-  static Real const PIDIV2         = Real(1.570796326794896619231321691639751442098); /**< The value of \f$ \pi/2 \f$. */
-  static Real const DEG2RAD        = Real(0.017453292519943295769236907684886127134); /**< The value of \f$ \pi/180 \f$. */
-  static Real const RAD2DEG        = Real(57.29577951308232087679815481410517033240); /**< The value of \f$ 180/\pi \f$. */
 
   static Vector1 const NAN_VEC1      = Vector1::Constant(QUIET_NAN); /**< Not-a-number \f$ 1 \times 1 \f$ vector static constant object. */
   static Matrix1 const NAN_MAT1      = Matrix1::Constant(QUIET_NAN); /**< Not-a-number \f$ 1 \times 1 \f$ matrix static constant object. */
@@ -209,6 +206,15 @@ namespace Astro
   static Matrix9 const ONES_MAT9     = Matrix9::Ones();              /**< Ones \f$ 9 \times 9 \f$ matrix static constant object. */
   static Matrix9 const IDENTITY_MAT9 = Matrix9::Identity();          /**< Identity \f$ 9 \times 9 \f$ matrix static constant object. */
 
+  /*\
+   |   ___        __
+   |  |_ _|_ __  / _| ___
+   |   | || '_ \| |_ / _ \
+   |   | || | | |  _| (_) |
+   |  |___|_| |_|_|  \___/
+   |
+  \*/
+
   /**
   * Print Astro library information on a string.
   * \return A string with the Astro library information.
@@ -239,10 +245,11 @@ namespace Astro
 // Utility functions
 #include "Astro/Utilities.hxx"
 
-// Units
-//#include "Astro/Units.hxx"
-
-// Orbital elements
+// Orbital elements and anomalies
 #include "Astro/OrbitalElements.hxx"
+#include "Astro/Orbit.hxx"
+
+// Astronomical bodies
+#include "Astro/Body.hxx"
 
 #endif // INCLUDE_ASTRO_HH
