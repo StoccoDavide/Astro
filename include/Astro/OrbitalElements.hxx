@@ -994,7 +994,6 @@ namespace Astro
     *   - the true anomaly \f$ \nu \f$ (rad),
     *   - the mean anomaly \f$ M \f$ (rad),
     *   - the eccentric anomaly \f$ E \f$ (rad).
-    *   - the hyperbolic anomaly \f$ H \f$ (rad).
     *   - the true longitude \f$ L \f$ (rad).
     *   - the mean longitude \f$ \lambda \f$ (rad).
     */
@@ -1003,7 +1002,6 @@ namespace Astro
       Real nu{QUIET_NAN};     /**< True anomaly \f$ \nu \f$ (rad). */
       Real M{QUIET_NAN};      /**< Mean anomaly \f$ M \f$ (rad). */
       Real E{QUIET_NAN};      /**< Eccentric anomaly \f$ E \f$ (rad). */
-      Real H{QUIET_NAN};      /**< Hyperbolic anomaly \f$ H \f$ (rad). */
       Real L{QUIET_NAN};      /**< True longitude \f$ L \f$ (rad). */
       Real lambda{QUIET_NAN}; /**< Mean longitude \f$ \lambda \f$ (rad). */
 
@@ -1045,7 +1043,6 @@ namespace Astro
         this->E      = nu_to_E(nu, kepl);
         this->L      = nu_to_L(nu, kepl, I);
         this->lambda = M_to_lambda(this->M, kepl, I);
-        this->H      = M_to_H(this->M, kepl);
       }
 
       /**
@@ -1061,7 +1058,6 @@ namespace Astro
         this->M      = t_M;
         this->L      = nu_to_L(this->nu, kepl, I);
         this->lambda = M_to_lambda(this->M, kepl, I);
-        this->H      = M_to_H(t_M, kepl);
       }
 
       /**
@@ -1083,7 +1079,6 @@ namespace Astro
         this->E      = t_E;
         this->L      = nu_to_L(this->nu, kepl, I);
         this->lambda = M_to_lambda(this->M, kepl, I);
-        this->H      = M_to_H(this->M, kepl);
       }
 
       /**
@@ -1129,27 +1124,6 @@ namespace Astro
       }
 
       /**
-      * \brief Set the hyperbolic anomaly \f$ H \f$.
-      *
-      * Set the hyperbolic anomaly \f$ H \f$, and compute the mean anomaly \f$ M \f$ and the true anomaly
-      * \f$ \nu \f$ accordingly.
-      * \param[in] t_H The hyperbolic anomaly \f$ H \f$.
-      * \param[in] kepl The keplerian orbital elements.
-      * \param[in] I The posigrade (+1)/retrograde (-1) factor.
-      */
-      void set_H(Real t_H, Keplerian const & kepl, Factor I)
-      {
-        #define CMD "Astro::OrbitalElements::Anomaly::H(...): "
-
-        this->set_nu(H_to_nu(t_H, kepl), kepl, I);
-
-        ASTRO_ASSERT(std::abs(this->H - t_H) < EPSILON_HIGH,
-          CMD "conversion error, H = " << t_H << " ≠ " << this->H << ".");
-
-        #undef CMD
-      }
-
-      /**
       * Print the orbit anomialies on a string.
       * \return The orbit anomialies parameters string.
       */
@@ -1161,7 +1135,6 @@ namespace Astro
           "E : eccentric anomaly  = " << this->E << " (rad) = " << rad_to_deg(this->E) << " (deg)" << std::endl <<
           "L : true longitude     = " << this->L << " (rad) = " << rad_to_deg(this->L) << " (deg)" << std::endl <<
           "λ : mean longitude     = " << this->lambda << " (rad) = " << rad_to_deg(this->lambda) << " (deg)" << std::endl;
-          "H : hyperbolic anomaly = " << this->H << " (rad) = " << rad_to_deg(this->H) << " (deg)" << std::endl <<
           return os.str();
       }
 
@@ -1181,7 +1154,6 @@ namespace Astro
         this->E      = QUIET_NAN;
         this->L      = QUIET_NAN;
         this->lambda = QUIET_NAN;
-        this->H      = QUIET_NAN;
       }
 
       /**
@@ -1210,10 +1182,6 @@ namespace Astro
         }
         if (!(std::isfinite(this->lambda))) {
           ASTRO_ERROR(CMD "invalid mean longitude.");
-          return false;
-        }
-        if (!(std::isfinite(this->H))) {
-          ASTRO_ERROR(CMD "invalid hyperbolic anomaly.");
           return false;
         }
         return true;
