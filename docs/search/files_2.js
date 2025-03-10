@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['utilities_2ehxx_0',['Utilities.hxx',['../_utilities_8hxx.html',1,'']]]
+  ['orbit_2ehxx_0',['Orbit.hxx',['../_orbit_8hxx.html',1,'']]],
+  ['orbitalelements_2ehxx_1',['OrbitalElements.hxx',['../_orbital_elements_8hxx.html',1,'']]]
 ];

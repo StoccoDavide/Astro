@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['real_0',['Real',['../namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1',1,'Astro']]]
+  ['equinoctial_0',['Equinoctial',['../class_astro_1_1_orbit.html#a1033d73f1cf1191c79751cbadf3d5be5',1,'Astro::Orbit']]]
 ];

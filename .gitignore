@@ -35,6 +35,7 @@
 *.app
 
 # CLion
+cmake-build-debug/
 .idea
 
 # Ipe
@@ -49,7 +50,7 @@
 *.bak
 
 # Temporary directories
-bin/
+third_party/
 tmp/
 
 # LaTeX

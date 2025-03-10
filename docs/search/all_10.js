@@ -1,21 +1,11 @@
 var searchData=
 [
-  ['zeros_5fmat1_0',['ZEROS_MAT1',['../namespace_astro.html#a17fa6e8df5d2ad6fe7aafaba821f25c9',1,'Astro']]],
-  ['zeros_5fmat2_1',['ZEROS_MAT2',['../namespace_astro.html#a7f259aed078b552277eff807a0bb2603',1,'Astro']]],
-  ['zeros_5fmat3_2',['ZEROS_MAT3',['../namespace_astro.html#a7ecbe55786d6f8a3e4c1519c92fea443',1,'Astro']]],
-  ['zeros_5fmat4_3',['ZEROS_MAT4',['../namespace_astro.html#a2be6ed2d2b3fb0ddb5134deb383191f7',1,'Astro']]],
-  ['zeros_5fmat5_4',['ZEROS_MAT5',['../namespace_astro.html#ad65a92de912c00085dcad40aaa8c1b98',1,'Astro']]],
-  ['zeros_5fmat6_5',['ZEROS_MAT6',['../namespace_astro.html#ae5dabb1a8a9a957db6fc3782d91b6522',1,'Astro']]],
-  ['zeros_5fmat7_6',['ZEROS_MAT7',['../namespace_astro.html#a4dfd132f35b87445cbbef14699a99f6d',1,'Astro']]],
-  ['zeros_5fmat8_7',['ZEROS_MAT8',['../namespace_astro.html#a7e1ebca44fce3c541cd17bcce22d5b5f',1,'Astro']]],
-  ['zeros_5fmat9_8',['ZEROS_MAT9',['../namespace_astro.html#a6998acb13eb2d00fc0b03015cdc5f5ee',1,'Astro']]],
-  ['zeros_5fvec1_9',['ZEROS_VEC1',['../namespace_astro.html#a2ccc122fcabb0c178ed3c66b78e4b358',1,'Astro']]],
-  ['zeros_5fvec2_10',['ZEROS_VEC2',['../namespace_astro.html#afdb2affa9db1d301d0d0d5007e673649',1,'Astro']]],
-  ['zeros_5fvec3_11',['ZEROS_VEC3',['../namespace_astro.html#a013aa2ce8cc87610a61e0fc82cfcb04d',1,'Astro']]],
-  ['zeros_5fvec4_12',['ZEROS_VEC4',['../namespace_astro.html#a77e00d9f7784114c3dd110935e2bc271',1,'Astro']]],
-  ['zeros_5fvec5_13',['ZEROS_VEC5',['../namespace_astro.html#a5311fc02d7d74306d0da14cc43e9492a',1,'Astro']]],
-  ['zeros_5fvec6_14',['ZEROS_VEC6',['../namespace_astro.html#a161f314faf34573a742d905f62a259cd',1,'Astro']]],
-  ['zeros_5fvec7_15',['ZEROS_VEC7',['../namespace_astro.html#ae54f7252c127ab0b9c80c28a82d09a8a',1,'Astro']]],
-  ['zeros_5fvec8_16',['ZEROS_VEC8',['../namespace_astro.html#ab018de038f350e55f9d1769003d34575',1,'Astro']]],
-  ['zeros_5fvec9_17',['ZEROS_VEC9',['../namespace_astro.html#a4187a6a71f5aed3aa9874b71aa4acf70',1,'Astro']]]
+  ['r_0',['r',['../struct_astro_1_1_orbital_elements_1_1_cartesian.html#aec05d35803dff5f3eee75e4dbedd21a1',1,'Astro::OrbitalElements::Cartesian']]],
+  ['rad2deg_1',['RAD2DEG',['../namespace_astro.html#a79d290ebdf036f4e2ad729ca87fe3913',1,'Astro']]],
+  ['rad_5fto_5fdeg_2',['rad_to_deg',['../namespace_astro.html#abec68aebe8c62af97de0c431f7297548',1,'Astro']]],
+  ['readme_2emd_3',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
+  ['real_4',['Real',['../namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1',1,'Astro']]],
+  ['reset_5',['reset',['../class_astro_1_1_orbit.html#a8037a7470f809f36299148ee2e4c33a6',1,'Astro::Orbit::reset()'],['../struct_astro_1_1_orbital_elements_1_1_cartesian.html#a4db672e208bc1e28e11b41071a6520dc',1,'Astro::OrbitalElements::Cartesian::reset()'],['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#a67f48e49079ce361f28c2f2e8bf044b9',1,'Astro::OrbitalElements::Keplerian::reset()'],['../struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a8ac75366d6c540ac932b511a5f060b1e',1,'Astro::OrbitalElements::Equinoctial::reset()'],['../struct_astro_1_1_orbital_elements_1_1_quaternionic.html#a45d2e0613f06317fa5c4c2582799bfd2',1,'Astro::OrbitalElements::Quaternionic::reset()'],['../struct_astro_1_1_orbital_elements_1_1_anomaly.html#a7ca0f9c472f94fc73fb062fd2f48d298',1,'Astro::OrbitalElements::Anomaly::reset()']]],
+  ['rotation_6',['Rotation',['../namespace_astro.html#a47cc844e063edf636eb876c9e09888be',1,'Astro']]],
+  ['rotation_7',['rotation',['../struct_astro_1_1_orbital_elements_1_1_quaternionic.html#ad5a8058395c0479e7b9b882288f3cc23',1,'Astro::OrbitalElements::Quaternionic']]]
 ];

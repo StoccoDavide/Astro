@@ -1,0 +1,1032 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Astro: Astro::OrbitalElements::Anomaly Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.png"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/StoccoDavide/Astro" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Astro
+   &#160;<span id="projectnumber">v0.0.0</span>
+   </div>
+   <div id="projectbrief">A C++ library for space dynamics</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_astro_1_1_orbital_elements_1_1_anomaly.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="class_astro_1_1_orbital_elements_1_1_anomaly-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Astro::OrbitalElements::Anomaly Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Class container for the orbital anomalies.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_orbital_elements_8hxx_source.html">OrbitalElements.hxx</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a547ba3909aac6935ddcd6047296bde2d" id="r_a547ba3909aac6935ddcd6047296bde2d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a547ba3909aac6935ddcd6047296bde2d">Anomaly</a> ()</td></tr>
+<tr class="separator:a547ba3909aac6935ddcd6047296bde2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fd28f03d31df671986e6f7778bb32a8" id="r_a9fd28f03d31df671986e6f7778bb32a8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fd28f03d31df671986e6f7778bb32a8">Anomaly</a> (<a class="el" href="class_astro_1_1_orbital_elements_1_1_anomaly.html">Anomaly</a> const &amp;)=default</td></tr>
+<tr class="separator:a9fd28f03d31df671986e6f7778bb32a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1d571bd2285b5f7d0e7db5e2959d124" id="r_ad1d571bd2285b5f7d0e7db5e2959d124"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1d571bd2285b5f7d0e7db5e2959d124">Anomaly</a> (<a class="el" href="class_astro_1_1_orbital_elements_1_1_anomaly.html">Anomaly</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:ad1d571bd2285b5f7d0e7db5e2959d124"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ed7fa393f2eae908fb146261117e5f4" id="r_a7ed7fa393f2eae908fb146261117e5f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_orbital_elements_1_1_anomaly.html">Anomaly</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ed7fa393f2eae908fb146261117e5f4">operator=</a> (const <a class="el" href="class_astro_1_1_orbital_elements_1_1_anomaly.html">Anomaly</a> &amp;)=default</td></tr>
+<tr class="separator:a7ed7fa393f2eae908fb146261117e5f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d7075bd39a0df5603a92af165923384" id="r_a7d7075bd39a0df5603a92af165923384"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_orbital_elements_1_1_anomaly.html">Anomaly</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d7075bd39a0df5603a92af165923384">operator=</a> (<a class="el" href="class_astro_1_1_orbital_elements_1_1_anomaly.html">Anomaly</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a7d7075bd39a0df5603a92af165923384"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bdb8e586451b1461525df07b5d3bcc9" id="r_a5bdb8e586451b1461525df07b5d3bcc9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5bdb8e586451b1461525df07b5d3bcc9">nu</a> () const</td></tr>
+<tr class="separator:a5bdb8e586451b1461525df07b5d3bcc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5d944da5fa95d6cfadb175d7908ecc3" id="r_ac5d944da5fa95d6cfadb175d7908ecc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5d944da5fa95d6cfadb175d7908ecc3">nu</a> (<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> nu, <a class="el" href="class_astro_1_1_orbital_elements_1_1_keplerian.html">Keplerian</a> const &amp;kepl, <a class="el" href="namespace_astro.html#a9edc63f653780ccd2824d6b634c405dc">Factor</a> I)</td></tr>
+<tr class="separator:ac5d944da5fa95d6cfadb175d7908ecc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3fc4b1c900f7bf379896aca7189b1b0" id="r_ae3fc4b1c900f7bf379896aca7189b1b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3fc4b1c900f7bf379896aca7189b1b0">M</a> () const</td></tr>
+<tr class="separator:ae3fc4b1c900f7bf379896aca7189b1b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47550b2aa5af020f626d64d4ca7f013f" id="r_a47550b2aa5af020f626d64d4ca7f013f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47550b2aa5af020f626d64d4ca7f013f">M</a> (<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_M, <a class="el" href="class_astro_1_1_orbital_elements_1_1_keplerian.html">Keplerian</a> const &amp;kepl, <a class="el" href="namespace_astro.html#a9edc63f653780ccd2824d6b634c405dc">Factor</a> I)</td></tr>
+<tr class="separator:a47550b2aa5af020f626d64d4ca7f013f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3930a694ca3d384656f1f476d65d3a95" id="r_a3930a694ca3d384656f1f476d65d3a95"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3930a694ca3d384656f1f476d65d3a95">E</a> () const</td></tr>
+<tr class="separator:a3930a694ca3d384656f1f476d65d3a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade08471adf1a7146c9665252300d399e" id="r_ade08471adf1a7146c9665252300d399e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade08471adf1a7146c9665252300d399e">E</a> (<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_E, <a class="el" href="class_astro_1_1_orbital_elements_1_1_keplerian.html">Keplerian</a> const &amp;kepl, <a class="el" href="namespace_astro.html#a9edc63f653780ccd2824d6b634c405dc">Factor</a> I)</td></tr>
+<tr class="memdesc:ade08471adf1a7146c9665252300d399e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the eccentric anomaly \( E \).  <br /></td></tr>
+<tr class="separator:ade08471adf1a7146c9665252300d399e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96f401337cd63b6e7dd895b56a06a429" id="r_a96f401337cd63b6e7dd895b56a06a429"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96f401337cd63b6e7dd895b56a06a429">H</a> () const</td></tr>
+<tr class="separator:a96f401337cd63b6e7dd895b56a06a429"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0cb597b4854020250b4bcd6a4d9111d" id="r_aa0cb597b4854020250b4bcd6a4d9111d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0cb597b4854020250b4bcd6a4d9111d">H</a> (<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_H, <a class="el" href="class_astro_1_1_orbital_elements_1_1_keplerian.html">Keplerian</a> const &amp;kepl, <a class="el" href="namespace_astro.html#a9edc63f653780ccd2824d6b634c405dc">Factor</a> I)</td></tr>
+<tr class="memdesc:aa0cb597b4854020250b4bcd6a4d9111d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the hyperbolic anomaly \( H \).  <br /></td></tr>
+<tr class="separator:aa0cb597b4854020250b4bcd6a4d9111d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54227de0e46a0c322634050d6fb05e97" id="r_a54227de0e46a0c322634050d6fb05e97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a54227de0e46a0c322634050d6fb05e97">L</a> () const</td></tr>
+<tr class="separator:a54227de0e46a0c322634050d6fb05e97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4404d376a48b6b538ac3fb83277e2adf" id="r_a4404d376a48b6b538ac3fb83277e2adf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4404d376a48b6b538ac3fb83277e2adf">L</a> (<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_L, <a class="el" href="class_astro_1_1_orbital_elements_1_1_keplerian.html">Keplerian</a> const &amp;kepl, <a class="el" href="namespace_astro.html#a9edc63f653780ccd2824d6b634c405dc">Factor</a> I)</td></tr>
+<tr class="memdesc:a4404d376a48b6b538ac3fb83277e2adf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the true longitude \( L \).  <br /></td></tr>
+<tr class="separator:a4404d376a48b6b538ac3fb83277e2adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72b4328ecedb05d65f1db1e7365168c0" id="r_a72b4328ecedb05d65f1db1e7365168c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72b4328ecedb05d65f1db1e7365168c0">lambda</a> () const</td></tr>
+<tr class="separator:a72b4328ecedb05d65f1db1e7365168c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bdb54724045899e53b8151628cf8946" id="r_a7bdb54724045899e53b8151628cf8946"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7bdb54724045899e53b8151628cf8946">lambda</a> (<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_lambda, <a class="el" href="class_astro_1_1_orbital_elements_1_1_keplerian.html">Keplerian</a> const &amp;kepl, <a class="el" href="namespace_astro.html#a9edc63f653780ccd2824d6b634c405dc">Factor</a> I)</td></tr>
+<tr class="memdesc:a7bdb54724045899e53b8151628cf8946"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the mean longitude \( \lambda \).  <br /></td></tr>
+<tr class="separator:a7bdb54724045899e53b8151628cf8946"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15fdbd5758b28420be9d690eba5e4129" id="r_a15fdbd5758b28420be9d690eba5e4129"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15fdbd5758b28420be9d690eba5e4129">info</a> () const</td></tr>
+<tr class="separator:a15fdbd5758b28420be9d690eba5e4129"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a087c535970e17b7f6b3c24a0bfbe124e" id="r_a087c535970e17b7f6b3c24a0bfbe124e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a087c535970e17b7f6b3c24a0bfbe124e">info</a> (std::ostream &amp;os)</td></tr>
+<tr class="separator:a087c535970e17b7f6b3c24a0bfbe124e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ca0f9c472f94fc73fb062fd2f48d298" id="r_a7ca0f9c472f94fc73fb062fd2f48d298"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ca0f9c472f94fc73fb062fd2f48d298">reset</a> ()</td></tr>
+<tr class="separator:a7ca0f9c472f94fc73fb062fd2f48d298"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ff0a7d0ed810467bfc7660b0e0c7169" id="r_a5ff0a7d0ed810467bfc7660b0e0c7169"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ff0a7d0ed810467bfc7660b0e0c7169">sanity_check</a> () const</td></tr>
+<tr class="separator:a5ff0a7d0ed810467bfc7660b0e0c7169"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aff0e52e7cac2469c66696ccbcd280559" id="r_aff0e52e7cac2469c66696ccbcd280559"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff0e52e7cac2469c66696ccbcd280559">m_nu</a> {<a class="el" href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">QUIET_NAN</a>}</td></tr>
+<tr class="separator:aff0e52e7cac2469c66696ccbcd280559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cc48e4383e5b8c5df5f4c6640e60662" id="r_a6cc48e4383e5b8c5df5f4c6640e60662"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6cc48e4383e5b8c5df5f4c6640e60662">m_M</a> {<a class="el" href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">QUIET_NAN</a>}</td></tr>
+<tr class="separator:a6cc48e4383e5b8c5df5f4c6640e60662"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a003fe8bdf346afa0b6a8ebff64c53bd6" id="r_a003fe8bdf346afa0b6a8ebff64c53bd6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a003fe8bdf346afa0b6a8ebff64c53bd6">m_E</a> {<a class="el" href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">QUIET_NAN</a>}</td></tr>
+<tr class="separator:a003fe8bdf346afa0b6a8ebff64c53bd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7a096c988f43c1692e4a53be46136c0" id="r_ad7a096c988f43c1692e4a53be46136c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7a096c988f43c1692e4a53be46136c0">m_H</a> {<a class="el" href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">QUIET_NAN</a>}</td></tr>
+<tr class="separator:ad7a096c988f43c1692e4a53be46136c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae92487e27a3f87b819fbc50f750334ba" id="r_ae92487e27a3f87b819fbc50f750334ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae92487e27a3f87b819fbc50f750334ba">m_L</a> {<a class="el" href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">QUIET_NAN</a>}</td></tr>
+<tr class="separator:ae92487e27a3f87b819fbc50f750334ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d4b241fa9c7199d8009bfeb613a2dec" id="r_a1d4b241fa9c7199d8009bfeb613a2dec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d4b241fa9c7199d8009bfeb613a2dec">m_lambda</a> {<a class="el" href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">QUIET_NAN</a>}</td></tr>
+<tr class="separator:a1d4b241fa9c7199d8009bfeb613a2dec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class container for the orbital anomalies, which is made of the following anomalies:</p><ul>
+<li>the true anomaly \( \nu \) (rad),</li>
+<li>the mean anomaly \( M \) (rad),</li>
+<li>the eccentric anomaly \( E \) (rad).</li>
+<li>the hyperbolic anomaly \( H \) (rad).</li>
+<li>the true longitude \( L \) (rad).</li>
+<li>the mean longitude \( \lambda \) (rad). </li>
+</ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a547ba3909aac6935ddcd6047296bde2d" name="a547ba3909aac6935ddcd6047296bde2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a547ba3909aac6935ddcd6047296bde2d">&#9670;&#160;</a></span>Anomaly() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Astro::OrbitalElements::Anomaly::Anomaly </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Class constructor for the orbit anomalies. </p>
+
+</div>
+</div>
+<a id="a9fd28f03d31df671986e6f7778bb32a8" name="a9fd28f03d31df671986e6f7778bb32a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fd28f03d31df671986e6f7778bb32a8">&#9670;&#160;</a></span>Anomaly() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Astro::OrbitalElements::Anomaly::Anomaly </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_astro_1_1_orbital_elements_1_1_anomaly.html">Anomaly</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Enable the default orbit anomalies copy constructor. </p>
+
+</div>
+</div>
+<a id="ad1d571bd2285b5f7d0e7db5e2959d124" name="ad1d571bd2285b5f7d0e7db5e2959d124"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1d571bd2285b5f7d0e7db5e2959d124">&#9670;&#160;</a></span>Anomaly() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Astro::OrbitalElements::Anomaly::Anomaly </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_astro_1_1_orbital_elements_1_1_anomaly.html">Anomaly</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Enable the default orbit anomalies move constructor. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3930a694ca3d384656f1f476d65d3a95" name="a3930a694ca3d384656f1f476d65d3a95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3930a694ca3d384656f1f476d65d3a95">&#9670;&#160;</a></span>E() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> Astro::OrbitalElements::Anomaly::E </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the eccentric anomaly \( E \). </p><dl class="section return"><dt>Returns</dt><dd>The eccentric anomaly \( E \). </dd></dl>
+
+</div>
+</div>
+<a id="ade08471adf1a7146c9665252300d399e" name="ade08471adf1a7146c9665252300d399e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade08471adf1a7146c9665252300d399e">&#9670;&#160;</a></span>E() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Astro::OrbitalElements::Anomaly::E </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a></td>          <td class="paramname"><span class="paramname"><em>t_E</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_astro_1_1_orbital_elements_1_1_keplerian.html">Keplerian</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>kepl</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9edc63f653780ccd2824d6b634c405dc">Factor</a></td>          <td class="paramname"><span class="paramname"><em>I</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the eccentric anomaly \( E \), and compute the mean anomaly \( M \) and the true anomaly \( \nu \) accordingly.</p>
+<dl class="section note"><dt>Note</dt><dd>Refer to <em>"A note on the relations between true and eccentric anomalies in the two-body
+  problem"</em> by R. Broucke and P. Cefola, Celestial Mechanics, Vol. 7, pp. 300-389, 1973. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_E</td><td>The eccentric anomaly \( E \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">kepl</td><td>The keplerian orbital elements. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">I</td><td>The posigrade (+1)/retrograde (-1) factor. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a96f401337cd63b6e7dd895b56a06a429" name="a96f401337cd63b6e7dd895b56a06a429"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96f401337cd63b6e7dd895b56a06a429">&#9670;&#160;</a></span>H() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> Astro::OrbitalElements::Anomaly::H </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the hyperbolic anomaly \( H \). </p><dl class="section return"><dt>Returns</dt><dd>The hyperbolic anomaly \( H \). </dd></dl>
+
+</div>
+</div>
+<a id="aa0cb597b4854020250b4bcd6a4d9111d" name="aa0cb597b4854020250b4bcd6a4d9111d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0cb597b4854020250b4bcd6a4d9111d">&#9670;&#160;</a></span>H() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Astro::OrbitalElements::Anomaly::H </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a></td>          <td class="paramname"><span class="paramname"><em>t_H</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_astro_1_1_orbital_elements_1_1_keplerian.html">Keplerian</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>kepl</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9edc63f653780ccd2824d6b634c405dc">Factor</a></td>          <td class="paramname"><span class="paramname"><em>I</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the hyperbolic anomaly \( H \), and compute the mean anomaly \( M \) and the true anomaly \( \nu \) accordingly. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_H</td><td>The hyperbolic anomaly \( H \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">kepl</td><td>The keplerian orbital elements. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">I</td><td>The posigrade (+1)/retrograde (-1) factor. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a15fdbd5758b28420be9d690eba5e4129" name="a15fdbd5758b28420be9d690eba5e4129"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15fdbd5758b28420be9d690eba5e4129">&#9670;&#160;</a></span>info() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Astro::OrbitalElements::Anomaly::info </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Print the orbit anomialies on a string. </p><dl class="section return"><dt>Returns</dt><dd>The orbit anomialies parameters string. </dd></dl>
+
+</div>
+</div>
+<a id="a087c535970e17b7f6b3c24a0bfbe124e" name="a087c535970e17b7f6b3c24a0bfbe124e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a087c535970e17b7f6b3c24a0bfbe124e">&#9670;&#160;</a></span>info() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Astro::OrbitalElements::Anomaly::info </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>os</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Print the orbit anomialies on a stream. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">os</td><td>Output stream. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a54227de0e46a0c322634050d6fb05e97" name="a54227de0e46a0c322634050d6fb05e97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54227de0e46a0c322634050d6fb05e97">&#9670;&#160;</a></span>L() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> Astro::OrbitalElements::Anomaly::L </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the true longitude \( L \). </p><dl class="section return"><dt>Returns</dt><dd>The true longitude \( L \). </dd></dl>
+
+</div>
+</div>
+<a id="a4404d376a48b6b538ac3fb83277e2adf" name="a4404d376a48b6b538ac3fb83277e2adf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4404d376a48b6b538ac3fb83277e2adf">&#9670;&#160;</a></span>L() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Astro::OrbitalElements::Anomaly::L </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a></td>          <td class="paramname"><span class="paramname"><em>t_L</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_astro_1_1_orbital_elements_1_1_keplerian.html">Keplerian</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>kepl</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9edc63f653780ccd2824d6b634c405dc">Factor</a></td>          <td class="paramname"><span class="paramname"><em>I</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the true longitude \( L \), and compute the true anomaly \( \nu \), the mean anomaly \( M \), and the eccentric anomaly \( E \) accordingly. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_L</td><td>The true longitude \( L \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">kepl</td><td>The keplerian orbital elements. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">I</td><td>The posigrade (+1)/retrograde (-1) factor. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a72b4328ecedb05d65f1db1e7365168c0" name="a72b4328ecedb05d65f1db1e7365168c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72b4328ecedb05d65f1db1e7365168c0">&#9670;&#160;</a></span>lambda() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> Astro::OrbitalElements::Anomaly::lambda </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the mean longitude \( \lambda \). </p><dl class="section return"><dt>Returns</dt><dd>The mean longitude \( \lambda \). </dd></dl>
+
+</div>
+</div>
+<a id="a7bdb54724045899e53b8151628cf8946" name="a7bdb54724045899e53b8151628cf8946"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bdb54724045899e53b8151628cf8946">&#9670;&#160;</a></span>lambda() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Astro::OrbitalElements::Anomaly::lambda </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a></td>          <td class="paramname"><span class="paramname"><em>t_lambda</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_astro_1_1_orbital_elements_1_1_keplerian.html">Keplerian</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>kepl</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9edc63f653780ccd2824d6b634c405dc">Factor</a></td>          <td class="paramname"><span class="paramname"><em>I</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the mean longitude \( \lambda \), and compute the true anomaly \( \nu \), the mean anomaly \( M \), and the eccentric anomaly \( E \) accordingly. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_lambda</td><td>The mean longitude \( \lambda \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">kepl</td><td>The keplerian orbital elements. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">I</td><td>The posigrade (+1)/retrograde (-1) factor. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae3fc4b1c900f7bf379896aca7189b1b0" name="ae3fc4b1c900f7bf379896aca7189b1b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3fc4b1c900f7bf379896aca7189b1b0">&#9670;&#160;</a></span>M() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> Astro::OrbitalElements::Anomaly::M </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the mean anomaly \( M \). </p><dl class="section return"><dt>Returns</dt><dd>The mean anomaly \( M \). </dd></dl>
+
+</div>
+</div>
+<a id="a47550b2aa5af020f626d64d4ca7f013f" name="a47550b2aa5af020f626d64d4ca7f013f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47550b2aa5af020f626d64d4ca7f013f">&#9670;&#160;</a></span>M() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Astro::OrbitalElements::Anomaly::M </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a></td>          <td class="paramname"><span class="paramname"><em>t_M</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_astro_1_1_orbital_elements_1_1_keplerian.html">Keplerian</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>kepl</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9edc63f653780ccd2824d6b634c405dc">Factor</a></td>          <td class="paramname"><span class="paramname"><em>I</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the mean anomaly \( M \). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_M</td><td>The mean anomaly \( M \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">kepl</td><td>The keplerian orbital elements. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">I</td><td>The posigrade (+1)/retrograde (-1) factor. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5bdb8e586451b1461525df07b5d3bcc9" name="a5bdb8e586451b1461525df07b5d3bcc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bdb8e586451b1461525df07b5d3bcc9">&#9670;&#160;</a></span>nu() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> Astro::OrbitalElements::Anomaly::nu </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the true anomaly \( \nu \). </p><dl class="section return"><dt>Returns</dt><dd>The true anomaly \( \nu \). </dd></dl>
+
+</div>
+</div>
+<a id="ac5d944da5fa95d6cfadb175d7908ecc3" name="ac5d944da5fa95d6cfadb175d7908ecc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5d944da5fa95d6cfadb175d7908ecc3">&#9670;&#160;</a></span>nu() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Astro::OrbitalElements::Anomaly::nu </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a></td>          <td class="paramname"><span class="paramname"><em>nu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_astro_1_1_orbital_elements_1_1_keplerian.html">Keplerian</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>kepl</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9edc63f653780ccd2824d6b634c405dc">Factor</a></td>          <td class="paramname"><span class="paramname"><em>I</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the true anomaly \( \nu \) and compute the other anomalies accordingly. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">nu</td><td>The true anomaly \( \nu \). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">kepl</td><td>The keplerian orbital elements. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">I</td><td>The posigrade (+1)/retrograde (-1) factor. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7d7075bd39a0df5603a92af165923384" name="a7d7075bd39a0df5603a92af165923384"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d7075bd39a0df5603a92af165923384">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_astro_1_1_orbital_elements_1_1_anomaly.html">Anomaly</a> &amp; Astro::OrbitalElements::Anomaly::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_astro_1_1_orbital_elements_1_1_anomaly.html">Anomaly</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Enable the default orbit anomalies move assignment operator. </p>
+
+</div>
+</div>
+<a id="a7ed7fa393f2eae908fb146261117e5f4" name="a7ed7fa393f2eae908fb146261117e5f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ed7fa393f2eae908fb146261117e5f4">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_astro_1_1_orbital_elements_1_1_anomaly.html">Anomaly</a> &amp; Astro::OrbitalElements::Anomaly::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_astro_1_1_orbital_elements_1_1_anomaly.html">Anomaly</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Enable the default orbit anomalies assignment operator. </p>
+
+</div>
+</div>
+<a id="a7ca0f9c472f94fc73fb062fd2f48d298" name="a7ca0f9c472f94fc73fb062fd2f48d298"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ca0f9c472f94fc73fb062fd2f48d298">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Astro::OrbitalElements::Anomaly::reset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Reset the orbit anomalies to NaN. </p>
+
+</div>
+</div>
+<a id="a5ff0a7d0ed810467bfc7660b0e0c7169" name="a5ff0a7d0ed810467bfc7660b0e0c7169"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ff0a7d0ed810467bfc7660b0e0c7169">&#9670;&#160;</a></span>sanity_check()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Astro::OrbitalElements::Anomaly::sanity_check </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Check if the orbit anomalies are valid, <em>i.e.</em>, finite. </p><dl class="section return"><dt>Returns</dt><dd>True if the orbit anomalies are valid, false otherwise. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a003fe8bdf346afa0b6a8ebff64c53bd6" name="a003fe8bdf346afa0b6a8ebff64c53bd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a003fe8bdf346afa0b6a8ebff64c53bd6">&#9670;&#160;</a></span>m_E</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> Astro::OrbitalElements::Anomaly::m_E {<a class="el" href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">QUIET_NAN</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Eccentric anomaly \( E \) (rad). </p>
+
+</div>
+</div>
+<a id="ad7a096c988f43c1692e4a53be46136c0" name="ad7a096c988f43c1692e4a53be46136c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7a096c988f43c1692e4a53be46136c0">&#9670;&#160;</a></span>m_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> Astro::OrbitalElements::Anomaly::m_H {<a class="el" href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">QUIET_NAN</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Hyperbolic anomaly \( H \) (rad). </p>
+
+</div>
+</div>
+<a id="ae92487e27a3f87b819fbc50f750334ba" name="ae92487e27a3f87b819fbc50f750334ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae92487e27a3f87b819fbc50f750334ba">&#9670;&#160;</a></span>m_L</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> Astro::OrbitalElements::Anomaly::m_L {<a class="el" href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">QUIET_NAN</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>True longitude \( L \) (rad). </p>
+
+</div>
+</div>
+<a id="a1d4b241fa9c7199d8009bfeb613a2dec" name="a1d4b241fa9c7199d8009bfeb613a2dec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d4b241fa9c7199d8009bfeb613a2dec">&#9670;&#160;</a></span>m_lambda</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> Astro::OrbitalElements::Anomaly::m_lambda {<a class="el" href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">QUIET_NAN</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Mean longitude \( \lambda \) (rad). </p>
+
+</div>
+</div>
+<a id="a6cc48e4383e5b8c5df5f4c6640e60662" name="a6cc48e4383e5b8c5df5f4c6640e60662"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cc48e4383e5b8c5df5f4c6640e60662">&#9670;&#160;</a></span>m_M</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> Astro::OrbitalElements::Anomaly::m_M {<a class="el" href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">QUIET_NAN</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Mean anomaly \( M \) (rad). </p>
+
+</div>
+</div>
+<a id="aff0e52e7cac2469c66696ccbcd280559" name="aff0e52e7cac2469c66696ccbcd280559"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff0e52e7cac2469c66696ccbcd280559">&#9670;&#160;</a></span>m_nu</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> Astro::OrbitalElements::Anomaly::m_nu {<a class="el" href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">QUIET_NAN</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>True anomaly \( \nu \) (rad). </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>include/Astro/<a class="el" href="_orbital_elements_8hxx_source.html">OrbitalElements.hxx</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_astro.html">Astro</a></li><li class="navelem"><a class="el" href="namespace_astro_1_1_orbital_elements.html">OrbitalElements</a></li><li class="navelem"><a class="el" href="class_astro_1_1_orbital_elements_1_1_anomaly.html">Anomaly</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

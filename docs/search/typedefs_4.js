@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['translate_0',['Translate',['../namespace_astro.html#ae8e7952781ea4f7123ad68c38ab30077',1,'Astro']]]
+  ['integer_0',['Integer',['../namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13',1,'Astro']]]
 ];

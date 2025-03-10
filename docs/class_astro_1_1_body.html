@@ -1,0 +1,785 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Astro: Astro::Body Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.png"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/StoccoDavide/Astro" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Astro
+   &#160;<span id="projectnumber">0.0.0</span>
+   </div>
+   <div id="projectbrief">A C++ library for space dynamics</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_astro_1_1_body.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-types">Private Types</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="class_astro_1_1_body-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Astro::Body Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Astronomical body class container.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_body_8hxx_source.html">Body.hxx</a>&gt;</code></p>
+
+<p>Inherits <a class="el" href="class_astro_1_1_orbit.html">Astro::Orbit</a>.</p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a63894521158578bf268c7a01dcd3d7a9" id="r_a63894521158578bf268c7a01dcd3d7a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63894521158578bf268c7a01dcd3d7a9">Body</a> ()</td></tr>
+<tr class="separator:a63894521158578bf268c7a01dcd3d7a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b1f4a7a934d276822e94a79e5019966" id="r_a8b1f4a7a934d276822e94a79e5019966"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b1f4a7a934d276822e94a79e5019966">Body</a> (<a class="el" href="class_astro_1_1_body.html">Body</a> const &amp;)=default</td></tr>
+<tr class="separator:a8b1f4a7a934d276822e94a79e5019966"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca26c3bf7d01aab1534ac5cc317bfcbc" id="r_aca26c3bf7d01aab1534ac5cc317bfcbc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca26c3bf7d01aab1534ac5cc317bfcbc">Body</a> (<a class="el" href="class_astro_1_1_body.html">Body</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:aca26c3bf7d01aab1534ac5cc317bfcbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeca1b0b850bdc18c3f877c1402ef7e27" id="r_aeca1b0b850bdc18c3f877c1402ef7e27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_body.html">Body</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeca1b0b850bdc18c3f877c1402ef7e27">operator=</a> (const <a class="el" href="class_astro_1_1_body.html">Body</a> &amp;)=default</td></tr>
+<tr class="separator:aeca1b0b850bdc18c3f877c1402ef7e27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f2aa0d766e9854208053809218fa435" id="r_a3f2aa0d766e9854208053809218fa435"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_body.html">Body</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f2aa0d766e9854208053809218fa435">operator=</a> (<a class="el" href="class_astro_1_1_body.html">Body</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a3f2aa0d766e9854208053809218fa435"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ce6187634d6b718faca6133ad401921" id="r_a6ce6187634d6b718faca6133ad401921"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ce6187634d6b718faca6133ad401921">mass</a> () const</td></tr>
+<tr class="separator:a6ce6187634d6b718faca6133ad401921"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaa6867e0bbd2d05cc2bf6d5dc406463" id="r_adaa6867e0bbd2d05cc2bf6d5dc406463"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adaa6867e0bbd2d05cc2bf6d5dc406463">mass</a> (<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_mass)</td></tr>
+<tr class="separator:adaa6867e0bbd2d05cc2bf6d5dc406463"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc754d38d2a54e5248817cf2dde9ac24" id="r_acc754d38d2a54e5248817cf2dde9ac24"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#abe2277328469209e8a1e1916781cd5de">MatrixA</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc754d38d2a54e5248817cf2dde9ac24">equinoctial_eom_A</a> () const</td></tr>
+<tr class="separator:acc754d38d2a54e5248817cf2dde9ac24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad328bde034a2c2b2436108b47796d335" id="r_ad328bde034a2c2b2436108b47796d335"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a9a61b97bc5f5ddb4b5ecbc72aa2c0380">VectorB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad328bde034a2c2b2436108b47796d335">equinoctial_eom_b</a> () const</td></tr>
+<tr class="separator:ad328bde034a2c2b2436108b47796d335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5ef530d0801bb277b8954323f3b3520" id="r_ae5ef530d0801bb277b8954323f3b3520"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5ef530d0801bb277b8954323f3b3520">cartesian_eom</a> (<a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> const &amp;thrust_rtn) const</td></tr>
+<tr class="separator:ae5ef530d0801bb277b8954323f3b3520"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80535cd3fc36c81da7356694a94d6ef3" id="r_a80535cd3fc36c81da7356694a94d6ef3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80535cd3fc36c81da7356694a94d6ef3">cartesian_eom</a> (<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> thrust_rad, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> thrust_tan, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> thrust_nor) const</td></tr>
+<tr class="separator:a80535cd3fc36c81da7356694a94d6ef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e420cf1aa707085ed2d6314fa13a192" id="r_a0e420cf1aa707085ed2d6314fa13a192"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e420cf1aa707085ed2d6314fa13a192">equinoctial_eom</a> (<a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> const &amp;thrust) const</td></tr>
+<tr class="separator:a0e420cf1aa707085ed2d6314fa13a192"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac9ef638e849f8f9d33b91f3a46c1e55" id="r_aac9ef638e849f8f9d33b91f3a46c1e55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac9ef638e849f8f9d33b91f3a46c1e55">equinoctial_eom</a> (<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> thrust_rad, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> thrust_tan, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> thrust_nor) const</td></tr>
+<tr class="separator:aac9ef638e849f8f9d33b91f3a46c1e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_astro_1_1_orbit"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_astro_1_1_orbit')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_astro_1_1_orbit.html">Astro::Orbit</a></td></tr>
+<tr class="memitem:a98a953b2d1e354b4d6fe12707d63eaef inherit pub_methods_class_astro_1_1_orbit" id="r_a98a953b2d1e354b4d6fe12707d63eaef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a98a953b2d1e354b4d6fe12707d63eaef">Orbit</a> ()</td></tr>
+<tr class="separator:a98a953b2d1e354b4d6fe12707d63eaef inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a7457282a222fd1eb48f3570734310a inherit pub_methods_class_astro_1_1_orbit" id="r_a4a7457282a222fd1eb48f3570734310a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a4a7457282a222fd1eb48f3570734310a">Orbit</a> (<a class="el" href="class_astro_1_1_orbit.html">Orbit</a> const &amp;)=default</td></tr>
+<tr class="separator:a4a7457282a222fd1eb48f3570734310a inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fa741a3f47d9703d8d6c89556c2d5a3 inherit pub_methods_class_astro_1_1_orbit" id="r_a7fa741a3f47d9703d8d6c89556c2d5a3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a7fa741a3f47d9703d8d6c89556c2d5a3">Orbit</a> (<a class="el" href="class_astro_1_1_orbit.html">Orbit</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a7fa741a3f47d9703d8d6c89556c2d5a3 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7d095e70c0263e0dc1da5f0e4b455cf inherit pub_methods_class_astro_1_1_orbit" id="r_ae7d095e70c0263e0dc1da5f0e4b455cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_orbit.html">Orbit</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#ae7d095e70c0263e0dc1da5f0e4b455cf">operator=</a> (const <a class="el" href="class_astro_1_1_orbit.html">Orbit</a> &amp;)=default</td></tr>
+<tr class="separator:ae7d095e70c0263e0dc1da5f0e4b455cf inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd21a72e93c4aa11597aab7436cc1a25 inherit pub_methods_class_astro_1_1_orbit" id="r_afd21a72e93c4aa11597aab7436cc1a25"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_orbit.html">Orbit</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#afd21a72e93c4aa11597aab7436cc1a25">operator=</a> (<a class="el" href="class_astro_1_1_orbit.html">Orbit</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:afd21a72e93c4aa11597aab7436cc1a25 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7815da97addf27e17538f8182125bb3 inherit pub_methods_class_astro_1_1_orbit" id="r_af7815da97addf27e17538f8182125bb3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_orbit.html#a36629c9e0eac68668349bcb3654f6158">Cartesian</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#af7815da97addf27e17538f8182125bb3">cartesian</a> () const</td></tr>
+<tr class="separator:af7815da97addf27e17538f8182125bb3 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a850788379761fdba0bdf990420a5187e inherit pub_methods_class_astro_1_1_orbit" id="r_a850788379761fdba0bdf990420a5187e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a850788379761fdba0bdf990420a5187e">set_cartesian</a> (<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> r_x, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> r_y, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> r_z, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> v_x, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> v_y, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> v_z)</td></tr>
+<tr class="separator:a850788379761fdba0bdf990420a5187e inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a132bf299f7918cde5587721f61466f42 inherit pub_methods_class_astro_1_1_orbit" id="r_a132bf299f7918cde5587721f61466f42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a132bf299f7918cde5587721f61466f42">cartesian</a> (<a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> const &amp;t_r, <a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> const &amp;t_v)</td></tr>
+<tr class="separator:a132bf299f7918cde5587721f61466f42 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ea87eb689ebf1faaa3d3d101315c54f inherit pub_methods_class_astro_1_1_orbit" id="r_a2ea87eb689ebf1faaa3d3d101315c54f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a2ea87eb689ebf1faaa3d3d101315c54f">cartesian</a> (<a class="el" href="class_astro_1_1_orbit.html#a36629c9e0eac68668349bcb3654f6158">Cartesian</a> const &amp;t_cart)</td></tr>
+<tr class="separator:a2ea87eb689ebf1faaa3d3d101315c54f inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e570a5333d2e56a71094608616df283 inherit pub_methods_class_astro_1_1_orbit" id="r_a6e570a5333d2e56a71094608616df283"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_orbit.html#a0ac0779e610497dd8cd582baace78999">Keplerian</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a6e570a5333d2e56a71094608616df283">keplerian</a> () const</td></tr>
+<tr class="separator:a6e570a5333d2e56a71094608616df283 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68ae6821ea08857c12b25e895aab3e0a inherit pub_methods_class_astro_1_1_orbit" id="r_a68ae6821ea08857c12b25e895aab3e0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a68ae6821ea08857c12b25e895aab3e0a">keplerian</a> (<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_a, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_e, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_i, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_Omega, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_omega)</td></tr>
+<tr class="separator:a68ae6821ea08857c12b25e895aab3e0a inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54ba25c900cd1d71391a120f25a31fe2 inherit pub_methods_class_astro_1_1_orbit" id="r_a54ba25c900cd1d71391a120f25a31fe2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a54ba25c900cd1d71391a120f25a31fe2">keplerian</a> (<a class="el" href="class_astro_1_1_orbit.html#a0ac0779e610497dd8cd582baace78999">Keplerian</a> const &amp;t_kepl)</td></tr>
+<tr class="separator:a54ba25c900cd1d71391a120f25a31fe2 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6d29b1568f7ed2152413297ddf1f8aa inherit pub_methods_class_astro_1_1_orbit" id="r_af6d29b1568f7ed2152413297ddf1f8aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_orbit.html#a1033d73f1cf1191c79751cbadf3d5be5">Equinoctial</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#af6d29b1568f7ed2152413297ddf1f8aa">equinoctial</a> () const</td></tr>
+<tr class="separator:af6d29b1568f7ed2152413297ddf1f8aa inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57a0f55bbc3d569aab3c7e6caec8fdeb inherit pub_methods_class_astro_1_1_orbit" id="r_a57a0f55bbc3d569aab3c7e6caec8fdeb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a57a0f55bbc3d569aab3c7e6caec8fdeb">set_equinoctial</a> (<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_p, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_f, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_g, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_h, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_k)</td></tr>
+<tr class="separator:a57a0f55bbc3d569aab3c7e6caec8fdeb inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac29793d0fca4dd1219f1a328025dcc2b inherit pub_methods_class_astro_1_1_orbit" id="r_ac29793d0fca4dd1219f1a328025dcc2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#ac29793d0fca4dd1219f1a328025dcc2b">set_equinoctial</a> (<a class="el" href="class_astro_1_1_orbit.html#a1033d73f1cf1191c79751cbadf3d5be5">Equinoctial</a> const &amp;t_equi)</td></tr>
+<tr class="separator:ac29793d0fca4dd1219f1a328025dcc2b inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4110c3f8223ab9eba4539717116e3695 inherit pub_methods_class_astro_1_1_orbit" id="r_a4110c3f8223ab9eba4539717116e3695"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_orbit.html#ad563e5452dacc6979a0a4e36402ff261">Quaternionic</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a4110c3f8223ab9eba4539717116e3695">quaternionic</a> () const</td></tr>
+<tr class="separator:a4110c3f8223ab9eba4539717116e3695 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79bbb62f2612ce8fb4128170056a77c6 inherit pub_methods_class_astro_1_1_orbit" id="r_a79bbb62f2612ce8fb4128170056a77c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a79bbb62f2612ce8fb4128170056a77c6">set_quaternionic</a> (<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_q_1, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_q_2, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_q_3, <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_q_4)</td></tr>
+<tr class="separator:a79bbb62f2612ce8fb4128170056a77c6 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60c66c57fddcb602ebf46e87260dcfa5 inherit pub_methods_class_astro_1_1_orbit" id="r_a60c66c57fddcb602ebf46e87260dcfa5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a60c66c57fddcb602ebf46e87260dcfa5">set_quaternionic</a> (<a class="el" href="namespace_astro.html#a1092eb69942d75f088455d5842836db5">Quaternion</a> const &amp;t_quat)</td></tr>
+<tr class="separator:a60c66c57fddcb602ebf46e87260dcfa5 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a744165ec2738fa5fa3031c9fc4bec56c inherit pub_methods_class_astro_1_1_orbit" id="r_a744165ec2738fa5fa3031c9fc4bec56c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_orbit.html#a9d6eae27c4da4cbf24b0aec3753ce171">Anomaly</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a744165ec2738fa5fa3031c9fc4bec56c">anomaly</a> () const</td></tr>
+<tr class="separator:a744165ec2738fa5fa3031c9fc4bec56c inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a462625a0037fe4b0aeaecf8d6cc612f6 inherit pub_methods_class_astro_1_1_orbit" id="r_a462625a0037fe4b0aeaecf8d6cc612f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a462625a0037fe4b0aeaecf8d6cc612f6">anomaly</a> (<a class="el" href="class_astro_1_1_orbit.html#a9d6eae27c4da4cbf24b0aec3753ce171">Anomaly</a> const &amp;t_anom)</td></tr>
+<tr class="separator:a462625a0037fe4b0aeaecf8d6cc612f6 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e0bfdad52876fc14cc1935291bbea49 inherit pub_methods_class_astro_1_1_orbit" id="r_a7e0bfdad52876fc14cc1935291bbea49"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a6c1157f85a680ad32cba5b9a5ecf038b">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a7e0bfdad52876fc14cc1935291bbea49">type</a> () const</td></tr>
+<tr class="separator:a7e0bfdad52876fc14cc1935291bbea49 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea48fdac49b84acec7ed162c8b889977 inherit pub_methods_class_astro_1_1_orbit" id="r_aea48fdac49b84acec7ed162c8b889977"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#aea48fdac49b84acec7ed162c8b889977">type</a> (<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> e)</td></tr>
+<tr class="separator:aea48fdac49b84acec7ed162c8b889977 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3baab11b7e0b330ff73d6f9b83ae531 inherit pub_methods_class_astro_1_1_orbit" id="r_ae3baab11b7e0b330ff73d6f9b83ae531"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9edc63f653780ccd2824d6b634c405dc">Factor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#ae3baab11b7e0b330ff73d6f9b83ae531">factor</a> () const</td></tr>
+<tr class="separator:ae3baab11b7e0b330ff73d6f9b83ae531 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a696033db94d6a86c908acbe7a2fc88b9 inherit pub_methods_class_astro_1_1_orbit" id="r_a696033db94d6a86c908acbe7a2fc88b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a696033db94d6a86c908acbe7a2fc88b9">factor</a> (<a class="el" href="namespace_astro.html#a9edc63f653780ccd2824d6b634c405dc">Factor</a> t_factor)</td></tr>
+<tr class="separator:a696033db94d6a86c908acbe7a2fc88b9 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a652083b33952a395c3c3ce0a1326a473 inherit pub_methods_class_astro_1_1_orbit" id="r_a652083b33952a395c3c3ce0a1326a473"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a652083b33952a395c3c3ce0a1326a473">mu</a> () const</td></tr>
+<tr class="separator:a652083b33952a395c3c3ce0a1326a473 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09b69124c349ff259919796bf1138e8d inherit pub_methods_class_astro_1_1_orbit" id="r_a09b69124c349ff259919796bf1138e8d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a09b69124c349ff259919796bf1138e8d">mu</a> (<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> t_mu)</td></tr>
+<tr class="separator:a09b69124c349ff259919796bf1138e8d inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa0b6e9656aeb95f2ec879ea78dacc77 inherit pub_methods_class_astro_1_1_orbit" id="r_aaa0b6e9656aeb95f2ec879ea78dacc77"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#aaa0b6e9656aeb95f2ec879ea78dacc77">info</a> () const</td></tr>
+<tr class="separator:aaa0b6e9656aeb95f2ec879ea78dacc77 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c492b43a592c2b1b7bb3573bac6f917 inherit pub_methods_class_astro_1_1_orbit" id="r_a7c492b43a592c2b1b7bb3573bac6f917"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a7c492b43a592c2b1b7bb3573bac6f917">info</a> (std::ostream &amp;os)</td></tr>
+<tr class="separator:a7c492b43a592c2b1b7bb3573bac6f917 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8037a7470f809f36299148ee2e4c33a6 inherit pub_methods_class_astro_1_1_orbit" id="r_a8037a7470f809f36299148ee2e4c33a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a8037a7470f809f36299148ee2e4c33a6">reset</a> ()</td></tr>
+<tr class="separator:a8037a7470f809f36299148ee2e4c33a6 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29428b5c26fe5864f7dba9af53350be5 inherit pub_methods_class_astro_1_1_orbit" id="r_a29428b5c26fe5864f7dba9af53350be5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a47cc844e063edf636eb876c9e09888be">Rotation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a29428b5c26fe5864f7dba9af53350be5">keplerian_to_reference</a> () const</td></tr>
+<tr class="separator:a29428b5c26fe5864f7dba9af53350be5 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a034556b1d15a99d5655da612e8c63486 inherit pub_methods_class_astro_1_1_orbit" id="r_a034556b1d15a99d5655da612e8c63486"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a47cc844e063edf636eb876c9e09888be">Rotation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a034556b1d15a99d5655da612e8c63486">equinoctial_to_reference</a> () const</td></tr>
+<tr class="separator:a034556b1d15a99d5655da612e8c63486 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3af614a78c98eb0e1d5d9af51893d8f7 inherit pub_methods_class_astro_1_1_orbit" id="r_a3af614a78c98eb0e1d5d9af51893d8f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a47cc844e063edf636eb876c9e09888be">Rotation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a3af614a78c98eb0e1d5d9af51893d8f7">cartesian_to_frenet_rtn</a> () const</td></tr>
+<tr class="separator:a3af614a78c98eb0e1d5d9af51893d8f7 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0467a3c9fed4eae1f15a269b54c8d62 inherit pub_methods_class_astro_1_1_orbit" id="r_aa0467a3c9fed4eae1f15a269b54c8d62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a47cc844e063edf636eb876c9e09888be">Rotation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#aa0467a3c9fed4eae1f15a269b54c8d62">equinoctial_to_frenet_rtn</a> () const</td></tr>
+<tr class="separator:aa0467a3c9fed4eae1f15a269b54c8d62 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6aadd0f46a22e4b72bdcb834f558b4ca inherit pub_methods_class_astro_1_1_orbit" id="r_a6aadd0f46a22e4b72bdcb834f558b4ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a6aadd0f46a22e4b72bdcb834f558b4ca">cartesian_rtn_to_xyz</a> (<a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> const &amp;vec) const</td></tr>
+<tr class="separator:a6aadd0f46a22e4b72bdcb834f558b4ca inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e7ad525b11ab845f282503fd24805ce inherit pub_methods_class_astro_1_1_orbit" id="r_a4e7ad525b11ab845f282503fd24805ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a4e7ad525b11ab845f282503fd24805ce">equinoctial_rtn_to_xyz</a> (<a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> const &amp;vec) const</td></tr>
+<tr class="separator:a4e7ad525b11ab845f282503fd24805ce inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3952950fe8245ae0f9e37253fcd87fc inherit pub_methods_class_astro_1_1_orbit" id="r_aa3952950fe8245ae0f9e37253fcd87fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#aa3952950fe8245ae0f9e37253fcd87fc">cartesian_xyz_to_rtn</a> (<a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> const &amp;vec) const</td></tr>
+<tr class="separator:aa3952950fe8245ae0f9e37253fcd87fc inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affaca175df3209d47bd9b6fc411af551 inherit pub_methods_class_astro_1_1_orbit" id="r_affaca175df3209d47bd9b6fc411af551"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#affaca175df3209d47bd9b6fc411af551">equinoctial_xyz_to_rtn</a> (<a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> const &amp;vec) const</td></tr>
+<tr class="separator:affaca175df3209d47bd9b6fc411af551 inherit pub_methods_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:abe2277328469209e8a1e1916781cd5de" id="r_abe2277328469209e8a1e1916781cd5de"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe2277328469209e8a1e1916781cd5de">MatrixA</a> = Eigen::Matrix&lt;<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>, 6, 3&gt;</td></tr>
+<tr class="separator:abe2277328469209e8a1e1916781cd5de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a61b97bc5f5ddb4b5ecbc72aa2c0380" id="r_a9a61b97bc5f5ddb4b5ecbc72aa2c0380"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a61b97bc5f5ddb4b5ecbc72aa2c0380">VectorB</a> = Eigen::Vector&lt;<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>, 6&gt;</td></tr>
+<tr class="separator:a9a61b97bc5f5ddb4b5ecbc72aa2c0380"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a02959c9e2236015cdb7fec3ec0cc6c07" id="r_a02959c9e2236015cdb7fec3ec0cc6c07"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02959c9e2236015cdb7fec3ec0cc6c07">m_mass</a> {<a class="el" href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">QUIET_NAN</a>}</td></tr>
+<tr class="separator:a02959c9e2236015cdb7fec3ec0cc6c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_class_astro_1_1_orbit"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_class_astro_1_1_orbit')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_astro_1_1_orbit.html">Astro::Orbit</a></td></tr>
+<tr class="memitem:aff01cc400958c3c167a7f34f083d3b34 inherit pro_attribs_class_astro_1_1_orbit" id="r_aff01cc400958c3c167a7f34f083d3b34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_orbit.html#a36629c9e0eac68668349bcb3654f6158">Cartesian</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#aff01cc400958c3c167a7f34f083d3b34">m_cart</a></td></tr>
+<tr class="separator:aff01cc400958c3c167a7f34f083d3b34 inherit pro_attribs_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a374ea3d6d4aa7e95503e3ec29e5dda9b inherit pro_attribs_class_astro_1_1_orbit" id="r_a374ea3d6d4aa7e95503e3ec29e5dda9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_orbit.html#a0ac0779e610497dd8cd582baace78999">Keplerian</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a374ea3d6d4aa7e95503e3ec29e5dda9b">m_kepl</a></td></tr>
+<tr class="separator:a374ea3d6d4aa7e95503e3ec29e5dda9b inherit pro_attribs_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96edd8116db4f452bbb437caf8d7fa24 inherit pro_attribs_class_astro_1_1_orbit" id="r_a96edd8116db4f452bbb437caf8d7fa24"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_orbit.html#a1033d73f1cf1191c79751cbadf3d5be5">Equinoctial</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a96edd8116db4f452bbb437caf8d7fa24">m_equi</a></td></tr>
+<tr class="separator:a96edd8116db4f452bbb437caf8d7fa24 inherit pro_attribs_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4778a47d565bfe2a1a7699e9d1d93c7 inherit pro_attribs_class_astro_1_1_orbit" id="r_ae4778a47d565bfe2a1a7699e9d1d93c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_orbit.html#ad563e5452dacc6979a0a4e36402ff261">Quaternionic</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#ae4778a47d565bfe2a1a7699e9d1d93c7">m_quat</a></td></tr>
+<tr class="separator:ae4778a47d565bfe2a1a7699e9d1d93c7 inherit pro_attribs_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e3055e290d4786aaa3fbd35c30a02d4 inherit pro_attribs_class_astro_1_1_orbit" id="r_a8e3055e290d4786aaa3fbd35c30a02d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_orbit.html#a9d6eae27c4da4cbf24b0aec3753ce171">Anomaly</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a8e3055e290d4786aaa3fbd35c30a02d4">m_anom</a></td></tr>
+<tr class="separator:a8e3055e290d4786aaa3fbd35c30a02d4 inherit pro_attribs_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70bcefcbe3697bcfc440c79d93fa7501 inherit pro_attribs_class_astro_1_1_orbit" id="r_a70bcefcbe3697bcfc440c79d93fa7501"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a6c1157f85a680ad32cba5b9a5ecf038b">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a70bcefcbe3697bcfc440c79d93fa7501">m_type</a> {Type::UNDEFINED}</td></tr>
+<tr class="separator:a70bcefcbe3697bcfc440c79d93fa7501 inherit pro_attribs_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a649284c38319c8a342bd8716591327b8 inherit pro_attribs_class_astro_1_1_orbit" id="r_a649284c38319c8a342bd8716591327b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9edc63f653780ccd2824d6b634c405dc">Factor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a649284c38319c8a342bd8716591327b8">m_factor</a> {Factor::UNDEFINED}</td></tr>
+<tr class="separator:a649284c38319c8a342bd8716591327b8 inherit pro_attribs_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a092ce69356fa19d8a4252e78a0d76232 inherit pro_attribs_class_astro_1_1_orbit" id="r_a092ce69356fa19d8a4252e78a0d76232"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_astro_1_1_orbit.html#a092ce69356fa19d8a4252e78a0d76232">m_mu</a> {<a class="el" href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">QUIET_NAN</a>}</td></tr>
+<tr class="separator:a092ce69356fa19d8a4252e78a0d76232 inherit pro_attribs_class_astro_1_1_orbit"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The astronomical body class container is used to model the properties of an astronomical body in space. The class provides methods for setting and getting the mass of the body, as well as its orbit parameters. </p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="abe2277328469209e8a1e1916781cd5de" name="abe2277328469209e8a1e1916781cd5de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe2277328469209e8a1e1916781cd5de">&#9670;&#160;</a></span>MatrixA</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#abe2277328469209e8a1e1916781cd5de">Astro::Body::MatrixA</a> = Eigen::Matrix&lt;<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>, 6, 3&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Matrix \( \mathbf{A} \in \mathbb{R}^{6 \times 3}\). </p>
+
+</div>
+</div>
+<a id="a9a61b97bc5f5ddb4b5ecbc72aa2c0380" name="a9a61b97bc5f5ddb4b5ecbc72aa2c0380"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a61b97bc5f5ddb4b5ecbc72aa2c0380">&#9670;&#160;</a></span>VectorB</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a9a61b97bc5f5ddb4b5ecbc72aa2c0380">Astro::Body::VectorB</a> = Eigen::Vector&lt;<a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>, 6&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Vector \( \mathbf{b} \in \mathbb{R}^{6 \times 1}\). </p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a63894521158578bf268c7a01dcd3d7a9" name="a63894521158578bf268c7a01dcd3d7a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63894521158578bf268c7a01dcd3d7a9">&#9670;&#160;</a></span>Body() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Astro::Body::Body </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Class constructor for the astronomical body object. </p>
+
+</div>
+</div>
+<a id="a8b1f4a7a934d276822e94a79e5019966" name="a8b1f4a7a934d276822e94a79e5019966"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b1f4a7a934d276822e94a79e5019966">&#9670;&#160;</a></span>Body() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Astro::Body::Body </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_astro_1_1_body.html">Body</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Enable the default astronomical body copy constructor. </p>
+
+</div>
+</div>
+<a id="aca26c3bf7d01aab1534ac5cc317bfcbc" name="aca26c3bf7d01aab1534ac5cc317bfcbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca26c3bf7d01aab1534ac5cc317bfcbc">&#9670;&#160;</a></span>Body() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Astro::Body::Body </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_astro_1_1_body.html">Body</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Enable the default astronomical body move constructor. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a80535cd3fc36c81da7356694a94d6ef3" name="a80535cd3fc36c81da7356694a94d6ef3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80535cd3fc36c81da7356694a94d6ef3">&#9670;&#160;</a></span>cartesian_eom() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> Astro::Body::cartesian_eom </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a></td>          <td class="paramname"><span class="paramname"><em>thrust_rad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a></td>          <td class="paramname"><span class="paramname"><em>thrust_tan</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a></td>          <td class="paramname"><span class="paramname"><em>thrust_nor</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Compute the vector of the first-order cartesian equations of orbital motion given the thrust vector components \( \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">thrust_rad</td><td>The radial thrust component. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">thrust_tan</td><td>The tangential thrust component. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">thrust_nor</td><td>The normal thrust component. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The vector of the first-order cartesian equations of orbital motion. </dd></dl>
+
+</div>
+</div>
+<a id="ae5ef530d0801bb277b8954323f3b3520" name="ae5ef530d0801bb277b8954323f3b3520"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5ef530d0801bb277b8954323f3b3520">&#9670;&#160;</a></span>cartesian_eom() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> Astro::Body::cartesian_eom </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>thrust_rtn</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Compute the vector of the first-order cartesian equations of orbital motion given the thrust vector components \( \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">thrust_rtn</td><td>The thrust components vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The vector of the first-order cartesian equations of orbital motion. </dd></dl>
+
+</div>
+</div>
+<a id="aac9ef638e849f8f9d33b91f3a46c1e55" name="aac9ef638e849f8f9d33b91f3a46c1e55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac9ef638e849f8f9d33b91f3a46c1e55">&#9670;&#160;</a></span>equinoctial_eom() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> Astro::Body::equinoctial_eom </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a></td>          <td class="paramname"><span class="paramname"><em>thrust_rad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a></td>          <td class="paramname"><span class="paramname"><em>thrust_tan</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a></td>          <td class="paramname"><span class="paramname"><em>thrust_nor</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Compute the system of first-order modified equinoctial equations of orbital motion given the thrust vector components \( \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">thrust_rad</td><td>The radial component of the thrust. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">thrust_tan</td><td>The tangential component of the thrust. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">thrust_nor</td><td>The normal component of the thrust. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The system of first-order modified equinoctial equations of orbital motion. </dd></dl>
+
+</div>
+</div>
+<a id="a0e420cf1aa707085ed2d6314fa13a192" name="a0e420cf1aa707085ed2d6314fa13a192"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e420cf1aa707085ed2d6314fa13a192">&#9670;&#160;</a></span>equinoctial_eom() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> Astro::Body::equinoctial_eom </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>thrust</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Compute the system of first-order modified equinoctial equations of orbital motion given the thrust vector components \( \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">thrust</td><td>The components (radial, tangential, normal) of the thrust. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The system of first-order modified equinoctial equations of orbital motion. </dd></dl>
+
+</div>
+</div>
+<a id="acc754d38d2a54e5248817cf2dde9ac24" name="acc754d38d2a54e5248817cf2dde9ac24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc754d38d2a54e5248817cf2dde9ac24">&#9670;&#160;</a></span>equinoctial_eom_A()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#abe2277328469209e8a1e1916781cd5de">MatrixA</a> Astro::Body::equinoctial_eom_A </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Compute the matrix of the first-order modified equinoctial equations of orbital motion as        </p><p class="formulaDsp">
+\[ A = \begin{bmatrix}
+  0 &amp; 2\sqrt{\displaystyle\frac{p}{\mu}} &amp; 0 \\
+  \sqrt{p}\sin(L) &amp; \sqrt{\displaystyle\frac{p}{\mu}}\left[(w+1)\cos(L)+f\right] &amp; -\sqrt{\displaystyle\frac{p}{\mu}}(h\sin(L)-k\cos(L)) \\
+  -\sqrt{p}\cos(L) &amp; \sqrt{\displaystyle\frac{p}{\mu}}\left[(w+1)\sin(L)+g\right] &amp; \sqrt{\displaystyle\frac{p}{\mu}}(h\cos(L)+k\sin(L)) \\
+  0 &amp; 0 &amp; \displaystyle\frac{\sqrt{p}}{2}\displaystyle\frac{s^2\cos(L)}{2} \\
+  0 &amp; 0 &amp; \displaystyle\frac{\sqrt{p}}{2}\displaystyle\frac{s^2\sin(L)}{2} \\
+  0 &amp; 0 &amp; \displaystyle\frac{\sqrt{p}}{2}(h\sin(L)-k\cos(L))
+\end{bmatrix} \text{.} \]
+</p>
+ <dl class="section return"><dt>Returns</dt><dd>The matrix \( \mathbf{A} \). </dd></dl>
+
+</div>
+</div>
+<a id="ad328bde034a2c2b2436108b47796d335" name="ad328bde034a2c2b2436108b47796d335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad328bde034a2c2b2436108b47796d335">&#9670;&#160;</a></span>equinoctial_eom_b()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a9a61b97bc5f5ddb4b5ecbc72aa2c0380">VectorB</a> Astro::Body::equinoctial_eom_b </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Compute the vector of the first-order modified equinoctial equations of orbital motion as  </p><p class="formulaDsp">
+\[ \mathbf{b} = \left[0, 0, 0, 0, 0, \sqrt{\mu p} \left(\displaystyle\frac{w}{p}\right)^2
+\right]^\top \text{.} \]
+</p>
+ <dl class="section return"><dt>Returns</dt><dd>The vector \( \mathbf{b} \). </dd></dl>
+
+</div>
+</div>
+<a id="a6ce6187634d6b718faca6133ad401921" name="a6ce6187634d6b718faca6133ad401921"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ce6187634d6b718faca6133ad401921">&#9670;&#160;</a></span>mass() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> Astro::Body::mass </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the mass of the astronomical body. </p><dl class="section return"><dt>Returns</dt><dd>The mass of the astronomical body. </dd></dl>
+
+</div>
+</div>
+<a id="adaa6867e0bbd2d05cc2bf6d5dc406463" name="adaa6867e0bbd2d05cc2bf6d5dc406463"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaa6867e0bbd2d05cc2bf6d5dc406463">&#9670;&#160;</a></span>mass() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Astro::Body::mass </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a></td>          <td class="paramname"><span class="paramname"><em>t_mass</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the mass of the astronomical body. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t_mass</td><td>The mass of </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3f2aa0d766e9854208053809218fa435" name="a3f2aa0d766e9854208053809218fa435"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f2aa0d766e9854208053809218fa435">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_astro_1_1_body.html">Body</a> &amp; Astro::Body::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_astro_1_1_body.html">Body</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Enable the default astronomical body move assignment operator. </p>
+
+</div>
+</div>
+<a id="aeca1b0b850bdc18c3f877c1402ef7e27" name="aeca1b0b850bdc18c3f877c1402ef7e27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeca1b0b850bdc18c3f877c1402ef7e27">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_astro_1_1_body.html">Body</a> &amp; Astro::Body::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_astro_1_1_body.html">Body</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Enable the default astronomical body assignment operator. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a02959c9e2236015cdb7fec3ec0cc6c07" name="a02959c9e2236015cdb7fec3ec0cc6c07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02959c9e2236015cdb7fec3ec0cc6c07">&#9670;&#160;</a></span>m_mass</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> Astro::Body::m_mass {<a class="el" href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">QUIET_NAN</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Mass of the astronomical body. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>include/Astro/<a class="el" href="_body_8hxx_source.html">Body.hxx</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_astro.html">Astro</a></li><li class="navelem"><a class="el" href="class_astro_1_1_body.html">Body</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

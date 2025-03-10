@@ -1,4 +1,27 @@
 var searchData=
 [
-  ['translate_0',['Translate',['../namespace_astro.html#ae8e7952781ea4f7123ad68c38ab30077',1,'Astro']]]
+  ['omega_0',['Omega',['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#aa3e17f4396afcaf0d70172818cc3402c',1,'Astro::OrbitalElements::Keplerian::Omega'],['../struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a055c23a7d92e250098f36284fdca432e',1,'Astro::OrbitalElements::Equinoctial::Omega()']]],
+  ['omega_1',['omega',['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#a76fea831f3d67041f2e06c54d51bca71',1,'Astro::OrbitalElements::Keplerian::omega'],['../struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a4ee038f8d603668642185e19c5696898',1,'Astro::OrbitalElements::Equinoctial::omega()']]],
+  ['ones_5fmat1_2',['ONES_MAT1',['../namespace_astro.html#a703a73389a0299130b3b2bf9b0c128e9',1,'Astro']]],
+  ['ones_5fmat2_3',['ONES_MAT2',['../namespace_astro.html#a0bcb466daf5c37d72e3072d528a9da21',1,'Astro']]],
+  ['ones_5fmat3_4',['ONES_MAT3',['../namespace_astro.html#a9d983deba6656235ba66ab72d22b9440',1,'Astro']]],
+  ['ones_5fmat4_5',['ONES_MAT4',['../namespace_astro.html#a60ca1afb0af1437bfa43793b06da4d09',1,'Astro']]],
+  ['ones_5fmat5_6',['ONES_MAT5',['../namespace_astro.html#aaa507a473f3d357533fb00377a0bf4e8',1,'Astro']]],
+  ['ones_5fmat6_7',['ONES_MAT6',['../namespace_astro.html#a4e4aec8fbda814552a75ce33755094b8',1,'Astro']]],
+  ['ones_5fmat7_8',['ONES_MAT7',['../namespace_astro.html#a8ff2ec806eb76a75018d0a3ab86f05b7',1,'Astro']]],
+  ['ones_5fmat8_9',['ONES_MAT8',['../namespace_astro.html#acf84dac9d42bf450b0f3c277a274b471',1,'Astro']]],
+  ['ones_5fmat9_10',['ONES_MAT9',['../namespace_astro.html#a93a0658cd823a9b48706c7fd285aaf9a',1,'Astro']]],
+  ['ones_5fvec1_11',['ONES_VEC1',['../namespace_astro.html#ac81005baa02b002684a0c0d7a19a005f',1,'Astro']]],
+  ['ones_5fvec2_12',['ONES_VEC2',['../namespace_astro.html#aa89235f3c5a1f1194ec91a620ebac47b',1,'Astro']]],
+  ['ones_5fvec3_13',['ONES_VEC3',['../namespace_astro.html#ad2a3b852255aa58762602de0973ce01b',1,'Astro']]],
+  ['ones_5fvec4_14',['ONES_VEC4',['../namespace_astro.html#a3cd567445543cc153342fbbd42d4c720',1,'Astro']]],
+  ['ones_5fvec5_15',['ONES_VEC5',['../namespace_astro.html#a0b865a87c8933a413395a43c58cda6b7',1,'Astro']]],
+  ['ones_5fvec6_16',['ONES_VEC6',['../namespace_astro.html#a428eac3ffcb6a9f9bee130275bc641db',1,'Astro']]],
+  ['ones_5fvec7_17',['ONES_VEC7',['../namespace_astro.html#ac621e6a522bb8ac9d9b99bf09b8781e4',1,'Astro']]],
+  ['ones_5fvec8_18',['ONES_VEC8',['../namespace_astro.html#aa36b62167f1dc0a363f7662da910b0c1',1,'Astro']]],
+  ['ones_5fvec9_19',['ONES_VEC9',['../namespace_astro.html#a246855cb7ccf8c95be0a5d2c31efb663',1,'Astro']]],
+  ['operator_3d_20',['operator=',['../class_astro_1_1_body.html#aeca1b0b850bdc18c3f877c1402ef7e27',1,'Astro::Body::operator=(const Body &amp;)=default'],['../class_astro_1_1_body.html#a3f2aa0d766e9854208053809218fa435',1,'Astro::Body::operator=(Body &amp;&amp;)=default'],['../class_astro_1_1_orbit.html#ae7d095e70c0263e0dc1da5f0e4b455cf',1,'Astro::Orbit::operator=(const Orbit &amp;)=default'],['../class_astro_1_1_orbit.html#afd21a72e93c4aa11597aab7436cc1a25',1,'Astro::Orbit::operator=(Orbit &amp;&amp;)=default'],['../struct_astro_1_1_orbital_elements_1_1_cartesian.html#afc22e24db800a39b368eb7760b2fc8e5',1,'Astro::OrbitalElements::Cartesian::operator=(const Cartesian &amp;)=default'],['../struct_astro_1_1_orbital_elements_1_1_cartesian.html#a5e0003b6f3bbebeb83286c28ffb01c58',1,'Astro::OrbitalElements::Cartesian::operator=(Cartesian &amp;&amp;)=default'],['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#a8e66e3857fbc48e53d2ea6f128470a5e',1,'Astro::OrbitalElements::Keplerian::operator=(const Keplerian &amp;)=default'],['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#a89887e38b9ceb57c2cf9c07e954f103b',1,'Astro::OrbitalElements::Keplerian::operator=(Keplerian &amp;&amp;)=default'],['../struct_astro_1_1_orbital_elements_1_1_equinoctial.html#ad55822dcbc73019e046af897f51b7b74',1,'Astro::OrbitalElements::Equinoctial::operator=(const Equinoctial &amp;)=default'],['../struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a34c54f3c524bab17930eaefaace35350',1,'Astro::OrbitalElements::Equinoctial::operator=(Equinoctial &amp;&amp;)=default'],['../struct_astro_1_1_orbital_elements_1_1_quaternionic.html#a751a9611e19172da19e451d6acaf60e7',1,'Astro::OrbitalElements::Quaternionic::operator=(const Quaternionic &amp;)=default'],['../struct_astro_1_1_orbital_elements_1_1_quaternionic.html#aa0b5b6ceef106827c9c4ace3a034efc7',1,'Astro::OrbitalElements::Quaternionic::operator=(Quaternionic &amp;&amp;)=default'],['../struct_astro_1_1_orbital_elements_1_1_anomaly.html#a7ed7fa393f2eae908fb146261117e5f4',1,'Astro::OrbitalElements::Anomaly::operator=(const Anomaly &amp;)=default'],['../struct_astro_1_1_orbital_elements_1_1_anomaly.html#a7d7075bd39a0df5603a92af165923384',1,'Astro::OrbitalElements::Anomaly::operator=(Anomaly &amp;&amp;)=default']]],
+  ['orbit_21',['Orbit',['../class_astro_1_1_orbit.html',1,'Astro::Orbit'],['../class_astro_1_1_orbit.html#a98a953b2d1e354b4d6fe12707d63eaef',1,'Astro::Orbit::Orbit()'],['../class_astro_1_1_orbit.html#a4a7457282a222fd1eb48f3570734310a',1,'Astro::Orbit::Orbit(Orbit const &amp;)=default'],['../class_astro_1_1_orbit.html#a7fa741a3f47d9703d8d6c89556c2d5a3',1,'Astro::Orbit::Orbit(Orbit &amp;&amp;)=default']]],
+  ['orbit_2ehxx_22',['Orbit.hxx',['../_orbit_8hxx.html',1,'']]],
+  ['orbitalelements_2ehxx_23',['OrbitalElements.hxx',['../_orbital_elements_8hxx.html',1,'']]]
 ];

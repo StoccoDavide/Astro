@@ -91,13 +91,13 @@ namespace Astro
     */
     MatrixA equinoctial_eom_A() const
     {
-      Real p{this->m_equi.p()};
-      Real f{this->m_equi.f()};
-      Real g{this->m_equi.g()};
-      Real h{this->m_equi.h()};
-      Real k{this->m_equi.k()};
-      Real s_L{std::sin(this->m_anom.L())};
-      Real c_L{std::cos(this->m_anom.L())};
+      Real const & p{this->m_equi.p};
+      Real const & f{this->m_equi.f};
+      Real const & g{this->m_equi.g};
+      Real const & h{this->m_equi.h};
+      Real const & k{this->m_equi.k};
+      Real s_L{std::sin(this->m_anom.L)};
+      Real c_L{std::cos(this->m_anom.L)};
 
       Real w{1.0 + (f*c_L+g*s_L)};
       Real s2{1.0 + (h*h+k*k)};
@@ -124,10 +124,10 @@ namespace Astro
     */
     VectorB equinoctial_eom_b() const
     {
-      Real p{this->m_equi.p()};
-      Real f{this->m_equi.f()};
-      Real g{this->m_equi.g()};
-      Real w{1.0 + (f*std::cos(this->m_anom.L()) + g*std::sin(this->m_anom.L()))};
+      Real const & p{this->m_equi.p};
+      Real const & f{this->m_equi.f};
+      Real const & g{this->m_equi.g};
+      Real w{1.0 + (f*std::cos(this->m_anom.L) + g*std::sin(this->m_anom.L))};
       return VectorB(0.0, 0.0, 0.0, 0.0, 0.0, std::sqrt(p*this->m_mu)*power2(w/p));
     }
 
@@ -141,19 +141,18 @@ namespace Astro
     {
       // Compute the cartesian perturbation
       Vector3 thrust_xyz(this->cartesian_rtn_to_xyz(thrust_rtn));
+      thrust_xyz /= this->m_mass;
 
       // Compute the equations of motion
-      Vector3 r(this->m_cart.r());
-      Vector3 v(this->m_cart.v());
-      Real r_norm{r.norm()};
-      Real mur3{this->m_mu/power3(r_norm)};
+      Real r_norm{this->m_cart.r.norm()};
+      Vector3 r_mur3(this->m_mu/power3(r_norm) * this->m_cart.r);
       return Vector6(
-        v.x(),
-        v.y(),
-        v.z(),
-        thrust_xyz.x()/this->m_mass - mur3*r.x(),
-        thrust_xyz.y()/this->m_mass - mur3*r.y(),
-        thrust_xyz.z()/this->m_mass - mur3*r.z()
+        this->m_cart.v.x(),
+        this->m_cart.v.y(),
+        this->m_cart.v.z(),
+        thrust_xyz.x() - r_mur3.x(),
+        thrust_xyz.y() - r_mur3.y(),
+        thrust_xyz.z() - r_mur3.z()
       );
     }
 
@@ -178,12 +177,12 @@ namespace Astro
     */
     Vector6 equinoctial_eom(Vector3 const & thrust) const
     {
-      Real p{this->m_equi.p()};
-      Real f{this->m_equi.f()};
-      Real g{this->m_equi.g()};
-      Real h{this->m_equi.h()};
-      Real k{this->m_equi.k()};
-      Real L{this->m_anom.L()};
+      Real const & p{this->m_equi.p};
+      Real const & f{this->m_equi.f};
+      Real const & g{this->m_equi.g};
+      Real const & h{this->m_equi.h};
+      Real const & k{this->m_equi.k};
+      Real const & L{this->m_anom.L};
 
       Real s_L{std::sin(L)};
       Real c_L{std::cos(L)};

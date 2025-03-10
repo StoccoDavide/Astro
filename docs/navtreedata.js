@@ -25,16 +25,30 @@
 var NAVTREE =
 [
   [ "Astro", "index.html", [
-    [ "Authors", "index.html#autotoc_md2", null ],
-    [ "License", "index.html#autotoc_md3", null ],
+    [ "Installation", "index.html#autotoc_md1", [
+      [ "Quick and dirty", "index.html#autotoc_md2", null ],
+      [ "CMake", "index.html#autotoc_md3", null ]
+    ] ],
+    [ "Authors", "index.html#autotoc_md4", null ],
+    [ "License", "index.html#autotoc_md5", null ],
     [ "Namespaces", "namespaces.html", [
-      [ "Dependencies", "index.html#autotoc_md1", null ],
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
         [ "Functions", "namespacemembers_func.html", null ],
         [ "Variables", "namespacemembers_vars.html", null ],
         [ "Typedefs", "namespacemembers_type.html", null ]
+      ] ]
+    ] ],
+    [ "Classes", "annotated.html", [
+      [ "Class List", "annotated.html", "annotated_dup" ],
+      [ "Class Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", null ],
+        [ "Typedefs", "functions_type.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -49,7 +63,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_astro_8hh.html"
+"_astro_8hh.html",
+"namespace_astro.html#a7eadcef23533d0f4c15cdd6bf3985127",
+"struct_astro_1_1_orbital_elements_1_1_keplerian.html#aad6de417e4b5443b593b97ce6904dd83"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

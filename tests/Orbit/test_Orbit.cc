@@ -10,14 +10,42 @@
 
 #include "Astro.hh"
 
+using namespace Astro;
+using namespace Astro::OrbitalElements;
+
 int main()
 {
-  Astro::OrbitalElements::Cartesian cart;
-  Astro::OrbitalElements::Keplerian kepl;
-  Astro::OrbitalElements::Equinoctical equi;
-  Astro::OrbitalElements::Quaternionic quat;
 
-  std::cout << "Hello World!" << std::endl;
+
+  auto a{1.0};
+  auto e{0.1};
+  auto i{0.1};
+  auto Omega{0.1};
+  auto omega{0.1};
+  auto I{Factor::POSIGRADE};
+  auto mu{1.0};
+  Keplerian kepl(a, e, i, Omega, omega);
+  std::cout << kepl.info() << std::endl;
+
+  Anomaly anom;
+  anom.set_nu(0.1, kepl, I);
+
+  Equinoctial equi;
+  Cartesian cart;
+  Quaternionic quat;
+
+  keplerian_to_equinoctial(kepl, I, equi);
+  std::cout << equi.info() << std::endl;
+
+  equinoctial_to_keplerian(equi, kepl);
+  std::cout << kepl.info() << std::endl;
+
+  equinoctial_to_cartesian(equi, anom, I, mu, cart);
+  std::cout << cart.info() << std::endl;
+
+  cartesian_to_keplerian(cart, mu, kepl);
+  std::cout << kepl.info() << std::endl;
+
 
   return 0;
 }

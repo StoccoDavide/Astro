@@ -23,10 +23,8 @@
 #include <Eigen/Dense>
 #include <Eigen/Geometry>
 
-// Sandals library
-#ifdef ASTRO_ENABLE_SANDALS
-  #include <Sandals/Sandals.hh>
-#endif
+#include <Optimist.hh>
+#include <Sandals.hh>
 
 // Print Astro errors
 #ifndef ASTRO_ERROR

@@ -74,16 +74,6 @@ if BUILD_DEBUG then
 else
   cmd_cmake_build += "-DCMAKE_BUILD_TYPE:VAR=Release "
 end
-if ENABLE_SANDALS then
-  cmd_cmake_build += "-DASTRO_ENABLE_SANDALS:VAR=true "
-else
-  cmd_cmake_build += "-DASTRO_ENABLE_SANDALS:VAR=false "
-end
-if ENABLE_PLOTTING then
-  cmd_cmake_build += "-DASTRO_ENABLE_PLOTTING:VAR=true "
-else
-  cmd_cmake_build += "-DASTRO_ENABLE_PLOTTING:VAR=false "
-end
 
 task :default => [:build]
 
@@ -169,8 +159,8 @@ end
 
 task :clean_gen do
   FileUtils.rm_rf 'lib'
-  FileUtils.rm_rf 'lib3rd'
   FileUtils.rm_rf 'build'
+  FileUtils.rm_rf 'third_party'
 end
 
 desc "Clean for OsX"

@@ -41,12 +41,14 @@ endif()
 
 # Dependencies
 include(AstroEigen3)
+#include(AstroOptimist)
+include(AstroSandals)
 
 # Library definition
 add_library(Astro INTERFACE)
 add_library(Astro::Astro ALIAS Astro)
 
-target_link_libraries(Astro INTERFACE Eigen3::Eigen)
+target_link_libraries(Astro INTERFACE Eigen3::Eigen Sandals::Sandals Optimist::Optimist)
 
 target_include_directories(Astro INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -1,14 +1,9 @@
 var searchData=
 [
-  ['vector0_0',['Vector0',['../namespace_astro.html#a46f9be12eef98c7d1f2674833bbd3a9b',1,'Astro']]],
-  ['vector1_1',['Vector1',['../namespace_astro.html#a854db0cc85ea1f0d9f9fae0b7782f339',1,'Astro']]],
-  ['vector2_2',['Vector2',['../namespace_astro.html#a9c322d875556d1268d5514537694432c',1,'Astro']]],
-  ['vector3_3',['Vector3',['../namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc',1,'Astro']]],
-  ['vector4_4',['Vector4',['../namespace_astro.html#a885ff64570c333b150f7ce0bc868c0f5',1,'Astro']]],
-  ['vector5_5',['Vector5',['../namespace_astro.html#a2c57ccc18fc40296e82e8e9781119d06',1,'Astro']]],
-  ['vector6_6',['Vector6',['../namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa',1,'Astro']]],
-  ['vector7_7',['Vector7',['../namespace_astro.html#afecf63eac56938ae5d3d1b8b03a1872c',1,'Astro']]],
-  ['vector8_8',['Vector8',['../namespace_astro.html#abb66f23ca5024249cd8eab335659e8a8',1,'Astro']]],
-  ['vector9_9',['Vector9',['../namespace_astro.html#a9770cf62543bdce0b9b3004f9918c049',1,'Astro']]],
-  ['vectorx_10',['VectorX',['../namespace_astro.html#add8eff2615fda1aedc14a9aaa4ee0c7b',1,'Astro']]]
+  ['q_0',['q',['../struct_astro_1_1_orbital_elements_1_1_quaternionic.html#a6d72e6d08aab2d55624854554ba981c1',1,'Astro::OrbitalElements::Quaternionic']]],
+  ['quaternion_1',['Quaternion',['../namespace_astro.html#a1092eb69942d75f088455d5842836db5',1,'Astro']]],
+  ['quaternionic_2',['Quaternionic',['../struct_astro_1_1_orbital_elements_1_1_quaternionic.html',1,'Astro::OrbitalElements::Quaternionic'],['../class_astro_1_1_orbit.html#ad563e5452dacc6979a0a4e36402ff261',1,'Astro::Orbit::Quaternionic'],['../struct_astro_1_1_orbital_elements_1_1_quaternionic.html#a276bab62e7a3154fb1579dbed84cf49d',1,'Astro::OrbitalElements::Quaternionic::Quaternionic()'],['../struct_astro_1_1_orbital_elements_1_1_quaternionic.html#a42d90e93d6e9a62160dec745d1fadc23',1,'Astro::OrbitalElements::Quaternionic::Quaternionic(Quaternion const &amp;t_q)'],['../struct_astro_1_1_orbital_elements_1_1_quaternionic.html#a3b26a33490b8b215d9fb387387d7b0d0',1,'Astro::OrbitalElements::Quaternionic::Quaternionic(Real t_q_1, Real t_q_2, Real t_q_3, Real t_q_4)'],['../struct_astro_1_1_orbital_elements_1_1_quaternionic.html#ad8229b7f25164d9e53628d6729f1191f',1,'Astro::OrbitalElements::Quaternionic::Quaternionic(Quaternionic const &amp;)=default'],['../struct_astro_1_1_orbital_elements_1_1_quaternionic.html#a582dd3e59c364ae6c80a8c3ff32e20cf',1,'Astro::OrbitalElements::Quaternionic::Quaternionic(Quaternionic &amp;&amp;)=default']]],
+  ['quaternionic_3',['quaternionic',['../class_astro_1_1_orbit.html#a4110c3f8223ab9eba4539717116e3695',1,'Astro::Orbit']]],
+  ['quick_20and_20dirty_4',['Quick and dirty',['../index.html#autotoc_md2',1,'']]],
+  ['quiet_5fnan_5',['QUIET_NAN',['../namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8',1,'Astro']]]
 ];

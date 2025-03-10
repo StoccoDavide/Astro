@@ -54,6 +54,7 @@ MathJax.Hub.Config({
 <link href="custom.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <!-- https://tholman.com/github-corners/ -->
@@ -68,7 +69,7 @@ MathJax.Hub.Config({
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Astro
-   &#160;<span id="projectnumber">v0.0.0</span>
+   &#160;<span id="projectnumber">0.0.0</span>
    </div>
    <div id="projectbrief">A C++ library for space dynamics</div>
   </td>
@@ -144,18 +145,64 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 <div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
 <p><code><a class="el" href="namespace_astro.html" title="The namespace for the Astro library.">Astro</a></code> is a library for orbital mechanics and spacecraft dynamics. This is a refactored version of the <a href="https://github.com/ebertolazzi/Astro">original library</a> developed by Enrico Bertolazzi (University of Trento, Department of Industrial Engineering).</p>
 <p>Are you looking for the online documentation? Visit <a href="https://StoccoDavide.github.io/Astro">this link</a>!</p>
-<h2><a class="anchor" id="autotoc_md1"></a>
-Dependencies</h2>
-<p><code><a class="el" href="namespace_astro.html" title="The namespace for the Astro library.">Astro</a></code> carries a set of minimal dependencies. Here's what you need to get started:</p>
-<ul>
-<li>C++ compiler with <a href="https://en.cppreference.com/w/cpp/17"><code>C++17</code></a> support</li>
-<li><a href="https://cmake.org"><code>CMake</code></a> &gt;= 3.10</li>
-<li><a href="https://eigen.tuxfamily.org/index.php?title=Main_Page"><code>Eigen3</code></a> &gt;= 3.4.0</li>
-<li><a href="https://alandefreitas.github.io/matplotplusplus/"><code>Matplot++</code></a> &gt;= 1.2.0 for plotting (optional).</li>
-<li><a href="https://StoccoDavide.github.io/Sandals"><code>Sandals</code></a> ODEs/DAEs C++17 integrator library (optional)</li>
-</ul>
-<p>The <code>Matplot++</code> library is optional and only required if you want to plot the results of your simulations and is currently used to plot the results of some tests. Similarly, the <code>Sandals</code> library is optional and only required if you want to integrate ODEs/DAEs in your simulations.</p>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Installation</h1>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Quick and dirty</h2>
+<p><code><a class="el" href="namespace_astro.html" title="The namespace for the Astro library.">Astro</a></code> is a header-only library that depends only on <a href="https://eigen.tuxfamily.org/index.php?title=Main_Page"><code>Eigen</code></a> (version &gt;= 3.4.0), so the quick and dirty way of installing it is by simply copying the <code>include</code> directory to your project and make sure to have <a href="https://eigen.tuxfamily.org/index.php?title=Main_Page"><code>Eigen</code></a> available however you see fit. Alternatively, you can do things properly and use <code>CMake</code> (version &gt;= 3.14).</p>
+<p>Optionally, you can also install <a href="https://StoccoDavide.github.io/Sandals"><code>Sandals</code></a> ODEs/DAEs C++17 integrator library, and <a href="https://alandefreitas.github.io/matplotplusplus/"><code>Matplot++</code></a> (version &gt;= 1.2.0) to plot the results of your simulations.</p>
+<h2><a class="anchor" id="autotoc_md3"></a>
+CMake</h2>
+<p>If you are using CMake, you can add the library as a subdirectory in your project.</p>
+<div class="fragment"><div class="line">add_subdirectory(path/to/Astro)</div>
+<div class="line">target_link_libraries(your_target PRIVATE Astro::Astro)</div>
+</div><!-- fragment --><p>You can use <code>FetchContent</code> to download the library from GitHub.</p>
+<div class="fragment"><div class="line">include(FetchContent)</div>
+<div class="line"> </div>
+<div class="line"># Optionally specify a custom path to fetch content to</div>
+<div class="line">set(FETCHCONTENT_BASE_DIR &quot;path/to/your/dependencies&quot;)</div>
+<div class="line">fetchcontent_declare(</div>
+<div class="line">  Astro</div>
+<div class="line">  GIT_REPOSITORY https://github.com/StoccoDavide/Astro.git</div>
+<div class="line">  GIT_TAG        main</div>
+<div class="line">)</div>
+<div class="line">fetchcontent_makeavailable(Astro)</div>
+<div class="line">target_link_libraries(your_target PRIVATE Astro::Astro)</div>
+</div><!-- fragment --><p>If you already have <code><a class="el" href="namespace_astro.html" title="The namespace for the Astro library.">Astro</a></code> somewhere on your system, you can use <code>find_pacakge</code> directly.</p>
+<div class="fragment"><div class="line"># Optionally specify a custom path to find content from</div>
+<div class="line">list(APPEND CMAKE_PREFIX_PATH &quot;path/to/your/dependencies&quot;)</div>
+<div class="line">find_package(</div>
+<div class="line">  Astro</div>
+<div class="line">  ${YOUR_DESIRED_ASTRO_VERSION}</div>
+<div class="line">  NO_MODULE</div>
+<div class="line">)</div>
+<div class="line"> </div>
+<div class="line">target_link_libraries(your_target PRIVATE Astro::Astro)</div>
+</div><!-- fragment --><p>Since we are nice people, we also show you how to conditionally use <code>FetchContent</code> based if you already have the library or not.</p>
+<div class="fragment"><div class="line"># Optionally specify a custom path to find content from</div>
+<div class="line">list(APPEND CMAKE_PREFIX_PATH &quot;path/to/your/dependencies&quot;)</div>
+<div class="line">find_package(</div>
+<div class="line">  Astro</div>
+<div class="line">  ${YOUR_DESIRED_ASTRO_VERSION}</div>
+<div class="line">  NO_MODULE</div>
+<div class="line">)</div>
+<div class="line"> </div>
+<div class="line">if(NOT TARGET Astro::Astro)</div>
+<div class="line">  include(FetchContent)</div>
+<div class="line"> </div>
+<div class="line">  # Optionally specify a custom path to fetch content to</div>
+<div class="line">  set(FETCHCONTENT_BASE_DIR &quot;path/to/your/dependencies&quot;)</div>
+<div class="line">  fetchcontent_declare(</div>
+<div class="line">    Astro</div>
+<div class="line">    GIT_REPOSITORY https://github.com/StoccoDavide/Astro.git</div>
+<div class="line">    GIT_TAG        main</div>
+<div class="line">  )</div>
+<div class="line"> </div>
+<div class="line">  fetchcontent_makeavailable(Astro)</div>
+<div class="line">endif()</div>
+<div class="line"> </div>
+<div class="line">target_link_libraries(your_target PRIVATE Astro::Astro)</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
 Authors</h1>
 <ul>
 <li>Davide Stocco <br  />
@@ -173,7 +220,7 @@ Authors</h1>
 <div class="line">▐▌  █  ▀▄▀▗▞▀▜▌         █   █ ▗▞▀▜▌    ▐▛▀▚▖▝▚▄▄▖█     ▀▀▀█</div>
 <div class="line">▐▙▄▄▀     ▝▚▄▟▌               ▝▚▄▟▌    ▐▙▄▞▘          ▄   █</div>
 <div class="line">                                                       ▀▀▀</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
 License</h1>
 <p>The <code><a class="el" href="namespace_astro.html" title="The namespace for the Astro library.">Astro</a></code> project is distributed under the BSD 2-Clause License - see the <a href="https://StoccoDavide.github.io/Astro/LICENSE">LICENSE</a> file for details.</p>
 <p>Here's what the license entails:</p>

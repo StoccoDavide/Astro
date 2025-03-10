@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['deg2rad_0',['DEG2RAD',['../namespace_astro.html#a8471330be744c735e6de5133c87c12b8',1,'Astro']]]
+  ['cbrt_5fepsilon_0',['CBRT_EPSILON',['../namespace_astro.html#a40e502c89d1883020cbc69f858e77d67',1,'Astro']]]
 ];
