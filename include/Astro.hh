@@ -23,7 +23,7 @@
 #include <Eigen/Dense>
 #include <Eigen/Geometry>
 
-#include <Optimist.hh>
+// Sandals library
 #include <Sandals.hh>
 
 // Print Astro errors
@@ -239,15 +239,5 @@ namespace Astro
   void Info(std::ostream &os) {os << Info();}
 
 } // namespace Astro
-
-// Utility functions
-#include "Astro/Utilities.hxx"
-
-// Orbital elements and anomalies
-#include "Astro/OrbitalElements.hxx"
-#include "Astro/Orbit.hxx"
-
-// Astronomical bodies
-#include "Astro/Body.hxx"
 
 #endif // INCLUDE_ASTRO_HH

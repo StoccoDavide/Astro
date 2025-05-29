@@ -41,14 +41,13 @@ endif()
 
 # Dependencies
 include(AstroEigen3)
-#include(AstroOptimist)
 include(AstroSandals)
 
 # Library definition
 add_library(Astro INTERFACE)
 add_library(Astro::Astro ALIAS Astro)
 
-target_link_libraries(Astro INTERFACE Eigen3::Eigen Sandals::Sandals Optimist::Optimist)
+target_link_libraries(Astro INTERFACE Eigen3::Eigen Sandals::Sandals)
 
 target_include_directories(Astro INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -70,7 +69,12 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   option(BUILD_TESTS "Build tests" OFF)
   option(BUILD_BENCHMARKS "Build benchmarks" OFF)
   option(BUILD_EXAMPLES "Build examples" OFF)
-  option(ASTRO_ENABLE_PLOTTING "Enable plotting with Matplot++" OFF)
+  option(ASTRO_ENABLE_PLOTTING "Enable plotting" OFF)
+
+  if(ASTRO_ENABLE_PLOTTING)
+    include(AstroRoot)
+    target_link_libraries(Astro INTERFACE ROOT::Core ROOT::Gpad ROOT::Geom ROOT::Graf3d)
+  endif()
 
   file(GLOB_RECURSE HEADER_FILES_HH "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hh")
   file(GLOB_RECURSE HEADER_FILES_HXX "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hxx")
@@ -132,7 +136,7 @@ write_basic_package_version_file(
 )
 
 configure_package_config_file(
-  ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Config.cmake.in
+  ${CMAKE_CURRENT_SOURCE_DIR}/cmake/AstroConfig.cmake.in
   ${CMAKE_CURRENT_BINARY_DIR}/AstroConfig.cmake
   INSTALL_DESTINATION lib/cmake/Astro
 )

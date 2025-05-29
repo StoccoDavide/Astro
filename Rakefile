@@ -74,6 +74,11 @@ if BUILD_DEBUG then
 else
   cmd_cmake_build += "-DCMAKE_BUILD_TYPE:VAR=Release "
 end
+if ENABLE_PLOTTING then
+  cmd_cmake_build += "-DASTRO_ENABLE_PLOTTING:VAR=true "
+else
+  cmd_cmake_build += "-DASTRO_ENABLE_PLOTTING:VAR=false "
+end
 
 task :default => [:build]
 

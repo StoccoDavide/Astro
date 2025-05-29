@@ -8,7 +8,7 @@
  * e-mail: davide.stocco@unitn.it                             e-mail: enrico.bertolazzi@unitn.it *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include "Astro.hh"
+#include "Astro/Orbit.hh"
 
 using namespace Astro;
 using namespace Astro::OrbitalElements;

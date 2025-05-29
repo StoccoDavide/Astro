@@ -1,7 +1,7 @@
 set(SANDALS_REQUIRED_VERSION 0.0.0)
 cmake_policy(SET CMP0135 NEW)
 
-list(APPEND CMAKE_PREFIX_PATH "${ASTRO_THIRD_PARTY_DIR}")
+#list(APPEND CMAKE_PREFIX_PATH "${ASTRO_THIRD_PARTY_DIR}")
 find_package(
   Sandals
   ${SANDALS_REQUIRED_VERSION}
@@ -18,6 +18,7 @@ if(NOT TARGET Sandals::Sandals)
   fetchcontent_declare(
     Sandals
     GIT_REPOSITORY "https://github.com/StoccoDavide/Sandals"
+    GIT_SHALLOW    TRUE
     GIT_TAG        main
   )
 
