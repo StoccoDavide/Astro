@@ -12,6 +12,10 @@
 #include "Astro/Planets.hh"
 #include "Astro/Plotting.hh"
 
+#include <Sandals/RungeKutta/RK4.hh>
+
+using namespace Astro;
+
 int main(int argc, char** argv) {
     TApplication app("app", &argc, argv);
 
@@ -24,29 +28,31 @@ int main(int argc, char** argv) {
     TAxis3D::ToggleRulers();
     TAxis3D::ToggleZoom();
 
-    // Create a Body object (e.g., Earth)
-    Astro::Body earth(Astro::Planets::Earth());
-
-    // Retrieve the orbit trace
-    TPolyLine3D* orbitTrace = Astro::Plotting::DrawTrace(earth, 1000);
-    orbitTrace->SetLineColor(kBlack);
-    orbitTrace->SetLineWidth(1);
-    orbitTrace->Draw("L");
-
     // Draw the absolute reference frame
-    TObjArray* abs_axes = Astro::Plotting::DrawAbsoluteAxes();
+    TObjArray* abs_axes = Astro::Plotting::DrawAbsoluteAxes(0.25);
     abs_axes->SetOwner(kTRUE); // Ensure axes are deleted with the canvas
 
-    // Draw the orbit plane axes
-    TObjArray* orbit_plane_axes = Astro::Plotting::DrawOrbitalPlaneAxes(earth);
-    orbit_plane_axes->SetOwner(kTRUE); // Ensure axes are deleted with the canvas
+    // Create a Body object (e.g., Earth)
+    Body earth(Planets::Earth());
 
-    // Draw the Frenet-Serret frame at the first point of the orbit
-    TObjArray* fs_axes = Astro::Plotting::DrawFrenetSerretAxes(earth);
-    fs_axes->SetOwner(kTRUE); // Ensure axes are deleted with the canvas
+    // Set the initial state of the orbit (e.g., cartesian coordinates)
+    Vector6 initial_state;
+    initial_state << earth.cartesian().r, earth.cartesian().v;
 
-    // Draw the sphere representing the Earth
-    Astro::Plotting::DrawMarker(earth, kBlue, 2.0);
+    // Set the time mesh for the integration
+    Real t_start = 0.0;
+    Real t_end = 365.25/2; // One year in days
+    Real dt = 1.0; // Time step in days
+    VectorX t_mesh = VectorX::LinSpaced((t_end-t_start)/dt + 1, t_start, t_end);
+
+    // Integrate the orbit using the Runge-Kutta solver
+    Sandals::RK4<Real, 6, 0> rk4;
+    Sandals::Solution<Real, 6, 0> sol;
+    earth.integrate_cartesian(rk4, t_mesh, initial_state, sol);
+
+    // Plot the orbit trace selecting last 3 rows (position) of the solution
+    TPolyLine3D* orbit_trace = Plotting::DrawTrace(sol.x.topRows<3>());
+    orbit_trace->Draw("same L");
 
     canvas->Update();
     app.Run();

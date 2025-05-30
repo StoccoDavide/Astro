@@ -21,6 +21,7 @@
 // ROOT library
 #include <TApplication.h>
 #include <TCanvas.h>
+#include <TGraph.h>
 #include <TAxis3D.h>
 #include <TPolyLine3D.h>
 #include <TPolyMarker3D.h>
@@ -113,13 +114,30 @@ namespace Astro
     }
 
     /**
+    * \brief Plot the orbit trace given a \f$ 3 \times N \f$ array of cartesian coordinates.
+    *
+    * This function plots the orbit trace of an astronomical body using the ROOT library.
+    *
+    * \param[in] trace The \f$ 3 \times N \f$ array of cartesian coordinates representing the orbit trace.
+    */
+    TPolyLine3D* DrawTrace(const Eigen::Matrix<Real, 3, Eigen::Dynamic> & trace) {
+      TPolyLine3D* poly_line = new TPolyLine3D(trace.cols());
+      for (int k = 0; k < trace.cols(); ++k) {
+        poly_line->SetPoint(k, trace(0, k), trace(1, k), trace(2, k));
+      }
+      poly_line->SetLineColor(kRed);
+      poly_line->SetLineWidth(2);
+      return poly_line;
+    }
+
+    /**
     * \brief Plot the orbit trace of an astronomical body.
     *
     * This function plots the orbit trace of an astronomical body using the ROOT library.
     *
     * \param[in] orbit The astronomical body whose orbit is to be plotted.
     */
-    TPolyLine3D* Trace(const Orbit & orbit, Integer num_points = 360) {
+    TPolyLine3D* DrawTrace(const Orbit & orbit, Integer num_points = 360) {
 
       // Extract orbital elements
       Real a{orbit.keplerian().a};

@@ -31,21 +31,21 @@ namespace Astro {
   * \param[in] x Number to be squared.
   * \return Square of the number.
   */
-  Real power2(Real x) {return x*x;}
+  Real Power2(Real x) {return x*x;}
 
   /**
   * Compute the cube of a number.
   * \param[in] x Number to be cubed.
   * \return Cube of the number.
   */
-  Real power3(Real x) {return x*x*x;}
+  Real Power3(Real x) {return x*x*x;}
 
   /**
   * Compute the fourth power of a number.
   * \param[in] x Number to be raised to the fourth power.
   * \return Number raised to the fourth power.
   */
-  Real power4(Real x) {return x*x*x*x;}
+  Real Power4(Real x) {return x*x*x*x;}
 
   /*\
    |      _                _
@@ -68,7 +68,7 @@ namespace Astro {
   * \param[in] x Angle in degrees.
   * \return Angle in radiants.
   */
-  Real deg_to_rad(Real x) {return DEG_TO_RAD*x;}
+  Real Deg_To_Rad(Real x) {return DEG_TO_RAD*x;}
 
   /**
   * Convert an angle in radiants to degrees using the formula \f$ \text{deg} =
@@ -76,7 +76,7 @@ namespace Astro {
   * \param[in] x Angle in radiants.
   * \return Angle in degrees.
   */
-  Real rad_to_deg(Real x) {return RAD_TO_DEG*x;}
+  Real Rad_To_Deg(Real x) {return RAD_TO_DEG*x;}
 
   /**
   * Add or remove multiple of \f$ 2\pi \f$ to an angle in order to clamp it in
@@ -84,7 +84,7 @@ namespace Astro {
   * \param[in] x Angle to be normalized.
   * \return Normalized angle.
   */
-  Real angle_in_range(Real x)
+  Real AngleInRange(Real x)
   {
     x = std::fmod(x, PIMUL2);
     while (x < Real(0.0)) {x += PIMUL2;}
@@ -98,7 +98,7 @@ namespace Astro {
   * \param[in] x Angle to be normalized.
   * \return Normalized angle.
   */
-  Real angle_in_range_sym(Real x)
+  Real AngleInRangeSym(Real x)
   {
     x = std::fmod(x, PIMUL2);
     while (x < -PI) {x += PIMUL2;}
@@ -115,27 +115,12 @@ namespace Astro {
    |
   \*/
 
-  static Real const AU_TO_KM{1.49597870707e+08};   /**< One astronomical unit in kilometers /f$ 1 \text{AU} = 1.49597870707 \times 10^8 \text{km} \f$. */
-  static Real const LY_TO_KM{9.4607304725808e+12}; /**< One light year in meters /f$ 1 \text{ly} = 9.4607304725808 \times 10^{12} \text{km} \f$. */
-  static Real const PC_TO_AU{6.48e+05/PI};         /**< One parsec in astronomical units /f$ 1 \text{pc} = 648000/\pi \text{AU} \f$. */
-  static Real const PC_TO_KM{PC_TO_AU*AU_TO_KM};   /**< One parsec in kilometers /f$ 1 \text{pc} = 648000/\pi \times 1.49597870707 \times 10^{8} \text{km} \f$. */
-  static Real const AU_TO_PC{1.0/PC_TO_AU};        /**< One astronomical unit in parsecs /f$ 1 \text{AU} = \pi/648000 \text{pc} \f$. */
-  static Real const LY_TO_PC{1.0/PC_TO_AU};        /**< One light year in parsecs /f$ 1 \text{ly} = \pi/648000 \text{pc} \f$. */
-  static Real const KM_TO_PC{1.0/PC_TO_KM};        /**< One kilometer in parsecs /f$ 1 \text{km} = 1.0/648000/\pi \text{pc} \f$. */
-  static Real const PC_TO_LY{1.0/LY_TO_PC};        /**< One parsec in light years /f$ 1 \text{pc} = 648000/\pi \times 1.49597870707 \times 10^{-8} \text{ly} \f$. */
-  static Real const KM_TO_LY{1.0/LY_TO_KM};        /**< One kilometer in light years /f$ 1 \text{km} = 1.0570008340246 \times 10^{-13} \text{ly} \f$. */
-  static Real const LY_TO_AU{LY_TO_KM/AU_TO_KM};   /**< One light year in astronomical units /f$ 1 \text{ly} = 9.4607304725808 \times 10^{12} \text{km} \f$. */
-  static Real const AU_TO_LY{1.0/LY_TO_AU};        /**< One astronomical unit in light years /f$ 1 \text{AU} = 1.49597870707 \times 10^{-8} \text{ly} \f$. */
-  static Real const KM_TO_AU{1.0/AU_TO_KM};        /**< One kilometer in astronomical units /f$ 1 \text{km} = 1.49597870707 \times 10^{-8} \text{AU} \f$. */
-
-  static Real const KM_TO_M{1000.0};           /**< One kilometer in meters /f$ 1 \text{km} = 1000 \text{m} \f$. */
-  static Real const M_TO_KM{1.0/KM_TO_M};      /**< One meter in kilometers /f$ 1 \text{m} = 10^{-3} \text{km} \f$. */
-  static Real const AU_TO_M{AU_TO_KM*KM_TO_M}; /**< One astronomical unit in meters /f$ 1 \text{AU} = 1.49597870707 \times 10^8 \times 1000 \text{m} \f$. */
-  static Real const LY_TO_M{LY_TO_KM*KM_TO_M}; /**< One light year in meters /f$ 1 \text{ly} = 9.4607304725808 \times 10^{12} \times 1000 \text{m} \f$. */
-  static Real const PC_TO_M{LY_TO_KM*KM_TO_M}; /**< One parsec in meters /f$ 1 \text{pc} = 648000/\pi \times 1.49597870707 \times 10^{8} \times 1000 \text{m} \f$. */
-  static Real const M_TO_PC{LY_TO_KM*KM_TO_M}; /**< One meter in parsecs /f$ 1 \text{m} = 1.0/648000/\pi \times 1.49597870707 \times 10^{8} \text{pc} \f$. */
-  static Real const M_TO_LY{LY_TO_KM*KM_TO_M}; /**< One meter in light years /f$ 1 \text{m} = 1.0570008340246 \times 10^{-13} \text{ly} \f$. */
-  static Real const M_TO_AU{LY_TO_KM*KM_TO_M}; /**< One meter in astronomical units /f$ 1 \text{m} = 1.49597870707 \times 10^{-8} \text{AU} \f$. */
+  static Real const AU_TO_KM{1.49597870707e+08}; /**< One astronomical unit in kilometers /f$ 1 \text{AU} = 1.49597870707 \times 10^8 \text{km} \f$. */
+  static Real const KM_TO_AU{1.0/AU_TO_KM};      /**< One kilometer in astronomical units /f$ 1 \text{km} = 1.49597870707 \times 10^{-8} \text{AU} \f$. */
+  static Real const KM_TO_M{1000.0};             /**< One kilometer in meters /f$ 1 \text{km} = 1000 \text{m} \f$. */
+  static Real const M_TO_KM{1.0/KM_TO_M};        /**< One meter in kilometers /f$ 1 \text{m} = 10^{-3} \text{km} \f$. */
+  static Real const AU_TO_M{AU_TO_KM*KM_TO_M};   /**< One astronomical unit in meters /f$ 1 \text{AU} = 1.49597870707 \times 10^8 \times 1000 \text{m} \f$. */
+  static Real const M_TO_AU{AU_TO_KM*KM_TO_M};   /**< One meter in astronomical units /f$ 1 \text{m} = 1.49597870707 \times 10^{-8} \text{AU} \f$. */
 
 
   // Time units
@@ -147,21 +132,53 @@ namespace Astro {
   static Real const gravity_kg_m_s2{9.80665};
   static Real const gravity_kg_AU_DAY2{gravity_kg_m_s2*KG_M_SEC2_TO_KG_AU_DAY2};
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-  Real AU_to_KM(Real x) {return x * AU_TO_KM;}
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  Real AU_by_DAY_to_km_by_s(Real x) {return x * (AU_TO_KM/DAY_TO_SEC);}
+  Real KM_To_M(Real x) {return x * KM_TO_M;}
+  Real M_To_KM(Real x) {return x * M_TO_KM;}
+
+  Real KM_To_AU(Real x) {return x * KM_TO_AU;}
+  Real AU_To_KM(Real x) {return x * AU_TO_KM;}
+
+  Real M_To_AU(Real x) {return x * M_TO_AU;}
+  Real AU_To_M(Real x) {return x * AU_TO_M;}
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  Real AU_by_DAY2_to_km_by_s2(Real x) {return x * (AU_TO_KM/(DAY_TO_SEC*DAY_TO_SEC));}
+  Real KM_S_To_M_S(Real x) {return x * KM_TO_M;}
+  Real M_S_To_KM_S(Real x) {return x * M_TO_KM;}
+
+  Real KM_S_To_AU_S(Real x) {return x * (KM_TO_AU/SEC_TO_DAY);}
+  Real AU_S_To_KM_S(Real x) {return x * (AU_TO_KM*DAY_TO_SEC);}
+
+  Real M_S_To_AU_S(Real x) {return x * (M_TO_AU/SEC_TO_DAY);}
+  Real AU_S_To_M_S(Real x) {return x * (AU_TO_M*DAY_TO_SEC);}
+
+  Real M_S_To_AU_DAY(Real x) {return x * (M_TO_AU/DAY_TO_SEC);}
+  Real AU_DAY_To_M_S(Real x) {return x * (AU_TO_M*DAY_TO_SEC);}
+
+  Real KM_S_To_AU_DAY(Real x) {return x * (KM_TO_AU/DAY_TO_SEC);}
+  Real AU_DAY_To_KM_S(Real x) {return x * (AU_TO_KM*DAY_TO_SEC);}
+
+  Real M_S_To_KM_DAY(Real x) {return x * (M_TO_KM/DAY_TO_SEC);}
+  Real KM_DAY_To_M_S(Real x) {return x * (KM_TO_M*DAY_TO_SEC);}
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  Real AU_by_DAY3_to_km_by_s3(Real x) {return x * (AU_TO_KM/(DAY_TO_SEC*DAY_TO_SEC*DAY_TO_SEC));}
+  Real AU_DAY2_To_KM_S2(Real x) {return x * (AU_TO_KM/(DAY_TO_SEC*DAY_TO_SEC));}
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  Real AU_DAY3_To_KM_S3(Real x) {return x * (AU_TO_KM/(DAY_TO_SEC*DAY_TO_SEC*DAY_TO_SEC));}
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  Real KM3_S2_To_KM3_DAY2(Real x) {return x * (1.0/(SEC_TO_DAY*SEC_TO_DAY));}
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  Real KM3_S2_To_AU3_DAY2(Real x) {return x * (1.0/(AU_TO_KM*AU_TO_KM*AU_TO_KM)/(SEC_TO_DAY*SEC_TO_DAY));}
 
 } // namespace Astro
 

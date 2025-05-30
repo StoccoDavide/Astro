@@ -167,6 +167,23 @@ namespace Astro
         return ((this->v.cross(this->h()) / mu) - (this->r / this->r.norm())).norm();
       }
 
+      /**
+      * Compute the spherical coordinates of the position vector \f$ \mathbf{r} \f$. The spherical
+      * coordinates are given as \f$ (r, \theta, \phi) \f$, where:
+      *   - \f$ r \f$ is the distance from the origin to the point (UA),
+      *   - \f$ \theta \f$ is the polar angle (colatitude) in radians,
+      *   - \f$ \phi \f$ is the azimuthal angle in radians.
+      * \return The spherical coordinates of the position vector \f$ \mathbf{r} \f$.
+      */
+      Vector3 spherical_coordinates() const
+      {
+        Real r = this->r.norm();
+        Real theta = std::acos(this->r.z() / r); // polar angle (colatitude)
+        Real phi = std::atan2(this->r.y(), this->r.x()); // azimuthal angle
+        return Vector3(r, theta, phi);
+      }
+
+
     }; // struct Cartesian
 
     /*\
@@ -246,9 +263,9 @@ namespace Astro
         os <<
           "a : semi-major axis   = " << this->a << " (UA)" << std::endl <<
           "e : eccentricity      = " << this->e << " (-)" << std::endl <<
-          "i : inclination       = " << this->i << " (rad) = " << rad_to_deg(this->i) << " (deg)" << std::endl <<
-          "Ω : right ascension … = " << this->Omega << " (rad) = " << rad_to_deg(this->Omega) << " (deg)" << std::endl <<
-          "ω : arg. of periapsis = " << this->omega << " (rad) = " << rad_to_deg(this->omega) << " (deg)" << std::endl;
+          "i : inclination       = " << this->i << " (rad) = " << Rad_To_Deg(this->i) << " (deg)" << std::endl <<
+          "Ω : right ascension … = " << this->Omega << " (rad) = " << Rad_To_Deg(this->Omega) << " (deg)" << std::endl <<
+          "ω : arg. of periapsis = " << this->omega << " (rad) = " << Rad_To_Deg(this->omega) << " (deg)" << std::endl;
           return os.str();
       }
 
@@ -317,7 +334,7 @@ namespace Astro
       {
         #define CMD "Astro::OrbitalElements::Keplerian::is_singular(...): "
 
-        Real i{angle_in_range(this->i)};
+        Real i{AngleInRange(this->i)};
         if (i < PI + tol_i && i > PI - tol_i) {
           ASTRO_WARNING(CMD "singular inclination detected.");
           return true;
@@ -505,7 +522,7 @@ namespace Astro
       {
         #define CMD "Astro::OrbitalElements::Keplerian::is_singular(...): "
 
-        Real i{angle_in_range(this->i())};
+        Real i{AngleInRange(this->i())};
         if (i < PI + tol_i && i > PI - tol_i) {
           ASTRO_WARNING(CMD "singular inclination detected.");
           return true;
@@ -769,7 +786,7 @@ namespace Astro
       #define CMD "Astro::OrbitalElements::Anomaly::M_to_E(...): "
 
       // Clamp the mean anomaly in the range [0, 2\pi]
-      M = angle_in_range(M);
+      M = AngleInRange(M);
 
       // Solve Kepler equation through a basic Newton method
       Real dE{0.0}, E{M}, e{kepl.e};
@@ -1117,12 +1134,12 @@ namespace Astro
       std::string info() const {
         std::ostringstream os;
         os <<
-          "v : true anomaly       = " << this->nu << " (rad) = " << rad_to_deg(this->nu) << " (deg)" << std::endl <<
-          "M : mean anomaly       = " << this->M << " (rad) = " << rad_to_deg(this->M) << " (deg)" << std::endl <<
-          "E : eccentric anomaly  = " << this->E << " (rad) = " << rad_to_deg(this->E) << " (deg)" << std::endl <<
-          "L : true longitude     = " << this->L << " (rad) = " << rad_to_deg(this->L) << " (deg)" << std::endl <<
-          "λ : mean longitude     = " << this->lambda << " (rad) = " << rad_to_deg(this->lambda) << " (deg)" << std::endl <<
-          "H : hyperbolic anomaly = " << this->H << " (rad) = " << rad_to_deg(this->H) << " (deg)" << std::endl;
+          "v : true anomaly       = " << this->nu << " (rad) = " << Rad_To_Deg(this->nu) << " (deg)" << std::endl <<
+          "M : mean anomaly       = " << this->M << " (rad) = " << Rad_To_Deg(this->M) << " (deg)" << std::endl <<
+          "E : eccentric anomaly  = " << this->E << " (rad) = " << Rad_To_Deg(this->E) << " (deg)" << std::endl <<
+          "L : true longitude     = " << this->L << " (rad) = " << Rad_To_Deg(this->L) << " (deg)" << std::endl <<
+          "λ : mean longitude     = " << this->lambda << " (rad) = " << Rad_To_Deg(this->lambda) << " (deg)" << std::endl <<
+          "H : hyperbolic anomaly = " << this->H << " (rad) = " << Rad_To_Deg(this->H) << " (deg)" << std::endl;
           return os.str();
       }
 

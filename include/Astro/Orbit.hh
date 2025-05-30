@@ -431,21 +431,27 @@ namespace Astro
     }
 
     /**
-    * Compute the Frenet-Serret frame of the orbit (radial, tangential, normal)
-    * through the cartesian orbital elements.
+    * Compute the Frenet-Serret frame of the orbit (radial, tangential, normal) given the cartesian
+    * orbital elements.
+    * \param[in] r The position vector \f$ \mathbf{r} \f$.
+    * \param[in] v The velocity vector \f$ \mathbf{v} \f $.
     * \return The Frenet-Serret frame of the orbit.
     */
-    Rotation cartesian_to_frenet_rtn() const
+    Rotation cartesian_to_frenet_rtn(Vector3 const & r, Vector3 const & v) const
     {
+      // Check if the input vectors are valid
+      ASTRO_ASSERT(r.allFinite() && v.allFinite(),
+        "Astro::Orbit::cartesian_to_frenet_rtn(...): invalid input vectors detected.");
+
       // Initialize the Frenet-Serret frame
       Rotation rtn;
 
       // Compute the radial vector
-      rtn.col(0) = this->m_cart.r;
+      rtn.col(0) = r;
       rtn.col(0).normalize();
 
       // Compute the tangential vector
-      rtn.col(1) = rtn.col(0).cross(this->m_cart.v);
+      rtn.col(1) = rtn.col(0).cross(v);
       rtn.col(1).normalize();
 
       // Compute the binormal vector
@@ -453,6 +459,16 @@ namespace Astro
 
       // Return the Frenet-Serret frame
       return rtn;
+    }
+
+    /**
+    * Compute the Frenet-Serret frame of the orbit (radial, tangential, normal)
+    * through the cartesian orbital elements.
+    * \return The Frenet-Serret frame of the orbit.
+    */
+    Rotation cartesian_to_frenet_rtn() const
+    {
+      return this->cartesian_to_frenet_rtn(this->m_cart.r, this->m_cart.v);
     }
 
     /**
@@ -478,6 +494,19 @@ namespace Astro
         (2.0*hk*c_L-I*(h2-k2-1.0)*s_L)/bf, (I*(1.0+k2-h2)*c_L-2.0*hk*s_L)/bf, -2.0*h/bf,
         (2.0*(h*s_L-c_L*k*I))/bf,          (2.0*k*I*s_L+2.0*h*c_L)/bf,        I*(1-h2-k2)/bf;
       return R;
+    }
+
+    /**
+    * Transform a vector in the Frent-Serret frame of the orbit (radial, tangential, normal) to
+    * a vector in the cartesian frame given the cartesian orbital elements.
+    * \param[in] vec The vector in Frenet-Serret frame.
+    * \param[in] r The position vector \f$ \mathbf{r} \f$.
+    * \param[in] v The velocity vector \f$ \mathbf{v} \f $.
+    * \return The vector in the cartesian frame.
+    */
+    Vector3 cartesian_rtn_to_xyz(Vector3 const & vec, Vector3 const & r, Vector3 const & v) const
+    {
+      return this->cartesian_to_frenet_rtn(r, v) * vec;
     }
 
     /**

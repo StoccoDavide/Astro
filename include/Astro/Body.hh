@@ -15,6 +15,10 @@
 
 #include "Astro/Orbit.hh"
 
+// Sandals library
+#include <Sandals/RungeKutta.hh>
+#include <Sandals/Solution.hh>
+
 namespace Astro
 {
 
@@ -189,28 +193,33 @@ namespace Astro
       Real const & f{this->m_equi.f};
       Real const & g{this->m_equi.g};
       Real w{1.0 + (f*std::cos(this->m_anom.L) + g*std::sin(this->m_anom.L))};
-      return VectorB(0.0, 0.0, 0.0, 0.0, 0.0, std::sqrt(p*this->m_mu)*power2(w/p));
+      return VectorB(0.0, 0.0, 0.0, 0.0, 0.0, std::sqrt(p*this->m_mu)*Power2(w/p));
     }
 
     /**
     * Compute the vector of the first-order cartesian equations of orbital motion given the
     * thrust vector components \f$ \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \f$.
+    * \param[in] x The cartesian state vector \f$ \mathbf{x} = [r_x, r_y, r_z, v_x, v_y, v_z]^\top \f$.
     * \param[in] thrust_rtn The thrust components vector.
     * \return The vector of the first-order cartesian equations of orbital motion.
     */
-    Vector6 cartesian_eom(Vector3 const & thrust_rtn) const
+    Vector6 cartesian_eom(Vector6 const & x, Vector3 const & thrust_rtn) const
     {
+      // Set the new cartesian state
+      Vector3 r = x.head<3>();
+      Vector3 v = x.tail<3>();
+
       // Compute the cartesian perturbation
       Vector3 thrust_xyz(this->cartesian_rtn_to_xyz(thrust_rtn));
       thrust_xyz /= this->m_mass;
 
       // Compute the equations of motion
-      Real r_norm{this->m_cart.r.norm()};
-      Vector3 r_mur3(this->m_mu/power3(r_norm) * this->m_cart.r);
+      Real r_norm{r.norm()};
+      Vector3 r_mur3(this->m_mu/Power3(r_norm) * r);
       return Vector6(
-        this->m_cart.v.x(),
-        this->m_cart.v.y(),
-        this->m_cart.v.z(),
+        v.x(),
+        v.y(),
+        v.z(),
         thrust_xyz.x() - r_mur3.x(),
         thrust_xyz.y() - r_mur3.y(),
         thrust_xyz.z() - r_mur3.z()
@@ -220,30 +229,32 @@ namespace Astro
     /**
     * Compute the vector of the first-order cartesian equations of orbital motion given the
     * thrust vector components \f$ \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \f$.
+    * \param[in] x The cartesian state vector \f$ \mathbf{x} = [r_x, r_y, r_z, v_x, v_y, v_z]^\top \f$.
     * \param[in] thrust_rad The radial thrust component.
     * \param[in] thrust_tan The tangential thrust component.
     * \param[in] thrust_nor The normal thrust component.
     * \return The vector of the first-order cartesian equations of orbital motion.
     */
-    Vector6 cartesian_eom(Real thrust_rad, Real thrust_tan, Real thrust_nor) const
+    Vector6 cartesian_eom(Vector6 const & x, Real thrust_rad, Real thrust_tan, Real thrust_nor) const
     {
-      return this->cartesian_eom(Vector3(thrust_rad, thrust_tan, thrust_nor));
+      return this->cartesian_eom(x, Vector3(thrust_rad, thrust_tan, thrust_nor));
     }
 
     /**
     * Compute the system of first-order modified equinoctial equations of orbital motion given the
     * thrust vector components \f$ \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \f$.
+    * \param[in] x The modified equinoctial state vector \f$ \mathbf{x} = [p, f, g, h, k, L]^\top \f$.
     * \param[in] thrust The components (radial, tangential, normal) of the thrust.
     * \return The system of first-order modified equinoctial equations of orbital motion.
     */
-    Vector6 equinoctial_eom(Vector3 const & thrust) const
+    Vector6 equinoctial_eom(Vector6 const & x, Vector3 const & thrust) const
     {
-      Real const & p{this->m_equi.p};
-      Real const & f{this->m_equi.f};
-      Real const & g{this->m_equi.g};
-      Real const & h{this->m_equi.h};
-      Real const & k{this->m_equi.k};
-      Real const & L{this->m_anom.L};
+      Real const & p{x(0)};
+      Real const & f{x(1)};
+      Real const & g{x(2)};
+      Real const & h{x(3)};
+      Real const & k{x(4)};
+      Real const & L{x(5)};
 
       Real s_L{std::sin(L)};
       Real c_L{std::cos(L)};
@@ -272,7 +283,7 @@ namespace Astro
       res(4) += C_nor*s2*s_L/2.0;
       res(5) += C_nor*(h*s_L-k*c_L);
 
-      res(5) += std::sqrt(p*this->m_mu)*power2(w/p);
+      res(5) += std::sqrt(p*this->m_mu)*Power2(w/p);
 
       return res;
     }
@@ -280,14 +291,109 @@ namespace Astro
     /**
     * Compute the system of first-order modified equinoctial equations of orbital motion given the
     * thrust vector components \f$ \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \f$.
+    * \param[in] x The modified equinoctial state vector \f$ \mathbf{x} = [p, f, g, h, k, L]^\top \f$.
     * \param[in] thrust_rad The radial component of the thrust.
     * \param[in] thrust_tan The tangential component of the thrust.
     * \param[in] thrust_nor The normal component of the thrust.
     * \return The system of first-order modified equinoctial equations of orbital motion.
     */
-    Vector6 equinoctial_eom(Real thrust_rad, Real thrust_tan, Real thrust_nor) const
+    Vector6 equinoctial_eom(Vector6 const & x, Real thrust_rad, Real thrust_tan, Real thrust_nor) const
     {
-      return this->equinoctial_eom(Vector3(thrust_rad, thrust_tan, thrust_nor));
+      return this->equinoctial_eom(x, Vector3(thrust_rad, thrust_tan, thrust_nor));
+    }
+
+    /**
+    * Integrate the cartesian equations of motion using the Runge-Kutta method.
+    * \param[in] rk The Runge-Kutta integrator.
+    * \param[in] t_mesh The time mesh for the integration.
+    * \param[in] ics The initial conditions for the integration (initial cartesian state).
+    * \param[out] sol The solution object to store the results of the integration.
+    * \tparam S The stages of the Runge-Kutta method.
+    * \return The integrated cartesian state (position and velocity) vectors.
+    */
+    template <Integer S>
+    bool integrate_cartesian(
+      Sandals::RungeKutta<Real, S, 6, 0> & rk,
+      VectorX const &t_mesh,
+      Vector6 const &ics,
+      Sandals::Solution<Real, 6, 0> & sol
+    ) {
+      sol.resize(t_mesh.size());
+      rk.explicit_system(
+        [this](Vector6 const & x, Real) -> Vector6 { // f(x, t)
+          return this->cartesian_eom(x, ZEROS_VEC3);
+        },
+        [](Vector6 const &, Real) -> Matrix6 { // Jf_x(x, t)
+          return ZEROS_MAT6;
+        }
+      );
+      Vector6 x_step;
+      Real h_new_step;
+      sol.t(0)     = t_mesh(0);
+      sol.x.col(0) = ics;
+      for (Integer i = 0; i < t_mesh.size() - 1; ++i) {
+        Real t_step{t_mesh(i)};
+        Real h_step{t_mesh(i + 1) - t_step};
+        if (!rk.advance(sol.x.col(i), t_step, h_step, x_step, h_new_step)) {
+          return false; // Error in the integration
+        } else {
+          sol.x.col(i + 1) = x_step;
+          sol.t(i + 1) = t_step + h_step;
+          this->cartesian(x_step.head<3>(), x_step.tail<3>());
+        }
+      }
+      return true;
+    }
+
+    /**
+    * Integrate the modified equinoctial equations of motion using the Runge-Kutta method.
+    * \param[in] rk The Runge-Kutta integrator.
+    * \param[in] t_mesh The time mesh for the integration.
+    * \param[in] ics The initial conditions for the integration (initial modified equinoctial state).
+    * \param[out] sol The solution object to store the results of the integration.
+    * \tparam S The stages of the Runge-Kutta method.
+    * \return The integrated modified equinoctial state vectors.
+    */
+    template <Integer S>
+    bool integrate_equinoctial(
+      Sandals::RungeKutta<Real, S, 6, 0> & rk,
+      VectorX const &t_mesh,
+      Vector6 const &ics,
+      Sandals::Solution<Real, 6, 0> & sol
+    ) {
+      Sandals::Solution<Real, 6, 0> sol_xyz; sol_xyz.resize(t_mesh.size());
+      sol.resize(t_mesh.size());
+      rk.explicit_system(
+        [this](Vector6 const & x, Real) -> Vector6 { // f(x, t)
+          return this->equinoctial_eom(x, ZEROS_VEC3);
+        },
+        [](Vector6 const &, Real) -> Matrix6 { // Jf_x(x, t)
+          return ZEROS_MAT6;
+        }
+      );
+      Vector6 x_step;
+      Real h_new_step;
+      sol.t(0)     = t_mesh(0);
+      sol.x.col(0) = ics;
+      for (Integer i = 0; i < t_mesh.size() - 1; ++i) {
+        Real t_step{t_mesh(i)};
+        Real h_step{t_mesh(i + 1) - t_step};
+        if (!rk.advance(sol.x.col(i), t_step, h_step, x_step, h_new_step)) {
+          return false; // Error in the integration
+        } else {
+          sol.x.col(i + 1) = x_step;
+          sol.t(i + 1) = t_step + h_step;
+
+          this->equinoctial(x_step(0), x_step(1), x_step(2), x_step(3), x_step(4));
+          this->anomaly().set_L(x_step(5));
+
+          sol_xyz.x.col(i + 1).head<3>() = this->cartesian().r;
+          sol_xyz.x.col(i + 1).tail<3>() = this->cartesian().v;
+          sol_xyz.t(i + 1) = t_step + h_step;
+        }
+      }
+      sol = sol_xyz;
+      return true;
     }
 
   }; // class Body

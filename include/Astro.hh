@@ -23,9 +23,6 @@
 #include <Eigen/Dense>
 #include <Eigen/Geometry>
 
-// Sandals library
-#include <Sandals.hh>
-
 // Print Astro errors
 #ifndef ASTRO_ERROR
 #define ASTRO_ERROR(MSG)                \

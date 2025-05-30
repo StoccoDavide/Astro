@@ -16,7 +16,6 @@ using namespace Astro::OrbitalElements;
 int main()
 {
 
-
   auto a{1.0};
   auto e{0.1};
   auto i{0.1};
@@ -45,7 +44,6 @@ int main()
 
   cartesian_to_keplerian(cart, mu, kepl);
   std::cout << kepl.info() << std::endl;
-
 
   return 0;
 }
