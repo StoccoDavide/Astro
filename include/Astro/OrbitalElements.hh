@@ -25,7 +25,7 @@ namespace Astro
 
   /** Orbit type. */
   using Type = enum class Type : Integer {
-    UNDEFINED = 0, HYPERBOLIC = 1, ELLIPTIC = 2, PARABOLIC = 3
+    UNDEFINED = 0, HYPERBOLIC = 1, ELLIPTIC = 2, CIRCULAR = 3, PARABOLIC = 4
   };
 
   /**
@@ -74,6 +74,13 @@ namespace Astro
 
       /**
       * Structure constructor for Cartesian orbital elements.
+      * \param[in] t_cart The vector of cartesian orbital elements \f$ [r_x, r_y, r_z, v_x, v_y, v_z]^\top \f$.
+      * \note The vector \f$ t_{\text{cartesian}} \f$ must have 6 elements.
+      */
+      Cartesian(Vector6 const &t_cart) : r(t_cart.head<3>()), v(t_cart.tail<3>()) {}
+
+      /**
+      * Structure constructor for Cartesian orbital elements.
       * \param[in] r_x Position vector \f$ x \f$-axis component.
       * \param[in] r_y Position vector \f$ y \f$-axis component.
       * \param[in] r_z Position vector \f$ z \f$-axis component.
@@ -103,6 +110,16 @@ namespace Astro
       * Enable the default Cartesian orbital elements move assignment operator.
       */
       Cartesian & operator=(Cartesian &&) = default;
+
+      /**
+      * Get the cartesian orbital elements as a vector.
+      * \return The vector of cartesian orbital elements \f$ [r_x, r_y, r_z, v_x, v_y, v_z]^\top \f$.
+      */
+      Vector6 vector() const {
+        Vector6 vec;
+        vec << this->r, this->v;
+        return vec;
+      }
 
       /**
       * Print the cartesian orbital elements on a string.
@@ -162,7 +179,7 @@ namespace Astro
       * \param[in] mu The gravitational parameter \f$ \mu \f$.
       * \return The eccentricity \f$ e \f$.
       */
-      Real e(Real mu) const
+      Real e(Real const mu) const
       {
         return ((this->v.cross(this->h()) / mu) - (this->r / this->r.norm())).norm();
       }
@@ -230,8 +247,17 @@ namespace Astro
       * \param[in] t_Omega The longitude of the ascending node \f$ \Omega \f$.
       * \param[in] t_omega The argument of periapsis \f$ \omega \f$.
       */
-      Keplerian(Real t_a, Real t_e, Real t_i, Real t_Omega, Real t_omega)
+      Keplerian(Real const t_a, Real const t_e, Real const t_i, Real const t_Omega, Real const t_omega)
         : a(t_a), e(t_e), i(t_i), Omega(t_Omega), omega(t_omega)
+      {}
+
+      /**
+      * Structure constructor for the (modified) Keplerian orbital elements.
+      * \param[in] t_kepl The vector of Keplerian orbital elements \f$ [a, e, i, \Omega, \omega]^\top \f$.
+      * \note The vector \f$ t_{\text{keplerian}} \f$ must have 5 elements.
+      */
+      Keplerian(Vector5 const & t_kepl)
+        : a(t_kepl(0)), e(t_kepl(1)), i(t_kepl(2)), Omega(t_kepl(3)), omega(t_kepl(4))
       {}
 
       /**
@@ -253,6 +279,17 @@ namespace Astro
       * Enable the default Keplerian orbital elements move assignment operator.
       */
       Keplerian & operator=(Keplerian &&) = default;
+
+      /**
+      * Convert the Keplerian orbital elements to a vector.
+      * \return The vector of Keplerian orbital elements \f$ [a, e, i, \Omega, \omega]^\top \f$.
+      */
+      Vector5 vector () const
+      {
+        Vector5 vec;
+        vec << this->a, this->e, this->i, this->Omega, this->omega;
+        return vec;
+      }
 
       /**
       * Print the Keplerian orbital elements on a string.
@@ -420,8 +457,17 @@ namespace Astro
       * \param[in] t_h The \f$ x \f$-axis component of the node vector in the orbital frame.
       * \param[in] t_k The \f$ y \f$-axis component of the node vector in the orbital frame.
       */
-      Equinoctial(Real t_p, Real t_f, Real t_g, Real t_h, Real t_k)
+      Equinoctial(Real const t_p, Real const t_f, Real const t_g, Real const t_h, Real const t_k)
         : p(t_p), f(t_f), g(t_g), h(t_h), k(t_k) {}
+
+      /**
+      * Struct constructor for the (modified) equinoctial orbit parameters.
+      * \param[in] t_equi The vector of equinoctial orbit parameters \f$ [p, f, g, h, k]^\top \f$.
+      * \note The vector \f$ t_{\text{equinoctial}} \f$ must have 5 elements.
+      */
+      Equinoctial(Vector5 const & t_equi)
+        : p(t_equi(0)), f(t_equi(1)), g(t_equi(2)), h(t_equi(3)), k(t_equi(4))
+      {}
 
       /**
       * Enable the default equinoctial orbit parameters copy constructor.
@@ -442,6 +488,16 @@ namespace Astro
       * Enable the default equinoctial orbit parameters move assignment operator.
       */
       Equinoctial & operator=(Equinoctial &&) = default;
+
+      /**
+      * Get the equinoctial orbit parameters as a vector.
+      * \return The vector of equinoctial orbit parameters \f$ [p, f, g, h, k]^\top \f$.
+      */
+      Vector5 vector() const {
+        Vector5 vec;
+        vec << this->p, this->f, this->g, this->h, this->k;
+        return vec;
+      }
 
       /**
       * Print the equinoctial orbit parameters on a string.
@@ -638,7 +694,7 @@ namespace Astro
       * \param[in] t_q_3 The third quaternionic orbit parameter.
       * \param[in] t_q_4 The fourth quaternionic orbit parameter.
       */
-      Quaternionic(Real t_q_1, Real t_q_2, Real t_q_3, Real t_q_4)
+      Quaternionic(Real const t_q_1, Real const t_q_2, Real const t_q_3, Real const t_q_4)
         : q(t_q_1, t_q_2, t_q_3, t_q_4) {}
 
       /**
@@ -662,6 +718,18 @@ namespace Astro
       Quaternionic & operator=(Quaternionic &&) = default;
 
       /**
+      * Get the quaternionic orbital elements as a vector.
+      * \return The vector of quaternionic orbital elements \f$ [q¹, q², q³, q⁴]^\top \f$.
+      */
+      Vector4 vector() const {
+        Vector4 vec;
+        vec << this->q.x(), this->q.y(), this->q.z(), this->q.w();
+        return vec;
+      }
+
+      /**
+      * Get the rotation matrix from the quaternionic orbital elements.
+      * \return The rotation matrix.
       */
       Rotation rotation() const {
         Rotation r;
@@ -734,7 +802,7 @@ namespace Astro
     * \param[in] kepl The keplerian orbital elements.
     * \return The mean anomaly \f$ M \f$.
     */
-    Real nu_to_M(Real nu, Keplerian const & kepl)
+    Real nu_to_M(Real const nu, Keplerian const & kepl)
     {
       Real e{kepl.e};
       Real beta{(1.0 + std::sqrt(1.0 - e*e)) / e};
@@ -754,7 +822,7 @@ namespace Astro
     * \param[in] kepl The keplerian orbital elements.
     * \return The eccentric anomaly \f$ E \f$.
     */
-    Real nu_to_E(Real nu, Keplerian const & kepl)
+    Real nu_to_E(Real const nu, Keplerian const & kepl)
     {
       Real beta{(1.0 + std::sqrt(1.0 - kepl.e*kepl.e)) / kepl.e};
       return nu - 2.0 * std::atan(std::sin(nu) / (beta + std::cos(nu)));
@@ -768,7 +836,7 @@ namespace Astro
     * \param[in] I The posigrade (+1)/retrograde (-1) factor.
     * \return The true longitude \f$ L \f$.
     */
-    Real nu_to_L(Real nu, Keplerian const & kepl, Factor I)
+    Real nu_to_L(Real const nu, Keplerian const & kepl, Factor const I)
     {
       return nu + kepl.omega + kepl.Omega*static_cast<Real>(I);
     }
@@ -794,7 +862,7 @@ namespace Astro
       {
         dE = (E - e * std::sin(E) - M) / (1.0 - e * std::cos(E));
         // Saturate if steps are too largex
-        E -= std::max(std::min(dE, 0.1), -0.1);;
+        E -= std::max(std::min(dE, 0.1), -0.1);
         // Break if the error is small enough
         if (std::abs(dE) < EPSILON_HIGH || std::abs(E) < EPSILON_HIGH) {break;}
       }
@@ -808,7 +876,7 @@ namespace Astro
     }
 
     /**
-    * Compute the mean anomaly \f$ M \f$ from the mean anomaly \f$ M \f$ as
+    * Compute the mean anomaly \f$ M \f$ from the hyperbolic anomaly \f$ H \f$.
     * \f$ M = e\sinh(H) - H \text{.} \f$. The solution is found through a basic Newton
     * method.
     *
@@ -817,7 +885,7 @@ namespace Astro
     * \param[in] kepl The keplerian orbital elements.
     * \return The mean anomaly \f$ M \f$.
     */
-    Real M_to_H(Real M, Keplerian const & kepl)
+    Real M_to_H(Real const M, Keplerian const & kepl)
     {
 
       #define CMD "Astro::OrbitalElements::Anomaly::M_to_H(...): "
@@ -830,10 +898,10 @@ namespace Astro
         dH = (e * std::sinh(H) - H - abs_M) / (e * std::cosh(H) - 1.0);
         H -= dH;
         // Break if the error is small enough
-        if (std::abs(dH) < EPSILON_HIGH || std::abs(H) < EPSILON_HIGH) {break;}
+        if (std::abs(dH) < EPSILON_MEDIUM || std::abs(H) < EPSILON_MEDIUM) {break;}
       }
 
-      ASTRO_ASSERT(std::abs(dH) < EPSILON_HIGH, CMD "convergence not reached: H = " << H <<
+      ASTRO_ASSERT(std::abs(dH) < EPSILON_MEDIUM, CMD "convergence not reached: H = " << H <<
         ", dH = " << dH << ", M = " << M << ", e = " << e << ".");
 
       return H > 0 ? H : -H; // Return the positive value
@@ -849,7 +917,7 @@ namespace Astro
     * \param[in] I The posigrade (+1)/retrograde (-1) factor.
     * \return The mean longitude \f$ \lambda \f$.
     */
-    Real M_to_lambda(Real M, Keplerian const & kepl, Factor I)
+    Real M_to_lambda(Real const M, Keplerian const & kepl, Factor const I)
     {
       return M + kepl.omega + kepl.Omega*static_cast<Real>(I);
     }
@@ -866,7 +934,7 @@ namespace Astro
     * \param[in] kepl The keplerian orbital elements.
     * \return The true anomaly \f$ \nu \f$.
     */
-    Real E_to_nu(Real E, Keplerian const & kepl)
+    Real E_to_nu(Real const E, Keplerian const & kepl)
     {
       Real beta{(1.0 + std::sqrt(1.0 - kepl.e*kepl.e)) / kepl.e};
       return E + 2.0 * std::atan(std::sin(E) / (beta - std::cos(E)));
@@ -879,7 +947,7 @@ namespace Astro
     * \param[in] kepl The keplerian orbital elements.
     * \return The true anomaly \f$ \nu \f$.
     */
-    Real E_to_M(Real E, Keplerian const & kepl) {return E - kepl.e * std::sin(E);}
+    Real E_to_M(Real const E, Keplerian const & kepl) {return E - kepl.e * std::sin(E);}
 
     /**
     * Compute the true anomaly \f$ \nu \f$ from the hyperbolic anomaly \f$ H \f$ as
@@ -891,7 +959,7 @@ namespace Astro
     * \param[in] kepl The keplerian orbital elements.
     * \return The true anomaly \f$ \nu \f$.
     */
-    Real H_to_nu(Real H, Keplerian const & kepl)
+    Real H_to_nu(Real const H, Keplerian const & kepl)
     {
       return 2.0*std::atan(std::sqrt((kepl.e+1.0)/(kepl.e-1.0)) * std::tanh(H/2.0));
     }
@@ -903,7 +971,7 @@ namespace Astro
     * \param[in] kepl The keplerian orbital elements.
     * \return The mean anomaly \f$ M \f$.
     */
-    Real H_to_M(Real H, Keplerian const & kepl) {return kepl.e * std::sinh(H) - H;}
+    Real H_to_M(Real const H, Keplerian const & kepl) {return kepl.e * std::sinh(H) - H;}
 
     /**
     * Compute the true anomaly \f$ \nu \f$ from the true longitude \f$ L \f$ as
@@ -913,7 +981,7 @@ namespace Astro
     * \param[in] I The posigrade (+1)/retrograde (-1) factor.
     * \return The true anomaly \f$ \nu \f$.
     */
-    Real L_to_nu(Real L, Keplerian const & kepl, Factor I)
+    Real L_to_nu(Real const L, Keplerian const & kepl, Factor const I)
     {
       return L - kepl.omega - kepl.Omega*static_cast<Real>(I);
     }
@@ -926,7 +994,7 @@ namespace Astro
     * \param[in] M The mean anomaly \f$ M \f$.
     * \return The mean longitude \f$ \lambda \f$.
     */
-    Real L_to_lambda(Real L, Real nu, Real M) {return L - nu + M;}
+    Real L_to_lambda(Real const L, Real const nu, Real const M) {return L - nu + M;}
 
     /**
     * Compute the mean anomaly \f$ M \f$ from the mean longitude \f$ \lambda \f$ as
@@ -936,7 +1004,7 @@ namespace Astro
     * \param[in] I The posigrade (+1)/retrograde (-1) factor.
     * \return The mean anomaly \f$ M \f$.
     */
-    Real lambda_to_M(Real lambda, Keplerian const & kepl, Factor I)
+    Real lambda_to_M(Real const lambda, Keplerian const & kepl, Factor const I)
     {
       return lambda - kepl.omega - static_cast<Real>(I)*kepl.Omega;
     }
@@ -949,7 +1017,7 @@ namespace Astro
     * \param[in] M The mean anomaly \f$ M \f$.
     * \return The true longitude \f$ L \f$.
     */
-    Real lambda_to_L(Real lambda, Real nu, Real M) {return lambda + nu - M;}
+    Real lambda_to_L(Real const lambda, Real const nu, Real const M) {return lambda + nu - M;}
 
     /*\
      |      _                                _
@@ -1010,8 +1078,10 @@ namespace Astro
       * \param[in] nu The true anomaly \f$ \nu \f$.
       * \param[in] kepl The keplerian orbital elements.
       * \param[in] I The posigrade (+1)/retrograde (-1) factor.
+      * \tparam Hyperbolic If true, the hyperbolic anomaly \f$ H \f$ is also computed.
       */
-      void set_nu(Real nu, Keplerian const & kepl, Factor I)
+      template<bool Hyperbolic = false>
+      void set_nu(Real const nu, Keplerian const & kepl, Factor const I)
       {
         kepl.sanity_check();
         this->nu     = nu;
@@ -1019,7 +1089,8 @@ namespace Astro
         this->E      = nu_to_E(nu, kepl);
         this->L      = nu_to_L(nu, kepl, I);
         this->lambda = M_to_lambda(this->M, kepl, I);
-        this->H      = M_to_H(this->M, kepl);
+        this->H      = QUIET_NAN;
+        if constexpr (Hyperbolic) {this->H = M_to_H(this->M, kepl);}
       }
 
 
@@ -1028,8 +1099,10 @@ namespace Astro
       * \param[in] t_M The mean anomaly \f$ M \f$.
       * \param[in] kepl The keplerian orbital elements.
       * \param[in] I The posigrade (+1)/retrograde (-1) factor.
+      * \tparam Hyperbolic If true, the hyperbolic anomaly \f$ H \f$ is also computed.
       */
-      void set_M(Real t_M, Keplerian const & kepl, Factor I)
+      template<bool Hyperbolic = false>
+      void set_M(Real const t_M, Keplerian const & kepl, Factor const I)
       {
         kepl.sanity_check();
         this->E      = M_to_E(t_M, kepl);
@@ -1037,7 +1110,8 @@ namespace Astro
         this->M      = t_M;
         this->L      = nu_to_L(this->nu, kepl, I);
         this->lambda = M_to_lambda(this->M, kepl, I);
-        this->H      = M_to_H(t_M, kepl);
+        this->H      = QUIET_NAN;
+        if constexpr (Hyperbolic) {this->H = M_to_H(this->M, kepl);}
       }
 
       /**
@@ -1052,7 +1126,8 @@ namespace Astro
       * \param[in] kepl The keplerian orbital elements.
       * \param[in] I The posigrade (+1)/retrograde (-1) factor.
       */
-      void set_E(Real t_E, Keplerian const & kepl, Factor I)
+      template<bool Hyperbolic = false>
+      void set_E(Real const t_E, Keplerian const & kepl, Factor const I)
       {
         kepl.sanity_check();
         this->nu     = E_to_nu(t_E, kepl);
@@ -1060,7 +1135,8 @@ namespace Astro
         this->E      = t_E;
         this->L      = nu_to_L(this->nu, kepl, I);
         this->lambda = M_to_lambda(this->M, kepl, I);
-        this->H      = M_to_H(this->M, kepl);
+        this->H      = QUIET_NAN;
+        if constexpr (Hyperbolic) {this->H = M_to_H(this->M, kepl);}
       }
 
       /**
@@ -1072,7 +1148,7 @@ namespace Astro
       * \param[in] kepl The keplerian orbital elements.
       * \param[in] I The posigrade (+1)/retrograde (-1) factor.
       */
-      void set_L(Real t_L, Keplerian const & kepl, Factor I)
+      void set_L(Real const t_L, Keplerian const & kepl, Factor const I)
       {
         #define CMD "Astro::OrbitalElements::Anomaly::L(...): "
 
@@ -1093,7 +1169,7 @@ namespace Astro
       * \param[in] kepl The keplerian orbital elements.
       * \param[in] I The posigrade (+1)/retrograde (-1) factor.
       */
-      void set_lambda(Real t_lambda, Keplerian const & kepl, Factor I)
+      void set_lambda(Real const t_lambda, Keplerian const & kepl, Factor const I)
       {
         #define CMD "Astro::OrbitalElements::Anomaly::lambda(...): "
 
@@ -1114,7 +1190,7 @@ namespace Astro
       * \param[in] kepl The keplerian orbital elements.
       * \param[in] I The posigrade (+1)/retrograde (-1) factor.
       */
-      void set_H(Real t_H, Keplerian const & kepl, Factor I)
+      void set_H(Real const t_H, Keplerian const & kepl, Factor const I)
       {
         #define CMD "Astro::OrbitalElements::Anomaly::H(...): "
 
@@ -1165,7 +1241,9 @@ namespace Astro
       /**
       * Check if the orbit anomalies are valid, *i.e.*, finite.
       * \return True if the orbit anomalies are valid, false otherwise.
+      * \tparam Hyperbolic If true, the hyperbolic anomaly \f$ H \f$ is also checked.
       */
+      template<bool Hyperbolic = false>
       bool sanity_check() const
       {
         #define CMD "Astro::OrbitalElements::Anomaly::sanity_check(...): "
@@ -1190,10 +1268,12 @@ namespace Astro
           ASTRO_ERROR(CMD "invalid mean longitude.");
           return false;
         }
-        // CHECK: if (!(std::isfinite(this->H))) {
-        // CHECK:   ASTRO_ERROR(CMD "invalid hyperbolic anomaly.");
-        // CHECK:   return false;
-        // CHECK: }
+        if constexpr (Hyperbolic) {
+          if (!(std::isfinite(this->H))) {
+            ASTRO_ERROR(CMD "invalid hyperbolic anomaly.");
+            return false;
+          }
+        }
         return true;
 
         #undef CMD
@@ -1207,7 +1287,7 @@ namespace Astro
     * \param[in] mu The gravitational parameter.
     * \param[out] kepl The keplerian orbital elements.
     */
-    void cartesian_to_keplerian(Cartesian const & cart, Real mu, Keplerian & kepl)
+    void cartesian_to_keplerian(Cartesian const & cart, Real const mu, Keplerian & kepl)
     {
       #define CMD "Astro::OrbitalElements::cartesian_to_keplerian(...): "
 
@@ -1270,7 +1350,7 @@ namespace Astro
     * \param[in] mu The gravitational parameter.
     * \param[out] cart The cartesian state (position and velocity) vectors.
     */
-    void keplerian_to_cartesian(Keplerian const & kepl, Anomaly const & anom, Real mu, Cartesian & cart)
+    void keplerian_to_cartesian(Keplerian const & kepl, Anomaly const & anom, Real const mu, Cartesian & cart)
     {
       #define CMD "Astro::OrbitalElements::keplerian_to_cartesian(...): "
 
@@ -1322,7 +1402,8 @@ namespace Astro
     * \param[in] mu The gravitational parameter.
     * \param[out] cart The cartesian state (position and velocity) vectors.
     */
-    void equinoctial_to_cartesian(Equinoctial const & equi, Anomaly const & anom, Real mu, Cartesian & cart)
+    void equinoctial_to_cartesian(Equinoctial const & equi, Anomaly const & anom, Real const mu,
+      Cartesian & cart)
     {
       #define CMD "Astro::OrbitalElements::equinoctial_to_cartesian(...): "
 
@@ -1343,16 +1424,11 @@ namespace Astro
         tmp * (s_L - alpha_2*s_L + 2.0*equi.h*equi.k*c_L),
         2.0*tmp * (equi.h*s_L - equi.k*c_L);
 
-      std::cout << "cart.r = " << cart.r << std::endl;
-
       tmp = -1.0/s_2 * std::sqrt(mu/equi.p);
       cart.v <<
         tmp * ( s_L + alpha_2*s_L - 2.0*equi.h*equi.k*c_L + equi.g - 2.0*equi.f*equi.h*equi.k + alpha_2*equi.g),
         tmp * (-c_L + alpha_2*c_L + 2.0*equi.h*equi.k*s_L - equi.f + 2.0*equi.g*equi.h*equi.k - alpha_2*equi.f),
         2.0*tmp * (-equi.h*c_L - equi.k*s_L + equi.f*equi.h - equi.g*equi.k);
-
-      std::cout << "cart.v = " << cart.v << std::endl;
-
 
       ASTRO_ASSERT(cart.sanity_check(), CMD "conversion error.");
 
@@ -1365,7 +1441,7 @@ namespace Astro
     * \param[in] I The posigrade (+1)/retrograde (-1) factor.
     * \param[out] equi The equinoctial orbital elements.
     */
-    void keplerian_to_equinoctial(Keplerian const & kepl, Factor I, Equinoctial & equi)
+    void keplerian_to_equinoctial(Keplerian const & kepl, Factor const I, Equinoctial & equi)
     {
       #define CMD "Astro::OrbitalElements::keplerian_to_equinoctial(...): "
 
@@ -1409,8 +1485,8 @@ namespace Astro
     * \param[in] mu The gravitational parameter.
     * \param[out] cart The cartesian state (position and velocity) vectors.
     */
-    void equinoctial_to_cartesian(Equinoctial const & equi, Anomaly const & anom, Factor I, Real mu,
-      Cartesian & cart)
+    void equinoctial_to_cartesian(Equinoctial const & equi, Anomaly const & anom, Factor const I,
+      Real const mu, Cartesian & cart)
     {
       #define CMD "Astro::OrbitalElements::equinoctial_to_cartesian(...): "
 

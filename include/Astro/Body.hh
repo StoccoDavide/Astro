@@ -22,6 +22,9 @@
 namespace Astro
 {
 
+  /** State format for the orbit representation. */
+  using Coordinates = enum class Coordinates : Integer {CARTESIAN = 0, KEPLERIAN = 1, EQUINOCTIAL = 2, QUATERNIONIC = 3};
+
   /*\
    |   ____            _
    |  | __ )  ___   __| |_   _
@@ -143,6 +146,50 @@ namespace Astro
     }
 
     /**
+    * Compute the vector of the first-order cartesian equations of orbital motion given the
+    * thrust vector components \f$ \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \f$.
+    * \param[in] x The cartesian state vector \f$ \mathbf{x} = [r_x, r_y, r_z, v_x, v_y, v_z]^\top \f$.
+    * \param[in] thrust_rtn The thrust components vector.
+    * \return The vector of the first-order cartesian equations of orbital motion.
+    */
+    Vector6 cartesian_eom(Vector6 const & x, Vector3 const & thrust_rtn) const
+    {
+      // Set the new cartesian state
+      Vector3 r = x.head<3>();
+      Vector3 v = x.tail<3>();
+
+      // Compute the cartesian perturbation
+      Vector3 thrust_xyz(this->cartesian_rtn_to_xyz(thrust_rtn));
+      thrust_xyz /= this->m_mass;
+
+      // Compute the equations of motion
+      Real r_norm{r.norm()};
+      Vector3 r_mur3(this->m_mu/Power3(r_norm) * r);
+      return Vector6(
+        v.x(),
+        v.y(),
+        v.z(),
+        thrust_xyz.x() - r_mur3.x(),
+        thrust_xyz.y() - r_mur3.y(),
+        thrust_xyz.z() - r_mur3.z()
+      );
+    }
+
+    /**
+    * Compute the vector of the first-order cartesian equations of orbital motion given the
+    * thrust vector components \f$ \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \f$.
+    * \param[in] x The cartesian state vector \f$ \mathbf{x} = [r_x, r_y, r_z, v_x, v_y, v_z]^\top \f$.
+    * \param[in] thrust_rad The radial thrust component.
+    * \param[in] thrust_tan The tangential thrust component.
+    * \param[in] thrust_nor The normal thrust component.
+    * \return The vector of the first-order cartesian equations of orbital motion.
+    */
+    Vector6 cartesian_eom(Vector6 const & x, Real thrust_rad, Real thrust_tan, Real thrust_nor) const
+    {
+      return this->cartesian_eom(x, Vector3(thrust_rad, thrust_tan, thrust_nor));
+    }
+
+    /**
     * Compute the matrix of the first-order modified equinoctial equations of orbital motion as
     * \f[ A = \begin{bmatrix}
     *   0 & 2\sqrt{\displaystyle\frac{p}{\mu}} & 0 \\
@@ -197,50 +244,6 @@ namespace Astro
     }
 
     /**
-    * Compute the vector of the first-order cartesian equations of orbital motion given the
-    * thrust vector components \f$ \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \f$.
-    * \param[in] x The cartesian state vector \f$ \mathbf{x} = [r_x, r_y, r_z, v_x, v_y, v_z]^\top \f$.
-    * \param[in] thrust_rtn The thrust components vector.
-    * \return The vector of the first-order cartesian equations of orbital motion.
-    */
-    Vector6 cartesian_eom(Vector6 const & x, Vector3 const & thrust_rtn) const
-    {
-      // Set the new cartesian state
-      Vector3 r = x.head<3>();
-      Vector3 v = x.tail<3>();
-
-      // Compute the cartesian perturbation
-      Vector3 thrust_xyz(this->cartesian_rtn_to_xyz(thrust_rtn));
-      thrust_xyz /= this->m_mass;
-
-      // Compute the equations of motion
-      Real r_norm{r.norm()};
-      Vector3 r_mur3(this->m_mu/Power3(r_norm) * r);
-      return Vector6(
-        v.x(),
-        v.y(),
-        v.z(),
-        thrust_xyz.x() - r_mur3.x(),
-        thrust_xyz.y() - r_mur3.y(),
-        thrust_xyz.z() - r_mur3.z()
-      );
-    }
-
-    /**
-    * Compute the vector of the first-order cartesian equations of orbital motion given the
-    * thrust vector components \f$ \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \f$.
-    * \param[in] x The cartesian state vector \f$ \mathbf{x} = [r_x, r_y, r_z, v_x, v_y, v_z]^\top \f$.
-    * \param[in] thrust_rad The radial thrust component.
-    * \param[in] thrust_tan The tangential thrust component.
-    * \param[in] thrust_nor The normal thrust component.
-    * \return The vector of the first-order cartesian equations of orbital motion.
-    */
-    Vector6 cartesian_eom(Vector6 const & x, Real thrust_rad, Real thrust_tan, Real thrust_nor) const
-    {
-      return this->cartesian_eom(x, Vector3(thrust_rad, thrust_tan, thrust_nor));
-    }
-
-    /**
     * Compute the system of first-order modified equinoctial equations of orbital motion given the
     * thrust vector components \f$ \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \f$.
     * \param[in] x The modified equinoctial state vector \f$ \mathbf{x} = [p, f, g, h, k, L]^\top \f$.
@@ -259,33 +262,39 @@ namespace Astro
       Real s_L{std::sin(L)};
       Real c_L{std::cos(L)};
 
-      Real w{1.0 + (f*c_L+g*s_L)};
-      Real s2{1.0 + (h*h+k*k)};
-      Real bf{std::sqrt(p/this->m_mu)};
+      Real w{1.0 + (f*c_L + g*s_L)};
+      Real s2{1.0 + (h*h + k*k)};
+      Real r{std::sqrt(p/this->m_mu)};
 
-      Real C_rad{thrust(0)*bf/this->m_mass};
-      Real C_tan{thrust(1)*bf/this->m_mass/w};
-      Real C_nor{thrust(2)*bf/this->m_mass/w};
+      Real C_rad{thrust(0)*r/this->m_mass};
+      Real C_tan{thrust(1)*r/this->m_mass/w};
+      Real C_nor{thrust(2)*r/this->m_mass/w};
 
       Vector6 res;
-      res.setZero();
-
-      res(1) += C_rad*s_L;
-      res(2) -= C_rad*c_L;
-
-      res(0) += C_tan*2.0*p;
-      res(1) += C_tan*((w+1)*c_L+f);
-      res(2) += C_tan*((w+1)*s_L+g);
-
-      res(1) -= C_nor*(h*s_L-k*c_L)*g;
-      res(2) += C_nor*(h*s_L-k*c_L)*f;
-      res(3) += C_nor*s2*c_L/2.0;
-      res(4) += C_nor*s2*s_L/2.0;
-      res(5) += C_nor*(h*s_L-k*c_L);
-
-      res(5) += std::sqrt(p*this->m_mu)*Power2(w/p);
-
+      res <<
+        /* dp/dt */ 0.0*C_rad*s2,
+        /* df/dt */ 0.0*C_tan,
+        /* dg/dt */ 0.0*C_nor,
+        /* dh/dt */ 0.0,
+        /* dk/dt */ 0.0,
+        /* dL/dt */ std::sqrt(p*this->m_mu) * Power2(w/p);
       return res;
+
+      //res(1) += C_rad*s_L;
+      //res(2) -= C_rad*c_L;
+//
+      //res(0) += C_tan*2.0*p;
+      //res(1) += C_tan*((w+1)*c_L+f);
+      //res(2) += C_tan*((w+1)*s_L+g);
+//
+      //res(1) -= C_nor*(h*s_L-k*c_L)*g;
+      //res(2) += C_nor*(h*s_L-k*c_L)*f;
+      //res(3) += C_nor*s2*c_L/2.0;
+      //res(4) += C_nor*s2*s_L/2.0;
+      //res(5) += C_nor*(h*s_L-k*c_L);
+//
+      //res(5) += std::sqrt(this->m_mu / Power3(p)) * Power2(w);
+
     }
 
     /**
@@ -318,82 +327,99 @@ namespace Astro
       Vector6 const &ics,
       Sandals::Solution<Real, 6, 0> & sol
     ) {
-      sol.resize(t_mesh.size());
       rk.explicit_system(
-        [this](Vector6 const & x, Real) -> Vector6 { // f(x, t)
-          return this->cartesian_eom(x, ZEROS_VEC3);
-        },
-        [](Vector6 const &, Real) -> Matrix6 { // Jf_x(x, t)
-          return ZEROS_MAT6;
-        }
+        [this](Vector6 const & x, Real) -> Vector6 {return this->cartesian_eom(x, ZEROS_VEC3);}, // f(x, t)
+        [](Vector6 const &, Real) -> Matrix6 {return ZEROS_MAT6;} // Jf_x(x, t)
       );
-      Vector6 x_step;
-      Real h_new_step;
-      sol.t(0)     = t_mesh(0);
-      sol.x.col(0) = ics;
-      for (Integer i = 0; i < t_mesh.size() - 1; ++i) {
-        Real t_step{t_mesh(i)};
-        Real h_step{t_mesh(i + 1) - t_step};
-        if (!rk.advance(sol.x.col(i), t_step, h_step, x_step, h_new_step)) {
-          return false; // Error in the integration
-        } else {
-          sol.x.col(i + 1) = x_step;
-          sol.t(i + 1) = t_step + h_step;
-          this->cartesian(x_step.head<3>(), x_step.tail<3>());
-        }
-      }
-      return true;
+      rk.step_callback(
+        [this](Integer const, Vector6 const & x, Real) {this->set_cartesian(x.head<3>(), x.tail<3>());}
+      );
+      return rk.solve(t_mesh, ics, sol);
     }
 
     /**
-    * Integrate the modified equinoctial equations of motion using the Runge-Kutta method.
+    * Integrate the equations of motion using the Runge-Kutta method.
     * \param[in] rk The Runge-Kutta integrator.
     * \param[in] t_mesh The time mesh for the integration.
     * \param[in] ics The initial conditions for the integration (initial modified equinoctial state).
     * \param[out] sol The solution object to store the results of the integration.
     * \tparam S The stages of the Runge-Kutta method.
+    * \tparam IntCoords The coordinate system for the integration.
+    * \tparam OutCoords The coordinate system for the output of the integration.
     * \return The integrated modified equinoctial state vectors.
+    * \note The `IntCoords` and `OutCoords` parameters are used to specify the coordinate systems for
+    * the integration and output, respectively. The `IntCoords` parameter is used to specify the
+    * coordinate system in which the equations of motion are integrated, while the `OutCoords` parameter
+    * is used to specify the coordinate system in which the results of the integration are output.
     */
-    template <Integer S>
-    bool integrate_equinoctial(
-      Sandals::RungeKutta<Real, S, 6, 0> & rk,
-      VectorX const &t_mesh,
-      Vector6 const &ics,
-      Sandals::Solution<Real, 6, 0> & sol
-    ) {
-      Sandals::Solution<Real, 6, 0> sol_xyz; sol_xyz.resize(t_mesh.size());
-      sol.resize(t_mesh.size());
-      rk.explicit_system(
-        [this](Vector6 const & x, Real) -> Vector6 { // f(x, t)
-          return this->equinoctial_eom(x, ZEROS_VEC3);
-        },
-        [](Vector6 const &, Real) -> Matrix6 { // Jf_x(x, t)
-          return ZEROS_MAT6;
-        }
-      );
-      Vector6 x_step;
-      Real h_new_step;
-      sol.t(0)     = t_mesh(0);
-      sol.x.col(0) = ics;
-      for (Integer i = 0; i < t_mesh.size() - 1; ++i) {
-        Real t_step{t_mesh(i)};
-        Real h_step{t_mesh(i + 1) - t_step};
-        if (!rk.advance(sol.x.col(i), t_step, h_step, x_step, h_new_step)) {
-          return false; // Error in the integration
-        } else {
-          sol.x.col(i + 1) = x_step;
-          sol.t(i + 1) = t_step + h_step;
+    template < Coordinates IntCoords, Coordinates OutCoords = Coordinates::CARTESIAN, Integer S>
+    bool integrate(Sandals::RungeKutta<Real, S, 6, 0> & rk, VectorX const &t_mesh, Vector6 const &ics,
+      Sandals::Solution<Real, 6, 0> & sol)
+    {
+      #define CMD "Astro::Body::integrate(...): "
 
-          this->equinoctial(x_step(0), x_step(1), x_step(2), x_step(3), x_step(4));
-          this->anomaly().set_L(x_step(5));
-
-          sol_xyz.x.col(i + 1).head<3>() = this->cartesian().r;
-          sol_xyz.x.col(i + 1).tail<3>() = this->cartesian().v;
-          sol_xyz.t(i + 1) = t_step + h_step;
-        }
+      // Create the solution object according to the integration coordinates
+      if constexpr (IntCoords == Coordinates::CARTESIAN) {
+        rk.explicit_system(
+          [this](Vector6 const & x, Real) -> Vector6 {return this->cartesian_eom(x, ZEROS_VEC3);}, // f(x, t)
+          [](Vector6 const &, Real) -> Matrix6 {return ZEROS_MAT6;} // Jf_x(x, t)
+        );
+      } else if constexpr (IntCoords == Coordinates::KEPLERIAN) {
+        ASTRO_ERROR(CMD "keplerian integration not implemented yet.");
+      } else if constexpr (IntCoords == Coordinates::EQUINOCTIAL) {
+        rk.explicit_system(
+          [this](Vector6 const & x, Real) -> Vector6 {return this->equinoctial_eom(x, ZEROS_VEC3);}, // f(x, t)
+          [](Vector6 const &, Real) -> Matrix6 {return ZEROS_MAT6;} // Jf_x(x, t)
+        );
+      } else if constexpr (IntCoords == Coordinates::QUATERNIONIC) {
+        ASTRO_ERROR(CMD "quaternionic integration not implemented yet.");
+      } else {
+        ASTRO_ERROR(CMD "unknown coordinate system for the integration.");
       }
-      sol = sol_xyz;
-      return true;
+
+      // Transform the internal state to the output coordinate system
+      rk.step_callback([this, &sol](Integer const i, Vector6 const & x, Real const) {
+
+        std::cout << "Step " << i << ": x = " << x.transpose() << std::endl;
+
+        // Set the internal state according to the output coordinate system
+        if constexpr (IntCoords == Coordinates::CARTESIAN) {
+          this->set_cartesian(x);
+        } else if constexpr (IntCoords == Coordinates::KEPLERIAN) {
+          ASTRO_ERROR(CMD "keplerian output not implemented yet.");
+        } else if constexpr (IntCoords == Coordinates::EQUINOCTIAL) {
+          this->set_equinoctial(x.head<5>());
+          this->set_anomaly().set_L(x(5), this->keplerian(), this->factor());
+        } else if constexpr (IntCoords == Coordinates::QUATERNIONIC) {
+          ASTRO_ERROR(CMD "quaternionic output not implemented yet.");
+        } else {
+          ASTRO_ERROR(CMD "unknown coordinate system for the output.");
+        }
+
+        // Set the output state in the solution object
+        if constexpr (IntCoords != OutCoords) {
+          if constexpr (OutCoords == Coordinates::CARTESIAN) {
+            sol.x.col(i) << this->cartesian().vector();
+          } else if constexpr (OutCoords == Coordinates::KEPLERIAN) {
+            ASTRO_ERROR(CMD "keplerian output not implemented yet.");
+          } else if constexpr (OutCoords == Coordinates::EQUINOCTIAL) {
+            sol.x.col(i).head<5>() = this->equinoctial().vector();
+            sol.x(i,5) = this->anomaly().L;
+          } else if constexpr (OutCoords == Coordinates::QUATERNIONIC) {
+            ASTRO_ERROR(CMD "quaternionic output not implemented yet.");
+          } else {
+            ASTRO_ERROR(CMD "unknown coordinate system for the output.");
+          }
+        } else {
+          (void)sol; // Avoid unused variable warning
+        }
+
+      });
+
+      // Solve the equations of motion
+      return rk.solve(t_mesh, ics, sol);
+
+      #undef CMD
     }
 
   }; // class Body

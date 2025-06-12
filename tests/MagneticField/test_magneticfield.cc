@@ -38,10 +38,10 @@ int main(int argc, char** argv) {
   Real payload_mass{100.0}; // Mass of the satellite in Kg
   Real payload_radius{1E-3}; // Radius of the satellite in Km
   Body sat("sat", payload_mass, payload_radius);
-  sat.factor(Factor::POSIGRADE);
-  sat.mu(Planets::Earth_mu_KM3_DAY2);
+  sat.set_factor(Factor::POSIGRADE);
+  sat.set_mu(Planets::Earth_mu_KM3_DAY2);
   std::cout << "Satellite mass: " << sat.mu() << " Kg" << std::endl;
-  sat.keplerian(OrbitalElements::Keplerian(
+  sat.set_keplerian(OrbitalElements::Keplerian(
     Planets::Earth_radius_KM + 400.0, // Semi-major axis in AU
     1.36E-4, // Eccentricity
     Deg_To_Rad(89.015), // Inclination in radians
@@ -60,11 +60,13 @@ int main(int argc, char** argv) {
   // Integrate the orbit using the Runge-Kutta solver
   Sandals::RK4<Real, 6, 0> rk4;
   Sandals::Solution<Real, 6, 0> sol;
-  //initial_state << sat.cartesian().r, sat.cartesian().v;
-  //sat.integrate_cartesian(rk4, t_mesh, initial_state, sol);
-  initial_state << sat.equinoctial().p, sat.equinoctial().f, sat.equinoctial().g,
-                   sat.equinoctial().h, sat.equinoctial().k, sat.anomaly().L;
-  sat.integrate_equinoctial(rk4, t_mesh, initial_state, sol);
+  Vector6 ics;
+  //ics << sat.cartesian().vector();
+  ics << sat.equinoctial().vector(), sat.anomaly().L;
+  sat.integrate<
+    Astro::Coordinates::CARTESIAN, // Integration coordinates
+    Astro::Coordinates::EQUINOCTIAL // Output coordinates
+    >(rk4, t_mesh, ics, sol);
 
   // Plot the orbit trace selecting last 3 rows (position) of the solution
   TPolyLine3D* orbit_trace = Plotting::DrawTrace(sol.x.topRows<3>());
@@ -83,20 +85,26 @@ int main(int argc, char** argv) {
   canvas2->SetGrid();
   canvas2->SetTitle("Magnetic Field vs Time");
 
-  // Prepare data for magnetic field plot
-  std::vector<Real> time_data;
-  std::vector<Real> magnetic_field_data;
-  for (Integer i = 0; i < t_mesh.size(); ++i) {
-    Vector3 position = sol.x.col(i).head<3>(); // Get position at time t_mesh[i]
-    Vector3 magnetic_field = Planets::EarthMagneticFieldDipole(position); // Compute magnetic field
-    time_data.push_back(t_mesh[i]);
-    magnetic_field_data.push_back(magnetic_field.norm());
-  }
-  // Create TGraph for magnetic field
-  TGraph* graph = new TGraph(time_data.size(), time_data.data(), magnetic_field_data.data());
+    // plot the last row of the solution (anomaly L) to check the orbit
+  TGraph* graph = new TGraph(sol.x.row(0).size(), sol.t.data(), sol.x.row(0).data());
   graph->SetLineColor(kBlue);
-  graph->SetLineWidth(2);
+  graph->SetLineWidth(1);
   graph->Draw("AL");
+
+  //// Prepare data for magnetic field plot
+  //std::vector<Real> time_data;
+  //std::vector<Real> magnetic_field_data;
+  //for (Integer i = 0; i < t_mesh.size(); ++i) {
+  //  Vector3 position = sol.x.col(i).head<3>(); // Get position at time t_mesh[i]
+  //  Vector3 magnetic_field = Planets::EarthMagneticFieldDipole(position); // Compute magnetic field
+  //  time_data.push_back(t_mesh[i]);
+  //  magnetic_field_data.push_back(magnetic_field.norm());
+  //}
+  //// Create TGraph for magnetic field
+  //TGraph* graph = new TGraph(time_data.size(), time_data.data(), magnetic_field_data.data());
+  //graph->SetLineColor(kBlue);
+  //graph->SetLineWidth(2);
+  //graph->Draw("AL");
 
   graph->GetXaxis()->SetTitle("Time (days)");
   graph->GetYaxis()->SetTitle("Magnetic Field (nT)");

@@ -69,8 +69,8 @@ namespace Astro
       {
         this->a     = 1.00000011; // Semi-major axis (AU)
         this->e     = 0.01671022; // Eccentricity (-)
-        this->i     = Deg_To_Rad(0.00005); // Inclination (rad)
-        this->Omega = Deg_To_Rad(0.0); // Longitude of the ascending node (rad)
+        this->i     = 0.00005; // Inclination (rad)
+        this->Omega = 0.0; // Longitude of the ascending node (rad)
         this->omega = Deg_To_Rad(102.93768193); // Argument of periapsis (rad)
       }
     };
@@ -83,9 +83,9 @@ namespace Astro
     inline Body Earth()
     {
       Body earth("Earth", Earth_mass_KG, Earth_radius_AU);
-      earth.factor(Factor::POSIGRADE);
-      earth.mu(Sun_mu_AU3_DAY2);
-      earth.keplerian(KeplerianEarth());
+      earth.set_factor(Factor::POSIGRADE);
+      earth.set_mu(Sun_mu_AU3_DAY2);
+      earth.set_keplerian(KeplerianEarth());
       return earth;
     }
 

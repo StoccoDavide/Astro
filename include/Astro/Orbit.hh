@@ -94,7 +94,7 @@ namespace Astro
     * \param[in] v_y Velocity vector \f$ y \f$-axis component.
     * \param[in] v_z Velocity vector \f$ z \f$-axis component.
     */
-    void cartesian(Real r_x, Real r_y, Real r_z, Real v_x, Real v_y, Real v_z)
+    void set_cartesian(Real r_x, Real r_y, Real r_z, Real v_x, Real v_y, Real v_z)
     {
       this->sanity_check();
       this->m_cart.r << r_x, r_y, r_z;
@@ -102,7 +102,7 @@ namespace Astro
       OrbitalElements::cartesian_to_keplerian(this->m_cart, this->m_mu, this->m_kepl);
       OrbitalElements::keplerian_to_equinoctial(this->m_kepl, this->m_factor, this->m_equi);
       // TODO: OrbitalElements::cartesian_to_quaternionic(this->m_cart, this->m_quat);
-      this->type(this->m_kepl.e);
+      this->set_type(this->m_kepl.e);
     }
 
     /**
@@ -110,7 +110,7 @@ namespace Astro
     * \param[in] t_r The position vector \f$ \mathbf{r} \f$.
     * \param[in] t_v The velocity vector \f$ \mathbf{v} \f$.
     */
-    void cartesian(Vector3 const & t_r, Vector3 const & t_v)
+    void set_cartesian(Vector3 const & t_r, Vector3 const & t_v)
     {
       this->sanity_check();
       this->m_cart.r = t_r;
@@ -118,21 +118,31 @@ namespace Astro
       OrbitalElements::cartesian_to_keplerian(this->m_cart, this->m_mu, this->m_kepl);
       OrbitalElements::keplerian_to_equinoctial(this->m_kepl, this->m_factor, this->m_equi);
       // TODO: OrbitalElements::cartesian_to_quaternionic(this->m_cart, this->m_quat);
-      this->type(this->m_kepl.e);
+      this->set_type(this->m_kepl.e);
+    }
+
+    /**
+    * Set the cartesian orbital elements.
+    * \param[in] t_cart The vector of cartesian orbital elements \f$ [r_x, r_y, r_z, v_x, v_y, v_z]^\top \f$.
+    * \note The vector \f$ t_{\text{cartesian}} \f$ must have 6 elements.
+    */
+    void set_cartesian(Vector6 const & t_cart)
+    {
+      this->set_cartesian(t_cart(0), t_cart(1), t_cart(2), t_cart(3), t_cart(4), t_cart(5));
     }
 
     /**
     * Set the cartesian orbital elements.
     * \param[in] t_cart The cartesian orbital elements.
     */
-    void cartesian(Cartesian const & t_cart)
+    void set_cartesian(Cartesian const & t_cart)
     {
       this->sanity_check();
       this->m_cart = t_cart;
       OrbitalElements::cartesian_to_keplerian(this->m_cart, this->m_mu, this->m_kepl);
       OrbitalElements::keplerian_to_equinoctial(this->m_kepl, this->m_factor, this->m_equi);
       // TODO: OrbitalElements::cartesian_to_quaternionic(this->m_cart, this->m_quat);
-      this->type(this->m_kepl.e);
+      this->set_type(this->m_kepl.e);
     }
 
     /**
@@ -149,7 +159,7 @@ namespace Astro
     * \param[in] t_Omega The longitude of the ascending node \f$ \Omega \f$.
     * \param[in] t_omega The argument of periapsis \f$ \omega \f$.
     */
-    void keplerian(Real t_a, Real t_e, Real t_i, Real t_Omega, Real t_omega)
+    void set_keplerian(Real t_a, Real t_e, Real t_i, Real t_Omega, Real t_omega)
     {
       this->sanity_check();
       this->m_kepl.a     = t_a;
@@ -160,21 +170,31 @@ namespace Astro
       OrbitalElements::keplerian_to_cartesian(this->m_kepl, this->m_anom, this->m_mu, this->m_cart);
       OrbitalElements::keplerian_to_equinoctial(this->m_kepl, this->m_factor, this->m_equi);
       // TODO: OrbitalElements::keplerian_to_quaternionic(this->m_kepl, this->m_quat);
-      this->type(this->m_kepl.e);
+      this->set_type(this->m_kepl.e);
+    }
+
+    /**
+    * Set the keplerian orbital elements.
+    * \param[in] t_kepl The vector of keplerian orbital elements \f$ [a, e, i, \Omega, \omega]^\top \f$.
+    * \note The vector \f$ t_{\text{keplerian}} \f$ must have 5 elements.
+    */
+    void set_keplerian(Vector5 const & t_kepl)
+    {
+      this->set_keplerian(t_kepl(0), t_kepl(1), t_kepl(2), t_kepl(3), t_kepl(4));
     }
 
     /**
     * Set the keplerian orbital elements.
     * \param[in] t_kepl The keplerian orbital elements.
     */
-    void keplerian(Keplerian const & t_kepl)
+    void set_keplerian(Keplerian const & t_kepl)
     {
       this->sanity_check();
       this->m_kepl = t_kepl;
       OrbitalElements::keplerian_to_cartesian(this->m_kepl, this->m_anom, this->m_mu, this->m_cart);
       OrbitalElements::keplerian_to_equinoctial(this->m_kepl, this->m_factor, this->m_equi);
       // TODO: OrbitalElements::keplerian_to_quaternionic(this->m_kepl, this->m_quat);
-      this->type(this->m_kepl.e);
+      this->set_type(this->m_kepl.e);
     }
 
     /**
@@ -202,21 +222,31 @@ namespace Astro
       OrbitalElements::equinoctial_to_keplerian(this->m_equi, this->m_kepl);
       OrbitalElements::equinoctial_to_cartesian(this->m_equi, this->m_anom, this->m_mu, this->m_cart);
       // TODO: OrbitalElements::equinoctial_to_quaternionic(this->m_equi, this->m_quat);
-      this->type(this->m_kepl.e);
+      this->set_type(this->m_kepl.e);
+    }
+
+    /**
+    * Set the (modified) equinoctial orbit parameters.
+    * \param[in] t_equi The vector of equinoctial orbit parameters \f$ [p, f, g, h, k]^\top \f$.
+    * \note The vector \f$ t_{\text{equinoctial}} \f$ must have 5 elements.
+    */
+    void set_equinoctial(Vector5 const & t_equi)
+    {
+      this->set_equinoctial(t_equi(0), t_equi(1), t_equi(2), t_equi(3), t_equi(4));
     }
 
     /**
     * Set the equinoctial orbital elements.
     * \param[in] t_equi The equinoctial orbital elements.
     */
-    void equinoctial(Equinoctial const & t_equi)
+    void set_equinoctial(Equinoctial const & t_equi)
     {
       this->sanity_check();
       this->m_equi = t_equi;
       OrbitalElements::equinoctial_to_keplerian(this->m_equi, this->m_kepl);
       OrbitalElements::equinoctial_to_cartesian(this->m_equi, this->m_anom, this->m_mu, this->m_cart);
       // TODO: OrbitalElements::equinoctial_to_quaternionic(this->m_equi, this->m_quat);
-      this->type(this->m_kepl.e);
+      this->set_type(this->m_kepl.e);
     }
 
     /**
@@ -232,7 +262,7 @@ namespace Astro
     * \param[in] t_q_3 The third quaternionic orbit parameter.
     * \param[in] t_q_4 The fourth quaternionic orbit parameter.
     */
-    void quaternionic(Real t_q_1, Real t_q_2, Real t_q_3, Real t_q_4)
+    void set_quaternionic(Real t_q_1, Real t_q_2, Real t_q_3, Real t_q_4)
     {
       this->sanity_check();
       this->m_quat.q.x() = t_q_1;
@@ -242,21 +272,21 @@ namespace Astro
       // TODO: OrbitalElements::quaternionic_to_keplerian(this->m_quat, this->m_kepl);
       // TODO: OrbitalElements::quaternionic_to_equinoctial(this->m_quat, this->m_factor, this->m_equi);
       // TODO: OrbitalElements::quaternionic_to_cartesian(this->m_quat, this->m_anom, this->m_mu, this->m_cart);
-      this->type(this->m_kepl.e);
+      this->set_type(this->m_kepl.e);
     }
 
     /**
     * Set the quaternionic orbital elements.
     * \param[in] t_quat The quaternion vector.
     */
-    void quaternionic(Quaternion const & t_quat)
+    void set_quaternionic(Quaternion const & t_quat)
     {
       this->sanity_check();
       this->m_quat.q = t_quat;
       // TODO: OrbitalElements::quaternionic_to_keplerian(this->m_quat, this->m_kepl);
       // TODO: OrbitalElements::quaternionic_to_equinoctial(this->m_quat, this->m_factor, this->m_equi);
       // TODO: OrbitalElements::quaternionic_to_cartesian(this->m_quat, this->m_anom, this->m_mu, this->m_cart);
-      this->type(this->m_kepl.e);
+      this->set_type(this->m_kepl.e);
     }
 
     /**
@@ -267,9 +297,15 @@ namespace Astro
 
     /**
     * Set the orbital anomalies.
+    * \return The orbital anomalies.
+    */
+    Anomaly & set_anomaly() {return this->m_anom;}
+
+    /**
+    * Set the orbital anomalies.
     * \param[in] t_anom The orbital anomalies.
     */
-    void anomaly(Anomaly const & t_anom)
+    void set_anomaly(Anomaly const & t_anom)
     {
       ASTRO_ASSERT(t_anom.sanity_check(),
         "Astro::Orbit::anomaly(...): invalid orbital anomalies detected.");
@@ -286,16 +322,18 @@ namespace Astro
     * Set the type of the orbit.
     * \param[in] e The eccentricity of the orbit.
     */
-    void type(Real e)
+    void set_type(Real e)
     {
-      if (e > 0.0 && e < 1.0) {
+      if (e > EPSILON_MEDIUM && e < 1.0 - EPSILON_MEDIUM) {
         this->m_type = Type::ELLIPTIC;
-      } else if (e == 1.0) {
+      } else if (std::abs(e - 1.0) < EPSILON_MEDIUM) {
         this->m_type = Type::PARABOLIC;
-      } else if (e > 1.0) {
+      } else if (e > 1.0 + EPSILON_MEDIUM) {
         this->m_type = Type::HYPERBOLIC;
+      } else if (std::abs(e) < EPSILON_MEDIUM) {
+        this->m_type = Type::CIRCULAR; // Optional: treat e ≈ 0 as circular
       } else {
-        ASTRO_ERROR("Astro::Orbit::type(...): invalid eccentricity detected.");
+        ASTRO_ERROR("Astro::Orbit::type(...): invalid eccentricity detected: e = " << e);
       }
     }
 
@@ -309,7 +347,7 @@ namespace Astro
     * Set the posigrade (+1)/retrograde (-1) factor \f$ I \f$.
     * \param[in] t_factor The posigrade (+1)/retrograde (-1) factor \f$ I \f$.
     */
-    void factor(Factor t_factor) {this->m_factor = t_factor;}
+    void set_factor(Factor t_factor) {this->m_factor = t_factor;}
 
     /**
     * Get the gravitational constant of the central body.
@@ -321,7 +359,7 @@ namespace Astro
     * Set the gravitational constant of the central body.
     * \param[in] t_mu The gravitational constant of the central body.
     */
-    void mu(Real t_mu) {this->m_mu = t_mu;}
+    void set_mu(Real t_mu) {this->m_mu = t_mu;}
 
     /**
     * Print the orbit information on a string.

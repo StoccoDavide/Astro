@@ -35,9 +35,18 @@ int main(int argc, char** argv) {
     // Create a Body object (e.g., Earth)
     Body earth(Planets::Earth());
 
+    std::cout << "Cartesian elements of the Earth:\n";
+    std::cout << earth.cartesian().vector().transpose() << std::endl;
+    std::cout << "Keplerian elements of the Earth:\n";
+    std::cout << earth.keplerian().vector().transpose() << std::endl;
+    std::cout << "Equinoctial elements of the Earth:\n";
+    std::cout << earth.equinoctial().vector().transpose() << std::endl;
+
     // Set the initial state of the orbit (e.g., cartesian coordinates)
-    Vector6 initial_state;
-    initial_state << earth.cartesian().r, earth.cartesian().v;
+    Vector6 ics;
+    ics << earth.equinoctial().vector(), earth.anomaly().L;
+    std::cout << "Initial state vector (equinoctial coordinates):\n";
+    std::cout << ics.transpose() << std::endl;
 
     // Set the time mesh for the integration
     Real t_start = 0.0;
@@ -48,7 +57,10 @@ int main(int argc, char** argv) {
     // Integrate the orbit using the Runge-Kutta solver
     Sandals::RK4<Real, 6, 0> rk4;
     Sandals::Solution<Real, 6, 0> sol;
-    earth.integrate_cartesian(rk4, t_mesh, initial_state, sol);
+    earth.integrate<
+      Astro::Coordinates::EQUINOCTIAL, // Integration in equinoctial coordinates
+      Astro::Coordinates::CARTESIAN    // Output in cartesian coordinates
+      >(rk4, t_mesh, ics, sol);
 
     // Plot the orbit trace selecting last 3 rows (position) of the solution
     TPolyLine3D* orbit_trace = Plotting::DrawTrace(sol.x.topRows<3>());
