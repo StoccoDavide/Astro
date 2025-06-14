@@ -1286,50 +1286,59 @@ namespace Astro
     * \param[in] cart The cartesian state (position and velocity) vectors.
     * \param[in] mu The gravitational parameter.
     * \param[out] kepl The keplerian orbital elements.
+    * \return The true anomaly \f$ \nu \f$ (rad).
     */
-    void cartesian_to_keplerian(Cartesian const & cart, Real const mu, Keplerian & kepl)
+    Real cartesian_to_keplerian(Cartesian const & cart, Real const mu, Keplerian & kepl)
     {
       #define CMD "Astro::OrbitalElements::cartesian_to_keplerian(...): "
 
       // Reset the keplerian orbital elements
       kepl.reset();
 
+      // Retrieve the position and velocity vectors
+      Vector3 const & r{cart.r};
+      Vector3 const & v{cart.v};
+      Real r_norm{r.norm()};
+
       // Compute the orbital momentum vector
-      Vector3 h{cart.h()};
-
-      // Compute the eccentricity vector
-      Real r_norm{cart.r.norm()};
-      Vector3 e_vec{cart.v.cross(h)/mu - cart.r/r_norm};
-
-      // Determine the vector pointing towards the ascending node
-      Vector3 n{Vector3::UnitZ().cross(h)};
-
-      ASTRO_ASSERT(std::abs(h.z()) > EPSILON_MEDIUM,
-        CMD "conversion error h = " << h << " ≠ 0.");
+      Vector3 h_vec{cart.h()};
+      Real r_dot_v{r.dot(v)};
 
       // Compute the eccentricity
+      Vector3 e_vec{1.0/mu*((v.squaredNorm() - mu/r_norm)*r - r_dot_v*v)};
       Real e{e_vec.norm()};
 
-      // Compute the true anomaly
-      Real e_dot_r{e_vec.transpose()*cart.r};
-      Real nu{std::acos(e_dot_r / (e * r_norm))};
-      if (cart.r.transpose()*cart.v < 0.0) {nu = 2.0*PI - nu;}
+      // Determine the vector pointing towards the ascending node
+      Vector3 n_vec{(Vector3::UnitZ().cross(h_vec)).normalized()};
 
       // Compute the inclination
-      Real i{std::acos(h.z() / h.norm())};
+      Real i{std::acos(h_vec.z() / h_vec.norm())};
+
+      if (std::abs(i) < EPSILON_LOW || std::abs(i - PI) < EPSILON_LOW) {
+        n_vec << 1.0, 0.0, 0.0; // Set the node vector to the x-axis if the orbit is circular
+      }
 
       // Compute the longitude of the ascending node
-      Real n_norm{n.norm()};
-      Real Omega{std::acos(n.x() / n_norm)};
-      if (n.y() < 0.0) {Omega = 2.0*PI - Omega;}
+      Real Omega{std::acos(n_vec.x())};
+      if (n_vec.y() < 0.0) {Omega = 2.0*PI - Omega;}
 
       // Compute the argument of the periapsis
-      Real n_dot_e_vec{n.transpose()*e_vec};
-      Real omega{std::acos(n_dot_e_vec / (n_norm * e))};
+      Real omega{std::acos(n_vec.dot(e_vec)/e)};
       if (e_vec.z() < 0.0) {omega = 2.0*PI - omega;}
 
+      // Compute the true anomaly
+      Real nu{std::acos(e_vec.dot(r) / (e * r_norm))};
+      if (r_dot_v < 0.0) {nu = 2.0*PI - nu;}
+
+      if (std::abs(e) < EPSILON_LOW) {omega = nu = 0.0;}
+
       // Compute the semi-major axis
-      Real a{1.0 / (2.0 / r_norm - cart.v.squaredNorm() / mu)};
+      Real a{1.0 / (2.0/r_norm - v.squaredNorm()/mu)};
+
+      std::cout << "Astro::OrbitalElements::cartesian_to_keplerian: "
+        << "a = " << a << ", e = " << e << ", i = " << i
+        << ", Omega = " << Omega << ", omega = " << omega
+        << ", nu = " << nu << std::endl;
 
       // Assign the keplerian orbital elements
       kepl.a     = a;
@@ -1339,6 +1348,8 @@ namespace Astro
       kepl.omega = omega;
 
       ASTRO_ASSERT(kepl.sanity_check(), CMD "conversion error.");
+
+      return nu;
 
       #undef CMD
     }
@@ -1473,6 +1484,76 @@ namespace Astro
       equi.k = k;
 
       ASTRO_ASSERT(equi.sanity_check(), CMD "conversion error.");
+
+      #undef CMD
+    }
+
+    /**
+    * Convert the cartesian state (position and velocity) vectors to the equinoctial orbital elements.
+    * \param[in] cart The cartesian state (position and velocity) vectors.
+    * \param[in] mu The gravitational parameter.
+    * \param[in] I The posigrade (+1)/retrograde (-1) factor.
+    * \param[out] equi The equinoctial orbital elements.
+    * \return The true longitude \f$ L \f$.
+    \note The transformation is only valid for posigrade orbits (I = +1).
+    */
+    Real cartesian_to_equinoctial(Cartesian const & cart, Real const mu, Equinoctial & equi)
+    {
+      #define CMD "Astro::OrbitalElements::cartesian_to_equinoctial(...): "
+
+      // Reset the equinoctial orbital elements
+      equi.reset();
+
+      // Retrieve the cartesian state vectors
+      Vector3 const & r{cart.r};
+      Vector3 const & v{cart.v};
+
+      // Compute the equinoctial orbital elements
+      Real r_dot_v{r.dot(v)};
+      Real r_norm{r.norm()};
+      Vector3 r_unit(r.normalized());
+
+      Vector3 hvec(r.cross(v));
+      Real h_norm{hvec.norm()};
+      Vector3 h_unit(hvec.normalized());
+
+      Vector3 v_unit((r_norm*v - r_dot_v*r_unit)/h_norm);
+
+      Real p{h_norm*h_norm/mu};
+
+      Real k{h_unit.x()/(1.0 + h_unit.z())};
+      Real h{-h_unit.y()/(1.0 + h_unit.z())};
+
+      Real kk{k*k};
+      Real hh{h*h};
+      Real s2{1.0 + hh + kk};
+      Real tkh{2.0*k*h};
+
+      Vector3 ecc(v.cross(hvec)/mu - r_unit);
+
+      Vector3 f_unit(1.0 - kk + hh, tkh, -2.0*k);
+      Vector3 g_unit(tkh, 1.0 + kk - hh, 2.0*h);
+
+      // Normalize the f and g vectors
+      f_unit /= s2;
+      g_unit /= s2;
+
+      Real f{ecc.dot(f_unit)};
+      Real g{ecc.dot(g_unit)};
+
+      Real L{std::atan2(r_unit.y() - v_unit.x(), r_unit.x() + v_unit.y())};
+
+      // Assign the equinoctial orbital elements
+      equi.p = p;
+      equi.f = f;
+      equi.g = g;
+      equi.h = h;
+      equi.k = k;
+
+      ASTRO_ASSERT(equi.sanity_check(), CMD "conversion error.");
+
+      // Return the true longitude
+      return L;
 
       #undef CMD
     }

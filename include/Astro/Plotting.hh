@@ -48,7 +48,9 @@ namespace Astro
     * \return A TObjArray containing the drawn axes.
     * \note The function creates a new TObjArray containing the drawn axes, which can be stored or deleted later.
     */
-    TObjArray* DrawAxes(const Vector3 & origin, const Rotation & rotation, Real length = 1.0, Real line_width = 1.0) {
+    TObjArray* DrawAxes(Vector3 const & origin, Rotation const & rotation, Real const length = 1.0,
+      Real const line_width = 1.0)
+    {
       TObjArray* arrows = new TObjArray();
 
       // X-axis (Red)
@@ -92,7 +94,7 @@ namespace Astro
     * \param[in] line_width The width of the lines.
     * \return A TObjArray containing the drawn axes.
     */
-    TObjArray* DrawAbsoluteAxes(Real length = 1.0, Real line_width = 1) {
+    TObjArray* DrawAbsoluteAxes(Real const length = 1.0, Real const line_width = 1) {
       return DrawAxes(ZEROS_VEC3, IDENTITY_MAT3, length, line_width);
     }
 
@@ -105,7 +107,7 @@ namespace Astro
     * \param[in] line_width The width of the lines.
     * \return A TObjArray containing the drawn axes.
     */
-    TObjArray* DrawOrbitalPlaneAxes(const Orbit & orbit, Real length = 1.0, Real line_width = 1.0) {
+    TObjArray* DrawOrbitalPlaneAxes(Orbit const & orbit, Real length = 1.0, Real line_width = 1.0) {
       // Get the orbital plane rotation matrix
       Rotation rotation{orbit.keplerian_to_reference()};
 
@@ -120,7 +122,7 @@ namespace Astro
     *
     * \param[in] trace The \f$ 3 \times N \f$ array of cartesian coordinates representing the orbit trace.
     */
-    TPolyLine3D* DrawTrace(const Eigen::Matrix<Real, 3, Eigen::Dynamic> & trace) {
+    TPolyLine3D* DrawTrace(Eigen::Matrix<Real, 3, Eigen::Dynamic> const & trace) {
       TPolyLine3D* poly_line = new TPolyLine3D(trace.cols());
       for (int k = 0; k < trace.cols(); ++k) {
         poly_line->SetPoint(k, trace(0, k), trace(1, k), trace(2, k));
@@ -137,7 +139,7 @@ namespace Astro
     *
     * \param[in] orbit The astronomical body whose orbit is to be plotted.
     */
-    TPolyLine3D* DrawTrace(const Orbit & orbit, Integer num_points = 360) {
+    TPolyLine3D* DrawTrace(Orbit const & orbit, Integer num_points = 360) {
 
       // Extract orbital elements
       Real a{orbit.keplerian().a};
@@ -184,7 +186,7 @@ namespace Astro
     * \param[in] line_width The width of the lines.
     * \return A TObjArray containing the drawn axes of the Frenet-Serret frame.
     */
-    TObjArray* DrawFrenetSerretAxes(const Orbit & orbit, Real length = 0.1, Real line_width = 1.0) {
+    TObjArray* DrawFrenetSerretAxes(Orbit const & orbit, Real const length = 0.1, Real const line_width = 1.0) {
       return DrawAxes(orbit.cartesian().r, orbit.cartesian_to_frenet_rtn(), length, line_width);
     }
 
@@ -197,9 +199,9 @@ namespace Astro
     * \param[in] size The size of the marker.
     * \return A TPolyMarker3D pointer to the drawn marker.
     */
-    TPolyMarker3D* DrawMarker(const Vector3 & postion, Color_t color, Real size = 1.0) {
+    TPolyMarker3D* DrawMarker(Vector3 const & position, Color_t color, Real const size = 1.0) {
       TPolyMarker3D* marker = new TPolyMarker3D(1);
-      marker->SetPoint(0, postion.x(), postion.y(), postion.z());
+      marker->SetPoint(0, position.x(), position.y(), position.z());
       marker->SetMarkerColor(color);
       marker->SetMarkerSize(size);
       marker->SetMarkerStyle(20); // Default marker style
@@ -216,7 +218,7 @@ namespace Astro
     * \param[in] size The size of the marker.
     * \return A TPolyMarker3D pointer to the drawn marker.
     */
-    TPolyMarker3D* DrawMarker(const Body & body, Color_t color, Real size = 1.0) {
+    TPolyMarker3D* DrawMarker(Body const & body, Color_t const color, Real const size = 1.0) {
       return DrawMarker(body.cartesian().r, color, size);
     }
 
@@ -230,7 +232,7 @@ namespace Astro
     * \param[in] line_width The width of the lines.
     * \return A TGeoVolume pointer to the drawn sphere.
     */
-    TGeoVolume* DrawSphere(Vector3 position, Real radius, Color_t color, Real ) {
+    TGeoVolume* DrawSphere(Vector3 const & position, Real const radius, Color_t const color, Real const line_width) {
       static TGeoManager* geom = nullptr;
 
       // Create TGeoManager only once
@@ -256,7 +258,7 @@ namespace Astro
       TGeoSphere* sphere = new TGeoSphere(0.0, radius);
       TGeoVolume* volume = new TGeoVolume(sphere_name.c_str(), sphere, med);
       volume->SetLineColor(color);
-      //volume->SetLineWidth(line_width);
+      volume->SetLineWidth(line_width);
 
       // Add to top volume
       geom->GetTopVolume()->AddNode(volume, 1, new TGeoTranslation(position.x(), position.y(), position.z()));
@@ -277,7 +279,7 @@ namespace Astro
     * \param[in] line_width The width of the lines.
     * \return A TGeoVolume pointer to the drawn sphere.
     */
-    TGeoVolume* DrawSphere(const Body & body, Color_t color, Real line_width = 1.0) {
+    TGeoVolume* DrawSphere(Body const & body, Color_t const color, Real const line_width = 1.0) {
       return DrawSphere(body.cartesian().r, body.radius(), color, line_width);
     }
 

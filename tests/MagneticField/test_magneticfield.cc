@@ -53,7 +53,7 @@ int main(int argc, char** argv) {
 
   // Set the time mesh for the integration
   Real t_start = 0.0;
-  Real t_end = 1.0/15; // days
+  Real t_end = 1.0/30; // days
   Real dt = 1.0/(24*60); // days
   VectorX t_mesh = VectorX::LinSpaced((t_end-t_start)/dt + 1, t_start, t_end);
 
@@ -64,8 +64,8 @@ int main(int argc, char** argv) {
   //ics << sat.cartesian().vector();
   ics << sat.equinoctial().vector(), sat.anomaly().L;
   sat.integrate<
-    Astro::Coordinates::CARTESIAN, // Integration coordinates
-    Astro::Coordinates::EQUINOCTIAL // Output coordinates
+    Astro::Coordinates::EQUINOCTIAL, // Integration coordinates
+    Astro::Coordinates::CARTESIAN // Output coordinates
     >(rk4, t_mesh, ics, sol);
 
   // Plot the orbit trace selecting last 3 rows (position) of the solution
@@ -85,26 +85,26 @@ int main(int argc, char** argv) {
   canvas2->SetGrid();
   canvas2->SetTitle("Magnetic Field vs Time");
 
-    // plot the last row of the solution (anomaly L) to check the orbit
-  TGraph* graph = new TGraph(sol.x.row(0).size(), sol.t.data(), sol.x.row(0).data());
-  graph->SetLineColor(kBlue);
-  graph->SetLineWidth(1);
-  graph->Draw("AL");
-
-  //// Prepare data for magnetic field plot
-  //std::vector<Real> time_data;
-  //std::vector<Real> magnetic_field_data;
-  //for (Integer i = 0; i < t_mesh.size(); ++i) {
-  //  Vector3 position = sol.x.col(i).head<3>(); // Get position at time t_mesh[i]
-  //  Vector3 magnetic_field = Planets::EarthMagneticFieldDipole(position); // Compute magnetic field
-  //  time_data.push_back(t_mesh[i]);
-  //  magnetic_field_data.push_back(magnetic_field.norm());
-  //}
-  //// Create TGraph for magnetic field
-  //TGraph* graph = new TGraph(time_data.size(), time_data.data(), magnetic_field_data.data());
+  // plot the last row of the solution (anomaly L) to check the orbit
+  //TGraph* graph = new TGraph(t_mesh.size(), sol.t.data(), sol.x.row(5).data());
   //graph->SetLineColor(kBlue);
-  //graph->SetLineWidth(2);
+  //graph->SetLineWidth(1);
   //graph->Draw("AL");
+
+  // Prepare data for magnetic field plot
+  std::vector<Real> time_data;
+  std::vector<Real> magnetic_field_data;
+  for (Integer i = 0; i < t_mesh.size(); ++i) {
+    Vector3 position = sol.x.col(i).head<3>(); // Get position at time t_mesh[i]
+    Vector3 magnetic_field = Planets::EarthMagneticFieldDipole(position); // Compute magnetic field
+    time_data.push_back(t_mesh[i]);
+    magnetic_field_data.push_back(magnetic_field.norm());
+  }
+  // Create TGraph for magnetic field
+  TGraph* graph = new TGraph(time_data.size(), time_data.data(), magnetic_field_data.data());
+  graph->SetLineColor(kBlue);
+  graph->SetLineWidth(2);
+  graph->Draw("AL");
 
   graph->GetXaxis()->SetTitle("Time (days)");
   graph->GetYaxis()->SetTitle("Magnetic Field (nT)");

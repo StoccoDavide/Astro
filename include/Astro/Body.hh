@@ -155,8 +155,8 @@ namespace Astro
     Vector6 cartesian_eom(Vector6 const & x, Vector3 const & thrust_rtn) const
     {
       // Set the new cartesian state
-      Vector3 r = x.head<3>();
-      Vector3 v = x.tail<3>();
+      Vector3 r(x.head<3>());
+      Vector3 v(x.tail<3>());
 
       // Compute the cartesian perturbation
       Vector3 thrust_xyz(this->cartesian_rtn_to_xyz(thrust_rtn));
@@ -312,32 +312,6 @@ namespace Astro
     }
 
     /**
-    * Integrate the cartesian equations of motion using the Runge-Kutta method.
-    * \param[in] rk The Runge-Kutta integrator.
-    * \param[in] t_mesh The time mesh for the integration.
-    * \param[in] ics The initial conditions for the integration (initial cartesian state).
-    * \param[out] sol The solution object to store the results of the integration.
-    * \tparam S The stages of the Runge-Kutta method.
-    * \return The integrated cartesian state (position and velocity) vectors.
-    */
-    template <Integer S>
-    bool integrate_cartesian(
-      Sandals::RungeKutta<Real, S, 6, 0> & rk,
-      VectorX const &t_mesh,
-      Vector6 const &ics,
-      Sandals::Solution<Real, 6, 0> & sol
-    ) {
-      rk.explicit_system(
-        [this](Vector6 const & x, Real) -> Vector6 {return this->cartesian_eom(x, ZEROS_VEC3);}, // f(x, t)
-        [](Vector6 const &, Real) -> Matrix6 {return ZEROS_MAT6;} // Jf_x(x, t)
-      );
-      rk.step_callback(
-        [this](Integer const, Vector6 const & x, Real) {this->set_cartesian(x.head<3>(), x.tail<3>());}
-      );
-      return rk.solve(t_mesh, ics, sol);
-    }
-
-    /**
     * Integrate the equations of motion using the Runge-Kutta method.
     * \param[in] rk The Runge-Kutta integrator.
     * \param[in] t_mesh The time mesh for the integration.
@@ -380,7 +354,7 @@ namespace Astro
       // Transform the internal state to the output coordinate system
       rk.step_callback([this, &sol](Integer const i, Vector6 const & x, Real const) {
 
-        std::cout << "Step " << i << ": x = " << x.transpose() << std::endl;
+        (void)sol; // Avoid unused variable warning
 
         // Set the internal state according to the output coordinate system
         if constexpr (IntCoords == Coordinates::CARTESIAN) {
@@ -401,17 +375,16 @@ namespace Astro
           if constexpr (OutCoords == Coordinates::CARTESIAN) {
             sol.x.col(i) << this->cartesian().vector();
           } else if constexpr (OutCoords == Coordinates::KEPLERIAN) {
-            ASTRO_ERROR(CMD "keplerian output not implemented yet.");
+            sol.x.col(i).head<5>() = this->keplerian().vector();
+            sol.x(5,i) = this->anomaly().nu;
           } else if constexpr (OutCoords == Coordinates::EQUINOCTIAL) {
             sol.x.col(i).head<5>() = this->equinoctial().vector();
-            sol.x(i,5) = this->anomaly().L;
+            sol.x(5,i) = this->anomaly().L;
           } else if constexpr (OutCoords == Coordinates::QUATERNIONIC) {
             ASTRO_ERROR(CMD "quaternionic output not implemented yet.");
           } else {
             ASTRO_ERROR(CMD "unknown coordinate system for the output.");
           }
-        } else {
-          (void)sol; // Avoid unused variable warning
         }
 
       });

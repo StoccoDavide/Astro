@@ -99,8 +99,10 @@ namespace Astro
       this->sanity_check();
       this->m_cart.r << r_x, r_y, r_z;
       this->m_cart.v << v_x, v_y, v_z;
-      OrbitalElements::cartesian_to_keplerian(this->m_cart, this->m_mu, this->m_kepl);
-      OrbitalElements::keplerian_to_equinoctial(this->m_kepl, this->m_factor, this->m_equi);
+      Real nu{OrbitalElements::cartesian_to_keplerian(this->m_cart, this->m_mu, this->m_kepl)};
+      this->m_anom.set_nu(nu, this->m_kepl, this->m_factor);
+      Real L{OrbitalElements::cartesian_to_equinoctial(this->m_cart, this->m_mu, this->m_equi)};
+      (void)L; //this->m_anom.set_L(L, this->m_kepl, this->m_factor);
       // TODO: OrbitalElements::cartesian_to_quaternionic(this->m_cart, this->m_quat);
       this->set_type(this->m_kepl.e);
     }
@@ -112,13 +114,7 @@ namespace Astro
     */
     void set_cartesian(Vector3 const & t_r, Vector3 const & t_v)
     {
-      this->sanity_check();
-      this->m_cart.r = t_r;
-      this->m_cart.v = t_v;
-      OrbitalElements::cartesian_to_keplerian(this->m_cart, this->m_mu, this->m_kepl);
-      OrbitalElements::keplerian_to_equinoctial(this->m_kepl, this->m_factor, this->m_equi);
-      // TODO: OrbitalElements::cartesian_to_quaternionic(this->m_cart, this->m_quat);
-      this->set_type(this->m_kepl.e);
+      this->set_cartesian(t_r(0), t_r(1), t_r(2), t_v(0), t_v(1), t_v(2));
     }
 
     /**
@@ -137,12 +133,7 @@ namespace Astro
     */
     void set_cartesian(Cartesian const & t_cart)
     {
-      this->sanity_check();
-      this->m_cart = t_cart;
-      OrbitalElements::cartesian_to_keplerian(this->m_cart, this->m_mu, this->m_kepl);
-      OrbitalElements::keplerian_to_equinoctial(this->m_kepl, this->m_factor, this->m_equi);
-      // TODO: OrbitalElements::cartesian_to_quaternionic(this->m_cart, this->m_quat);
-      this->set_type(this->m_kepl.e);
+      this->set_cartesian(t_cart.r, t_cart.v);
     }
 
     /**
@@ -189,12 +180,7 @@ namespace Astro
     */
     void set_keplerian(Keplerian const & t_kepl)
     {
-      this->sanity_check();
-      this->m_kepl = t_kepl;
-      OrbitalElements::keplerian_to_cartesian(this->m_kepl, this->m_anom, this->m_mu, this->m_cart);
-      OrbitalElements::keplerian_to_equinoctial(this->m_kepl, this->m_factor, this->m_equi);
-      // TODO: OrbitalElements::keplerian_to_quaternionic(this->m_kepl, this->m_quat);
-      this->set_type(this->m_kepl.e);
+      this->set_keplerian(t_kepl.a, t_kepl.e, t_kepl.i, t_kepl.Omega, t_kepl.omega);
     }
 
     /**
@@ -241,12 +227,7 @@ namespace Astro
     */
     void set_equinoctial(Equinoctial const & t_equi)
     {
-      this->sanity_check();
-      this->m_equi = t_equi;
-      OrbitalElements::equinoctial_to_keplerian(this->m_equi, this->m_kepl);
-      OrbitalElements::equinoctial_to_cartesian(this->m_equi, this->m_anom, this->m_mu, this->m_cart);
-      // TODO: OrbitalElements::equinoctial_to_quaternionic(this->m_equi, this->m_quat);
-      this->set_type(this->m_kepl.e);
+      this->set_equinoctial(t_equi.p, t_equi.f, t_equi.g, t_equi.h, t_equi.k);
     }
 
     /**
@@ -281,12 +262,7 @@ namespace Astro
     */
     void set_quaternionic(Quaternion const & t_quat)
     {
-      this->sanity_check();
-      this->m_quat.q = t_quat;
-      // TODO: OrbitalElements::quaternionic_to_keplerian(this->m_quat, this->m_kepl);
-      // TODO: OrbitalElements::quaternionic_to_equinoctial(this->m_quat, this->m_factor, this->m_equi);
-      // TODO: OrbitalElements::quaternionic_to_cartesian(this->m_quat, this->m_anom, this->m_mu, this->m_cart);
-      this->set_type(this->m_kepl.e);
+      this->set_quaternionic(t_quat.x(), t_quat.y(), t_quat.z(), t_quat.w());
     }
 
     /**
