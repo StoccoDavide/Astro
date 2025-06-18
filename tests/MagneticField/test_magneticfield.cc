@@ -35,44 +35,65 @@ int main(int argc, char** argv) {
   rulers.GetZaxis()->SetTitle("Z (Km)");
 
   // Create the satellite
-  Real payload_mass{100.0}; // Mass of the satellite in Kg
+  Real payload_mass{100.0*1.339E-6}; // Mass of the satellite in Kg
   Real payload_radius{1E-3}; // Radius of the satellite in Km
   Body sat("sat", payload_mass, payload_radius);
   sat.set_factor(Factor::POSIGRADE);
   sat.set_mu(Planets::Earth_mu_KM3_DAY2);
-  std::cout << "Satellite mass: " << sat.mu() << " Kg" << std::endl;
   sat.set_keplerian(OrbitalElements::Keplerian(
-    Planets::Earth_radius_KM + 400.0, // Semi-major axis in AU
-    1.36E-4, // Eccentricity
-    Deg_To_Rad(89.015), // Inclination in radians
+    Planets::Earth_radius_KM + 4000.0, // Semi-major axis in AU
+    1.36E-2, // Eccentricity
+    Deg_To_Rad(9.015), // Inclination in radians
     0.0, // Longitude of ascending node in radians
     0.0  // Argument of periapsis in radians
   ));
 
-  sat.info(); // Print the satellite's orbital elements
-
   // Set the time mesh for the integration
-  Real t_start = 0.0;
-  Real t_end = 1.0/30; // days
-  Real dt = 1.0/(24*60); // days
-  VectorX t_mesh = VectorX::LinSpaced((t_end-t_start)/dt + 1, t_start, t_end);
+  Real const t_start = 0.0; // days
+  Real const t_end = 5.0; // days
+  Real const dt = 5.0/(24*60); // days
+  VectorX const t_mesh = VectorX::LinSpaced((t_end-t_start)/dt + 1, t_start, t_end);
 
   // Integrate the orbit using the Runge-Kutta solver
-  Sandals::RK4<Real, 6, 0> rk4;
-  Sandals::Solution<Real, 6, 0> sol;
-  Vector6 ics;
-  //ics << sat.cartesian().vector();
-  ics << sat.equinoctial().vector(), sat.anomaly().L;
+  Sandals::RK4<Real, 6, 0> rk;
+  Sandals::Solution<Real, 6, 0> sol_cart, sol_equi, sol_kepl;
+  Vector6 ics_cart, ics_equi, ics_kepl;
+  ics_cart << sat.cartesian_state();
+  ics_equi << sat.equinoctial_state();
+  ics_kepl << sat.keplerian_state();
+
+  sat.integrate<
+    Astro::Coordinates::CARTESIAN, // Integration coordinates
+    Astro::Coordinates::CARTESIAN // Output coordinates
+    >(rk, t_mesh, ics_cart, sol_cart);
+
+  // Plot the orbit trace selecting last 3 rows (position) of the solution
+  TPolyLine3D* orbit_trace_cart = Plotting::DrawTrace(sol_cart.x.topRows<3>());
+  orbit_trace_cart->SetLineColor(kRed);
+  orbit_trace_cart->SetLineWidth(1);
+  orbit_trace_cart->Draw("same L");
+
+  sat.integrate<
+    Astro::Coordinates::KEPLERIAN, // Integration coordinates
+    Astro::Coordinates::CARTESIAN // Output coordinates
+    >(rk, t_mesh, ics_kepl, sol_kepl);
+
+  // Plot the orbit trace selecting last 3 rows (position) of the solution
+  TPolyLine3D* orbit_trace_kepl = Plotting::DrawTrace(sol_kepl.x.topRows<3>());
+  orbit_trace_kepl->SetLineColor(kGreen);
+  orbit_trace_kepl->SetLineWidth(1);
+  orbit_trace_kepl->Draw("same L");
+
   sat.integrate<
     Astro::Coordinates::EQUINOCTIAL, // Integration coordinates
     Astro::Coordinates::CARTESIAN // Output coordinates
-    >(rk4, t_mesh, ics, sol);
+    >(rk, t_mesh, ics_equi, sol_equi);
 
   // Plot the orbit trace selecting last 3 rows (position) of the solution
-  TPolyLine3D* orbit_trace = Plotting::DrawTrace(sol.x.topRows<3>());
-  orbit_trace->SetLineColor(kRed);
-  orbit_trace->SetLineWidth(1);
-  orbit_trace->Draw("same L");
+  TPolyLine3D* orbit_trace_equi = Plotting::DrawTrace(sol_equi.x.topRows<3>());
+  orbit_trace_equi->SetLineColor(kBlue);
+  orbit_trace_equi->SetLineWidth(1);
+  orbit_trace_equi->Draw("same L");
 
   // Plot the wireframe sphere representing the earth
   TGeoVolume* earth_sphere = Plotting::DrawSphere(ZEROS_VEC3, Planets::Earth_radius_KM, kBlack, 1.0);
@@ -85,30 +106,40 @@ int main(int argc, char** argv) {
   canvas2->SetGrid();
   canvas2->SetTitle("Magnetic Field vs Time");
 
-  // plot the last row of the solution (anomaly L) to check the orbit
-  //TGraph* graph = new TGraph(t_mesh.size(), sol.t.data(), sol.x.row(5).data());
+  // Plot the last row of the solution to check the orbit
+  TGraph* graph_cart = new TGraph(t_mesh.size(), sol_cart.t.data(), sol_cart.x.row(3).data());
+  graph_cart->SetLineColor(kRed);
+  graph_cart->SetLineWidth(1);
+  graph_cart->Draw("AL");
+
+  TGraph* graph_kepl = new TGraph(t_mesh.size(), sol_kepl.t.data(), sol_kepl.x.row(3).data());
+  graph_kepl->SetLineColor(kGreen);
+  graph_kepl->SetLineWidth(1);
+  graph_kepl->Draw("L SAME");
+
+  TGraph* graph_equi = new TGraph(t_mesh.size(), sol_equi.t.data(), sol_equi.x.row(3).data());
+  graph_equi->SetLineColor(kBlue);
+  graph_equi->SetLineWidth(1);
+  graph_equi->Draw("L SAME");
+
+  //// Prepare data for magnetic field plot
+  //std::vector<Real> time_data;
+  //std::vector<Real> magnetic_field_data;
+  //for (Integer i = 0; i < t_mesh.size(); ++i) {
+  //  Vector3 position = sol.x.col(i).head<3>(); // Get position at time t_mesh[i]
+  //  Vector3 magnetic_field = Planets::EarthMagneticFieldDipole(position); // Compute magnetic field
+  //  time_data.push_back(t_mesh[i]);
+  //  magnetic_field_data.push_back(magnetic_field.norm());
+  //}
+  //// Create TGraph for magnetic field
+  //TGraph* graph = new TGraph(time_data.size(), time_data.data(), magnetic_field_data.data());
   //graph->SetLineColor(kBlue);
-  //graph->SetLineWidth(1);
+  //graph->SetLineWidth(2);
   //graph->Draw("AL");
-
-  // Prepare data for magnetic field plot
-  std::vector<Real> time_data;
-  std::vector<Real> magnetic_field_data;
-  for (Integer i = 0; i < t_mesh.size(); ++i) {
-    Vector3 position = sol.x.col(i).head<3>(); // Get position at time t_mesh[i]
-    Vector3 magnetic_field = Planets::EarthMagneticFieldDipole(position); // Compute magnetic field
-    time_data.push_back(t_mesh[i]);
-    magnetic_field_data.push_back(magnetic_field.norm());
-  }
-  // Create TGraph for magnetic field
-  TGraph* graph = new TGraph(time_data.size(), time_data.data(), magnetic_field_data.data());
-  graph->SetLineColor(kBlue);
-  graph->SetLineWidth(2);
-  graph->Draw("AL");
-
-  graph->GetXaxis()->SetTitle("Time (days)");
-  graph->GetYaxis()->SetTitle("Magnetic Field (nT)");
-  graph->SetTitle("Magnetic Field Strength vs Time");
+//
+  //graph->GetXaxis()->SetTitle("Time (days)");
+  //graph->GetYaxis()->SetTitle("Magnetic Field (nT)");
+  //graph->SetTitle("Magnetic Field Strength vs Time");
 
   canvas2->Update();
   app.Run();

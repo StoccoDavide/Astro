@@ -101,8 +101,7 @@ namespace Astro
       this->m_cart.v << v_x, v_y, v_z;
       Real nu{OrbitalElements::cartesian_to_keplerian(this->m_cart, this->m_mu, this->m_kepl)};
       this->m_anom.set_nu(nu, this->m_kepl, this->m_factor);
-      Real L{OrbitalElements::cartesian_to_equinoctial(this->m_cart, this->m_mu, this->m_equi)};
-      (void)L; //this->m_anom.set_L(L, this->m_kepl, this->m_factor);
+      OrbitalElements::cartesian_to_equinoctial(this->m_cart, this->m_mu, this->m_equi);
       // TODO: OrbitalElements::cartesian_to_quaternionic(this->m_cart, this->m_quat);
       this->set_type(this->m_kepl.e);
     }

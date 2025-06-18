@@ -146,6 +146,78 @@ namespace Astro
     }
 
     /**
+    * Get the cartesian state vector of the astronomical body.
+    * \return The cartesian state vector of the astronomical body.
+    */
+    Vector6 cartesian_state() const
+    {
+      Vector6 cart;
+      cart << this->m_cart.r, this->m_cart.v;
+      ASTRO_ASSERT(cart.allFinite(),
+        "Astro::Body::cartesian(...): invalid cartesian state vector detected.");
+      return cart;
+    }
+
+    /**
+    * Set the cartesian state vector of the astronomical body.
+    * \param[in] cart The cartesian state vector of the astronomical body.
+    */
+    void set_cartesian_state(Vector6 const & cart)
+    {
+      this->set_cartesian(cart);
+    }
+
+    /**
+    * Get the keplerian state vector of the astronomical body.
+    * \return The keplerian state vector of the astronomical body.
+    */
+    Vector6 keplerian_state() const
+    {
+      Vector6 kepl;
+      kepl << this->m_kepl.a, this->m_kepl.e, this->m_kepl.i,
+              this->m_kepl.Omega, this->m_kepl.omega, this->m_anom.M;
+      ASTRO_ASSERT(kepl.allFinite(),
+        "Astro::Body::keplerian(...): invalid keplerian state vector detected.");
+      return kepl;
+    }
+
+    /**
+    * Set the keplerian state vector of the astronomical body.
+    * \param[in] kepl The keplerian state vector of the astronomical body.
+    */
+    void set_keplerian_state(Vector6 const & kepl)
+    {
+      // First, set the anomaly!
+      this->set_anomaly().set_M(kepl(5), this->keplerian(), this->factor());
+      this->set_keplerian(kepl.head<5>());
+    }
+
+    /**
+    * Get the equinoctial state vector of the astronomical body.
+    * \return The equinoctial state vector of the astronomical body.
+    */
+    Vector6 equinoctial_state() const
+    {
+      Vector6 equi;
+      equi << this->m_equi.p, this->m_equi.f, this->m_equi.g,
+              this->m_equi.h, this->m_equi.k, this->m_anom.L;
+      ASTRO_ASSERT(equi.allFinite(),
+        "Astro::Body::equinoctial(...): invalid equinoctial state vector detected.");
+      return equi;
+    }
+
+    /**
+    * Set the equinoctial state vector of the astronomical body.
+    * \param[in] equi The equinoctial state vector of the astronomical body.
+    */
+    void set_equinoctial_state(Vector6 const & equi)
+    {
+      // First, set the anomaly!
+      this->set_anomaly().set_L(equi(5), this->keplerian(), this->factor());
+      this->set_equinoctial(equi.head<5>());
+    }
+
+    /**
     * Compute the vector of the first-order cartesian equations of orbital motion given the
     * thrust vector components \f$ \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \f$.
     * \param[in] x The cartesian state vector \f$ \mathbf{x} = [r_x, r_y, r_z, v_x, v_y, v_z]^\top \f$.
@@ -161,6 +233,7 @@ namespace Astro
       // Compute the cartesian perturbation
       Vector3 thrust_xyz(this->cartesian_rtn_to_xyz(thrust_rtn));
       thrust_xyz /= this->m_mass;
+      std::cout << "Thrust in cartesian coordinates: " << thrust_xyz.transpose() << std::endl;
 
       // Compute the equations of motion
       Real r_norm{r.norm()};
@@ -190,57 +263,70 @@ namespace Astro
     }
 
     /**
-    * Compute the matrix of the first-order modified equinoctial equations of orbital motion as
-    * \f[ A = \begin{bmatrix}
-    *   0 & 2\sqrt{\displaystyle\frac{p}{\mu}} & 0 \\
-    *   \sqrt{p}\sin(L) & \sqrt{\displaystyle\frac{p}{\mu}}\left[(w+1)\cos(L)+f\right] & -\sqrt{\displaystyle\frac{p}{\mu}}(h\sin(L)-k\cos(L)) \\
-    *   -\sqrt{p}\cos(L) & \sqrt{\displaystyle\frac{p}{\mu}}\left[(w+1)\sin(L)+g\right] & \sqrt{\displaystyle\frac{p}{\mu}}(h\cos(L)+k\sin(L)) \\
-    *   0 & 0 & \displaystyle\frac{\sqrt{p}}{2}\displaystyle\frac{s^2\cos(L)}{2} \\
-    *   0 & 0 & \displaystyle\frac{\sqrt{p}}{2}\displaystyle\frac{s^2\sin(L)}{2} \\
-    *   0 & 0 & \displaystyle\frac{\sqrt{p}}{2}(h\sin(L)-k\cos(L))
-    * \end{bmatrix} \text{.} \f]
-    * \return The matrix \f$ \mathbf{A} \f$.
+    * Compute the vector of the first-order keplerian equations of orbital motion given the
+    * thrust vector components \f$ \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \f$.
+    * \param[in] x The keplerian state vector \f$ \mathbf{x} = [a, e, i, \Omega, \omega, M]^\top \f$.
+    * \param[in] thrust The components (radial, tangential, normal) of the thrust.
+    * \return The vector of the first-order keplerian equations of orbital motion.
     */
-    MatrixA equinoctial_eom_A() const
+    Vector6 keplerian_eom(Vector6 const & x, Vector3 const & thrust) const
     {
-      Real const & p{this->m_equi.p};
-      Real const & f{this->m_equi.f};
-      Real const & g{this->m_equi.g};
-      Real const & h{this->m_equi.h};
-      Real const & k{this->m_equi.k};
-      Real s_L{std::sin(this->m_anom.L)};
-      Real c_L{std::cos(this->m_anom.L)};
+      // https://farside.ph.utexas.edu/teaching/celestial/Celestial/node164.html
 
-      Real w{1.0 + (f*c_L+g*s_L)};
-      Real s2{1.0 + (h*h+k*k)};
-      Real bf{std::sqrt(p/this->m_mu)};
-      Real bf1{bf/w};
-      Real bf2{(h*s_L-k*c_L)*bf1};
+      Real const & a{x(0)};
+      Real const & e{x(1)};
+      Real const & i{x(2)};
+      //Real const & Omega{x(3)};
+      Real const & omega{x(4)};
+      Real const & M{x(5)};
+      Real const & mu{this->m_mu};
 
-      MatrixA A;
-      A <<
-        0.0,     bf1*2.0*p,           0.0,
-        bf*s_L,  bf1*((w+1.0)*c_L+f), -bf2*g,
-        -bf*c_L, bf1*((w+1.0)*s_L+g), bf2*f,
-        0.0,     0.0,                 bf1*s2*c_L/2.0,
-        0.0,     0.0,                 bf1*s2*s_L/2.0,
-        0.0,     0.0,                 bf2;
-      return A;
+      Real const C_rad{thrust(0)/this->m_mass};
+      Real const C_tan{thrust(1)/this->m_mass};
+      Real const C_nor{thrust(2)/this->m_mass};
+
+      Real const n{std::sqrt(this->m_mu / std::pow(a, 3))}; // Mean motion
+      Real const e2{e*e};
+      Real const ecc{std::sqrt(1.0 - e2)};
+
+      Real const E{M_to_E(M, this->m_kepl)}; // Eccentric anomaly
+      Real const nu{E_to_nu(E, this->m_kepl)}; // True anomaly
+
+      Real const cos_nu{std::cos(nu)};
+      Real const sin_nu{std::sin(nu)};
+      Real const p{a*(1.0 - e2)};
+      Real const r{p / (1.0 + e*cos_nu)};
+      Real const u{omega + nu};
+      Real const h{ecc * std::sqrt(mu*a)}; // Specific angular momentum
+
+      Real const sin_i{std::sin(i)};
+      Real const cos_i{std::cos(i)};
+      Real const cos_E{std::cos(E)};
+      Real const sin_u{std::sin(u)};
+      Real const cos_u{std::cos(u)};
+
+      Vector6 res;
+
+      res(0) = a*(2.0*h/(mu*(1.0 - e2)))*(e*sin_nu*C_rad + (1.0 + e*cos_nu)/r*C_tan);
+      res(1) = h/mu*(sin_nu*C_rad + (cos_nu + cos_E)*C_tan);
+      res(2) = cos_u*r*C_nor/h;
+      res(3) = sin_u*r*C_nor/(h*sin_i);
+      res(4) = -h/(mu*e)*(cos_nu*C_rad - (2.0 + e*cos_nu)/(1.0 + e*cos_nu)*sin_nu*C_tan) - cos_i*sin_u*r*C_nor/(h*sin_i);
+      res(5) = n + h*ecc/(mu*e) * ((cos_nu - 2.0*e*r/p)*C_rad - (1.0 + r/p)*sin_nu*C_tan);
+
+      return res;
     }
 
     /**
-    * Compute the vector of the first-order modified equinoctial equations of orbital motion as
-    * \f[ \mathbf{b} = \left[0, 0, 0, 0, 0, \sqrt{\mu p} \left(\displaystyle\frac{w}{p}\right)^2
-    * \right]^\top \text{.} \f]
-    * \return The vector \f$ \mathbf{b} \f$.
+    * Compute the vector of the first-order keplerian equations of orbital motion given the
+    * thrust vector components \f$ \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \f$.
+    * \param[in] x The keplerian state vector \f$ \mathbf{x} = [a, e, i, \Omega, \omega, M]^\top \f$.
+    * \param[in] thrust The components (radial, tangential, normal) of the thrust.
+    * \return The vector of the first-order keplerian equations of orbital motion.
     */
-    VectorB equinoctial_eom_b() const
+    Vector6 keplerian_eom(Vector6 const & x, Real thrust_rad, Real thrust_tan, Real thrust_nor) const
     {
-      Real const & p{this->m_equi.p};
-      Real const & f{this->m_equi.f};
-      Real const & g{this->m_equi.g};
-      Real w{1.0 + (f*std::cos(this->m_anom.L) + g*std::sin(this->m_anom.L))};
-      return VectorB(0.0, 0.0, 0.0, 0.0, 0.0, std::sqrt(p*this->m_mu)*Power2(w/p));
+      return this->keplerian_eom(x, Vector3(thrust_rad, thrust_tan, thrust_nor));
     }
 
     /**
@@ -270,31 +356,26 @@ namespace Astro
       Real C_tan{thrust(1)*r/this->m_mass/w};
       Real C_nor{thrust(2)*r/this->m_mass/w};
 
+      std::cout << "Thrust in equinoctial coordinates: " << C_rad << ", " << C_tan << ", " << C_nor << std::endl;
+
       Vector6 res;
-      res <<
-        /* dp/dt */ 0.0*C_rad*s2,
-        /* df/dt */ 0.0*C_tan,
-        /* dg/dt */ 0.0*C_nor,
-        /* dh/dt */ 0.0,
-        /* dk/dt */ 0.0,
-        /* dL/dt */ std::sqrt(p*this->m_mu) * Power2(w/p);
+      res.setZero();
+
+      res(1) += C_rad*s_L;
+      res(2) -= C_rad*c_L;
+
+      res(0) += C_tan*2.0*p;
+      res(1) += C_tan*((w+1)*c_L+f);
+      res(2) += C_tan*((w+1)*s_L+g);
+
+      res(1) -= C_nor*(h*s_L-k*c_L)*g;
+      res(2) += C_nor*(h*s_L-k*c_L)*f;
+      res(3) += C_nor*s2*c_L/2.0;
+      res(4) += C_nor*s2*s_L/2.0;
+      res(5) += C_nor*(h*s_L-k*c_L);
+
+      res(5) += std::sqrt(this->m_mu/Power3(p)) * Power2(w);
       return res;
-
-      //res(1) += C_rad*s_L;
-      //res(2) -= C_rad*c_L;
-//
-      //res(0) += C_tan*2.0*p;
-      //res(1) += C_tan*((w+1)*c_L+f);
-      //res(2) += C_tan*((w+1)*s_L+g);
-//
-      //res(1) -= C_nor*(h*s_L-k*c_L)*g;
-      //res(2) += C_nor*(h*s_L-k*c_L)*f;
-      //res(3) += C_nor*s2*c_L/2.0;
-      //res(4) += C_nor*s2*s_L/2.0;
-      //res(5) += C_nor*(h*s_L-k*c_L);
-//
-      //res(5) += std::sqrt(this->m_mu / Power3(p)) * Power2(w);
-
     }
 
     /**
@@ -326,7 +407,7 @@ namespace Astro
     * coordinate system in which the equations of motion are integrated, while the `OutCoords` parameter
     * is used to specify the coordinate system in which the results of the integration are output.
     */
-    template < Coordinates IntCoords, Coordinates OutCoords = Coordinates::CARTESIAN, Integer S>
+    template <Coordinates IntCoords, Coordinates OutCoords = Coordinates::CARTESIAN, Integer S>
     bool integrate(Sandals::RungeKutta<Real, S, 6, 0> & rk, VectorX const &t_mesh, Vector6 const &ics,
       Sandals::Solution<Real, 6, 0> & sol)
     {
@@ -335,14 +416,17 @@ namespace Astro
       // Create the solution object according to the integration coordinates
       if constexpr (IntCoords == Coordinates::CARTESIAN) {
         rk.explicit_system(
-          [this](Vector6 const & x, Real) -> Vector6 {return this->cartesian_eom(x, ZEROS_VEC3);}, // f(x, t)
+          [this](Vector6 const & x, Real) -> Vector6 {return this->cartesian_eom(x, 0.0*Vector3::UnitZ());}, // f(x, t)
           [](Vector6 const &, Real) -> Matrix6 {return ZEROS_MAT6;} // Jf_x(x, t)
         );
       } else if constexpr (IntCoords == Coordinates::KEPLERIAN) {
-        ASTRO_ERROR(CMD "keplerian integration not implemented yet.");
+        rk.explicit_system(
+          [this](Vector6 const & x, Real) -> Vector6 {return this->keplerian_eom(x, 0.0*Vector3::UnitY());}, // f(x, t)
+          [](Vector6 const &, Real) -> Matrix6 {return ZEROS_MAT6;} // Jf_x(x, t)
+        );
       } else if constexpr (IntCoords == Coordinates::EQUINOCTIAL) {
         rk.explicit_system(
-          [this](Vector6 const & x, Real) -> Vector6 {return this->equinoctial_eom(x, ZEROS_VEC3);}, // f(x, t)
+          [this](Vector6 const & x, Real) -> Vector6 {return this->equinoctial_eom(x, 0.0*Vector3::UnitY());}, // f(x, t)
           [](Vector6 const &, Real) -> Matrix6 {return ZEROS_MAT6;} // Jf_x(x, t)
         );
       } else if constexpr (IntCoords == Coordinates::QUATERNIONIC) {
@@ -358,12 +442,11 @@ namespace Astro
 
         // Set the internal state according to the output coordinate system
         if constexpr (IntCoords == Coordinates::CARTESIAN) {
-          this->set_cartesian(x);
+          this->set_cartesian_state(x);
         } else if constexpr (IntCoords == Coordinates::KEPLERIAN) {
-          ASTRO_ERROR(CMD "keplerian output not implemented yet.");
+          this->set_keplerian_state(x);
         } else if constexpr (IntCoords == Coordinates::EQUINOCTIAL) {
-          this->set_equinoctial(x.head<5>());
-          this->set_anomaly().set_L(x(5), this->keplerian(), this->factor());
+          this->set_equinoctial_state(x);
         } else if constexpr (IntCoords == Coordinates::QUATERNIONIC) {
           ASTRO_ERROR(CMD "quaternionic output not implemented yet.");
         } else {
@@ -373,13 +456,11 @@ namespace Astro
         // Set the output state in the solution object
         if constexpr (IntCoords != OutCoords) {
           if constexpr (OutCoords == Coordinates::CARTESIAN) {
-            sol.x.col(i) << this->cartesian().vector();
+            sol.x.col(i) << this->cartesian_state();
           } else if constexpr (OutCoords == Coordinates::KEPLERIAN) {
-            sol.x.col(i).head<5>() = this->keplerian().vector();
-            sol.x(5,i) = this->anomaly().nu;
+            sol.x.col(i) << this->keplerian_state();
           } else if constexpr (OutCoords == Coordinates::EQUINOCTIAL) {
-            sol.x.col(i).head<5>() = this->equinoctial().vector();
-            sol.x(5,i) = this->anomaly().L;
+            sol.x.col(i) << this->equinoctial_state();
           } else if constexpr (OutCoords == Coordinates::QUATERNIONIC) {
             ASTRO_ERROR(CMD "quaternionic output not implemented yet.");
           } else {
