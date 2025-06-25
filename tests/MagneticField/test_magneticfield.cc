@@ -13,6 +13,8 @@
 #include "Astro/Plotting.hh"
 
 #include <Sandals/RungeKutta/RK4.hh>
+#include <Sandals/RungeKutta/RadauIIA3.hh>
+#include <Sandals/RungeKutta/Fehlberg45.hh>
 
 using namespace Astro;
 
@@ -50,12 +52,13 @@ int main(int argc, char** argv) {
 
   // Set the time mesh for the integration
   Real const t_start = 0.0; // days
-  Real const t_end = 5.0; // days
-  Real const dt = 5.0/(24*60); // days
+  Real const t_end = 2.0; // days
+  Real const dt = 5.0/(24*100); // days
   VectorX const t_mesh = VectorX::LinSpaced((t_end-t_start)/dt + 1, t_start, t_end);
 
   // Integrate the orbit using the Runge-Kutta solver
-  Sandals::RK4<Real, 6, 0> rk;
+  Sandals::Fehlberg45<Real, 6, 0> rk;
+  Sandals::RadauIIA3<Real, 6, 0> rki;
   Sandals::Solution<Real, 6, 0> sol_cart, sol_equi, sol_kepl;
   Vector6 ics_cart, ics_equi, ics_kepl;
   ics_cart << sat.cartesian_state();
@@ -65,7 +68,7 @@ int main(int argc, char** argv) {
   sat.integrate<
     Astro::Coordinates::CARTESIAN, // Integration coordinates
     Astro::Coordinates::CARTESIAN // Output coordinates
-    >(rk, t_mesh, ics_cart, sol_cart);
+    >(rki, t_mesh, ics_cart, sol_cart);
 
   // Plot the orbit trace selecting last 3 rows (position) of the solution
   TPolyLine3D* orbit_trace_cart = Plotting::DrawTrace(sol_cart.x.topRows<3>());
@@ -76,7 +79,7 @@ int main(int argc, char** argv) {
   sat.integrate<
     Astro::Coordinates::KEPLERIAN, // Integration coordinates
     Astro::Coordinates::CARTESIAN // Output coordinates
-    >(rk, t_mesh, ics_kepl, sol_kepl);
+    >(rk, t_mesh, ics_kepl, sol_kepl, !rk.is_embedded());
 
   // Plot the orbit trace selecting last 3 rows (position) of the solution
   TPolyLine3D* orbit_trace_kepl = Plotting::DrawTrace(sol_kepl.x.topRows<3>());
@@ -87,7 +90,7 @@ int main(int argc, char** argv) {
   sat.integrate<
     Astro::Coordinates::EQUINOCTIAL, // Integration coordinates
     Astro::Coordinates::CARTESIAN // Output coordinates
-    >(rk, t_mesh, ics_equi, sol_equi);
+    >(rk, t_mesh, ics_equi, sol_equi, !rk.is_embedded());
 
   // Plot the orbit trace selecting last 3 rows (position) of the solution
   TPolyLine3D* orbit_trace_equi = Plotting::DrawTrace(sol_equi.x.topRows<3>());

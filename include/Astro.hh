@@ -23,6 +23,9 @@
 #include <Eigen/Dense>
 #include <Eigen/Geometry>
 
+// AutoDiff library
+#include <autodiff/forward/dual.hpp>
+
 // Print Astro errors
 #ifndef ASTRO_ERROR
 #define ASTRO_ERROR(MSG)                \

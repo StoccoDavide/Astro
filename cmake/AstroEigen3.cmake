@@ -1,7 +1,7 @@
 set(EIGEN_REQUIRED_VERSION 3.4)
 cmake_policy(SET CMP0135 NEW)
 
-#list(APPEND CMAKE_PATH_PREFIX "${ASTRO_THIRD_PARTY_DIR}")
+# list(APPEND CMAKE_PATH_PREFIX "${ASTRO_THIRD_PARTY_DIR}")
 find_package(
   Eigen3
   ${EIGEN_REQUIRED_VERSION}
@@ -16,8 +16,8 @@ if(NOT TARGET Eigen3::Eigen)
 
   set(FETCHCONTENT_BASE_DIR "${ASTRO_THIRD_PARTY_DIR}")
   fetchcontent_declare(
-      Eigen3
-      URL "https://gitlab.com/libeigen/eigen/-/archive/${EIGEN_REQUIRED_VERSION}/eigen-${EIGEN_REQUIRED_VERSION}.tar.gz"
+    Eigen3
+    URL "https://gitlab.com/libeigen/eigen/-/archive/${EIGEN_REQUIRED_VERSION}/eigen-${EIGEN_REQUIRED_VERSION}.tar.gz"
   )
 
   fetchcontent_makeavailable(Eigen3)

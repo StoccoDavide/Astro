@@ -158,7 +158,8 @@ namespace Astro
       this->m_kepl.Omega = t_Omega;
       this->m_kepl.omega = t_omega;
       OrbitalElements::keplerian_to_cartesian(this->m_kepl, this->m_anom, this->m_mu, this->m_cart);
-      OrbitalElements::keplerian_to_equinoctial(this->m_kepl, this->m_factor, this->m_equi);
+      //OrbitalElements::keplerian_to_equinoctial(this->m_kepl, this->m_factor, this->m_equi);
+      OrbitalElements::cartesian_to_equinoctial(this->m_cart, this->m_mu, this->m_equi);
       // TODO: OrbitalElements::keplerian_to_quaternionic(this->m_kepl, this->m_quat);
       this->set_type(this->m_kepl.e);
     }
@@ -204,8 +205,9 @@ namespace Astro
       this->m_equi.g = t_g;
       this->m_equi.h = t_h;
       this->m_equi.k = t_k;
-      OrbitalElements::equinoctial_to_keplerian(this->m_equi, this->m_kepl);
       OrbitalElements::equinoctial_to_cartesian(this->m_equi, this->m_anom, this->m_mu, this->m_cart);
+      //OrbitalElements::equinoctial_to_keplerian(this->m_equi, this->m_kepl);
+      OrbitalElements::cartesian_to_keplerian(this->m_cart, this->m_mu, this->m_kepl);
       // TODO: OrbitalElements::equinoctial_to_quaternionic(this->m_equi, this->m_quat);
       this->set_type(this->m_kepl.e);
     }
@@ -463,12 +465,13 @@ namespace Astro
       rtn.col(0) = r;
       rtn.col(0).normalize();
 
-      // Compute the tangential vector
-      rtn.col(1) = rtn.col(0).cross(v);
-      rtn.col(1).normalize();
-
       // Compute the binormal vector
-      rtn.col(2) = rtn.col(0).cross(rtn.col(1));
+      rtn.col(2) = r.cross(v);
+      rtn.col(2).normalize();
+
+      // Compute the tangential vector
+      rtn.col(1) = rtn.col(2).cross(r);
+      rtn.col(1).normalize();
 
       // Return the Frenet-Serret frame
       return rtn;

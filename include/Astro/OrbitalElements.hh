@@ -154,7 +154,7 @@ namespace Astro
         #define CMD "Astro::OrbitalElements::Cartesian::sanity_check(...): "
 
         if (!(this->r.allFinite())) {
-          ASTRO_WARNING(CMD "invalid position vector detected.");
+          ASTRO_WARNING(CMD "invalid position vector detected." << r.transpose());
           return false;
         }
         if (!(this->v.allFinite())) {
@@ -372,11 +372,11 @@ namespace Astro
         #define CMD "Astro::OrbitalElements::Keplerian::is_singular(...): "
 
         Real i{AngleInRange(this->i)};
-        if (i < PI + tol_i && i > PI - tol_i) {
+        if (std::abs(i) < tol_i && std::abs(i - PI) < tol_i) {
           ASTRO_WARNING(CMD "singular inclination detected.");
           return true;
         }
-        if (this->e > 1.0 - tol_e) {
+        if (std::abs(this->e) < tol_e || std::abs(this->e - 1.0) < tol_e) {
           ASTRO_WARNING(CMD "singular eccentricity detected.");
           return true;
         }
@@ -1335,9 +1335,8 @@ namespace Astro
       // Compute the inclination
       Real i{std::acos(h_vec.z() / h_vec.norm())};
 
-      if (std::abs(i) < EPSILON_LOW || std::abs(i - PI) < EPSILON_LOW) {
-        n_vec << 1.0, 0.0, 0.0; // Set the node vector to the x-axis if the orbit is circular
-      }
+      // Set the node vector to the x-axis if the orbit is circular
+      if (std::abs(i) < EPSILON_LOW || std::abs(i - PI) < EPSILON_LOW) {n_vec << 1.0, 0.0, 0.0;}
 
       // Compute the longitude of the ascending node
       Real Omega{std::acos(n_vec.x())};

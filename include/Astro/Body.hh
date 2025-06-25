@@ -226,40 +226,40 @@ namespace Astro
     */
     Vector6 cartesian_eom(Vector6 const & x, Vector3 const & thrust_rtn) const
     {
-      // Set the new cartesian state
-      Vector3 r(x.head<3>());
-      Vector3 v(x.tail<3>());
-
       // Compute the cartesian perturbation
       Vector3 thrust_xyz(this->cartesian_rtn_to_xyz(thrust_rtn));
       thrust_xyz /= this->m_mass;
-      std::cout << "Thrust in cartesian coordinates: " << thrust_xyz.transpose() << std::endl;
 
       // Compute the equations of motion
-      Real r_norm{r.norm()};
-      Vector3 r_mur3(this->m_mu/Power3(r_norm) * r);
+      Real mur3{this->m_mu/Power3(x.head<3>().norm())};
       return Vector6(
-        v.x(),
-        v.y(),
-        v.z(),
-        thrust_xyz.x() - r_mur3.x(),
-        thrust_xyz.y() - r_mur3.y(),
-        thrust_xyz.z() - r_mur3.z()
+        /* dx/dt   */ x[3],
+        /* dy/dt   */ x[4],
+        /* dz/dt   */ x[5],
+        /* dv_x/dt */ thrust_xyz[0] - mur3*x[0],
+        /* dv_y/dt */ thrust_xyz[1] - mur3*x[1],
+        /* dv_z/dt */ thrust_xyz[2] - mur3*x[2]
       );
     }
 
     /**
-    * Compute the vector of the first-order cartesian equations of orbital motion given the
-    * thrust vector components \f$ \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \f$.
+    * Compute the derivative of the first-order cartesian equations of orbital motion with respect to the
+    * cartesian state vector \f$ \mathbf{x} = [r_x, r_y, r_z, v_x, v_y, v_z]^\top \f$.
     * \param[in] x The cartesian state vector \f$ \mathbf{x} = [r_x, r_y, r_z, v_x, v_y, v_z]^\top \f$.
-    * \param[in] thrust_rad The radial thrust component.
-    * \param[in] thrust_tan The tangential thrust component.
-    * \param[in] thrust_nor The normal thrust component.
-    * \return The vector of the first-order cartesian equations of orbital motion.
+    * \return The derivative of the first-order cartesian equations of orbital motion.
     */
-    Vector6 cartesian_eom(Vector6 const & x, Real thrust_rad, Real thrust_tan, Real thrust_nor) const
+    Matrix6 cartesian_eom_derivative(Vector6 const & x) const
     {
-      return this->cartesian_eom(x, Vector3(thrust_rad, thrust_tan, thrust_nor));
+      // Compute the cartesian perturbation
+      Vector3 r(x.head<3>());
+      Real r2{r.squaredNorm()};
+      Real r5{std::pow(r2, 2.5)};
+      Matrix3 dvdx(this->m_mu * (3.0 * r * r.transpose() - r2 * IDENTITY_MAT3) / r5);
+
+      Matrix6 res(ZEROS_MAT6);
+      res.block<3,3>(0,3) = IDENTITY_MAT3; // dr/dv
+      res.block<3,3>(3,0) = dvdx;          // dv/dr
+      return res;
     }
 
     /**
@@ -273,27 +273,31 @@ namespace Astro
     {
       // https://farside.ph.utexas.edu/teaching/celestial/Celestial/node164.html
 
-      Real const & a{x(0)};
-      Real const & e{x(1)};
-      Real const & i{x(2)};
-      //Real const & Omega{x(3)};
-      Real const & omega{x(4)};
-      Real const & M{x(5)};
+      Real const & a{x[0]};
+      Real const & e{x[1]};
+      Real const & i{x[2]};
+      // Real const & Omega{x[3]};
+      Real const & omega{x[4]};
+      Real const & M{x[5]};
       Real const & mu{this->m_mu};
 
-      Real const C_rad{thrust(0)/this->m_mass};
-      Real const C_tan{thrust(1)/this->m_mass};
-      Real const C_nor{thrust(2)/this->m_mass};
+      Real const C_rad{thrust[0]/this->m_mass};
+      Real const C_tan{thrust[1]/this->m_mass};
+      Real const C_nor{thrust[2]/this->m_mass};
 
-      Real const n{std::sqrt(this->m_mu / std::pow(a, 3))}; // Mean motion
+      // Mean motion
+      Real const n{std::sqrt(this->m_mu / std::pow(a, 3))};
       Real const e2{e*e};
       Real const ecc{std::sqrt(1.0 - e2)};
 
-      Real const E{M_to_E(M, this->m_kepl)}; // Eccentric anomaly
-      Real const nu{E_to_nu(E, this->m_kepl)}; // True anomaly
-
+      // Anomalies calculations
+      Real const E{M_to_E(M, this->m_kepl)};
+      Real const cos_E{std::cos(E)};
+      Real const nu{E_to_nu(E, this->m_kepl)};
       Real const cos_nu{std::cos(nu)};
       Real const sin_nu{std::sin(nu)};
+
+      // Other parameters
       Real const p{a*(1.0 - e2)};
       Real const r{p / (1.0 + e*cos_nu)};
       Real const u{omega + nu};
@@ -301,32 +305,40 @@ namespace Astro
 
       Real const sin_i{std::sin(i)};
       Real const cos_i{std::cos(i)};
-      Real const cos_E{std::cos(E)};
       Real const sin_u{std::sin(u)};
       Real const cos_u{std::cos(u)};
 
       Vector6 res;
-
-      res(0) = a*(2.0*h/(mu*(1.0 - e2)))*(e*sin_nu*C_rad + (1.0 + e*cos_nu)/r*C_tan);
-      res(1) = h/mu*(sin_nu*C_rad + (cos_nu + cos_E)*C_tan);
-      res(2) = cos_u*r*C_nor/h;
-      res(3) = sin_u*r*C_nor/(h*sin_i);
-      res(4) = -h/(mu*e)*(cos_nu*C_rad - (2.0 + e*cos_nu)/(1.0 + e*cos_nu)*sin_nu*C_tan) - cos_i*sin_u*r*C_nor/(h*sin_i);
-      res(5) = n + h*ecc/(mu*e) * ((cos_nu - 2.0*e*r/p)*C_rad - (1.0 + r/p)*sin_nu*C_tan);
+      res <<
+        /* da/dt */ 2.0*a*h/(mu*(1.0 - e2))*(e*sin_nu*C_rad + (1.0 + e*cos_nu)*C_tan),
+        /* de/dt */ h/mu*(sin_nu*C_rad + (cos_nu + cos_E)*C_tan),
+        /* di/dt */ cos_u*r*C_nor/h,
+        /* dO/dt */ sin_u*r*C_nor/(h*sin_i),
+        /* do/dt */ -h/(mu*e)*(cos_nu*C_rad - (2.0 + e*cos_nu)/(1.0 + e*cos_nu)*sin_nu*C_tan) - cos_i*sin_u*r*C_nor/(h*sin_i),
+        /* dM/dt */ n + h*ecc/(mu*e) * ((cos_nu - 2.0*e*r/p)*C_rad - (1.0 + r/p)*sin_nu*C_tan);
 
       return res;
     }
 
     /**
-    * Compute the vector of the first-order keplerian equations of orbital motion given the
-    * thrust vector components \f$ \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \f$.
+    * Compute the derivative of the first-order keplerian equations of orbital motion with respect to the
+    * keplerian state vector \f$ \mathbf{x} = [a, e, i, \Omega, \omega, M]^\top \f$.
     * \param[in] x The keplerian state vector \f$ \mathbf{x} = [a, e, i, \Omega, \omega, M]^\top \f$.
-    * \param[in] thrust The components (radial, tangential, normal) of the thrust.
-    * \return The vector of the first-order keplerian equations of orbital motion.
+    * \return The derivative of the first-order keplerian equations of orbital motion.
     */
-    Vector6 keplerian_eom(Vector6 const & x, Real thrust_rad, Real thrust_tan, Real thrust_nor) const
+    Matrix6 keplerian_eom_derivative(Vector6 const & x) const
     {
-      return this->keplerian_eom(x, Vector3(thrust_rad, thrust_tan, thrust_nor));
+      // Source: https://farside.ph.utexas.edu/teaching/celestial/Celestial/node164.html
+
+      Matrix6 res;
+      res <<
+        /* da/dt */ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        /* de/dt */ 0.0, 1.0/(2.0*x[1]), 0.0, 0.0, 0.0, 0.0,
+        /* di/dt */ 0.0, 0.0, std::cos(x[2]), 0.0, -std::sin(x[2]), 0.0,
+        /* dO/dt */ 0.0, 0.0, -std::sin(x[2])/std::sin(x[3]), std::cos(x[2])/std::sin(x[3]), 0.0, 0.0,
+        /* do/dt */ -x[1]/(x[4]*x[4]), x[1]/(x[4]*x[4]), 0.0, 1.0/x[4], -1.0/x[4], -1.0/x[4],
+        /* dM/dt */ std::sqrt(this->m_mu / Power3(x[5])), x[1]/(x[5]*x[5]), x[2]/(x[5]*x[5]), x[3]/(x[5]*x[5]), x[4]/(x[5]*x[5]), x[5]/(x[5]*x[5]);
+      return res;
     }
 
     /**
@@ -338,43 +350,35 @@ namespace Astro
     */
     Vector6 equinoctial_eom(Vector6 const & x, Vector3 const & thrust) const
     {
-      Real const & p{x(0)};
-      Real const & f{x(1)};
-      Real const & g{x(2)};
-      Real const & h{x(3)};
-      Real const & k{x(4)};
-      Real const & L{x(5)};
+      // Source: https://spsweb.fltops.jpl.nasa.gov/portaldataops/mpg/MPG_Docs/Source%20Docs/EquinoctalElements-modified.pdf
 
-      Real s_L{std::sin(L)};
-      Real c_L{std::cos(L)};
+      Real const & p{x[0]};
+      Real const & f{x[1]};
+      Real const & g{x[2]};
+      Real const & h{x[3]};
+      Real const & k{x[4]};
+      Real const & L{x[5]};
 
-      Real w{1.0 + (f*c_L + g*s_L)};
+      Real sin_L{std::sin(L)};
+      Real cos_L{std::cos(L)};
+
+      Real w{1.0 + (f*cos_L + g*sin_L)};
       Real s2{1.0 + (h*h + k*k)};
-      Real r{std::sqrt(p/this->m_mu)};
+      Real sqrt_p_mu{std::sqrt(p/this->m_mu)};
 
-      Real C_rad{thrust(0)*r/this->m_mass};
-      Real C_tan{thrust(1)*r/this->m_mass/w};
-      Real C_nor{thrust(2)*r/this->m_mass/w};
-
-      std::cout << "Thrust in equinoctial coordinates: " << C_rad << ", " << C_tan << ", " << C_nor << std::endl;
+      Real C_rad{thrust[0]/this->m_mass};
+      Real C_tan{thrust[1]/this->m_mass};
+      Real C_nor{thrust[2]/this->m_mass};
 
       Vector6 res;
-      res.setZero();
+      res <<
+        /* dp/dt */ 2.0*p*sqrt_p_mu/w*C_tan,
+        /* df/dt */ sqrt_p_mu*(+C_rad*sin_L + ((w + 1.0)*cos_L + f)*C_tan/w - (h*sin_L - k*cos_L)*g/w*C_nor),
+        /* dg/dt */ sqrt_p_mu*(-C_rad*cos_L + ((w + 1.0)*sin_L + g)*C_tan/w + (h*sin_L - k*cos_L)*g/w*C_nor),
+        /* dh/dt */ sqrt_p_mu*s2*C_nor*cos_L/(2.0*w),
+        /* dk/dt */ sqrt_p_mu*s2*C_nor*sin_L/(2.0*w),
+        /* dL/dt */ std::sqrt(this->m_mu*p) * Power2(w/p) + sqrt_p_mu/w*(h*sin_L - k*cos_L)*C_nor;
 
-      res(1) += C_rad*s_L;
-      res(2) -= C_rad*c_L;
-
-      res(0) += C_tan*2.0*p;
-      res(1) += C_tan*((w+1)*c_L+f);
-      res(2) += C_tan*((w+1)*s_L+g);
-
-      res(1) -= C_nor*(h*s_L-k*c_L)*g;
-      res(2) += C_nor*(h*s_L-k*c_L)*f;
-      res(3) += C_nor*s2*c_L/2.0;
-      res(4) += C_nor*s2*s_L/2.0;
-      res(5) += C_nor*(h*s_L-k*c_L);
-
-      res(5) += std::sqrt(this->m_mu/Power3(p)) * Power2(w);
       return res;
     }
 
@@ -409,24 +413,24 @@ namespace Astro
     */
     template <Coordinates IntCoords, Coordinates OutCoords = Coordinates::CARTESIAN, Integer S>
     bool integrate(Sandals::RungeKutta<Real, S, 6, 0> & rk, VectorX const &t_mesh, Vector6 const &ics,
-      Sandals::Solution<Real, 6, 0> & sol)
+      Sandals::Solution<Real, 6, 0> & sol, bool const adaptive = false)
     {
       #define CMD "Astro::Body::integrate(...): "
 
       // Create the solution object according to the integration coordinates
       if constexpr (IntCoords == Coordinates::CARTESIAN) {
         rk.explicit_system(
-          [this](Vector6 const & x, Real) -> Vector6 {return this->cartesian_eom(x, 0.0*Vector3::UnitZ());}, // f(x, t)
-          [](Vector6 const &, Real) -> Matrix6 {return ZEROS_MAT6;} // Jf_x(x, t)
+          [this](Vector6 const & x, Real) -> Vector6 {return this->cartesian_eom(x, 50.0*Vector3::UnitZ());}, // f(x, t)
+          [this](Vector6 const & x, Real) -> Matrix6 {return this->cartesian_eom_derivative(x);} // Jf_x(x, t)
         );
       } else if constexpr (IntCoords == Coordinates::KEPLERIAN) {
         rk.explicit_system(
-          [this](Vector6 const & x, Real) -> Vector6 {return this->keplerian_eom(x, 0.0*Vector3::UnitY());}, // f(x, t)
+          [this](Vector6 const & x, Real) -> Vector6 {return this->keplerian_eom(x, 50.0*Vector3::UnitZ());}, // f(x, t)
           [](Vector6 const &, Real) -> Matrix6 {return ZEROS_MAT6;} // Jf_x(x, t)
         );
       } else if constexpr (IntCoords == Coordinates::EQUINOCTIAL) {
         rk.explicit_system(
-          [this](Vector6 const & x, Real) -> Vector6 {return this->equinoctial_eom(x, 0.0*Vector3::UnitY());}, // f(x, t)
+          [this](Vector6 const & x, Real) -> Vector6 {return this->equinoctial_eom(x, 50.0*Vector3::UnitZ());}, // f(x, t)
           [](Vector6 const &, Real) -> Matrix6 {return ZEROS_MAT6;} // Jf_x(x, t)
         );
       } else if constexpr (IntCoords == Coordinates::QUATERNIONIC) {
@@ -471,7 +475,11 @@ namespace Astro
       });
 
       // Solve the equations of motion
-      return rk.solve(t_mesh, ics, sol);
+      if (adaptive) {
+        return rk.adaptive_solve(t_mesh, ics, sol);
+      } else {
+        return rk.solve(t_mesh, ics, sol);
+      }
 
       #undef CMD
     }

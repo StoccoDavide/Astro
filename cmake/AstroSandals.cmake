@@ -1,7 +1,7 @@
 set(SANDALS_REQUIRED_VERSION 0.0.0)
 cmake_policy(SET CMP0135 NEW)
 
-#list(APPEND CMAKE_PREFIX_PATH "${ASTRO_THIRD_PARTY_DIR}")
+# list(APPEND CMAKE_PREFIX_PATH "${ASTRO_THIRD_PARTY_DIR}")
 find_package(
   Sandals
   ${SANDALS_REQUIRED_VERSION}
@@ -21,6 +21,11 @@ if(NOT TARGET Sandals::Sandals)
     GIT_SHALLOW    TRUE
     GIT_TAG        main
   )
+
+  option(SANDALS_BUILD_TESTS OFF)
+  option(SANDALS_BUILD_EXAMPLES OFF)
+  option(SANDALS_BUILD_BENCHMARKS OFF)
+  option(SANDALS_ENABLE_PLOTTING OFF)
 
   fetchcontent_makeavailable(Sandals)
 else()
