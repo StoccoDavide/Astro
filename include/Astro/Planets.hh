@@ -152,6 +152,19 @@ namespace Astro
       }
     };
 
+    /**
+    * \brief Create a Moon object with Keplerian orbital elements.
+    * \return A new Moon object with Keplerian orbital elements.
+    */
+    inline Body Moon()
+    {
+      Body moon("Moon", Moon_mass_KG, Moon_radius_AU);
+      moon.set_factor(Factor::POSIGRADE);
+      moon.set_mu(Earth_mu_AU3_DAY2);
+      moon.set_keplerian(KeplerianMoon());
+      return moon;
+    }
+
   } // namespace Planets
 
 } // namespace Astro

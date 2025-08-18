@@ -569,6 +569,28 @@ namespace Astro
       return this->equinoctial_to_frenet_rtn().transpose() * vec;
     }
 
+    /**
+    * Propagate the orbit to a new time.
+    * \param[in] dt The time step to propagate the orbit.
+    * \return The propagated orbit.
+    */
+    void propagate(Real const dt)
+    {
+      // Check if the orbit is valid
+      ASTRO_ASSERT(this->sanity_check(),
+        "Astro::Orbit::propagate(...): invalid orbit detected.");
+
+      // Mean motion
+      Real n{std::sqrt(this->m_mu / Power3(this->m_kepl.a))};
+
+      // Compute the mean anomaly at the new time
+      Real M_new{this->m_anom.M + n * dt};
+
+      // Update the anomaly
+      this->m_anom.set_M(M_new, this->m_kepl, this->m_factor);
+      this->set_keplerian(this->m_kepl);
+    }
+
   }; // class Orbit
 
 } // namespace Astro

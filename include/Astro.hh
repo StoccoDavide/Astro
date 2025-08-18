@@ -24,7 +24,8 @@
 #include <Eigen/Geometry>
 
 // AutoDiff library
-#include <autodiff/forward/dual.hpp>
+#include <autodiff/forward/real.hpp>
+#include <autodiff/forward/real/eigen.hpp>
 
 // Print Astro errors
 #ifndef ASTRO_ERROR

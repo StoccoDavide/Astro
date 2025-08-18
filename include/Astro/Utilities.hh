@@ -38,6 +38,7 @@ namespace Astro {
   * \param[in] x Number to be cubed.
   * \return Cube of the number.
   */
+  template<typename Real>
   Real Power3(Real x) {return x*x*x;}
 
   /**

@@ -43,9 +43,6 @@ namespace Astro
   */
   class Body : public Orbit
   {
-    using MatrixA = Eigen::Matrix<Real, 6, 3>; /**< Matrix \f$ \mathbf{A} \in \mathbb{R}^{6 \times 3}\f$. */
-    using VectorB = Eigen::Vector<Real, 6>;    /**< Vector \f$ \mathbf{b} \in \mathbb{R}^{6 \times 1}\f$. */
-
     std::string m_name{"(undefined)"}; /**< Name of the astronomical body. */
     Real        m_radius{QUIET_NAN}; /**< Occupancy radius of the astronomical body (in AU). */
     Real        m_mass{QUIET_NAN}; /**< Mass of the astronomical body. */
@@ -224,15 +221,16 @@ namespace Astro
     * \param[in] thrust_rtn The thrust components vector.
     * \return The vector of the first-order cartesian equations of orbital motion.
     */
-    Vector6 cartesian_eom(Vector6 const & x, Vector3 const & thrust_rtn) const
+    template<typename T>
+    Eigen::Matrix<T, 6, 1> cartesian_eom(Eigen::Matrix<T, 6, 1> const & x, Eigen::Matrix<T, 3, 1> const & thrust_rtn) const
     {
       // Compute the cartesian perturbation
-      Vector3 thrust_xyz(this->cartesian_rtn_to_xyz(thrust_rtn));
+      Eigen::Matrix<T, 3, 1> thrust_xyz(this->cartesian_rtn_to_xyz(thrust_rtn));
       thrust_xyz /= this->m_mass;
 
       // Compute the equations of motion
-      Real mur3{this->m_mu/Power3(x.head<3>().norm())};
-      return Vector6(
+      T mur3{this->m_mu/Power3(x.template head<3>().norm())};
+      return Eigen::Matrix<T, 6, 1>(
         /* dx/dt   */ x[3],
         /* dy/dt   */ x[4],
         /* dz/dt   */ x[5],
@@ -248,19 +246,31 @@ namespace Astro
     * \param[in] x The cartesian state vector \f$ \mathbf{x} = [r_x, r_y, r_z, v_x, v_y, v_z]^\top \f$.
     * \return The derivative of the first-order cartesian equations of orbital motion.
     */
-    Matrix6 cartesian_eom_derivative(Vector6 const & x) const
-    {
-      // Compute the cartesian perturbation
-      Vector3 r(x.head<3>());
-      Real r2{r.squaredNorm()};
-      Real r5{std::pow(r2, 2.5)};
-      Matrix3 dvdx(this->m_mu * (3.0 * r * r.transpose() - r2 * IDENTITY_MAT3) / r5);
+    //Matrix6 cartesian_eom_jacobian(Vector6 const & x, Vector3 const & thrust_rtn) const
+    //{
+    //  // Compute the cartesian perturbation
+    //  Vector3 r(x.head<3>());
+    //  Real r2{r.squaredNorm()};
+    //  Real r5{std::pow(r2, 2.5)};
+    //  Matrix3 dvdx(this->m_mu * (3.0 * r * r.transpose() - r2 * IDENTITY_MAT3) / r5);
+//
+    //  Matrix6 res(ZEROS_MAT6);
+    //  res.block<3,3>(0,3) = IDENTITY_MAT3; // dr/dv
+    //  res.block<3,3>(3,0) = dvdx;          // dv/dr
+    //  return res;
+    //}
 
-      Matrix6 res(ZEROS_MAT6);
-      res.block<3,3>(0,3) = IDENTITY_MAT3; // dr/dv
-      res.block<3,3>(3,0) = dvdx;          // dv/dr
-      return res;
-    }
+    //Matrix6 cartesian_eom_jacobian(const Vector6 & x, const Vector3 & thrust_rtn) const
+    //{
+    //  using Vector6real = Eigen::Matrix<autodiff::real, 6, 1>;
+//
+    //  // Compute the jacobian of the cartesian equations of motion
+    //  auto f = [this, &thrust_rtn](const Vector6real & x) {
+    //    return this->cartesian_eom<autodiff::real>(x, thrust_rtn);
+    //  };
+//
+    //  return autodiff::jacobian(f, autodiff::wrt(x), autodiff::at(x));
+    //}
 
     /**
     * Compute the vector of the first-order keplerian equations of orbital motion given the
@@ -420,8 +430,8 @@ namespace Astro
       // Create the solution object according to the integration coordinates
       if constexpr (IntCoords == Coordinates::CARTESIAN) {
         rk.explicit_system(
-          [this](Vector6 const & x, Real) -> Vector6 {return this->cartesian_eom(x, 50.0*Vector3::UnitZ());}, // f(x, t)
-          [this](Vector6 const & x, Real) -> Matrix6 {return this->cartesian_eom_derivative(x);} // Jf_x(x, t)
+          [this](Vector6 const & x, Real) -> Vector6 {return this->cartesian_eom<Real>(x, 50.0*Vector3::UnitZ());}, // f(x, t)
+          [](Vector6 const &, Real) -> Matrix6 {return ZEROS_MAT6;} // Jf_x(x, t)
         );
       } else if constexpr (IntCoords == Coordinates::KEPLERIAN) {
         rk.explicit_system(
