@@ -34,3 +34,7 @@ else()
   )
   message(STATUS "Astro: Found AutoDiff installed in ${AUTODIFF_INCLUDE_DIRS}")
 endif()
+
+target_compile_options(autodiff::autodiff INTERFACE
+  -Wno-sign-compare
+)

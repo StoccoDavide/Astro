@@ -181,6 +181,93 @@ namespace Astro {
 
   Real KM3_S2_To_AU3_DAY2(Real x) {return x * (1.0/(AU_TO_KM*AU_TO_KM*AU_TO_KM)/(SEC_TO_DAY*SEC_TO_DAY));}
 
+  /**
+  * Compute the Julian Date (JD) from a calendar date.
+  * \param[in] year Year.
+  * \param[in] month Month.
+  * \param[in] day Day.
+  * \return Julian Date.
+  */
+  Real JulianDate(Integer year, Integer month, Integer day)
+  {
+    if (month <= 2)
+    {
+      year -= 1;
+      month += 12;
+    }
+    Integer A{year / 100};
+    Integer B{2 - A + (A / 4)};
+    Real JD{std::floor(365.25 * (year + 4716))
+            + std::floor(30.6001 * (month + 1))
+            + day + B - 1524.5};
+    return JD;
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  /**
+  * Compute the Modified Julian Date (MJD) from a calendar date.
+  * \param[in] year Year.
+  * \param[in] month Month.
+  * \param[in] day Day.
+  * \return Modified Julian Date.
+  */
+  Real ModifiedJulianDate(Integer year, Integer month, Integer day)
+  {
+    return JulianDate(year, month, day) - Real{2400000.5};
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  /**
+  * Convert a Julian Date (JD) to calendar date.
+  * \param[in] JD Julian Date.
+  * \param[out] year Year.
+  * \param[out] month Month.
+  * \param[out] day Day.
+  */
+  void JD_To_Date(Real JD, Integer &year, Integer &month, Integer &day)
+  {
+    Integer Z{Integer(std::floor(JD + 0.5))};
+    Real F{(JD + 0.5) - Z};
+    Integer A{Z};
+    if (Z >= 2299161)
+    {
+      Integer alpha{Integer((Z - 1867216.25) / 36524.25)};
+      A = Z + 1 + alpha - alpha / 4;
+    }
+    Integer B{A + 1524};
+    Integer C{Integer((B - 122.1) / 365.25)};
+    Integer D{Integer(365.25 * C)};
+    Integer E{Integer((B - D) / 30.6001)};
+    Real dayD{B - D - std::floor(30.6001 * E) + F};
+    day = Integer(dayD);
+    if (E < 14)
+      month = E - 1;
+    else
+      month = E - 13;
+    if (month > 2)
+      year = C - 4716;
+    else
+      year = C - 4715;
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  /**
+  * Convert a Modified Julian Date (MJD) to calendar date.
+  * \param[in] MJD Modified Julian Date.
+  * \param[out] year Year.
+  * \param[out] month Month.
+  * \param[out] day Day.
+  */
+  void MJD_To_Date(Real MJD, Integer &year, Integer &month, Integer &day)
+  {
+    JD_To_Date(MJD + Real{2400000.5}, year, month, day);
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 } // namespace Astro
 
 #endif // ASTRO_UTILITIES_HH

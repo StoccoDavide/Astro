@@ -49,6 +49,7 @@ namespace Astro
     Equinoctial  m_equi;                      /**< Equinoctial orbit parameters. */
     Quaternionic m_quat;                      /**< Quaternionic orbit parameters. */
     Anomaly      m_anom;                      /**< Anomaly orbit parameters. */
+    Real         m_epoch{0.0};                /**< Epoch of the orbital elements (in days). */
     Type         m_type{Type::UNDEFINED};     /**< Orbit type. */
     Factor       m_factor{Factor::UNDEFINED}; /**< Orbit posigrade (+1)/retrograde (-1) factor. */
     Real         m_mu{QUIET_NAN};             /**< Gravitational constant of the central body. */
@@ -589,6 +590,134 @@ namespace Astro
       // Update the anomaly
       this->m_anom.set_M(M_new, this->m_kepl, this->m_factor);
       this->set_keplerian(this->m_kepl);
+    }
+
+    /**
+    * Compute the invariant angular momentum vector from equinoctial elements.
+    * \return The angular momentum vector.
+    */
+    Vector3 invariant_L() const {
+      Real h2{this->m_equi.h * this->m_equi.h};
+      Real k2{this->m_equi.k * this->m_equi.k};
+      Real bf{std::sqrt(this->m_equi.p * this->m_mu) / (1.0 + h2 + k2)};
+      Vector3 L;
+      L << 2.0 * this->m_equi.k * bf, -2.0 * this->m_equi.h * bf, (1.0 - (h2 + k2)) * bf;
+      if (this->m_factor == Factor::RETROGRADE) {L.z() = -L.z();}
+      return L;
+    }
+
+    /**
+    * Compute the invariant Laplace vector from equinoctial elements.
+    * \return The Laplace vector.
+    */
+    Vector3 invariant_A() const
+    {
+      Real hk{this->m_equi.h * this->m_equi.k};
+      Real h2{this->m_equi.h * this->m_equi.h};
+      Real k2{this->m_equi.k * this->m_equi.k};
+      Real bf{this->m_mu / (1.0 + h2 + k2)};
+      return Vector3(
+        bf * ((1.0 + h2 - k2) * this->m_equi.f + 2.0 * hk * this->m_equi.g),
+        bf * ((1.0 - h2 + k2) * this->m_equi.g + 2.0 * hk * this->m_equi.f),
+        bf * (2.0 * (h * this->m_equi.g - k * this->m_equi.f))
+      );
+    }
+
+    /**
+    * Compute the orbit energy from equinoctial elements.
+    * \return The orbit energy.
+    */
+    Real energy() const {
+      return this->m_mu * (this->m_equi.g * this->m_equi.g + this->m_equi.f * this->m_equi.f - 1.0) /
+        (2.0 * this->m_equi.p);
+    }
+
+    /**
+    * Compute the orbit period from keplerian elements.
+    * \return The orbit period.
+    */
+    Real period() const {
+
+      #define CMD "Astro::Orbit::period(...): "
+
+      ASTRO_ASSERT(this->m_type == Type::ELLIPTIC || this->m_type == Type::CIRCULAR,
+        CMD "the orbit period is defined only for elliptic and circular orbits.");
+
+        return 2.0 * M_PI * std::sqrt(Power3(this->m_kepl.a) / this->m_mu);
+
+      #undef CMD
+    }
+
+    /**
+    * Compute the mean longitude \f$ \lambda \f$ at time \f$ t \f$ .
+    * \param[in] t The time at which to evaluate the mean longitude.
+    * \return The mean longitude \f$ \lambda \f$.
+    *
+    * \warning For elliptic orbits, solves E - e*sin(E) = M and computes true anomaly.
+    * For hyperbolic orbits, solves H - e*sinh(H) = M and computes true anomaly.
+    */
+    Real eval_L(Real t) const
+    {
+      Real e{this->m_kepl.e};
+      Real n{std::sqrt(this->m_mu / Power3(this->m_kepl.a))};
+      Real M{this->m_anom.M + n * t}; // Assuming t is time since epoch
+
+      Real nu{0.0};
+      if (e < 1.0) {
+        // Elliptic case: solve Kepler's equation for E
+        Real E{OrbitalElements::mean_to_eccentric_anomaly(M, e)};
+        nu = OrbitalElements::eccentric_to_true_anomaly(E, e);
+      } else {
+        // Hyperbolic case: solve Kepler's equation for H
+        Real H{OrbitalElements::mean_to_hyperbolic_anomaly(M, e)};
+        nu = OrbitalElements::hyperbolic_to_true_anomaly(H, e);
+      }
+
+      // Compute mean longitude lambda = nu + omega + Omega (retrograde sign handled by factor)
+      Real lambda{nu + this->m_kepl.omega};
+      if (this->m_factor == Factor::RETROGRADE) {lambda -= this->m_kepl.Omega;}
+      else {lambda += this->m_kepl.Omega;}
+
+      return lambda;
+    }
+
+    /**
+    * Compute the mean longitude L at time t.
+    * \param[in] t The time at which to evaluate the mean longitude.
+    * \return The mean longitude L at time t.
+    */
+    Real L_orbital(Real t) const
+    {
+      return this->eval_L(t);
+    }
+
+    /**
+    * Compute the mean longitude L at time t0 + dt, handling angle wrapping for elliptic orbits.
+    * \param[in] t0 Initial time.
+    * \param[in] dt Time increment.
+    * \return The mean longitude L at time t0 + dt.
+    */
+    Real L_orbital(Real t0, Real dt) const
+    {
+      if (this->m_kepl.e < 1.0) {
+        Real L0{this->L_orbital(t0)};
+        Real L1{this->L_orbital(t0 + dt)};
+        Real dL{L1 - L0};
+        Real pf{dt / this->period()}; // Fraction of period
+
+        // Wrap angle for positive/negative dt
+        if (dt > 0) {
+          while (dL < 0.0) {dL += 2.0 * M_PI;}
+          while (pf > 1.0) {dL += 2.0 * M_PI; pf -= 1.0;}
+        } else {
+          while (dL > 0.0) {dL -= 2.0 * M_PI;}
+          while (pf < -1.0) {dL -= 2.0 * M_PI; pf += 1.0;}
+        }
+        return L0 + dL;
+        } else {
+          // For hyperbolic orbits, no wrapping needed
+          return this->L_orbital(t0 + dt);
+      }
     }
 
   }; // class Orbit
