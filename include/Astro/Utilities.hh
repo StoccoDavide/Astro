@@ -123,7 +123,6 @@ namespace Astro {
   static Real const AU_TO_M{AU_TO_KM*KM_TO_M};   /**< One astronomical unit in meters /f$ 1 \text{AU} = 1.49597870707 \times 10^8 \times 1000 \text{m} \f$. */
   static Real const M_TO_AU{AU_TO_KM*KM_TO_M};   /**< One meter in astronomical units /f$ 1 \text{m} = 1.49597870707 \times 10^{-8} \text{AU} \f$. */
 
-
   // Time units
   static Real const DAY_TO_SEC{86400.0};        /**< One day in seconds /f$ 1 \text{day} = 86400 \text{s} \f$. */
   static Real const SEC_TO_DAY{1.0/DAY_TO_SEC}; /**< One second in days /f$ 1 \text{s} = 86400 \times 10^{-1} \text{day} \f$. */
@@ -181,6 +180,15 @@ namespace Astro {
 
   Real KM3_S2_To_AU3_DAY2(Real x) {return x * (1.0/(AU_TO_KM*AU_TO_KM*AU_TO_KM)/(SEC_TO_DAY*SEC_TO_DAY));}
 
+  /*\
+   |   _____ _
+   |  |_   _(_)_ __ ___   ___
+   |    | | | | '_ ` _ \ / _ \
+   |    | | | | | | | | |  __/
+   |    |_| |_|_| |_| |_|\___|
+   |
+  \*/
+
   /**
   * Compute the Julian Date (JD) from a calendar date.
   * \param[in] year Year.
@@ -226,7 +234,7 @@ namespace Astro {
   * \param[out] month Month.
   * \param[out] day Day.
   */
-  void JD_To_Date(Real JD, Integer &year, Integer &month, Integer &day)
+  void JD_To_Date(Real JD, Integer & year, Integer & month, Integer & day)
   {
     Integer Z{Integer(std::floor(JD + 0.5))};
     Real F{(JD + 0.5) - Z};
@@ -261,7 +269,7 @@ namespace Astro {
   * \param[out] month Month.
   * \param[out] day Day.
   */
-  void MJD_To_Date(Real MJD, Integer &year, Integer &month, Integer &day)
+  void MJD_To_Date(Real MJD, Integer & year, Integer & month, Integer & day)
   {
     JD_To_Date(MJD + Real{2400000.5}, year, month, day);
   }

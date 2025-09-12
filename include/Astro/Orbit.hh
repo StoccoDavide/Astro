@@ -291,6 +291,18 @@ namespace Astro
     }
 
     /**
+    * Get the epoch of the orbital elements (in days).
+    * \return The epoch of the orbital elements (in days).
+    */
+    Real epoch() const {return this->m_epoch;}
+
+    /**
+    * Set the epoch of the orbital elements (in days).
+    * \param[in] t_epoch The epoch of the orbital elements (in days).
+    */
+    void set_epoch(Real t_epoch) {this->m_epoch = t_epoch;}
+
+    /**
     * Get the type of the orbit.
     * \return The type of the orbit.
     */
@@ -573,9 +585,10 @@ namespace Astro
     /**
     * Propagate the orbit to a new time.
     * \param[in] dt The time step to propagate the orbit.
+    * \param[in, out] anom The anomaly to be updated.
     * \return The propagated orbit.
     */
-    void propagate(Real const dt)
+    void propagate(Real const dt, Anomaly & anom) const
     {
       // Check if the orbit is valid
       ASTRO_ASSERT(this->sanity_check(),
@@ -588,8 +601,19 @@ namespace Astro
       Real M_new{this->m_anom.M + n * dt};
 
       // Update the anomaly
-      this->m_anom.set_M(M_new, this->m_kepl, this->m_factor);
-      this->set_keplerian(this->m_kepl);
+      anom.set_M(M_new, this->m_kepl, this->m_factor);
+    }
+
+    /**
+    * Propagate the orbit to a new time given the reference time.
+    * \param[in] t The reference time.
+    * \param[in] dt The time step to propagate the orbit.
+    * \param[in, out] anom The anomaly to be updated.
+    * \return The propagated orbit.
+    */
+    void propagate(Real const t, Real const dt, Anomaly & anom) const
+    {
+      this->propagate(t + dt - this->m_epoch, anom);
     }
 
     /**
@@ -619,7 +643,7 @@ namespace Astro
       return Vector3(
         bf * ((1.0 + h2 - k2) * this->m_equi.f + 2.0 * hk * this->m_equi.g),
         bf * ((1.0 - h2 + k2) * this->m_equi.g + 2.0 * hk * this->m_equi.f),
-        bf * (2.0 * (h * this->m_equi.g - k * this->m_equi.f))
+        bf * (2.0 * (this->m_equi.h * this->m_equi.g - this->m_equi.k * this->m_equi.f))
       );
     }
 
@@ -658,19 +682,18 @@ namespace Astro
     */
     Real eval_L(Real t) const
     {
-      Real e{this->m_kepl.e};
       Real n{std::sqrt(this->m_mu / Power3(this->m_kepl.a))};
       Real M{this->m_anom.M + n * t}; // Assuming t is time since epoch
 
       Real nu{0.0};
-      if (e < 1.0) {
+      if (this->m_type == Type::ELLIPTIC || this->m_type == Type::CIRCULAR) {
         // Elliptic case: solve Kepler's equation for E
-        Real E{OrbitalElements::mean_to_eccentric_anomaly(M, e)};
-        nu = OrbitalElements::eccentric_to_true_anomaly(E, e);
+        Real E{OrbitalElements::M_to_E(M, this->m_kepl)};
+        nu = OrbitalElements::E_to_nu(E, this->m_kepl);
       } else {
         // Hyperbolic case: solve Kepler's equation for H
-        Real H{OrbitalElements::mean_to_hyperbolic_anomaly(M, e)};
-        nu = OrbitalElements::hyperbolic_to_true_anomaly(H, e);
+        Real H{OrbitalElements::H_to_M(M, this->m_kepl)};
+        nu = OrbitalElements::H_to_nu(H, this->m_kepl);
       }
 
       // Compute mean longitude lambda = nu + omega + Omega (retrograde sign handled by factor)
