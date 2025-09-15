@@ -1,7 +1,8 @@
 var struct_astro_1_1_orbital_elements_1_1_keplerian =
 [
     [ "Keplerian", "struct_astro_1_1_orbital_elements_1_1_keplerian.html#afdd6cce7ab3cf793f9c9c971f62c86b0", null ],
-    [ "Keplerian", "struct_astro_1_1_orbital_elements_1_1_keplerian.html#abe24e800d8008d7d6c5a7a43abca6280", null ],
+    [ "Keplerian", "struct_astro_1_1_orbital_elements_1_1_keplerian.html#a265a91f7544b26448d972cb565f8cfde", null ],
+    [ "Keplerian", "struct_astro_1_1_orbital_elements_1_1_keplerian.html#a81524be737beeed6deab8165300ce85a", null ],
     [ "Keplerian", "struct_astro_1_1_orbital_elements_1_1_keplerian.html#a014d5a559ebe89d5a6cb2b76eb92cbfe", null ],
     [ "Keplerian", "struct_astro_1_1_orbital_elements_1_1_keplerian.html#a485cf59669252aa3a696723e3db7a6a9", null ],
     [ "info", "struct_astro_1_1_orbital_elements_1_1_keplerian.html#a2c5f4f88f32b2fd7ff14d04ff8e61eca", null ],
@@ -14,6 +15,7 @@ var struct_astro_1_1_orbital_elements_1_1_keplerian =
     [ "reset", "struct_astro_1_1_orbital_elements_1_1_keplerian.html#a67f48e49079ce361f28c2f2e8bf044b9", null ],
     [ "sanity_check", "struct_astro_1_1_orbital_elements_1_1_keplerian.html#afbbcef6e11f669a37bf118cc6a6c8e24", null ],
     [ "u", "struct_astro_1_1_orbital_elements_1_1_keplerian.html#afc2bb38d83a9bedce995a59aa51a9c92", null ],
+    [ "vector", "struct_astro_1_1_orbital_elements_1_1_keplerian.html#a59efefb14a9b5d883f108df6e822c626", null ],
     [ "a", "struct_astro_1_1_orbital_elements_1_1_keplerian.html#ae274708901536058bd254a79d8e0fbbf", null ],
     [ "e", "struct_astro_1_1_orbital_elements_1_1_keplerian.html#a9dfc26a7411f2ff51d299b0b11842780", null ],
     [ "i", "struct_astro_1_1_orbital_elements_1_1_keplerian.html#a0b20b3b4dd99e33fa50b7eb3aa8cad9b", null ],

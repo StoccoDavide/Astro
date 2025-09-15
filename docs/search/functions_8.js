@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['keplerian_0',['Keplerian',['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#afdd6cce7ab3cf793f9c9c971f62c86b0',1,'Astro::OrbitalElements::Keplerian::Keplerian()'],['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#abe24e800d8008d7d6c5a7a43abca6280',1,'Astro::OrbitalElements::Keplerian::Keplerian(Real t_a, Real t_e, Real t_i, Real t_Omega, Real t_omega)'],['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#a014d5a559ebe89d5a6cb2b76eb92cbfe',1,'Astro::OrbitalElements::Keplerian::Keplerian(Keplerian const &amp;)=default'],['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#a485cf59669252aa3a696723e3db7a6a9',1,'Astro::OrbitalElements::Keplerian::Keplerian(Keplerian &amp;&amp;)=default']]],
-  ['keplerian_1',['keplerian',['../class_astro_1_1_orbit.html#a6e570a5333d2e56a71094608616df283',1,'Astro::Orbit::keplerian() const'],['../class_astro_1_1_orbit.html#a68ae6821ea08857c12b25e895aab3e0a',1,'Astro::Orbit::keplerian(Real t_a, Real t_e, Real t_i, Real t_Omega, Real t_omega)'],['../class_astro_1_1_orbit.html#a54ba25c900cd1d71391a120f25a31fe2',1,'Astro::Orbit::keplerian(Keplerian const &amp;t_kepl)']]],
-  ['keplerian_5fto_5fcartesian_2',['keplerian_to_cartesian',['../namespace_astro_1_1_orbital_elements.html#af9d3061da93f51e613fb5083bfdb5615',1,'Astro::OrbitalElements']]],
-  ['keplerian_5fto_5fequinoctial_3',['keplerian_to_equinoctial',['../namespace_astro_1_1_orbital_elements.html#a520f68fa915ab635aaaf378d43bfbf09',1,'Astro::OrbitalElements']]],
-  ['keplerian_5fto_5freference_4',['keplerian_to_reference',['../class_astro_1_1_orbit.html#a29428b5c26fe5864f7dba9af53350be5',1,'Astro::Orbit']]]
+  ['jd_5fto_5fdate_0',['JD_To_Date',['../namespace_astro.html#ab426bdfaa1fac96129a308f5c4b2fcaa',1,'Astro']]],
+  ['juliandate_1',['JulianDate',['../namespace_astro.html#a3ad285b4772fec6f51a533d249f7698f',1,'Astro']]]
 ];

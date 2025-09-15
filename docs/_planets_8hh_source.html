@@ -1,0 +1,361 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Astro: include/Astro/Planets.hh Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.png"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/StoccoDavide/Astro" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Astro
+   &#160;<span id="projectnumber">0.0.0</span>
+   </div>
+   <div id="projectbrief">A C++ library for space dynamics</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('_planets_8hh_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Planets.hh</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_planets_8hh.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2025, Davide Stocco and Enrico Bertolazzi.                  *</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *                                                                           *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * The Astro project is distributed under the GNU GPLv3.                     *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *                                                                           *</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * Davide Stocco                                           Enrico Bertolazzi *</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * University of Trento                                 University of Trento *</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * e-mail: davide.stocco@unitn.it         e-mail: enrico.bertolazzi@unitn.it *</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">\* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#ifndef ASTRO_PLANETS_HH</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#define ASTRO_PLANETS_HH</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="_body_8hh.html">Astro/Body.hh</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="_utilities_8hh.html">Astro/Utilities.hh</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_astro.html">Astro</a></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html">   19</a></span>  <span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_astro_1_1_planets.html">Planets</a></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#a29bc47e662b215eec0f27fa230c76453">   22</a></span>    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#a29bc47e662b215eec0f27fa230c76453">KM3_S2_TO_AU3_DAY2</a>{(KM_TO_AU*KM_TO_AU*KM_TO_AU)/(SEC_TO_DAY*SEC_TO_DAY)}; </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#ae2befc6f11db437e8d153636ec3b359b">   23</a></span>    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#ae2befc6f11db437e8d153636ec3b359b">AU3_DAY2_TO_KM3_S2</a>{1.0/<a class="code hl_variable" href="namespace_astro_1_1_planets.html#a29bc47e662b215eec0f27fa230c76453">KM3_S2_TO_AU3_DAY2</a>}; </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="comment">/*\</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">     |   ____</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">     |  / ___| _   _ _ __</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">     |  \___ \| | | | &#39;_ \</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">     |   ___) | |_| | | | |</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">     |  |____/ \__,_|_| |_|</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">     |</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">    \*/</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#a2a9943439d26f2d33fbe14fb73f26603">   34</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#a2a9943439d26f2d33fbe14fb73f26603">Sun_mass_KG</a>{1.9885E30}; </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#ac21923b2347cdd973aea9e140d90f308">   35</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#ac21923b2347cdd973aea9e140d90f308">Sun_radius_KM</a>{695700.0}; </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#a6c1b325b1297deef4368e2869d4f2195">   36</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#a6c1b325b1297deef4368e2869d4f2195">Sun_radius_AU</a>{<a class="code hl_function" href="namespace_astro.html#a180f3bde2fb772ed5423b98a4cba9933">KM_To_AU</a>(<a class="code hl_variable" href="namespace_astro_1_1_planets.html#ac21923b2347cdd973aea9e140d90f308">Sun_radius_KM</a>)}; </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#af137cabf29e593193c0908d87c35f839">   37</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#af137cabf29e593193c0908d87c35f839">Sun_mu_KM3_S2</a>{1.32712440018E11}; </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#a2d625ab7b19ea2da6ebd612605f40d8c">   38</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#a2d625ab7b19ea2da6ebd612605f40d8c">Sun_mu_AU3_DAY2</a>{<a class="code hl_function" href="namespace_astro.html#ac8fc0044b2733010a1ed5802df94edaf">KM3_S2_To_AU3_DAY2</a>(<a class="code hl_variable" href="namespace_astro_1_1_planets.html#af137cabf29e593193c0908d87c35f839">Sun_mu_KM3_S2</a>)}; </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="comment">/*\</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">     |   _____           _   _</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">     |  | ____|__ _ _ __| |_| |__</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">     |  |  _| / _` | &#39;__| __| &#39;_ \</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">     |  | |__| (_| | |  | |_| | | |</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">     |  |_____\__,_|_|   \__|_| |_|</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">     |</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">    \*/</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#aba2d63aab68cd2ebf8f0de65af15fc0c">   49</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#aba2d63aab68cd2ebf8f0de65af15fc0c">Earth_mass_KG</a>{5.97219E24}; </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#a30d92371b1cbca789b2a3e8c54cebbb4">   50</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#a30d92371b1cbca789b2a3e8c54cebbb4">Earth_radius_KM</a>{6378.1370}; </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#af162ff05b670bef43ceb121a12e8dfe0">   51</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#af162ff05b670bef43ceb121a12e8dfe0">Earth_radius_AU</a>{<a class="code hl_function" href="namespace_astro.html#a180f3bde2fb772ed5423b98a4cba9933">KM_To_AU</a>(<a class="code hl_variable" href="namespace_astro_1_1_planets.html#a30d92371b1cbca789b2a3e8c54cebbb4">Earth_radius_KM</a>)}; </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#aad64b66ea05f968d3d6dfb97c083df51">   52</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#aad64b66ea05f968d3d6dfb97c083df51">Earth_mu_KM3_S2</a>{398600.4418}; </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#ad1dcd54a9e85b202ba53976b3010101e">   53</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#ad1dcd54a9e85b202ba53976b3010101e">Earth_mu_KM3_DAY2</a>{<a class="code hl_function" href="namespace_astro.html#a1faef18d0c76eaecfb9156f907fb2457">KM3_S2_To_KM3_DAY2</a>(<a class="code hl_variable" href="namespace_astro_1_1_planets.html#aad64b66ea05f968d3d6dfb97c083df51">Earth_mu_KM3_S2</a>)}; </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#a67d2295eb2da49bd2b683cb1b034982e">   54</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#a67d2295eb2da49bd2b683cb1b034982e">Earth_mu_AU3_DAY2</a>{<a class="code hl_function" href="namespace_astro.html#ac8fc0044b2733010a1ed5802df94edaf">KM3_S2_To_AU3_DAY2</a>(<a class="code hl_variable" href="namespace_astro_1_1_planets.html#aad64b66ea05f968d3d6dfb97c083df51">Earth_mu_KM3_S2</a>)}; </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
+<div class="foldopen" id="foldopen00066" data-start="{" data-end="};">
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="struct_astro_1_1_planets_1_1_keplerian_earth.html">   66</a></span>    <span class="keyword">struct </span><a class="code hl_function" href="struct_astro_1_1_planets_1_1_keplerian_earth.html#ac27a52bf954e12741526a204a7d61c32">KeplerianEarth</a> : <span class="keyword">public</span> <a class="code hl_struct" href="struct_astro_1_1_orbital_elements_1_1_keplerian.html">OrbitalElements::Keplerian</a></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    {</div>
+<div class="foldopen" id="foldopen00068" data-start="{" data-end="}">
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="struct_astro_1_1_planets_1_1_keplerian_earth.html#ac27a52bf954e12741526a204a7d61c32">   68</a></span>      <a class="code hl_function" href="struct_astro_1_1_planets_1_1_keplerian_earth.html#ac27a52bf954e12741526a204a7d61c32">KeplerianEarth</a>()</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        this-&gt;<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#ae274708901536058bd254a79d8e0fbbf">a</a>     = 1.00000011; <span class="comment">// Semi-major axis (AU)</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        this-&gt;<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#a9dfc26a7411f2ff51d299b0b11842780">e</a>     = 0.01671022; <span class="comment">// Eccentricity (-)</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        this-&gt;<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#a0b20b3b4dd99e33fa50b7eb3aa8cad9b">i</a>     = <a class="code hl_function" href="namespace_astro.html#a52d30c96cc4302668576e128562c935f">Deg_To_Rad</a>(0.00005); <span class="comment">// Inclination (rad)</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        this-&gt;<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#aa3e17f4396afcaf0d70172818cc3402c">Omega</a> = <a class="code hl_function" href="namespace_astro.html#a52d30c96cc4302668576e128562c935f">Deg_To_Rad</a>(-11.26064); <span class="comment">// Longitude of the ascending node (rad)</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        this-&gt;<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#a76fea831f3d67041f2e06c54d51bca71">omega</a> = <a class="code hl_function" href="namespace_astro.html#a52d30c96cc4302668576e128562c935f">Deg_To_Rad</a>(102.93768193); <span class="comment">// Argument of periapsis (rad)</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      }</div>
+</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    };</div>
+</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span></div>
+<div class="foldopen" id="foldopen00083" data-start="{" data-end="}">
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#a24f4135cebafe3599ac75385c69d7a18">   83</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="class_astro_1_1_body.html">Body</a> <a class="code hl_function" href="namespace_astro_1_1_planets.html#a24f4135cebafe3599ac75385c69d7a18">Earth</a>()</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      <a class="code hl_class" href="class_astro_1_1_body.html">Body</a> earth(<span class="stringliteral">&quot;Earth&quot;</span>, <a class="code hl_variable" href="namespace_astro_1_1_planets.html#aba2d63aab68cd2ebf8f0de65af15fc0c">Earth_mass_KG</a>, <a class="code hl_variable" href="namespace_astro_1_1_planets.html#af162ff05b670bef43ceb121a12e8dfe0">Earth_radius_AU</a>);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>      earth.<a class="code hl_function" href="class_astro_1_1_body.html#a86e162f02726819a813855d189ab9179">set_orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#ae062656cbf56d99a6af3661b9d977816">set_factor</a>(Factor::POSIGRADE);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      earth.<a class="code hl_function" href="class_astro_1_1_body.html#a86e162f02726819a813855d189ab9179">set_orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#a8d3df9daa4221c8a2ace57c5a59be5b1">set_mu</a>(<a class="code hl_variable" href="namespace_astro_1_1_planets.html#a2d625ab7b19ea2da6ebd612605f40d8c">Sun_mu_AU3_DAY2</a>);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      earth.<a class="code hl_function" href="class_astro_1_1_body.html#a86e162f02726819a813855d189ab9179">set_orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#aebb6b5d945e95c48e0ef4d76dd2dbff2">set_keplerian</a>(<a class="code hl_struct" href="struct_astro_1_1_planets_1_1_keplerian_earth.html">KeplerianEarth</a>(), 0.0);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      earth.<a class="code hl_function" href="class_astro_1_1_body.html#a7a091975d5546a2bd2def30b29caaa2a">set_epoch</a>(51544.0); <span class="comment">// J2000 epoch (MJD 2451545.0 = JD 51544.5)</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      earth.<a class="code hl_function" href="class_astro_1_1_body.html#aa33aec2dcbef66b7f5efcc376b23a55d">set_epoch_anomaly</a>().<a class="code hl_function" href="struct_astro_1_1_orbital_elements_1_1_anomaly.html#a82340ab6dd7a7a7421e03bba8622b512">set_M</a>(<a class="code hl_function" href="namespace_astro.html#a52d30c96cc4302668576e128562c935f">Deg_To_Rad</a>(100.46435), earth.<a class="code hl_function" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#a6e570a5333d2e56a71094608616df283">keplerian</a>(), Factor::POSIGRADE);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      <span class="keywordflow">return</span> earth;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
+</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#ad9b2e55c946445485d171898be011e87">   94</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#ad9b2e55c946445485d171898be011e87">EARTH_MAG_MOMENT</a>{7.96e15}; </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span></div>
+<div class="foldopen" id="foldopen00102" data-start="{" data-end="}">
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#ad9c70b90c8ed6adf62bcafd9c28527f1">  102</a></span>    <span class="keyword">inline</span> <a class="code hl_typedef" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> <a class="code hl_function" href="namespace_astro_1_1_planets.html#ad9c70b90c8ed6adf62bcafd9c28527f1">EarthMagneticFieldDipole</a>(<a class="code hl_typedef" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> <span class="keyword">const</span> &amp; position)</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      <span class="comment">// Compute radial distance</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> r{position.norm()};</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      <span class="keywordflow">if</span> (r &lt; <a class="code hl_variable" href="namespace_astro.html#a5329ffd911420d1b53d7b0bf7e7b17f2">EPSILON_LOW</a>) {<span class="keywordflow">return</span> <a class="code hl_variable" href="namespace_astro.html#a013aa2ce8cc87610a61e0fc82cfcb04d">ZEROS_VEC3</a>;} <span class="comment">// avoid division by zero</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      <span class="comment">// Unit vector</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      <a class="code hl_typedef" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> r_hat{position/r};</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>      <span class="comment">// Magnetic dipole moment aligned with z-axis (simplified)</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>      <a class="code hl_typedef" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> m(0.0, 0.0, <a class="code hl_variable" href="namespace_astro_1_1_planets.html#ad9b2e55c946445485d171898be011e87">EARTH_MAG_MOMENT</a>);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>      <a class="code hl_typedef" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> B{(3.0 * r_hat * m.dot(r_hat) - m) / <a class="code hl_function" href="namespace_astro.html#a64e50dbc72fa6d35a0c362a321890aa6">Power3</a>(r)};</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>      <span class="keywordflow">return</span> B;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    }</div>
+</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="comment">/*\</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="comment">     |   __  __</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment">     |  |  \/  | ___   ___  _ __</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment">     |  | |\/| |/ _ \ / _ \| &#39;_ \</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment">     |  | |  | | (_) | (_) | | | |</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="comment">     |  |_|  |_|\___/ \___/|_| |_|</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="comment">     |</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="comment">    \*/</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#a1f1affd7d9a7494e8ece233cdbf99c1a">  128</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#a1f1affd7d9a7494e8ece233cdbf99c1a">Moon_mass_KG</a>{7.34767309E22}; </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#a2e7391ad27df228c8399c5069d941f6e">  129</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#a2e7391ad27df228c8399c5069d941f6e">Moon_radius_KM</a>{1737.400}; </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#a0abaa2c06052b8f5060df8681509726a">  130</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#a0abaa2c06052b8f5060df8681509726a">Moon_radius_AU</a>{<a class="code hl_variable" href="namespace_astro_1_1_planets.html#a2e7391ad27df228c8399c5069d941f6e">Moon_radius_KM</a>*KM_TO_AU}; </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#a201aed9911cdb4763477da7013c75978">  131</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#a201aed9911cdb4763477da7013c75978">Moon_mu_M3S2</a>{4.9048695E12}; </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#a94ebf2cf6a1f2be365cf14921ef6d40c">  132</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#a94ebf2cf6a1f2be365cf14921ef6d40c">Moon_mu_KM3_S2</a>{<a class="code hl_variable" href="namespace_astro_1_1_planets.html#a201aed9911cdb4763477da7013c75978">Moon_mu_M3S2</a>/1.0E9}; </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#a21b8eb526fcd4e9b20bc92075b563068">  133</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro_1_1_planets.html#a21b8eb526fcd4e9b20bc92075b563068">Moon_mu_AU3_DAY2</a>{<a class="code hl_variable" href="namespace_astro_1_1_planets.html#a94ebf2cf6a1f2be365cf14921ef6d40c">Moon_mu_KM3_S2</a>*<a class="code hl_variable" href="namespace_astro_1_1_planets.html#a29bc47e662b215eec0f27fa230c76453">KM3_S2_TO_AU3_DAY2</a>}; </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span></div>
+<div class="foldopen" id="foldopen00145" data-start="{" data-end="};">
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="struct_astro_1_1_planets_1_1_keplerian_moon.html">  145</a></span>    <span class="keyword">struct </span><a class="code hl_function" href="struct_astro_1_1_planets_1_1_keplerian_moon.html#a93704948d2794efb662f6163b3e30392">KeplerianMoon</a> : <span class="keyword">public</span> <a class="code hl_struct" href="struct_astro_1_1_orbital_elements_1_1_keplerian.html">OrbitalElements::Keplerian</a></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    {</div>
+<div class="foldopen" id="foldopen00147" data-start="{" data-end="}">
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="struct_astro_1_1_planets_1_1_keplerian_moon.html#a93704948d2794efb662f6163b3e30392">  147</a></span>      <a class="code hl_function" href="struct_astro_1_1_planets_1_1_keplerian_moon.html#a93704948d2794efb662f6163b3e30392">KeplerianMoon</a>()</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>      {</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        this-&gt;<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#ae274708901536058bd254a79d8e0fbbf">a</a>     = 0.002569555; <span class="comment">// Semi-major axis (AU)</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        this-&gt;<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#a9dfc26a7411f2ff51d299b0b11842780">e</a>     = 0.0549006; <span class="comment">// Eccentricity (-)</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        this-&gt;<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#a0b20b3b4dd99e33fa50b7eb3aa8cad9b">i</a>     = <a class="code hl_function" href="namespace_astro.html#a52d30c96cc4302668576e128562c935f">Deg_To_Rad</a>(5.145396); <span class="comment">// Inclination (rad)</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        this-&gt;<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#aa3e17f4396afcaf0d70172818cc3402c">Omega</a> = <a class="code hl_function" href="namespace_astro.html#a52d30c96cc4302668576e128562c935f">Deg_To_Rad</a>(125.1228); <span class="comment">// Longitude of the ascending node (rad)</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        this-&gt;<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#a76fea831f3d67041f2e06c54d51bca71">omega</a> = <a class="code hl_function" href="namespace_astro.html#a52d30c96cc4302668576e128562c935f">Deg_To_Rad</a>(318.0634); <span class="comment">// Argument of periapsis (rad)</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>      }</div>
+</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    };</div>
+</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span></div>
+<div class="foldopen" id="foldopen00161" data-start="{" data-end="}">
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="namespace_astro_1_1_planets.html#a76edeec67d3d3df34a32941929423dd6">  161</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="class_astro_1_1_body.html">Body</a> <a class="code hl_function" href="namespace_astro_1_1_planets.html#a76edeec67d3d3df34a32941929423dd6">Moon</a>()</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    {</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>      <a class="code hl_class" href="class_astro_1_1_body.html">Body</a> moon(<span class="stringliteral">&quot;Moon&quot;</span>, <a class="code hl_variable" href="namespace_astro_1_1_planets.html#a1f1affd7d9a7494e8ece233cdbf99c1a">Moon_mass_KG</a>, <a class="code hl_variable" href="namespace_astro_1_1_planets.html#a0abaa2c06052b8f5060df8681509726a">Moon_radius_AU</a>);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>      moon.<a class="code hl_function" href="class_astro_1_1_body.html#a86e162f02726819a813855d189ab9179">set_orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#ae062656cbf56d99a6af3661b9d977816">set_factor</a>(Factor::POSIGRADE);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>      moon.<a class="code hl_function" href="class_astro_1_1_body.html#a86e162f02726819a813855d189ab9179">set_orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#a8d3df9daa4221c8a2ace57c5a59be5b1">set_mu</a>(<a class="code hl_variable" href="namespace_astro_1_1_planets.html#a67d2295eb2da49bd2b683cb1b034982e">Earth_mu_AU3_DAY2</a>);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>      moon.<a class="code hl_function" href="class_astro_1_1_body.html#a86e162f02726819a813855d189ab9179">set_orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#aebb6b5d945e95c48e0ef4d76dd2dbff2">set_keplerian</a>(<a class="code hl_struct" href="struct_astro_1_1_planets_1_1_keplerian_moon.html">KeplerianMoon</a>(), 0.0);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>      moon.<a class="code hl_function" href="class_astro_1_1_body.html#a7a091975d5546a2bd2def30b29caaa2a">set_epoch</a>(51544.0); <span class="comment">// J2000 epoch (JD 2451545.0 = MJD 51544.5)</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>      moon.<a class="code hl_function" href="class_astro_1_1_body.html#aa33aec2dcbef66b7f5efcc376b23a55d">set_epoch_anomaly</a>().<a class="code hl_function" href="struct_astro_1_1_orbital_elements_1_1_anomaly.html#a82340ab6dd7a7a7421e03bba8622b512">set_M</a>(<a class="code hl_function" href="namespace_astro.html#a52d30c96cc4302668576e128562c935f">Deg_To_Rad</a>(134.96340251), moon.<a class="code hl_function" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#a6e570a5333d2e56a71094608616df283">keplerian</a>(), Factor::POSIGRADE);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>      <span class="keywordflow">return</span> moon;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    }</div>
+</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>  } <span class="comment">// namespace Planets</span></div>
+</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>} <span class="comment">// namespace Astro</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="preprocessor">#endif </span><span class="comment">// ASTRO_PLANETS_HH</span></div>
+<div class="ttc" id="a_body_8hh_html"><div class="ttname"><a href="_body_8hh.html">Body.hh</a></div></div>
+<div class="ttc" id="a_utilities_8hh_html"><div class="ttname"><a href="_utilities_8hh.html">Utilities.hh</a></div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html"><div class="ttname"><a href="class_astro_1_1_body.html">Astro::Body</a></div><div class="ttdoc">Astronomical body class container.</div><div class="ttdef"><b>Definition</b> Body.hh:45</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a5004bec78ca942a30cf90f82bd3cab22"><div class="ttname"><a href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">Astro::Body::orbit</a></div><div class="ttdeci">Orbit const &amp; orbit() const</div><div class="ttdef"><b>Definition</b> Body.hh:118</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a7a091975d5546a2bd2def30b29caaa2a"><div class="ttname"><a href="class_astro_1_1_body.html#a7a091975d5546a2bd2def30b29caaa2a">Astro::Body::set_epoch</a></div><div class="ttdeci">void set_epoch(Real const t_epoch)</div><div class="ttdef"><b>Definition</b> Body.hh:173</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a86e162f02726819a813855d189ab9179"><div class="ttname"><a href="class_astro_1_1_body.html#a86e162f02726819a813855d189ab9179">Astro::Body::set_orbit</a></div><div class="ttdeci">Orbit &amp; set_orbit()</div><div class="ttdef"><b>Definition</b> Body.hh:124</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_aa33aec2dcbef66b7f5efcc376b23a55d"><div class="ttname"><a href="class_astro_1_1_body.html#aa33aec2dcbef66b7f5efcc376b23a55d">Astro::Body::set_epoch_anomaly</a></div><div class="ttdeci">Anomaly &amp; set_epoch_anomaly()</div><div class="ttdef"><b>Definition</b> Body.hh:136</div></div>
+<div class="ttc" id="aclass_astro_1_1_orbit_html_a6e570a5333d2e56a71094608616df283"><div class="ttname"><a href="class_astro_1_1_orbit.html#a6e570a5333d2e56a71094608616df283">Astro::Orbit::keplerian</a></div><div class="ttdeci">Keplerian const &amp; keplerian() const</div><div class="ttdef"><b>Definition</b> Orbit.hh:140</div></div>
+<div class="ttc" id="aclass_astro_1_1_orbit_html_a8d3df9daa4221c8a2ace57c5a59be5b1"><div class="ttname"><a href="class_astro_1_1_orbit.html#a8d3df9daa4221c8a2ace57c5a59be5b1">Astro::Orbit::set_mu</a></div><div class="ttdeci">void set_mu(Real const t_mu)</div><div class="ttdef"><b>Definition</b> Orbit.hh:322</div></div>
+<div class="ttc" id="aclass_astro_1_1_orbit_html_ae062656cbf56d99a6af3661b9d977816"><div class="ttname"><a href="class_astro_1_1_orbit.html#ae062656cbf56d99a6af3661b9d977816">Astro::Orbit::set_factor</a></div><div class="ttdeci">void set_factor(Factor t_factor)</div><div class="ttdef"><b>Definition</b> Orbit.hh:310</div></div>
+<div class="ttc" id="aclass_astro_1_1_orbit_html_aebb6b5d945e95c48e0ef4d76dd2dbff2"><div class="ttname"><a href="class_astro_1_1_orbit.html#aebb6b5d945e95c48e0ef4d76dd2dbff2">Astro::Orbit::set_keplerian</a></div><div class="ttdeci">void set_keplerian(Real const t_a, Real const t_e, Real const t_i, Real const t_Omega, Real const t_omega, Real const nu)</div><div class="ttdef"><b>Definition</b> Orbit.hh:151</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html"><div class="ttname"><a href="namespace_astro_1_1_planets.html">Astro::Planets</a></div><div class="ttdef"><b>Definition</b> Planets.hh:20</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_a0abaa2c06052b8f5060df8681509726a"><div class="ttname"><a href="namespace_astro_1_1_planets.html#a0abaa2c06052b8f5060df8681509726a">Astro::Planets::Moon_radius_AU</a></div><div class="ttdeci">static Real const Moon_radius_AU</div><div class="ttdef"><b>Definition</b> Planets.hh:130</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_a1f1affd7d9a7494e8ece233cdbf99c1a"><div class="ttname"><a href="namespace_astro_1_1_planets.html#a1f1affd7d9a7494e8ece233cdbf99c1a">Astro::Planets::Moon_mass_KG</a></div><div class="ttdeci">static Real const Moon_mass_KG</div><div class="ttdef"><b>Definition</b> Planets.hh:128</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_a201aed9911cdb4763477da7013c75978"><div class="ttname"><a href="namespace_astro_1_1_planets.html#a201aed9911cdb4763477da7013c75978">Astro::Planets::Moon_mu_M3S2</a></div><div class="ttdeci">static Real const Moon_mu_M3S2</div><div class="ttdef"><b>Definition</b> Planets.hh:131</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_a21b8eb526fcd4e9b20bc92075b563068"><div class="ttname"><a href="namespace_astro_1_1_planets.html#a21b8eb526fcd4e9b20bc92075b563068">Astro::Planets::Moon_mu_AU3_DAY2</a></div><div class="ttdeci">static Real const Moon_mu_AU3_DAY2</div><div class="ttdef"><b>Definition</b> Planets.hh:133</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_a24f4135cebafe3599ac75385c69d7a18"><div class="ttname"><a href="namespace_astro_1_1_planets.html#a24f4135cebafe3599ac75385c69d7a18">Astro::Planets::Earth</a></div><div class="ttdeci">Body Earth()</div><div class="ttdoc">Create a Earth object with J2000 Keplerian orbital elements.</div><div class="ttdef"><b>Definition</b> Planets.hh:83</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_a29bc47e662b215eec0f27fa230c76453"><div class="ttname"><a href="namespace_astro_1_1_planets.html#a29bc47e662b215eec0f27fa230c76453">Astro::Planets::KM3_S2_TO_AU3_DAY2</a></div><div class="ttdeci">static const Real KM3_S2_TO_AU3_DAY2</div><div class="ttdef"><b>Definition</b> Planets.hh:22</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_a2a9943439d26f2d33fbe14fb73f26603"><div class="ttname"><a href="namespace_astro_1_1_planets.html#a2a9943439d26f2d33fbe14fb73f26603">Astro::Planets::Sun_mass_KG</a></div><div class="ttdeci">static Real const Sun_mass_KG</div><div class="ttdef"><b>Definition</b> Planets.hh:34</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_a2d625ab7b19ea2da6ebd612605f40d8c"><div class="ttname"><a href="namespace_astro_1_1_planets.html#a2d625ab7b19ea2da6ebd612605f40d8c">Astro::Planets::Sun_mu_AU3_DAY2</a></div><div class="ttdeci">static Real const Sun_mu_AU3_DAY2</div><div class="ttdef"><b>Definition</b> Planets.hh:38</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_a2e7391ad27df228c8399c5069d941f6e"><div class="ttname"><a href="namespace_astro_1_1_planets.html#a2e7391ad27df228c8399c5069d941f6e">Astro::Planets::Moon_radius_KM</a></div><div class="ttdeci">static Real const Moon_radius_KM</div><div class="ttdef"><b>Definition</b> Planets.hh:129</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_a30d92371b1cbca789b2a3e8c54cebbb4"><div class="ttname"><a href="namespace_astro_1_1_planets.html#a30d92371b1cbca789b2a3e8c54cebbb4">Astro::Planets::Earth_radius_KM</a></div><div class="ttdeci">static Real const Earth_radius_KM</div><div class="ttdef"><b>Definition</b> Planets.hh:50</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_a67d2295eb2da49bd2b683cb1b034982e"><div class="ttname"><a href="namespace_astro_1_1_planets.html#a67d2295eb2da49bd2b683cb1b034982e">Astro::Planets::Earth_mu_AU3_DAY2</a></div><div class="ttdeci">static Real const Earth_mu_AU3_DAY2</div><div class="ttdef"><b>Definition</b> Planets.hh:54</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_a6c1b325b1297deef4368e2869d4f2195"><div class="ttname"><a href="namespace_astro_1_1_planets.html#a6c1b325b1297deef4368e2869d4f2195">Astro::Planets::Sun_radius_AU</a></div><div class="ttdeci">static Real const Sun_radius_AU</div><div class="ttdef"><b>Definition</b> Planets.hh:36</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_a76edeec67d3d3df34a32941929423dd6"><div class="ttname"><a href="namespace_astro_1_1_planets.html#a76edeec67d3d3df34a32941929423dd6">Astro::Planets::Moon</a></div><div class="ttdeci">Body Moon()</div><div class="ttdoc">Create a Moon object with Keplerian orbital elements.</div><div class="ttdef"><b>Definition</b> Planets.hh:161</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_a94ebf2cf6a1f2be365cf14921ef6d40c"><div class="ttname"><a href="namespace_astro_1_1_planets.html#a94ebf2cf6a1f2be365cf14921ef6d40c">Astro::Planets::Moon_mu_KM3_S2</a></div><div class="ttdeci">static Real const Moon_mu_KM3_S2</div><div class="ttdef"><b>Definition</b> Planets.hh:132</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_aad64b66ea05f968d3d6dfb97c083df51"><div class="ttname"><a href="namespace_astro_1_1_planets.html#aad64b66ea05f968d3d6dfb97c083df51">Astro::Planets::Earth_mu_KM3_S2</a></div><div class="ttdeci">static Real const Earth_mu_KM3_S2</div><div class="ttdef"><b>Definition</b> Planets.hh:52</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_aba2d63aab68cd2ebf8f0de65af15fc0c"><div class="ttname"><a href="namespace_astro_1_1_planets.html#aba2d63aab68cd2ebf8f0de65af15fc0c">Astro::Planets::Earth_mass_KG</a></div><div class="ttdeci">static Real const Earth_mass_KG</div><div class="ttdef"><b>Definition</b> Planets.hh:49</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_ac21923b2347cdd973aea9e140d90f308"><div class="ttname"><a href="namespace_astro_1_1_planets.html#ac21923b2347cdd973aea9e140d90f308">Astro::Planets::Sun_radius_KM</a></div><div class="ttdeci">static Real const Sun_radius_KM</div><div class="ttdef"><b>Definition</b> Planets.hh:35</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_ad1dcd54a9e85b202ba53976b3010101e"><div class="ttname"><a href="namespace_astro_1_1_planets.html#ad1dcd54a9e85b202ba53976b3010101e">Astro::Planets::Earth_mu_KM3_DAY2</a></div><div class="ttdeci">static Real const Earth_mu_KM3_DAY2</div><div class="ttdef"><b>Definition</b> Planets.hh:53</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_ad9b2e55c946445485d171898be011e87"><div class="ttname"><a href="namespace_astro_1_1_planets.html#ad9b2e55c946445485d171898be011e87">Astro::Planets::EARTH_MAG_MOMENT</a></div><div class="ttdeci">static constexpr Real EARTH_MAG_MOMENT</div><div class="ttdef"><b>Definition</b> Planets.hh:94</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_ad9c70b90c8ed6adf62bcafd9c28527f1"><div class="ttname"><a href="namespace_astro_1_1_planets.html#ad9c70b90c8ed6adf62bcafd9c28527f1">Astro::Planets::EarthMagneticFieldDipole</a></div><div class="ttdeci">Vector3 EarthMagneticFieldDipole(Vector3 const &amp;position)</div><div class="ttdoc">Compute the Eath magnetic field at a given positionusing the IGRF model.</div><div class="ttdef"><b>Definition</b> Planets.hh:102</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_ae2befc6f11db437e8d153636ec3b359b"><div class="ttname"><a href="namespace_astro_1_1_planets.html#ae2befc6f11db437e8d153636ec3b359b">Astro::Planets::AU3_DAY2_TO_KM3_S2</a></div><div class="ttdeci">static const Real AU3_DAY2_TO_KM3_S2</div><div class="ttdef"><b>Definition</b> Planets.hh:23</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_af137cabf29e593193c0908d87c35f839"><div class="ttname"><a href="namespace_astro_1_1_planets.html#af137cabf29e593193c0908d87c35f839">Astro::Planets::Sun_mu_KM3_S2</a></div><div class="ttdeci">static Real const Sun_mu_KM3_S2</div><div class="ttdef"><b>Definition</b> Planets.hh:37</div></div>
+<div class="ttc" id="anamespace_astro_1_1_planets_html_af162ff05b670bef43ceb121a12e8dfe0"><div class="ttname"><a href="namespace_astro_1_1_planets.html#af162ff05b670bef43ceb121a12e8dfe0">Astro::Planets::Earth_radius_AU</a></div><div class="ttdeci">static Real const Earth_radius_AU</div><div class="ttdef"><b>Definition</b> Planets.hh:51</div></div>
+<div class="ttc" id="anamespace_astro_html"><div class="ttname"><a href="namespace_astro.html">Astro</a></div><div class="ttdoc">The namespace for the Astro library.</div><div class="ttdef"><b>Definition</b> Astro.hh:73</div></div>
+<div class="ttc" id="anamespace_astro_html_a013aa2ce8cc87610a61e0fc82cfcb04d"><div class="ttname"><a href="namespace_astro.html#a013aa2ce8cc87610a61e0fc82cfcb04d">Astro::ZEROS_VEC3</a></div><div class="ttdeci">static Vector3 const ZEROS_VEC3</div><div class="ttdef"><b>Definition</b> Astro.hh:154</div></div>
+<div class="ttc" id="anamespace_astro_html_a180f3bde2fb772ed5423b98a4cba9933"><div class="ttname"><a href="namespace_astro.html#a180f3bde2fb772ed5423b98a4cba9933">Astro::KM_To_AU</a></div><div class="ttdeci">Real KM_To_AU(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:141</div></div>
+<div class="ttc" id="anamespace_astro_html_a1faef18d0c76eaecfb9156f907fb2457"><div class="ttname"><a href="namespace_astro.html#a1faef18d0c76eaecfb9156f907fb2457">Astro::KM3_S2_To_KM3_DAY2</a></div><div class="ttdeci">Real KM3_S2_To_KM3_DAY2(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:177</div></div>
+<div class="ttc" id="anamespace_astro_html_a52d30c96cc4302668576e128562c935f"><div class="ttname"><a href="namespace_astro.html#a52d30c96cc4302668576e128562c935f">Astro::Deg_To_Rad</a></div><div class="ttdeci">Real Deg_To_Rad(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:72</div></div>
+<div class="ttc" id="anamespace_astro_html_a5329ffd911420d1b53d7b0bf7e7b17f2"><div class="ttname"><a href="namespace_astro.html#a5329ffd911420d1b53d7b0bf7e7b17f2">Astro::EPSILON_LOW</a></div><div class="ttdeci">static Real const EPSILON_LOW</div><div class="ttdef"><b>Definition</b> Astro.hh:132</div></div>
+<div class="ttc" id="anamespace_astro_html_a64e50dbc72fa6d35a0c362a321890aa6"><div class="ttname"><a href="namespace_astro.html#a64e50dbc72fa6d35a0c362a321890aa6">Astro::Power3</a></div><div class="ttdeci">Real Power3(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:42</div></div>
+<div class="ttc" id="anamespace_astro_html_a9383c950271cc6fed61837e4b5301ae1"><div class="ttname"><a href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Astro::Real</a></div><div class="ttdeci">double Real</div><div class="ttdef"><b>Definition</b> Astro.hh:84</div></div>
+<div class="ttc" id="anamespace_astro_html_ab9e5196f2fc3e730d83d112e9cfbe1bc"><div class="ttname"><a href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Astro::Vector3</a></div><div class="ttdeci">Eigen::Vector&lt; Real, 3 &gt; Vector3</div><div class="ttdef"><b>Definition</b> Astro.hh:93</div></div>
+<div class="ttc" id="anamespace_astro_html_ac8fc0044b2733010a1ed5802df94edaf"><div class="ttname"><a href="namespace_astro.html#ac8fc0044b2733010a1ed5802df94edaf">Astro::KM3_S2_To_AU3_DAY2</a></div><div class="ttdeci">Real KM3_S2_To_AU3_DAY2(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:181</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_anomaly_html_a82340ab6dd7a7a7421e03bba8622b512"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_anomaly.html#a82340ab6dd7a7a7421e03bba8622b512">Astro::OrbitalElements::Anomaly::set_M</a></div><div class="ttdeci">void set_M(Real t_M, Keplerian const &amp;kepl, Factor const I)</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:1173</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_keplerian_html"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_keplerian.html">Astro::OrbitalElements::Keplerian</a></div><div class="ttdoc">Structure container for the (modified) Keplerian orbital elements.</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:230</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_keplerian_html_a0b20b3b4dd99e33fa50b7eb3aa8cad9b"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#a0b20b3b4dd99e33fa50b7eb3aa8cad9b">Astro::OrbitalElements::Keplerian::i</a></div><div class="ttdeci">Real i</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:233</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_keplerian_html_a76fea831f3d67041f2e06c54d51bca71"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#a76fea831f3d67041f2e06c54d51bca71">Astro::OrbitalElements::Keplerian::omega</a></div><div class="ttdeci">Real omega</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:235</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_keplerian_html_a9dfc26a7411f2ff51d299b0b11842780"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#a9dfc26a7411f2ff51d299b0b11842780">Astro::OrbitalElements::Keplerian::e</a></div><div class="ttdeci">Real e</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:232</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_keplerian_html_aa3e17f4396afcaf0d70172818cc3402c"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#aa3e17f4396afcaf0d70172818cc3402c">Astro::OrbitalElements::Keplerian::Omega</a></div><div class="ttdeci">Real Omega</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:234</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_keplerian_html_ae274708901536058bd254a79d8e0fbbf"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#ae274708901536058bd254a79d8e0fbbf">Astro::OrbitalElements::Keplerian::a</a></div><div class="ttdeci">Real a</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:231</div></div>
+<div class="ttc" id="astruct_astro_1_1_planets_1_1_keplerian_earth_html"><div class="ttname"><a href="struct_astro_1_1_planets_1_1_keplerian_earth.html">Astro::Planets::KeplerianEarth</a></div><div class="ttdoc">Structure container for the Earth J2000 Keplerian orbital elements for orbit about the Sun.</div><div class="ttdef"><b>Definition</b> Planets.hh:67</div></div>
+<div class="ttc" id="astruct_astro_1_1_planets_1_1_keplerian_earth_html_ac27a52bf954e12741526a204a7d61c32"><div class="ttname"><a href="struct_astro_1_1_planets_1_1_keplerian_earth.html#ac27a52bf954e12741526a204a7d61c32">Astro::Planets::KeplerianEarth::KeplerianEarth</a></div><div class="ttdeci">KeplerianEarth()</div><div class="ttdef"><b>Definition</b> Planets.hh:68</div></div>
+<div class="ttc" id="astruct_astro_1_1_planets_1_1_keplerian_moon_html"><div class="ttname"><a href="struct_astro_1_1_planets_1_1_keplerian_moon.html">Astro::Planets::KeplerianMoon</a></div><div class="ttdoc">Structure container for the Moon Keplerian orbital elements for orbit about the Earth.</div><div class="ttdef"><b>Definition</b> Planets.hh:146</div></div>
+<div class="ttc" id="astruct_astro_1_1_planets_1_1_keplerian_moon_html_a93704948d2794efb662f6163b3e30392"><div class="ttname"><a href="struct_astro_1_1_planets_1_1_keplerian_moon.html#a93704948d2794efb662f6163b3e30392">Astro::Planets::KeplerianMoon::KeplerianMoon</a></div><div class="ttdeci">KeplerianMoon()</div><div class="ttdef"><b>Definition</b> Planets.hh:147</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_945246ed06ec64eff2daa17eb769e096.html">Astro</a></li><li class="navelem"><a href="_planets_8hh.html">Planets.hh</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

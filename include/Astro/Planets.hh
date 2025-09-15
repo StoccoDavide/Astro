@@ -60,7 +60,7 @@ namespace Astro
     *   - the semi-major axis \f$ a = 1.00000011 \f$ (AU),
     *   - the eccentricity \f$ e = 0.01671022 \f$ (-),
     *   - the inclination \f$ i = 0.00005 \f$ (deg),
-    *   - the longitude of the ascending node \f$ \Omega = 0.0 \f$ (deg),
+    *   - the longitude of the ascending node \f$ \Omega = -11.26064 \f$ (deg),
     *   - the argument of periapsis \f$ \omega = 102.93768193 \f$ (deg).
     */
     struct KeplerianEarth : public OrbitalElements::Keplerian
@@ -69,8 +69,8 @@ namespace Astro
       {
         this->a     = 1.00000011; // Semi-major axis (AU)
         this->e     = 0.01671022; // Eccentricity (-)
-        this->i     = 0.00005; // Inclination (rad)
-        this->Omega = 0.0; // Longitude of the ascending node (rad)
+        this->i     = Deg_To_Rad(0.00005); // Inclination (rad)
+        this->Omega = Deg_To_Rad(-11.26064); // Longitude of the ascending node (rad)
         this->omega = Deg_To_Rad(102.93768193); // Argument of periapsis (rad)
       }
     };
@@ -83,9 +83,11 @@ namespace Astro
     inline Body Earth()
     {
       Body earth("Earth", Earth_mass_KG, Earth_radius_AU);
-      earth.set_factor(Factor::POSIGRADE);
-      earth.set_mu(Sun_mu_AU3_DAY2);
-      earth.set_keplerian(KeplerianEarth());
+      earth.set_orbit().set_factor(Factor::POSIGRADE);
+      earth.set_orbit().set_mu(Sun_mu_AU3_DAY2);
+      earth.set_orbit().set_keplerian(KeplerianEarth(), 0.0);
+      earth.set_epoch(51544.0); // J2000 epoch (MJD 2451545.0 = JD 51544.5)
+      earth.set_epoch_anomaly().set_M(Deg_To_Rad(100.46435), earth.orbit().keplerian(), Factor::POSIGRADE);
       return earth;
     }
 
@@ -159,9 +161,11 @@ namespace Astro
     inline Body Moon()
     {
       Body moon("Moon", Moon_mass_KG, Moon_radius_AU);
-      moon.set_factor(Factor::POSIGRADE);
-      moon.set_mu(Earth_mu_AU3_DAY2);
-      moon.set_keplerian(KeplerianMoon());
+      moon.set_orbit().set_factor(Factor::POSIGRADE);
+      moon.set_orbit().set_mu(Earth_mu_AU3_DAY2);
+      moon.set_orbit().set_keplerian(KeplerianMoon(), 0.0);
+      moon.set_epoch(51544.0); // J2000 epoch (JD 2451545.0 = MJD 51544.5)
+      moon.set_epoch_anomaly().set_M(Deg_To_Rad(134.96340251), moon.orbit().keplerian(), Factor::POSIGRADE);
       return moon;
     }
 

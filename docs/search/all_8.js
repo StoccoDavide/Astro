@@ -16,6 +16,7 @@ var searchData=
   ['infty_13',['INFTY',['../namespace_astro.html#ac63cdbbd67e7a389a3ff201b10998091',1,'Astro']]],
   ['installation_14',['Installation',['../index.html#autotoc_md1',1,'']]],
   ['integer_15',['Integer',['../namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13',1,'Astro']]],
-  ['is_5fnonsingular_16',['is_nonsingular',['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#a5b17be0b1d47c7ec40e6fec41714e59b',1,'Astro::OrbitalElements::Keplerian::is_nonsingular()'],['../struct_astro_1_1_orbital_elements_1_1_equinoctial.html#af6716973659ce46b83f0629c84cf4bac',1,'Astro::OrbitalElements::Equinoctial::is_nonsingular()']]],
-  ['is_5fsingular_17',['is_singular',['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#afef8703f2ac823d8df7be241fdb11f52',1,'Astro::OrbitalElements::Keplerian::is_singular()'],['../struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a14087d17f9d9f56ddd299e249402dc16',1,'Astro::OrbitalElements::Equinoctial::is_singular()']]]
+  ['integrate_16',['integrate',['../class_astro_1_1_body.html#a9a2f96612723bfddbc4248d24caed8f2',1,'Astro::Body']]],
+  ['is_5fnonsingular_17',['is_nonsingular',['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#a5b17be0b1d47c7ec40e6fec41714e59b',1,'Astro::OrbitalElements::Keplerian::is_nonsingular()'],['../struct_astro_1_1_orbital_elements_1_1_equinoctial.html#af6716973659ce46b83f0629c84cf4bac',1,'Astro::OrbitalElements::Equinoctial::is_nonsingular()']]],
+  ['is_5fsingular_18',['is_singular',['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#afef8703f2ac823d8df7be241fdb11f52',1,'Astro::OrbitalElements::Keplerian::is_singular()'],['../struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a14087d17f9d9f56ddd299e249402dc16',1,'Astro::OrbitalElements::Equinoctial::is_singular()']]]
 ];

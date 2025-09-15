@@ -41,11 +41,18 @@ namespace Astro
   * in space. The class provides methods for setting and getting the mass of the body, as well as
   * its orbit parameters.
   */
-  class Body : public Orbit
+  class Body
   {
+  public:
+    using Anomaly = OrbitalElements::Anomaly;
+
+  private:
     std::string m_name{"(undefined)"}; /**< Name of the astronomical body. */
-    Real        m_radius{QUIET_NAN}; /**< Occupancy radius of the astronomical body (in AU). */
-    Real        m_mass{QUIET_NAN}; /**< Mass of the astronomical body. */
+    Real        m_epoch{0.0};          /**< Epoch of the orbital elements (in days). */
+    Anomaly     m_epoch_anom;         /**< Orbital anomalies at the epoch. */
+    Orbit       m_orbit;               /**< Orbit parameters of the astronomical body. */
+    Real        m_radius{QUIET_NAN};   /**< Occupancy radius of the astronomical body (in AU). */
+    Real        m_mass{QUIET_NAN};     /**< Mass of the astronomical body. */
 
   public:
     /**
@@ -57,7 +64,7 @@ namespace Astro
     * Class constructor for the astronomical body object with a given mass.
     * \param[in] t_mass The mass of the astronomical body.
     */
-    Body(std::string const & t_name, Real t_mass, Real t_radius = 0.0)
+    Body(std::string const & t_name, Real const t_mass, Real const t_radius = 0.0)
     {
       this->name(t_name);
       this->mass(t_mass);
@@ -105,6 +112,67 @@ namespace Astro
     }
 
     /**
+    * Get the orbit parameters of the astronomical body.
+    * \return The orbit parameters of the astronomical body.
+    */
+    Orbit const & orbit() const {return this->m_orbit;}
+
+    /**
+    * Set the orbit parameters of the astronomical body.
+    * \return The orbit parameters of the astronomical body.
+    */
+    Orbit & set_orbit() {return this->m_orbit;}
+
+    /**
+    * Get the orbital anomalies at the epoch.
+    * \return The orbital anomalies at the epoch.
+    */
+    Anomaly const & epoch_anomaly() const {return this->m_epoch_anom;}
+
+    /**
+    * Set the orbital anomalies at the epoch.
+    * \return The orbital anomalies at the epoch.
+    */
+    Anomaly & set_epoch_anomaly() {return this->m_epoch_anom;}
+
+    /**
+    * Set the orbital anomalies at the epoch.
+    * \param[in] t_epoch_anomaly The orbital anomalies at the epoch.
+    */
+    void set_epoch_anomaly(Anomaly const & t_epoch_anomaly)
+    {
+      ASTRO_ASSERT(t_epoch_anomaly.sanity_check(),
+        "Astro::Orbit::epoch_anomaly(...): invalid orbital anomalies detected.");
+      this->m_epoch_anom = t_epoch_anomaly;
+    }
+
+    /**
+    * Compute the anomalies at a given time.
+    * \param[in] t The time \f$ t \f$.
+    * \return The anomalies at time \f$ t \f$.
+    */
+    Anomaly anomaly(Real const t) const
+    {
+      Anomaly anom;
+      anom.set_lambda(
+        this->m_orbit.compute_lambda(this->m_epoch+t, this->m_epoch_anom), this->m_orbit.keplerian(), this->m_orbit.factor()
+      );
+      return anom;
+    }
+
+    /**
+    * Get the epoch of the orbital elements (in days).
+    * \return The epoch of the orbital elements (in days).
+    */
+    Real epoch() const {return this->m_epoch;}
+
+    /**
+    * Set the epoch of the orbital elements (in days).
+    * \param[in] t_epoch The epoch of the orbital elements (in days).
+    */
+    void set_epoch(Real const t_epoch) {this->m_epoch = t_epoch;}
+
+    /**
     * Get the mass of the astronomical body.
     * \return The mass of the astronomical body.
     */
@@ -114,7 +182,7 @@ namespace Astro
     * Set the mass of the astronomical body.
     * \param[in] t_mass The mass of
     */
-    void mass(Real t_mass) {
+    void mass(Real const t_mass) {
       #define CMD "Astro::Body::mass(...): "
 
       ASTRO_ASSERT(t_mass > 0.0, CMD "mass must be positive.");
@@ -133,7 +201,7 @@ namespace Astro
     * Set the radius of the astronomical body.
     * \param[in] t_radius The radius of the astronomical body.
     */
-    void radius(Real t_radius) {
+    void radius(Real const t_radius) {
       #define CMD "Astro::Body::radius(...): "
 
       ASTRO_ASSERT(t_radius >= 0.0, CMD "radius must be non-negative.");
@@ -148,12 +216,44 @@ namespace Astro
     */
     Vector6 cartesian_state() const
     {
-      Vector6 cart;
-      cart << this->m_cart.r, this->m_cart.v;
+      Vector6 cart(this->m_orbit.cartesian().vector());
       ASTRO_ASSERT(cart.allFinite(),
         "Astro::Body::cartesian(...): invalid cartesian state vector detected.");
       return cart;
     }
+
+    /**
+    * Get the cartesian state vector of the astronomical body.
+    * \param[in] t The time \f$ t \f$.
+    * \return The cartesian state vector of the astronomical body.
+    */
+    Vector6 cartesian_state(Real const t) const
+    {
+      // Compute the anomaly at time t
+      Anomaly anom;
+      anom.set_lambda(
+        this->m_orbit.compute_lambda(this->m_epoch+t, this->m_epoch_anom), this->m_orbit.keplerian(), this->m_orbit.factor()
+      );
+
+      // Compute the cartesian state vector
+      OrbitalElements::Cartesian cart;
+      OrbitalElements::equinoctial_to_cartesian(this->m_orbit.equinoctial(), anom.L, this->m_orbit.mu(), cart);
+      return cart.vector();
+    }
+
+    /**
+    * Get the cartesian position vector of the astronomical body.
+    * \param[in] t The time \f$ t \f$.
+    * \return The cartesian position vector of the astronomical body.
+    */
+    Vector3 cartesian_position(Real const t) const {return this->cartesian_state(t).head<3>();}
+
+    /**
+    * Get the cartesian velocity vector of the astronomical body.
+    * \param[in] t The time \f$ t \f$.
+    * \return The cartesian velocity vector of the astronomical body.
+    */
+    Vector3 cartesian_velocity(Real const t) const {return this->cartesian_state(t).tail<3>();}
 
     /**
     * Set the cartesian state vector of the astronomical body.
@@ -161,18 +261,25 @@ namespace Astro
     */
     void set_cartesian_state(Vector6 const & cart)
     {
-      this->set_cartesian(cart);
+      this->set_orbit().set_cartesian(cart);
     }
 
     /**
-    * Get the keplerian state vector of the astronomical body.
+    * Get the keplerian state vector of the astronomical body at time \f$ t \f$.
+    * \param[in] t The time \f$ t \f$.
     * \return The keplerian state vector of the astronomical body.
     */
-    Vector6 keplerian_state() const
+    Vector6 keplerian_state(Real const t) const
     {
+      Anomaly anom{this->anomaly(t)};
       Vector6 kepl;
-      kepl << this->m_kepl.a, this->m_kepl.e, this->m_kepl.i,
-              this->m_kepl.Omega, this->m_kepl.omega, this->m_anom.M;
+      kepl <<
+        this->orbit().keplerian().a,
+        this->orbit().keplerian().e,
+        this->orbit().keplerian().i,
+        this->orbit().keplerian().Omega,
+        this->orbit().keplerian().omega,
+        anom.M;
       ASTRO_ASSERT(kepl.allFinite(),
         "Astro::Body::keplerian(...): invalid keplerian state vector detected.");
       return kepl;
@@ -180,24 +287,31 @@ namespace Astro
 
     /**
     * Set the keplerian state vector of the astronomical body.
-    * \param[in] kepl The keplerian state vector of the astronomical body.
+    * \param[in] state The keplerian state vector of the astronomical body.
     */
-    void set_keplerian_state(Vector6 const & kepl)
+    void set_keplerian_state(Vector6 const & state)
     {
-      // First, set the anomaly!
-      this->set_anomaly().set_M(kepl(5), this->keplerian(), this->factor());
-      this->set_keplerian(kepl.head<5>());
+      Real E{OrbitalElements::M_to_E(state(5), state(1))};
+      Real nu{OrbitalElements::E_to_nu(E, state(1))};
+      this->set_orbit().set_keplerian(state.head<5>(), nu);
     }
 
     /**
     * Get the equinoctial state vector of the astronomical body.
+    * \param[in] t The time \f$ t \f$.
     * \return The equinoctial state vector of the astronomical body.
     */
-    Vector6 equinoctial_state() const
+    Vector6 equinoctial_state(Real const t) const
     {
+      Anomaly anom{this->anomaly(t)};
       Vector6 equi;
-      equi << this->m_equi.p, this->m_equi.f, this->m_equi.g,
-              this->m_equi.h, this->m_equi.k, this->m_anom.L;
+      equi <<
+        this->orbit().equinoctial().p,
+        this->orbit().equinoctial().f,
+        this->orbit().equinoctial().g,
+        this->orbit().equinoctial().h,
+        this->orbit().equinoctial().k,
+        anom.L;
       ASTRO_ASSERT(equi.allFinite(),
         "Astro::Body::equinoctial(...): invalid equinoctial state vector detected.");
       return equi;
@@ -205,13 +319,11 @@ namespace Astro
 
     /**
     * Set the equinoctial state vector of the astronomical body.
-    * \param[in] equi The equinoctial state vector of the astronomical body.
+    * \param[in] state The equinoctial state vector of the astronomical body.
     */
-    void set_equinoctial_state(Vector6 const & equi)
+    void set_equinoctial_state(Vector6 const & state)
     {
-      // First, set the anomaly!
-      this->set_anomaly().set_L(equi(5), this->keplerian(), this->factor());
-      this->set_equinoctial(equi.head<5>());
+      this->set_orbit().set_equinoctial(state.head<5>(), state(5));
     }
 
     /**
@@ -225,11 +337,11 @@ namespace Astro
     Eigen::Matrix<T, 6, 1> cartesian_eom(Eigen::Matrix<T, 6, 1> const & x, Eigen::Matrix<T, 3, 1> const & thrust_rtn) const
     {
       // Compute the cartesian perturbation
-      Eigen::Matrix<T, 3, 1> thrust_xyz(this->cartesian_rtn_to_xyz(thrust_rtn));
+      Eigen::Matrix<T, 3, 1> thrust_xyz(this->orbit().cartesian_rtn_to_xyz(thrust_rtn));
       thrust_xyz /= this->m_mass;
 
       // Compute the equations of motion
-      T mur3{this->m_mu/Power3(x.template head<3>().norm())};
+      T mur3{this->orbit().mu()/Power3(x.template head<3>().norm())};
       return Eigen::Matrix<T, 6, 1>(
         /* dx/dt   */ x[3],
         /* dy/dt   */ x[4],
@@ -239,38 +351,6 @@ namespace Astro
         /* dv_z/dt */ thrust_xyz[2] - mur3*x[2]
       );
     }
-
-    /**
-    * Compute the derivative of the first-order cartesian equations of orbital motion with respect to the
-    * cartesian state vector \f$ \mathbf{x} = [r_x, r_y, r_z, v_x, v_y, v_z]^\top \f$.
-    * \param[in] x The cartesian state vector \f$ \mathbf{x} = [r_x, r_y, r_z, v_x, v_y, v_z]^\top \f$.
-    * \return The derivative of the first-order cartesian equations of orbital motion.
-    */
-    //Matrix6 cartesian_eom_jacobian(Vector6 const & x, Vector3 const & thrust_rtn) const
-    //{
-    //  // Compute the cartesian perturbation
-    //  Vector3 r(x.head<3>());
-    //  Real r2{r.squaredNorm()};
-    //  Real r5{std::pow(r2, 2.5)};
-    //  Matrix3 dvdx(this->m_mu * (3.0 * r * r.transpose() - r2 * IDENTITY_MAT3) / r5);
-//
-    //  Matrix6 res(ZEROS_MAT6);
-    //  res.block<3,3>(0,3) = IDENTITY_MAT3; // dr/dv
-    //  res.block<3,3>(3,0) = dvdx;          // dv/dr
-    //  return res;
-    //}
-
-    //Matrix6 cartesian_eom_jacobian(const Vector6 & x, const Vector3 & thrust_rtn) const
-    //{
-    //  using Vector6real = Eigen::Matrix<autodiff::real, 6, 1>;
-//
-    //  // Compute the jacobian of the cartesian equations of motion
-    //  auto f = [this, &thrust_rtn](const Vector6real & x) {
-    //    return this->cartesian_eom<autodiff::real>(x, thrust_rtn);
-    //  };
-//
-    //  return autodiff::jacobian(f, autodiff::wrt(x), autodiff::at(x));
-    //}
 
     /**
     * Compute the vector of the first-order keplerian equations of orbital motion given the
@@ -289,21 +369,21 @@ namespace Astro
       // Real const & Omega{x[3]};
       Real const & omega{x[4]};
       Real const & M{x[5]};
-      Real const & mu{this->m_mu};
+      Real const & mu{this->orbit().mu()};
 
       Real const C_rad{thrust[0]/this->m_mass};
       Real const C_tan{thrust[1]/this->m_mass};
       Real const C_nor{thrust[2]/this->m_mass};
 
       // Mean motion
-      Real const n{std::sqrt(this->m_mu / std::pow(a, 3))};
+      Real const n{std::sqrt(mu / std::pow(a, 3))};
       Real const e2{e*e};
       Real const ecc{std::sqrt(1.0 - e2)};
 
       // Anomalies calculations
-      Real const E{M_to_E(M, this->m_kepl)};
+      Real const E{OrbitalElements::M_to_E(M, e)};
       Real const cos_E{std::cos(E)};
-      Real const nu{E_to_nu(E, this->m_kepl)};
+      Real const nu{OrbitalElements::E_to_nu(E, e)};
       Real const cos_nu{std::cos(nu)};
       Real const sin_nu{std::sin(nu)};
 
@@ -331,27 +411,6 @@ namespace Astro
     }
 
     /**
-    * Compute the derivative of the first-order keplerian equations of orbital motion with respect to the
-    * keplerian state vector \f$ \mathbf{x} = [a, e, i, \Omega, \omega, M]^\top \f$.
-    * \param[in] x The keplerian state vector \f$ \mathbf{x} = [a, e, i, \Omega, \omega, M]^\top \f$.
-    * \return The derivative of the first-order keplerian equations of orbital motion.
-    */
-    Matrix6 keplerian_eom_derivative(Vector6 const & x) const
-    {
-      // Source: https://farside.ph.utexas.edu/teaching/celestial/Celestial/node164.html
-
-      Matrix6 res;
-      res <<
-        /* da/dt */ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-        /* de/dt */ 0.0, 1.0/(2.0*x[1]), 0.0, 0.0, 0.0, 0.0,
-        /* di/dt */ 0.0, 0.0, std::cos(x[2]), 0.0, -std::sin(x[2]), 0.0,
-        /* dO/dt */ 0.0, 0.0, -std::sin(x[2])/std::sin(x[3]), std::cos(x[2])/std::sin(x[3]), 0.0, 0.0,
-        /* do/dt */ -x[1]/(x[4]*x[4]), x[1]/(x[4]*x[4]), 0.0, 1.0/x[4], -1.0/x[4], -1.0/x[4],
-        /* dM/dt */ std::sqrt(this->m_mu / Power3(x[5])), x[1]/(x[5]*x[5]), x[2]/(x[5]*x[5]), x[3]/(x[5]*x[5]), x[4]/(x[5]*x[5]), x[5]/(x[5]*x[5]);
-      return res;
-    }
-
-    /**
     * Compute the system of first-order modified equinoctial equations of orbital motion given the
     * thrust vector components \f$ \mathbf{t} = [t_{\text{rad}}, t_{\text{tan}}, t_{\text{nor}}]^\top \f$.
     * \param[in] x The modified equinoctial state vector \f$ \mathbf{x} = [p, f, g, h, k, L]^\top \f$.
@@ -368,13 +427,14 @@ namespace Astro
       Real const & h{x[3]};
       Real const & k{x[4]};
       Real const & L{x[5]};
+      Real const & mu{this->orbit().mu()};
 
       Real sin_L{std::sin(L)};
       Real cos_L{std::cos(L)};
 
       Real w{1.0 + (f*cos_L + g*sin_L)};
       Real s2{1.0 + (h*h + k*k)};
-      Real sqrt_p_mu{std::sqrt(p/this->m_mu)};
+      Real sqrt_p_mu{std::sqrt(p/mu)};
 
       Real C_rad{thrust[0]/this->m_mass};
       Real C_tan{thrust[1]/this->m_mass};
@@ -387,7 +447,7 @@ namespace Astro
         /* dg/dt */ sqrt_p_mu*(-C_rad*cos_L + ((w + 1.0)*sin_L + g)*C_tan/w + (h*sin_L - k*cos_L)*g/w*C_nor),
         /* dh/dt */ sqrt_p_mu*s2*C_nor*cos_L/(2.0*w),
         /* dk/dt */ sqrt_p_mu*s2*C_nor*sin_L/(2.0*w),
-        /* dL/dt */ std::sqrt(this->m_mu*p) * Power2(w/p) + sqrt_p_mu/w*(h*sin_L - k*cos_L)*C_nor;
+        /* dL/dt */ std::sqrt(mu*p) * Power2(w/p) + sqrt_p_mu/w*(h*sin_L - k*cos_L)*C_nor;
 
       return res;
     }
@@ -450,7 +510,7 @@ namespace Astro
       }
 
       // Transform the internal state to the output coordinate system
-      rk.step_callback([this, &sol](Integer const i, Vector6 const & x, Real const) {
+      rk.step_callback([this, &sol](Integer const i, Vector6 const & x, Real const t) {
 
         (void)sol; // Avoid unused variable warning
 
@@ -470,11 +530,11 @@ namespace Astro
         // Set the output state in the solution object
         if constexpr (IntCoords != OutCoords) {
           if constexpr (OutCoords == Coordinates::CARTESIAN) {
-            sol.x.col(i) << this->cartesian_state();
+            sol.x.col(i) << this->cartesian_state(t);
           } else if constexpr (OutCoords == Coordinates::KEPLERIAN) {
-            sol.x.col(i) << this->keplerian_state();
+            sol.x.col(i) << this->keplerian_state(t);
           } else if constexpr (OutCoords == Coordinates::EQUINOCTIAL) {
-            sol.x.col(i) << this->equinoctial_state();
+            sol.x.col(i) << this->equinoctial_state(t);
           } else if constexpr (OutCoords == Coordinates::QUATERNIONIC) {
             ASTRO_ERROR(CMD "quaternionic output not implemented yet.");
           } else {

@@ -10,6 +10,5 @@ var searchData=
   ['matrix7_7',['Matrix7',['../namespace_astro.html#a1e4c142601a2482abbcb2ca3e8c7c74b',1,'Astro']]],
   ['matrix8_8',['Matrix8',['../namespace_astro.html#ad0d1418ad0dcf05fd14c6270654c4ee8',1,'Astro']]],
   ['matrix9_9',['Matrix9',['../namespace_astro.html#ae756601cda0c0d2aa75838184275ca5c',1,'Astro']]],
-  ['matrixa_10',['MatrixA',['../class_astro_1_1_body.html#abe2277328469209e8a1e1916781cd5de',1,'Astro::Body']]],
-  ['matrixx_11',['MatrixX',['../namespace_astro.html#a037e427cecc3fe0f9eab265cfd91e65c',1,'Astro']]]
+  ['matrixx_10',['MatrixX',['../namespace_astro.html#a037e427cecc3fe0f9eab265cfd91e65c',1,'Astro']]]
 ];

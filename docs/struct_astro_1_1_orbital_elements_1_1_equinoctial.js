@@ -1,7 +1,8 @@
 var struct_astro_1_1_orbital_elements_1_1_equinoctial =
 [
     [ "Equinoctial", "struct_astro_1_1_orbital_elements_1_1_equinoctial.html#af352a865ca8a90481151618c58de66e1", null ],
-    [ "Equinoctial", "struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a5122de13dd18d4a0340507ea8dfb87d4", null ],
+    [ "Equinoctial", "struct_astro_1_1_orbital_elements_1_1_equinoctial.html#aacd29a5c5eb641db24bb67c181087443", null ],
+    [ "Equinoctial", "struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a4254b83dac40381748216946e4d08bc9", null ],
     [ "Equinoctial", "struct_astro_1_1_orbital_elements_1_1_equinoctial.html#ab8e11006fe85e298b84cd576af7bd1e6", null ],
     [ "Equinoctial", "struct_astro_1_1_orbital_elements_1_1_equinoctial.html#ad1d7fe5293329b41eb672b39df763d0f", null ],
     [ "a", "struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a249b3262a24d349a373fd5bd0e085cbf", null ],
@@ -18,6 +19,7 @@ var struct_astro_1_1_orbital_elements_1_1_equinoctial =
     [ "reset", "struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a8ac75366d6c540ac932b511a5f060b1e", null ],
     [ "sanity_check", "struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a85c80e3380ac505d157df615beb7e867", null ],
     [ "u", "struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a6b34edcf6277b496a123ac0da7a3ed61", null ],
+    [ "vector", "struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a0a0f3b1df7a49b4da84d353cc5eeeffc", null ],
     [ "f", "struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a71523582c41fbe21239f87d6bb1d8b4f", null ],
     [ "g", "struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a101d1b8e9fa18b098504ec07097f20d7", null ],
     [ "h", "struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a0a00a2a9c04937859715d80677d7d7f3", null ],

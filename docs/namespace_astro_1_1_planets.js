@@ -1,0 +1,28 @@
+var namespace_astro_1_1_planets =
+[
+    [ "KeplerianEarth", "struct_astro_1_1_planets_1_1_keplerian_earth.html", "struct_astro_1_1_planets_1_1_keplerian_earth" ],
+    [ "KeplerianMoon", "struct_astro_1_1_planets_1_1_keplerian_moon.html", "struct_astro_1_1_planets_1_1_keplerian_moon" ],
+    [ "Earth", "namespace_astro_1_1_planets.html#a24f4135cebafe3599ac75385c69d7a18", null ],
+    [ "EarthMagneticFieldDipole", "namespace_astro_1_1_planets.html#ad9c70b90c8ed6adf62bcafd9c28527f1", null ],
+    [ "Moon", "namespace_astro_1_1_planets.html#a76edeec67d3d3df34a32941929423dd6", null ],
+    [ "AU3_DAY2_TO_KM3_S2", "namespace_astro_1_1_planets.html#ae2befc6f11db437e8d153636ec3b359b", null ],
+    [ "EARTH_MAG_MOMENT", "namespace_astro_1_1_planets.html#ad9b2e55c946445485d171898be011e87", null ],
+    [ "Earth_mass_KG", "namespace_astro_1_1_planets.html#aba2d63aab68cd2ebf8f0de65af15fc0c", null ],
+    [ "Earth_mu_AU3_DAY2", "namespace_astro_1_1_planets.html#a67d2295eb2da49bd2b683cb1b034982e", null ],
+    [ "Earth_mu_KM3_DAY2", "namespace_astro_1_1_planets.html#ad1dcd54a9e85b202ba53976b3010101e", null ],
+    [ "Earth_mu_KM3_S2", "namespace_astro_1_1_planets.html#aad64b66ea05f968d3d6dfb97c083df51", null ],
+    [ "Earth_radius_AU", "namespace_astro_1_1_planets.html#af162ff05b670bef43ceb121a12e8dfe0", null ],
+    [ "Earth_radius_KM", "namespace_astro_1_1_planets.html#a30d92371b1cbca789b2a3e8c54cebbb4", null ],
+    [ "KM3_S2_TO_AU3_DAY2", "namespace_astro_1_1_planets.html#a29bc47e662b215eec0f27fa230c76453", null ],
+    [ "Moon_mass_KG", "namespace_astro_1_1_planets.html#a1f1affd7d9a7494e8ece233cdbf99c1a", null ],
+    [ "Moon_mu_AU3_DAY2", "namespace_astro_1_1_planets.html#a21b8eb526fcd4e9b20bc92075b563068", null ],
+    [ "Moon_mu_KM3_S2", "namespace_astro_1_1_planets.html#a94ebf2cf6a1f2be365cf14921ef6d40c", null ],
+    [ "Moon_mu_M3S2", "namespace_astro_1_1_planets.html#a201aed9911cdb4763477da7013c75978", null ],
+    [ "Moon_radius_AU", "namespace_astro_1_1_planets.html#a0abaa2c06052b8f5060df8681509726a", null ],
+    [ "Moon_radius_KM", "namespace_astro_1_1_planets.html#a2e7391ad27df228c8399c5069d941f6e", null ],
+    [ "Sun_mass_KG", "namespace_astro_1_1_planets.html#a2a9943439d26f2d33fbe14fb73f26603", null ],
+    [ "Sun_mu_AU3_DAY2", "namespace_astro_1_1_planets.html#a2d625ab7b19ea2da6ebd612605f40d8c", null ],
+    [ "Sun_mu_KM3_S2", "namespace_astro_1_1_planets.html#af137cabf29e593193c0908d87c35f839", null ],
+    [ "Sun_radius_AU", "namespace_astro_1_1_planets.html#a6c1b325b1297deef4368e2869d4f2195", null ],
+    [ "Sun_radius_KM", "namespace_astro_1_1_planets.html#ac21923b2347cdd973aea9e140d90f308", null ]
+];

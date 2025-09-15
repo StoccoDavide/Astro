@@ -1,0 +1,12 @@
+<map id="include/Astro/Utilities.hh" name="include/Astro/Utilities.hh">
+<area shape="rect" id="Node000001" title=" " alt="" coords="102,5,265,31"/>
+<area shape="rect" id="Node000002" href="$_orbital_elements_8hh.html" title=" " alt="" coords="5,79,218,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,44,126,80,122,77,159,40"/>
+<area shape="rect" id="Node000005" href="$_planets_8hh.html" title=" " alt="" coords="110,300,273,326"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="210,41,223,58,232,78,243,91,248,97,252,107,249,151,225,253,214,279,202,301,197,298,210,277,220,251,244,150,247,108,243,100,239,95,228,80,218,61,205,44"/>
+<area shape="rect" id="Node000003" href="$_orbit_8hh.html" title=" " alt="" coords="54,153,201,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="120,119,127,152,122,153,115,120"/>
+<area shape="rect" id="Node000004" href="$_body_8hh.html" title=" " alt="" coords="63,226,210,252"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="134,193,138,226,133,226,128,194"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="157,262,184,298,180,301,153,266"/>
+</map>

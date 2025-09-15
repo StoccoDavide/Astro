@@ -1,0 +1,740 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Astro: Astro::Planets Namespace Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.png"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/StoccoDavide/Astro" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Astro
+   &#160;<span id="projectnumber">0.0.0</span>
+   </div>
+   <div id="projectbrief">A C++ library for space dynamics</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('namespace_astro_1_1_planets.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Astro::Planets Namespace Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:KeplerianEarth" id="r_KeplerianEarth"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_astro_1_1_planets_1_1_keplerian_earth.html">KeplerianEarth</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure container for the Earth J2000 Keplerian orbital elements for orbit about the Sun.  <a href="struct_astro_1_1_planets_1_1_keplerian_earth.html#details">More...</a><br /></td></tr>
+<tr class="memitem:KeplerianMoon" id="r_KeplerianMoon"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_astro_1_1_planets_1_1_keplerian_moon.html">KeplerianMoon</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure container for the Moon Keplerian orbital elements for orbit about the Earth.  <a href="struct_astro_1_1_planets_1_1_keplerian_moon.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a24f4135cebafe3599ac75385c69d7a18" id="r_a24f4135cebafe3599ac75385c69d7a18"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_body.html">Body</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24f4135cebafe3599ac75385c69d7a18">Earth</a> ()</td></tr>
+<tr class="memdesc:a24f4135cebafe3599ac75385c69d7a18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Earth object with J2000 Keplerian orbital elements.  <br /></td></tr>
+<tr class="memitem:ad9c70b90c8ed6adf62bcafd9c28527f1" id="r_ad9c70b90c8ed6adf62bcafd9c28527f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9c70b90c8ed6adf62bcafd9c28527f1">EarthMagneticFieldDipole</a> (<a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> const &amp;position)</td></tr>
+<tr class="memdesc:ad9c70b90c8ed6adf62bcafd9c28527f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the Eath magnetic field at a given positionusing the IGRF model.  <br /></td></tr>
+<tr class="memitem:a76edeec67d3d3df34a32941929423dd6" id="r_a76edeec67d3d3df34a32941929423dd6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astro_1_1_body.html">Body</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76edeec67d3d3df34a32941929423dd6">Moon</a> ()</td></tr>
+<tr class="memdesc:a76edeec67d3d3df34a32941929423dd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Moon object with Keplerian orbital elements.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a29bc47e662b215eec0f27fa230c76453" id="r_a29bc47e662b215eec0f27fa230c76453"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29bc47e662b215eec0f27fa230c76453">KM3_S2_TO_AU3_DAY2</a> {(KM_TO_AU*KM_TO_AU*KM_TO_AU)/(SEC_TO_DAY*SEC_TO_DAY)}</td></tr>
+<tr class="memitem:ae2befc6f11db437e8d153636ec3b359b" id="r_ae2befc6f11db437e8d153636ec3b359b"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2befc6f11db437e8d153636ec3b359b">AU3_DAY2_TO_KM3_S2</a> {1.0/<a class="el" href="#a29bc47e662b215eec0f27fa230c76453">KM3_S2_TO_AU3_DAY2</a>}</td></tr>
+<tr class="memitem:a2a9943439d26f2d33fbe14fb73f26603" id="r_a2a9943439d26f2d33fbe14fb73f26603"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a9943439d26f2d33fbe14fb73f26603">Sun_mass_KG</a> {1.9885E30}</td></tr>
+<tr class="memitem:ac21923b2347cdd973aea9e140d90f308" id="r_ac21923b2347cdd973aea9e140d90f308"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac21923b2347cdd973aea9e140d90f308">Sun_radius_KM</a> {695700.0}</td></tr>
+<tr class="memitem:a6c1b325b1297deef4368e2869d4f2195" id="r_a6c1b325b1297deef4368e2869d4f2195"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c1b325b1297deef4368e2869d4f2195">Sun_radius_AU</a> {<a class="el" href="namespace_astro.html#a180f3bde2fb772ed5423b98a4cba9933">KM_To_AU</a>(<a class="el" href="#ac21923b2347cdd973aea9e140d90f308">Sun_radius_KM</a>)}</td></tr>
+<tr class="memitem:af137cabf29e593193c0908d87c35f839" id="r_af137cabf29e593193c0908d87c35f839"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af137cabf29e593193c0908d87c35f839">Sun_mu_KM3_S2</a> {1.32712440018E11}</td></tr>
+<tr class="memitem:a2d625ab7b19ea2da6ebd612605f40d8c" id="r_a2d625ab7b19ea2da6ebd612605f40d8c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d625ab7b19ea2da6ebd612605f40d8c">Sun_mu_AU3_DAY2</a> {<a class="el" href="namespace_astro.html#ac8fc0044b2733010a1ed5802df94edaf">KM3_S2_To_AU3_DAY2</a>(<a class="el" href="#af137cabf29e593193c0908d87c35f839">Sun_mu_KM3_S2</a>)}</td></tr>
+<tr class="memitem:aba2d63aab68cd2ebf8f0de65af15fc0c" id="r_aba2d63aab68cd2ebf8f0de65af15fc0c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba2d63aab68cd2ebf8f0de65af15fc0c">Earth_mass_KG</a> {5.97219E24}</td></tr>
+<tr class="memitem:a30d92371b1cbca789b2a3e8c54cebbb4" id="r_a30d92371b1cbca789b2a3e8c54cebbb4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30d92371b1cbca789b2a3e8c54cebbb4">Earth_radius_KM</a> {6378.1370}</td></tr>
+<tr class="memitem:af162ff05b670bef43ceb121a12e8dfe0" id="r_af162ff05b670bef43ceb121a12e8dfe0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af162ff05b670bef43ceb121a12e8dfe0">Earth_radius_AU</a> {<a class="el" href="namespace_astro.html#a180f3bde2fb772ed5423b98a4cba9933">KM_To_AU</a>(<a class="el" href="#a30d92371b1cbca789b2a3e8c54cebbb4">Earth_radius_KM</a>)}</td></tr>
+<tr class="memitem:aad64b66ea05f968d3d6dfb97c083df51" id="r_aad64b66ea05f968d3d6dfb97c083df51"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad64b66ea05f968d3d6dfb97c083df51">Earth_mu_KM3_S2</a> {398600.4418}</td></tr>
+<tr class="memitem:ad1dcd54a9e85b202ba53976b3010101e" id="r_ad1dcd54a9e85b202ba53976b3010101e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1dcd54a9e85b202ba53976b3010101e">Earth_mu_KM3_DAY2</a> {<a class="el" href="namespace_astro.html#a1faef18d0c76eaecfb9156f907fb2457">KM3_S2_To_KM3_DAY2</a>(<a class="el" href="#aad64b66ea05f968d3d6dfb97c083df51">Earth_mu_KM3_S2</a>)}</td></tr>
+<tr class="memitem:a67d2295eb2da49bd2b683cb1b034982e" id="r_a67d2295eb2da49bd2b683cb1b034982e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67d2295eb2da49bd2b683cb1b034982e">Earth_mu_AU3_DAY2</a> {<a class="el" href="namespace_astro.html#ac8fc0044b2733010a1ed5802df94edaf">KM3_S2_To_AU3_DAY2</a>(<a class="el" href="#aad64b66ea05f968d3d6dfb97c083df51">Earth_mu_KM3_S2</a>)}</td></tr>
+<tr class="memitem:ad9b2e55c946445485d171898be011e87" id="r_ad9b2e55c946445485d171898be011e87"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9b2e55c946445485d171898be011e87">EARTH_MAG_MOMENT</a> {7.96e15}</td></tr>
+<tr class="memitem:a1f1affd7d9a7494e8ece233cdbf99c1a" id="r_a1f1affd7d9a7494e8ece233cdbf99c1a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f1affd7d9a7494e8ece233cdbf99c1a">Moon_mass_KG</a> {7.34767309E22}</td></tr>
+<tr class="memitem:a2e7391ad27df228c8399c5069d941f6e" id="r_a2e7391ad27df228c8399c5069d941f6e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e7391ad27df228c8399c5069d941f6e">Moon_radius_KM</a> {1737.400}</td></tr>
+<tr class="memitem:a0abaa2c06052b8f5060df8681509726a" id="r_a0abaa2c06052b8f5060df8681509726a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0abaa2c06052b8f5060df8681509726a">Moon_radius_AU</a> {<a class="el" href="#a2e7391ad27df228c8399c5069d941f6e">Moon_radius_KM</a>*KM_TO_AU}</td></tr>
+<tr class="memitem:a201aed9911cdb4763477da7013c75978" id="r_a201aed9911cdb4763477da7013c75978"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a201aed9911cdb4763477da7013c75978">Moon_mu_M3S2</a> {4.9048695E12}</td></tr>
+<tr class="memitem:a94ebf2cf6a1f2be365cf14921ef6d40c" id="r_a94ebf2cf6a1f2be365cf14921ef6d40c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94ebf2cf6a1f2be365cf14921ef6d40c">Moon_mu_KM3_S2</a> {<a class="el" href="#a201aed9911cdb4763477da7013c75978">Moon_mu_M3S2</a>/1.0E9}</td></tr>
+<tr class="memitem:a21b8eb526fcd4e9b20bc92075b563068" id="r_a21b8eb526fcd4e9b20bc92075b563068"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21b8eb526fcd4e9b20bc92075b563068">Moon_mu_AU3_DAY2</a> {<a class="el" href="#a94ebf2cf6a1f2be365cf14921ef6d40c">Moon_mu_KM3_S2</a>*<a class="el" href="#a29bc47e662b215eec0f27fa230c76453">KM3_S2_TO_AU3_DAY2</a>}</td></tr>
+</table>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a24f4135cebafe3599ac75385c69d7a18" name="a24f4135cebafe3599ac75385c69d7a18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24f4135cebafe3599ac75385c69d7a18">&#9670;&#160;</a></span>Earth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_astro_1_1_body.html">Body</a> Astro::Planets::Earth </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>A new Earth object with J2000 Keplerian orbital elements. </dd></dl>
+
+</div>
+</div>
+<a id="ad9c70b90c8ed6adf62bcafd9c28527f1" name="ad9c70b90c8ed6adf62bcafd9c28527f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9c70b90c8ed6adf62bcafd9c28527f1">&#9670;&#160;</a></span>EarthMagneticFieldDipole()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> Astro::Planets::EarthMagneticFieldDipole </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>position</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">position</td><td>The position vector in Km. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The magnetic field vector at the given position in nT. </dd></dl>
+
+</div>
+</div>
+<a id="a76edeec67d3d3df34a32941929423dd6" name="a76edeec67d3d3df34a32941929423dd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76edeec67d3d3df34a32941929423dd6">&#9670;&#160;</a></span>Moon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_astro_1_1_body.html">Body</a> Astro::Planets::Moon </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>A new Moon object with Keplerian orbital elements. </dd></dl>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="ae2befc6f11db437e8d153636ec3b359b" name="ae2befc6f11db437e8d153636ec3b359b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2befc6f11db437e8d153636ec3b359b">&#9670;&#160;</a></span>AU3_DAY2_TO_KM3_S2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> Astro::Planets::AU3_DAY2_TO_KM3_S2 {1.0/<a class="el" href="#a29bc47e662b215eec0f27fa230c76453">KM3_S2_TO_AU3_DAY2</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Conversion factor from AU^3/day^2 to Km^3/s^2. </p>
+
+</div>
+</div>
+<a id="ad9b2e55c946445485d171898be011e87" name="ad9b2e55c946445485d171898be011e87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9b2e55c946445485d171898be011e87">&#9670;&#160;</a></span>EARTH_MAG_MOMENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> Astro::Planets::EARTH_MAG_MOMENT {7.96e15}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Magnetic dipole moment of the Earth in T*m^3. </p>
+
+</div>
+</div>
+<a id="aba2d63aab68cd2ebf8f0de65af15fc0c" name="aba2d63aab68cd2ebf8f0de65af15fc0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba2d63aab68cd2ebf8f0de65af15fc0c">&#9670;&#160;</a></span>Earth_mass_KG</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const Astro::Planets::Earth_mass_KG {5.97219E24}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Mass of the Earth in Kg. </p>
+
+</div>
+</div>
+<a id="a67d2295eb2da49bd2b683cb1b034982e" name="a67d2295eb2da49bd2b683cb1b034982e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67d2295eb2da49bd2b683cb1b034982e">&#9670;&#160;</a></span>Earth_mu_AU3_DAY2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const Astro::Planets::Earth_mu_AU3_DAY2 {<a class="el" href="namespace_astro.html#ac8fc0044b2733010a1ed5802df94edaf">KM3_S2_To_AU3_DAY2</a>(<a class="el" href="#aad64b66ea05f968d3d6dfb97c083df51">Earth_mu_KM3_S2</a>)}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Gravitational constant of the Earth in AU^3/day^2. </p>
+
+</div>
+</div>
+<a id="ad1dcd54a9e85b202ba53976b3010101e" name="ad1dcd54a9e85b202ba53976b3010101e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1dcd54a9e85b202ba53976b3010101e">&#9670;&#160;</a></span>Earth_mu_KM3_DAY2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const Astro::Planets::Earth_mu_KM3_DAY2 {<a class="el" href="namespace_astro.html#a1faef18d0c76eaecfb9156f907fb2457">KM3_S2_To_KM3_DAY2</a>(<a class="el" href="#aad64b66ea05f968d3d6dfb97c083df51">Earth_mu_KM3_S2</a>)}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Gravitational constant of the Earth in Km^3/day^2. </p>
+
+</div>
+</div>
+<a id="aad64b66ea05f968d3d6dfb97c083df51" name="aad64b66ea05f968d3d6dfb97c083df51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad64b66ea05f968d3d6dfb97c083df51">&#9670;&#160;</a></span>Earth_mu_KM3_S2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const Astro::Planets::Earth_mu_KM3_S2 {398600.4418}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Gravitational constant of the Earth in Km^3/s^2. </p>
+
+</div>
+</div>
+<a id="af162ff05b670bef43ceb121a12e8dfe0" name="af162ff05b670bef43ceb121a12e8dfe0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af162ff05b670bef43ceb121a12e8dfe0">&#9670;&#160;</a></span>Earth_radius_AU</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const Astro::Planets::Earth_radius_AU {<a class="el" href="namespace_astro.html#a180f3bde2fb772ed5423b98a4cba9933">KM_To_AU</a>(<a class="el" href="#a30d92371b1cbca789b2a3e8c54cebbb4">Earth_radius_KM</a>)}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Radius of the Earth in AU. </p>
+
+</div>
+</div>
+<a id="a30d92371b1cbca789b2a3e8c54cebbb4" name="a30d92371b1cbca789b2a3e8c54cebbb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30d92371b1cbca789b2a3e8c54cebbb4">&#9670;&#160;</a></span>Earth_radius_KM</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const Astro::Planets::Earth_radius_KM {6378.1370}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Radius of the Earth in Km. </p>
+
+</div>
+</div>
+<a id="a29bc47e662b215eec0f27fa230c76453" name="a29bc47e662b215eec0f27fa230c76453"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29bc47e662b215eec0f27fa230c76453">&#9670;&#160;</a></span>KM3_S2_TO_AU3_DAY2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> Astro::Planets::KM3_S2_TO_AU3_DAY2 {(KM_TO_AU*KM_TO_AU*KM_TO_AU)/(SEC_TO_DAY*SEC_TO_DAY)}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Conversion factor from Km^3/s^2 to AU^3/day^2. </p>
+
+</div>
+</div>
+<a id="a1f1affd7d9a7494e8ece233cdbf99c1a" name="a1f1affd7d9a7494e8ece233cdbf99c1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f1affd7d9a7494e8ece233cdbf99c1a">&#9670;&#160;</a></span>Moon_mass_KG</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const Astro::Planets::Moon_mass_KG {7.34767309E22}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Mass of the Moon in Kg. </p>
+
+</div>
+</div>
+<a id="a21b8eb526fcd4e9b20bc92075b563068" name="a21b8eb526fcd4e9b20bc92075b563068"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21b8eb526fcd4e9b20bc92075b563068">&#9670;&#160;</a></span>Moon_mu_AU3_DAY2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const Astro::Planets::Moon_mu_AU3_DAY2 {<a class="el" href="#a94ebf2cf6a1f2be365cf14921ef6d40c">Moon_mu_KM3_S2</a>*<a class="el" href="#a29bc47e662b215eec0f27fa230c76453">KM3_S2_TO_AU3_DAY2</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Gravitational constant of the Moon in AU^3/day^2. </p>
+
+</div>
+</div>
+<a id="a94ebf2cf6a1f2be365cf14921ef6d40c" name="a94ebf2cf6a1f2be365cf14921ef6d40c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94ebf2cf6a1f2be365cf14921ef6d40c">&#9670;&#160;</a></span>Moon_mu_KM3_S2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const Astro::Planets::Moon_mu_KM3_S2 {<a class="el" href="#a201aed9911cdb4763477da7013c75978">Moon_mu_M3S2</a>/1.0E9}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Gravitational constant of the Moon in Km^3/s^2. </p>
+
+</div>
+</div>
+<a id="a201aed9911cdb4763477da7013c75978" name="a201aed9911cdb4763477da7013c75978"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a201aed9911cdb4763477da7013c75978">&#9670;&#160;</a></span>Moon_mu_M3S2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const Astro::Planets::Moon_mu_M3S2 {4.9048695E12}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Gravitational constant of the Moon in m^3/s^2. </p>
+
+</div>
+</div>
+<a id="a0abaa2c06052b8f5060df8681509726a" name="a0abaa2c06052b8f5060df8681509726a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0abaa2c06052b8f5060df8681509726a">&#9670;&#160;</a></span>Moon_radius_AU</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const Astro::Planets::Moon_radius_AU {<a class="el" href="#a2e7391ad27df228c8399c5069d941f6e">Moon_radius_KM</a>*KM_TO_AU}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Radius of the Moon in AU. </p>
+
+</div>
+</div>
+<a id="a2e7391ad27df228c8399c5069d941f6e" name="a2e7391ad27df228c8399c5069d941f6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e7391ad27df228c8399c5069d941f6e">&#9670;&#160;</a></span>Moon_radius_KM</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const Astro::Planets::Moon_radius_KM {1737.400}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Radius of the Moon in Km. </p>
+
+</div>
+</div>
+<a id="a2a9943439d26f2d33fbe14fb73f26603" name="a2a9943439d26f2d33fbe14fb73f26603"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a9943439d26f2d33fbe14fb73f26603">&#9670;&#160;</a></span>Sun_mass_KG</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const Astro::Planets::Sun_mass_KG {1.9885E30}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2d625ab7b19ea2da6ebd612605f40d8c" name="a2d625ab7b19ea2da6ebd612605f40d8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d625ab7b19ea2da6ebd612605f40d8c">&#9670;&#160;</a></span>Sun_mu_AU3_DAY2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const Astro::Planets::Sun_mu_AU3_DAY2 {<a class="el" href="namespace_astro.html#ac8fc0044b2733010a1ed5802df94edaf">KM3_S2_To_AU3_DAY2</a>(<a class="el" href="#af137cabf29e593193c0908d87c35f839">Sun_mu_KM3_S2</a>)}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Gravitational constant of the Sun in AU^3/day^2. </p>
+
+</div>
+</div>
+<a id="af137cabf29e593193c0908d87c35f839" name="af137cabf29e593193c0908d87c35f839"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af137cabf29e593193c0908d87c35f839">&#9670;&#160;</a></span>Sun_mu_KM3_S2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const Astro::Planets::Sun_mu_KM3_S2 {1.32712440018E11}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Gravitational constant of the Sun in Km^3/s^2. </p>
+
+</div>
+</div>
+<a id="a6c1b325b1297deef4368e2869d4f2195" name="a6c1b325b1297deef4368e2869d4f2195"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c1b325b1297deef4368e2869d4f2195">&#9670;&#160;</a></span>Sun_radius_AU</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const Astro::Planets::Sun_radius_AU {<a class="el" href="namespace_astro.html#a180f3bde2fb772ed5423b98a4cba9933">KM_To_AU</a>(<a class="el" href="#ac21923b2347cdd973aea9e140d90f308">Sun_radius_KM</a>)}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Radius of the Sun in AU. </p>
+
+</div>
+</div>
+<a id="ac21923b2347cdd973aea9e140d90f308" name="ac21923b2347cdd973aea9e140d90f308"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac21923b2347cdd973aea9e140d90f308">&#9670;&#160;</a></span>Sun_radius_KM</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> const Astro::Planets::Sun_radius_KM {695700.0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Mass of the Sun in Kg. Radius of the Sun in Km. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespace_astro.html">Astro</a></li><li class="navelem"><a href="namespace_astro_1_1_planets.html">Planets</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

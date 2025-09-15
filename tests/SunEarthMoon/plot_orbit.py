@@ -5,7 +5,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
 
 # Load the satellite positions from the CSV file
-data = pd.read_csv('satellite_positions.csv')
+data = pd.read_csv('../../build/satellite_positions_sun_coords.csv')
 
 # Plot the satellite positions in 3D
 fig = plt.figure(figsize=(10, 8))

@@ -1,10 +1,24 @@
 var searchData=
 [
-  ['l_0',['L',['../struct_astro_1_1_orbital_elements_1_1_anomaly.html#ac7b6d12dbfc946712471e0ed37296971',1,'Astro::OrbitalElements::Anomaly']]],
-  ['l_5fto_5flambda_1',['L_to_lambda',['../namespace_astro_1_1_orbital_elements.html#ad840c35c082e92fcd62a06eea774432b',1,'Astro::OrbitalElements']]],
-  ['l_5fto_5fnu_2',['L_to_nu',['../namespace_astro_1_1_orbital_elements.html#a55d6cd415deaad5a77252366b4181ed7',1,'Astro::OrbitalElements']]],
-  ['lambda_3',['lambda',['../struct_astro_1_1_orbital_elements_1_1_anomaly.html#a649bd79c589e51d27ba6cd1e38d335b1',1,'Astro::OrbitalElements::Anomaly']]],
-  ['lambda_5fto_5fl_4',['lambda_to_L',['../namespace_astro_1_1_orbital_elements.html#a12f301327851743c66f6977a292379f9',1,'Astro::OrbitalElements']]],
-  ['lambda_5fto_5fm_5',['lambda_to_M',['../namespace_astro_1_1_orbital_elements.html#a1717146fc601f7f40f2a5e22beb4fd77',1,'Astro::OrbitalElements']]],
-  ['license_6',['License',['../index.html#autotoc_md5',1,'']]]
+  ['k_0',['k',['../struct_astro_1_1_orbital_elements_1_1_equinoctial.html#ae5caf9ead05ee1f75108db04dcc7ffb5',1,'Astro::OrbitalElements::Equinoctial']]],
+  ['keplerian_1',['Keplerian',['../struct_astro_1_1_orbital_elements_1_1_keplerian.html',1,'Astro::OrbitalElements::Keplerian'],['../class_astro_1_1_orbit.html#a0ac0779e610497dd8cd582baace78999',1,'Astro::Orbit::Keplerian'],['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#afdd6cce7ab3cf793f9c9c971f62c86b0',1,'Astro::OrbitalElements::Keplerian::Keplerian()'],['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#a265a91f7544b26448d972cb565f8cfde',1,'Astro::OrbitalElements::Keplerian::Keplerian(Real const t_a, Real const t_e, Real const t_i, Real const t_Omega, Real const t_omega)'],['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#a81524be737beeed6deab8165300ce85a',1,'Astro::OrbitalElements::Keplerian::Keplerian(Vector5 const &amp;t_kepl)'],['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#a014d5a559ebe89d5a6cb2b76eb92cbfe',1,'Astro::OrbitalElements::Keplerian::Keplerian(Keplerian const &amp;)=default'],['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#a485cf59669252aa3a696723e3db7a6a9',1,'Astro::OrbitalElements::Keplerian::Keplerian(Keplerian &amp;&amp;)=default']]],
+  ['keplerian_2',['keplerian',['../class_astro_1_1_orbit.html#a6e570a5333d2e56a71094608616df283',1,'Astro::Orbit']]],
+  ['keplerian_5feom_3',['keplerian_eom',['../class_astro_1_1_body.html#aadb57d39d4ea883a1bebda10c218a2f9',1,'Astro::Body']]],
+  ['keplerian_5fstate_4',['keplerian_state',['../class_astro_1_1_body.html#a0f1683476bfe409565599d08d9a80180',1,'Astro::Body']]],
+  ['keplerian_5fto_5fcartesian_5',['keplerian_to_cartesian',['../namespace_astro_1_1_orbital_elements.html#abfbcc0fd240ba51807c1406537069635',1,'Astro::OrbitalElements']]],
+  ['keplerian_5fto_5fequinoctial_6',['keplerian_to_equinoctial',['../namespace_astro_1_1_orbital_elements.html#af8dab5719fe4e52a2bb57074948e8087',1,'Astro::OrbitalElements']]],
+  ['keplerian_5fto_5freference_7',['keplerian_to_reference',['../class_astro_1_1_orbit.html#a29428b5c26fe5864f7dba9af53350be5',1,'Astro::Orbit']]],
+  ['keplerianearth_8',['KeplerianEarth',['../struct_astro_1_1_planets_1_1_keplerian_earth.html',1,'Astro::Planets::KeplerianEarth'],['../struct_astro_1_1_planets_1_1_keplerian_earth.html#ac27a52bf954e12741526a204a7d61c32',1,'Astro::Planets::KeplerianEarth::KeplerianEarth()']]],
+  ['keplerianmoon_9',['KeplerianMoon',['../struct_astro_1_1_planets_1_1_keplerian_moon.html',1,'Astro::Planets::KeplerianMoon'],['../struct_astro_1_1_planets_1_1_keplerian_moon.html#a93704948d2794efb662f6163b3e30392',1,'Astro::Planets::KeplerianMoon::KeplerianMoon()']]],
+  ['kg_5fm_5fsec2_5fto_5fkg_5fau_5fday2_10',['KG_M_SEC2_TO_KG_AU_DAY2',['../namespace_astro.html#a527a024aae367f2080238477cdaa5603',1,'Astro']]],
+  ['km3_5fs2_5fto_5fau3_5fday2_11',['KM3_S2_TO_AU3_DAY2',['../namespace_astro_1_1_planets.html#a29bc47e662b215eec0f27fa230c76453',1,'Astro::Planets']]],
+  ['km3_5fs2_5fto_5fau3_5fday2_12',['KM3_S2_To_AU3_DAY2',['../namespace_astro.html#ac8fc0044b2733010a1ed5802df94edaf',1,'Astro']]],
+  ['km3_5fs2_5fto_5fkm3_5fday2_13',['KM3_S2_To_KM3_DAY2',['../namespace_astro.html#a1faef18d0c76eaecfb9156f907fb2457',1,'Astro']]],
+  ['km_5fday_5fto_5fm_5fs_14',['KM_DAY_To_M_S',['../namespace_astro.html#a80dbb253e8d8a1156486f06e31541747',1,'Astro']]],
+  ['km_5fs_5fto_5fau_5fday_15',['KM_S_To_AU_DAY',['../namespace_astro.html#ab2d6d4aaf6bdd767c43acf6f9ee7d425',1,'Astro']]],
+  ['km_5fs_5fto_5fau_5fs_16',['KM_S_To_AU_S',['../namespace_astro.html#a19f86044ddd6faebfc0c0e7b9ecf6e4e',1,'Astro']]],
+  ['km_5fs_5fto_5fm_5fs_17',['KM_S_To_M_S',['../namespace_astro.html#a9c302ba5440c1c459f57d56ab6867b9d',1,'Astro']]],
+  ['km_5fto_5fau_18',['KM_To_AU',['../namespace_astro.html#a180f3bde2fb772ed5423b98a4cba9933',1,'Astro']]],
+  ['km_5fto_5fm_19',['KM_TO_M',['../namespace_astro.html#a7e08e0d3cc4cc6fcc27abb780870b7c0',1,'Astro']]],
+  ['km_5fto_5fm_20',['KM_To_M',['../namespace_astro.html#ae65d4d982ef45e7da2e3453205c9ff12',1,'Astro']]]
 ];

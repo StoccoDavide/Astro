@@ -1,0 +1,423 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Astro: include/Astro/Utilities.hh Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.png"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/StoccoDavide/Astro" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Astro
+   &#160;<span id="projectnumber">0.0.0</span>
+   </div>
+   <div id="projectbrief">A C++ library for space dynamics</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('_utilities_8hh_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Utilities.hh</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_utilities_8hh.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2025, Davide Stocco and Enrico Bertolazzi.                                      *</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *                                                                                               *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * The Astro project is distributed under the BSD 2-Clause License.                              *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *                                                                                               *</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * Davide Stocco                                                               Enrico Bertolazzi *</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * University of Trento                                                     University of Trento *</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * e-mail: davide.stocco@unitn.it                             e-mail: enrico.bertolazzi@unitn.it *</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">\* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef ASTRO_UTILITIES_HH</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="_utilities_8hh.html#aa96b9d706eb114efc23c18c43d6b5655">   14</a></span><span class="preprocessor">#define ASTRO_UTILITIES_HH</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="_astro_8hh.html">Astro.hh</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_astro.html">Astro</a> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="comment">/*\</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">   |   ____</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">   |  |  _ \ _____      _____ _ __</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">   |  | |_) / _ \ \ /\ / / _ \ &#39;__|</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">   |  |  __/ (_) \ V  V /  __/ |</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">   |  |_|   \___/ \_/\_/ \___|_|</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">   |</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">  \*/</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="namespace_astro.html#a358161157a64a7527b915d6329d895c4">   34</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a358161157a64a7527b915d6329d895c4">Power2</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x*x;}</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Real&gt;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="namespace_astro.html#a64e50dbc72fa6d35a0c362a321890aa6">   42</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a64e50dbc72fa6d35a0c362a321890aa6">Power3</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x*x*x;}</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="namespace_astro.html#a5d433fe4552c854e79e84c80d556d24b">   49</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a5d433fe4552c854e79e84c80d556d24b">Power4</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x*x*x*x;}</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="comment">/*\</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">   |      _                _</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">   |     / \   _ __   __ _| | ___</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">   |    / _ \ | &#39;_ \ / _` | |/ _ \</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">   |   / ___ \| | | | (_| | |  __/</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">   |  /_/   \_\_| |_|\__, |_|\___|</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment">   |                 |___/</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">  \*/</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="namespace_astro.html#a0860ec10c16f3c44348e2229e26729f5">   60</a></span>  <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro.html#a0860ec10c16f3c44348e2229e26729f5">PI</a>         = <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>(3.141592653589793238462643383279502884197); </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="namespace_astro.html#ad1eea55394385dcc1b8daff0201b5491">   61</a></span>  <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro.html#ad1eea55394385dcc1b8daff0201b5491">PIMUL2</a>     = <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>(6.283185307179586476925286766559005768394); </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="namespace_astro.html#afe8e0905e44c8f78593083bb2517db85">   62</a></span>  <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro.html#afe8e0905e44c8f78593083bb2517db85">PIDIV2</a>     = <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>(1.570796326794896619231321691639751442098); </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="namespace_astro.html#a7500e12a3b03df976622d855daf92794">   63</a></span>  <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro.html#a7500e12a3b03df976622d855daf92794">DEG_TO_RAD</a> = <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>(0.017453292519943295769236907684886127134); </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="namespace_astro.html#a6390a0d2c06a79e7712fdeb7221ec6f1">   64</a></span>  <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro.html#a6390a0d2c06a79e7712fdeb7221ec6f1">RAD_TO_DEG</a> = <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>(57.29577951308232087679815481410517033240); </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="namespace_astro.html#a52d30c96cc4302668576e128562c935f">   72</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a52d30c96cc4302668576e128562c935f">Deg_To_Rad</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> <a class="code hl_variable" href="namespace_astro.html#a7500e12a3b03df976622d855daf92794">DEG_TO_RAD</a>*x;}</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="namespace_astro.html#a80b479e35f42f126d2cb89bb3388c462">   80</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a80b479e35f42f126d2cb89bb3388c462">Rad_To_Deg</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> <a class="code hl_variable" href="namespace_astro.html#a6390a0d2c06a79e7712fdeb7221ec6f1">RAD_TO_DEG</a>*x;}</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="foldopen" id="foldopen00088" data-start="{" data-end="}">
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="namespace_astro.html#a79ee792dcfacc089a1192bb5c6652a0a">   88</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a79ee792dcfacc089a1192bb5c6652a0a">AngleInRange</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x)</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    x = std::fmod(x, <a class="code hl_variable" href="namespace_astro.html#ad1eea55394385dcc1b8daff0201b5491">PIMUL2</a>);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordflow">while</span> (x &lt; <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>(0.0)) {x += <a class="code hl_variable" href="namespace_astro.html#ad1eea55394385dcc1b8daff0201b5491">PIMUL2</a>;}</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordflow">while</span> (x &gt; <a class="code hl_variable" href="namespace_astro.html#ad1eea55394385dcc1b8daff0201b5491">PIMUL2</a>) {x -= <a class="code hl_variable" href="namespace_astro.html#ad1eea55394385dcc1b8daff0201b5491">PIMUL2</a>;}</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordflow">return</span> x;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  }</div>
+</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span></div>
+<div class="foldopen" id="foldopen00102" data-start="{" data-end="}">
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="namespace_astro.html#a8c8267f3ca9c6117ef78e1781f12e180">  102</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a8c8267f3ca9c6117ef78e1781f12e180">AngleInRangeSym</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x)</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    x = std::fmod(x, <a class="code hl_variable" href="namespace_astro.html#ad1eea55394385dcc1b8daff0201b5491">PIMUL2</a>);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordflow">while</span> (x &lt; -<a class="code hl_variable" href="namespace_astro.html#a0860ec10c16f3c44348e2229e26729f5">PI</a>) {x += <a class="code hl_variable" href="namespace_astro.html#ad1eea55394385dcc1b8daff0201b5491">PIMUL2</a>;}</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordflow">while</span> (x &gt; <a class="code hl_variable" href="namespace_astro.html#a0860ec10c16f3c44348e2229e26729f5">PI</a>) {x -= <a class="code hl_variable" href="namespace_astro.html#ad1eea55394385dcc1b8daff0201b5491">PIMUL2</a>;}</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordflow">return</span> x;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  }</div>
+</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  <span class="comment">/*\</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="comment">   |   ____  _     _</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment">   |  |  _ \&zwj;(_)___| |_ __ _ _ __   ___ ___</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment">   |  | | | | / __| __/ _` | &#39;_ \ / __/ _ \</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment">   |  | |_| | \__ \ || (_| | | | | (_|  __/</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment">   |  |____/|_|___/\__\__,_|_| |_|\___\___|</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment">   |</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment">  \*/</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="namespace_astro.html#a7eadcef23533d0f4c15cdd6bf3985127">  119</a></span>  <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro.html#a7eadcef23533d0f4c15cdd6bf3985127">AU_TO_KM</a>{1.49597870707e+08}; </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> KM_TO_AU{1.0/<a class="code hl_variable" href="namespace_astro.html#a7eadcef23533d0f4c15cdd6bf3985127">AU_TO_KM</a>};      </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="namespace_astro.html#a7e08e0d3cc4cc6fcc27abb780870b7c0">  121</a></span>  <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro.html#a7e08e0d3cc4cc6fcc27abb780870b7c0">KM_TO_M</a>{1000.0};             </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> M_TO_KM{1.0/<a class="code hl_variable" href="namespace_astro.html#a7e08e0d3cc4cc6fcc27abb780870b7c0">KM_TO_M</a>};        </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="namespace_astro.html#a3980f77e0052f734f70f70d569730248">  123</a></span>  <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro.html#a3980f77e0052f734f70f70d569730248">AU_TO_M</a>{<a class="code hl_variable" href="namespace_astro.html#a7eadcef23533d0f4c15cdd6bf3985127">AU_TO_KM</a>*<a class="code hl_variable" href="namespace_astro.html#a7e08e0d3cc4cc6fcc27abb780870b7c0">KM_TO_M</a>};   </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> M_TO_AU{<a class="code hl_variable" href="namespace_astro.html#a7eadcef23533d0f4c15cdd6bf3985127">AU_TO_KM</a>*<a class="code hl_variable" href="namespace_astro.html#a7e08e0d3cc4cc6fcc27abb780870b7c0">KM_TO_M</a>};   </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  <span class="comment">// Time units</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="namespace_astro.html#a0504ed0b6f8a753f8dfe58eedab17107">  127</a></span>  <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro.html#a0504ed0b6f8a753f8dfe58eedab17107">DAY_TO_SEC</a>{86400.0};        </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> SEC_TO_DAY{1.0/<a class="code hl_variable" href="namespace_astro.html#a0504ed0b6f8a753f8dfe58eedab17107">DAY_TO_SEC</a>}; </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="namespace_astro.html#a527a024aae367f2080238477cdaa5603">  130</a></span>  <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro.html#a527a024aae367f2080238477cdaa5603">KG_M_SEC2_TO_KG_AU_DAY2</a>{M_TO_AU/(SEC_TO_DAY*SEC_TO_DAY)}; <span class="comment">// Kg * m/s^2 =&gt; Kg * UA / day^2</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="namespace_astro.html#ad2f31f7799625eb632fe42e6be4cb504">  132</a></span>  <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro.html#ad2f31f7799625eb632fe42e6be4cb504">gravity_kg_m_s2</a>{9.80665};</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="namespace_astro.html#ac664678852372a3a6c314970fa26e843">  133</a></span>  <span class="keyword">static</span> <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> <a class="code hl_variable" href="namespace_astro.html#ac664678852372a3a6c314970fa26e843">gravity_kg_AU_DAY2</a>{<a class="code hl_variable" href="namespace_astro.html#ad2f31f7799625eb632fe42e6be4cb504">gravity_kg_m_s2</a>*<a class="code hl_variable" href="namespace_astro.html#a527a024aae367f2080238477cdaa5603">KG_M_SEC2_TO_KG_AU_DAY2</a>};</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  <span class="comment">// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="namespace_astro.html#ae65d4d982ef45e7da2e3453205c9ff12">  138</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#ae65d4d982ef45e7da2e3453205c9ff12">KM_To_M</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * <a class="code hl_variable" href="namespace_astro.html#a7e08e0d3cc4cc6fcc27abb780870b7c0">KM_TO_M</a>;}</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="namespace_astro.html#aa2c7495992553b0ffc9d0a55ac5f807f">  139</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#aa2c7495992553b0ffc9d0a55ac5f807f">M_To_KM</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * M_TO_KM;}</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="namespace_astro.html#a180f3bde2fb772ed5423b98a4cba9933">  141</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a180f3bde2fb772ed5423b98a4cba9933">KM_To_AU</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * KM_TO_AU;}</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="namespace_astro.html#ab541d658dcb96df178435acb46e9760b">  142</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#ab541d658dcb96df178435acb46e9760b">AU_To_KM</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * <a class="code hl_variable" href="namespace_astro.html#a7eadcef23533d0f4c15cdd6bf3985127">AU_TO_KM</a>;}</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="namespace_astro.html#a3b840d47bc0748e5983ad273bb822d22">  144</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a3b840d47bc0748e5983ad273bb822d22">M_To_AU</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * M_TO_AU;}</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="namespace_astro.html#a7de6dacf098eb6a5fe4dede874a9bd37">  145</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a7de6dacf098eb6a5fe4dede874a9bd37">AU_To_M</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * <a class="code hl_variable" href="namespace_astro.html#a3980f77e0052f734f70f70d569730248">AU_TO_M</a>;}</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  <span class="comment">// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="namespace_astro.html#a9c302ba5440c1c459f57d56ab6867b9d">  149</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a9c302ba5440c1c459f57d56ab6867b9d">KM_S_To_M_S</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * <a class="code hl_variable" href="namespace_astro.html#a7e08e0d3cc4cc6fcc27abb780870b7c0">KM_TO_M</a>;}</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="namespace_astro.html#a4aa0e71f0e20ea62529d6f422c454d0e">  150</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a4aa0e71f0e20ea62529d6f422c454d0e">M_S_To_KM_S</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * M_TO_KM;}</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="namespace_astro.html#a19f86044ddd6faebfc0c0e7b9ecf6e4e">  152</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a19f86044ddd6faebfc0c0e7b9ecf6e4e">KM_S_To_AU_S</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * (KM_TO_AU/SEC_TO_DAY);}</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="namespace_astro.html#a21cf301d786f049a79a683224d07e8f5">  153</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a21cf301d786f049a79a683224d07e8f5">AU_S_To_KM_S</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * (<a class="code hl_variable" href="namespace_astro.html#a7eadcef23533d0f4c15cdd6bf3985127">AU_TO_KM</a>*<a class="code hl_variable" href="namespace_astro.html#a0504ed0b6f8a753f8dfe58eedab17107">DAY_TO_SEC</a>);}</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="namespace_astro.html#a13b762a6215d844c9d3c51ad5769ce56">  155</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a13b762a6215d844c9d3c51ad5769ce56">M_S_To_AU_S</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * (M_TO_AU/SEC_TO_DAY);}</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="namespace_astro.html#a47eb7c6190eb97229f761b1f54a50b85">  156</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a47eb7c6190eb97229f761b1f54a50b85">AU_S_To_M_S</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * (<a class="code hl_variable" href="namespace_astro.html#a3980f77e0052f734f70f70d569730248">AU_TO_M</a>*<a class="code hl_variable" href="namespace_astro.html#a0504ed0b6f8a753f8dfe58eedab17107">DAY_TO_SEC</a>);}</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="namespace_astro.html#aa35830c2ed19a891d1ae634a6a877c4a">  158</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#aa35830c2ed19a891d1ae634a6a877c4a">M_S_To_AU_DAY</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * (M_TO_AU/<a class="code hl_variable" href="namespace_astro.html#a0504ed0b6f8a753f8dfe58eedab17107">DAY_TO_SEC</a>);}</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="namespace_astro.html#a5850e001245d3d7b57892804649a1bc6">  159</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a5850e001245d3d7b57892804649a1bc6">AU_DAY_To_M_S</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * (<a class="code hl_variable" href="namespace_astro.html#a3980f77e0052f734f70f70d569730248">AU_TO_M</a>*<a class="code hl_variable" href="namespace_astro.html#a0504ed0b6f8a753f8dfe58eedab17107">DAY_TO_SEC</a>);}</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="namespace_astro.html#ab2d6d4aaf6bdd767c43acf6f9ee7d425">  161</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#ab2d6d4aaf6bdd767c43acf6f9ee7d425">KM_S_To_AU_DAY</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * (KM_TO_AU/<a class="code hl_variable" href="namespace_astro.html#a0504ed0b6f8a753f8dfe58eedab17107">DAY_TO_SEC</a>);}</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="namespace_astro.html#a221953eb6f0e0efeff13dd5eb31d5e5a">  162</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a221953eb6f0e0efeff13dd5eb31d5e5a">AU_DAY_To_KM_S</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * (<a class="code hl_variable" href="namespace_astro.html#a7eadcef23533d0f4c15cdd6bf3985127">AU_TO_KM</a>*<a class="code hl_variable" href="namespace_astro.html#a0504ed0b6f8a753f8dfe58eedab17107">DAY_TO_SEC</a>);}</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="namespace_astro.html#aacdbbe946b1f6e3b1b1c1003fb02d0a9">  164</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#aacdbbe946b1f6e3b1b1c1003fb02d0a9">M_S_To_KM_DAY</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * (M_TO_KM/<a class="code hl_variable" href="namespace_astro.html#a0504ed0b6f8a753f8dfe58eedab17107">DAY_TO_SEC</a>);}</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="namespace_astro.html#a80dbb253e8d8a1156486f06e31541747">  165</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a80dbb253e8d8a1156486f06e31541747">KM_DAY_To_M_S</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * (<a class="code hl_variable" href="namespace_astro.html#a7e08e0d3cc4cc6fcc27abb780870b7c0">KM_TO_M</a>*<a class="code hl_variable" href="namespace_astro.html#a0504ed0b6f8a753f8dfe58eedab17107">DAY_TO_SEC</a>);}</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  <span class="comment">// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="namespace_astro.html#af4c2ab652740110d4b1757a588b33190">  169</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#af4c2ab652740110d4b1757a588b33190">AU_DAY2_To_KM_S2</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * (<a class="code hl_variable" href="namespace_astro.html#a7eadcef23533d0f4c15cdd6bf3985127">AU_TO_KM</a>/(<a class="code hl_variable" href="namespace_astro.html#a0504ed0b6f8a753f8dfe58eedab17107">DAY_TO_SEC</a>*<a class="code hl_variable" href="namespace_astro.html#a0504ed0b6f8a753f8dfe58eedab17107">DAY_TO_SEC</a>));}</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  <span class="comment">// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="namespace_astro.html#a61a086f3c79ef9cd6487cfe3ea752009">  173</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a61a086f3c79ef9cd6487cfe3ea752009">AU_DAY3_To_KM_S3</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * (<a class="code hl_variable" href="namespace_astro.html#a7eadcef23533d0f4c15cdd6bf3985127">AU_TO_KM</a>/(<a class="code hl_variable" href="namespace_astro.html#a0504ed0b6f8a753f8dfe58eedab17107">DAY_TO_SEC</a>*<a class="code hl_variable" href="namespace_astro.html#a0504ed0b6f8a753f8dfe58eedab17107">DAY_TO_SEC</a>*<a class="code hl_variable" href="namespace_astro.html#a0504ed0b6f8a753f8dfe58eedab17107">DAY_TO_SEC</a>));}</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  <span class="comment">// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="namespace_astro.html#a1faef18d0c76eaecfb9156f907fb2457">  177</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a1faef18d0c76eaecfb9156f907fb2457">KM3_S2_To_KM3_DAY2</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * (1.0/(SEC_TO_DAY*SEC_TO_DAY));}</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>  <span class="comment">// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="namespace_astro.html#ac8fc0044b2733010a1ed5802df94edaf">  181</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#ac8fc0044b2733010a1ed5802df94edaf">KM3_S2_To_AU3_DAY2</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> x) {<span class="keywordflow">return</span> x * (1.0/(<a class="code hl_variable" href="namespace_astro.html#a7eadcef23533d0f4c15cdd6bf3985127">AU_TO_KM</a>*<a class="code hl_variable" href="namespace_astro.html#a7eadcef23533d0f4c15cdd6bf3985127">AU_TO_KM</a>*<a class="code hl_variable" href="namespace_astro.html#a7eadcef23533d0f4c15cdd6bf3985127">AU_TO_KM</a>)/(SEC_TO_DAY*SEC_TO_DAY));}</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>  <span class="comment">/*\</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="comment">   |   _____ _</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="comment">   |  |_   _(_)_ __ ___   ___</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="comment">   |    | | | | &#39;_ ` _ \ / _ \</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="comment">   |    | | | | | | | | |  __/</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="comment">   |    |_| |_|_| |_| |_|\___|</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="comment">   |</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="comment">  \*/</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span></div>
+<div class="foldopen" id="foldopen00199" data-start="{" data-end="}">
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="namespace_astro.html#a3ad285b4772fec6f51a533d249f7698f">  199</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#a3ad285b4772fec6f51a533d249f7698f">JulianDate</a>(<a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> year, <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> month, <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> day)</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>  {</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordflow">if</span> (month &lt;= 2)</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    {</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>      year -= 1;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>      month += 12;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    }</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> A{year / 100};</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> B{2 - A + (A / 4)};</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> JD{std::floor(365.25 * (year + 4716))</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>            + std::floor(30.6001 * (month + 1))</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>            + day + B - 1524.5};</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keywordflow">return</span> JD;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>  }</div>
+</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>  <span class="comment">// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span></div>
+<div class="foldopen" id="foldopen00223" data-start="{" data-end="}">
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="namespace_astro.html#aca4e188db99bf3acebbfc75427ec6a1f">  223</a></span>  <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="namespace_astro.html#aca4e188db99bf3acebbfc75427ec6a1f">ModifiedJulianDate</a>(<a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> year, <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> month, <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> day)</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>  {</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespace_astro.html#a3ad285b4772fec6f51a533d249f7698f">JulianDate</a>(year, month, day) - <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>{2400000.5};</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>  }</div>
+</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>  <span class="comment">// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span></div>
+<div class="foldopen" id="foldopen00237" data-start="{" data-end="}">
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno"><a class="line" href="namespace_astro.html#ab426bdfaa1fac96129a308f5c4b2fcaa">  237</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="namespace_astro.html#ab426bdfaa1fac96129a308f5c4b2fcaa">JD_To_Date</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> JD, <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> &amp; year, <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> &amp; month, <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> &amp; day)</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>  {</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> Z{<a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a>(std::floor(JD + 0.5))};</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> F{(JD + 0.5) - Z};</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> A{Z};</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keywordflow">if</span> (Z &gt;= 2299161)</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    {</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>      <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> alpha{<a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a>((Z - 1867216.25) / 36524.25)};</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>      A = Z + 1 + alpha - alpha / 4;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    }</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> B{A + 1524};</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> C{<a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a>((B - 122.1) / 365.25)};</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> D{<a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a>(365.25 * C)};</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> E{<a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a>((B - D) / 30.6001)};</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> dayD{B - D - std::floor(30.6001 * E) + F};</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    day = <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a>(dayD);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="keywordflow">if</span> (E &lt; 14)</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>      month = E - 1;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>      month = E - 13;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keywordflow">if</span> (month &gt; 2)</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>      year = C - 4716;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>      year = C - 4715;</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>  }</div>
+</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>  <span class="comment">// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span></div>
+<div class="foldopen" id="foldopen00272" data-start="{" data-end="}">
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="namespace_astro.html#a817580cfb3bb1951030b52d2cc276a6e">  272</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="namespace_astro.html#a817580cfb3bb1951030b52d2cc276a6e">MJD_To_Date</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> MJD, <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> &amp; year, <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> &amp; month, <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> &amp; day)</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>  {</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <a class="code hl_function" href="namespace_astro.html#ab426bdfaa1fac96129a308f5c4b2fcaa">JD_To_Date</a>(MJD + <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>{2400000.5}, year, month, day);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>  }</div>
+</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>  <span class="comment">// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>} <span class="comment">// namespace Astro</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="preprocessor">#endif </span><span class="comment">// ASTRO_UTILITIES_HH</span></div>
+<div class="ttc" id="a_astro_8hh_html"><div class="ttname"><a href="_astro_8hh.html">Astro.hh</a></div></div>
+<div class="ttc" id="anamespace_astro_html"><div class="ttname"><a href="namespace_astro.html">Astro</a></div><div class="ttdoc">The namespace for the Astro library.</div><div class="ttdef"><b>Definition</b> Astro.hh:73</div></div>
+<div class="ttc" id="anamespace_astro_html_a0504ed0b6f8a753f8dfe58eedab17107"><div class="ttname"><a href="namespace_astro.html#a0504ed0b6f8a753f8dfe58eedab17107">Astro::DAY_TO_SEC</a></div><div class="ttdeci">static Real const DAY_TO_SEC</div><div class="ttdef"><b>Definition</b> Utilities.hh:127</div></div>
+<div class="ttc" id="anamespace_astro_html_a0860ec10c16f3c44348e2229e26729f5"><div class="ttname"><a href="namespace_astro.html#a0860ec10c16f3c44348e2229e26729f5">Astro::PI</a></div><div class="ttdeci">static Real const PI</div><div class="ttdef"><b>Definition</b> Utilities.hh:60</div></div>
+<div class="ttc" id="anamespace_astro_html_a13b762a6215d844c9d3c51ad5769ce56"><div class="ttname"><a href="namespace_astro.html#a13b762a6215d844c9d3c51ad5769ce56">Astro::M_S_To_AU_S</a></div><div class="ttdeci">Real M_S_To_AU_S(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:155</div></div>
+<div class="ttc" id="anamespace_astro_html_a180f3bde2fb772ed5423b98a4cba9933"><div class="ttname"><a href="namespace_astro.html#a180f3bde2fb772ed5423b98a4cba9933">Astro::KM_To_AU</a></div><div class="ttdeci">Real KM_To_AU(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:141</div></div>
+<div class="ttc" id="anamespace_astro_html_a19f86044ddd6faebfc0c0e7b9ecf6e4e"><div class="ttname"><a href="namespace_astro.html#a19f86044ddd6faebfc0c0e7b9ecf6e4e">Astro::KM_S_To_AU_S</a></div><div class="ttdeci">Real KM_S_To_AU_S(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:152</div></div>
+<div class="ttc" id="anamespace_astro_html_a1faef18d0c76eaecfb9156f907fb2457"><div class="ttname"><a href="namespace_astro.html#a1faef18d0c76eaecfb9156f907fb2457">Astro::KM3_S2_To_KM3_DAY2</a></div><div class="ttdeci">Real KM3_S2_To_KM3_DAY2(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:177</div></div>
+<div class="ttc" id="anamespace_astro_html_a21cf301d786f049a79a683224d07e8f5"><div class="ttname"><a href="namespace_astro.html#a21cf301d786f049a79a683224d07e8f5">Astro::AU_S_To_KM_S</a></div><div class="ttdeci">Real AU_S_To_KM_S(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:153</div></div>
+<div class="ttc" id="anamespace_astro_html_a221953eb6f0e0efeff13dd5eb31d5e5a"><div class="ttname"><a href="namespace_astro.html#a221953eb6f0e0efeff13dd5eb31d5e5a">Astro::AU_DAY_To_KM_S</a></div><div class="ttdeci">Real AU_DAY_To_KM_S(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:162</div></div>
+<div class="ttc" id="anamespace_astro_html_a2abb027fdf4847d2c58d32f5aa8f0d13"><div class="ttname"><a href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Astro::Integer</a></div><div class="ttdeci">int Integer</div><div class="ttdef"><b>Definition</b> Astro.hh:85</div></div>
+<div class="ttc" id="anamespace_astro_html_a358161157a64a7527b915d6329d895c4"><div class="ttname"><a href="namespace_astro.html#a358161157a64a7527b915d6329d895c4">Astro::Power2</a></div><div class="ttdeci">Real Power2(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:34</div></div>
+<div class="ttc" id="anamespace_astro_html_a3980f77e0052f734f70f70d569730248"><div class="ttname"><a href="namespace_astro.html#a3980f77e0052f734f70f70d569730248">Astro::AU_TO_M</a></div><div class="ttdeci">static Real const AU_TO_M</div><div class="ttdef"><b>Definition</b> Utilities.hh:123</div></div>
+<div class="ttc" id="anamespace_astro_html_a3ad285b4772fec6f51a533d249f7698f"><div class="ttname"><a href="namespace_astro.html#a3ad285b4772fec6f51a533d249f7698f">Astro::JulianDate</a></div><div class="ttdeci">Real JulianDate(Integer year, Integer month, Integer day)</div><div class="ttdef"><b>Definition</b> Utilities.hh:199</div></div>
+<div class="ttc" id="anamespace_astro_html_a3b840d47bc0748e5983ad273bb822d22"><div class="ttname"><a href="namespace_astro.html#a3b840d47bc0748e5983ad273bb822d22">Astro::M_To_AU</a></div><div class="ttdeci">Real M_To_AU(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:144</div></div>
+<div class="ttc" id="anamespace_astro_html_a47eb7c6190eb97229f761b1f54a50b85"><div class="ttname"><a href="namespace_astro.html#a47eb7c6190eb97229f761b1f54a50b85">Astro::AU_S_To_M_S</a></div><div class="ttdeci">Real AU_S_To_M_S(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:156</div></div>
+<div class="ttc" id="anamespace_astro_html_a4aa0e71f0e20ea62529d6f422c454d0e"><div class="ttname"><a href="namespace_astro.html#a4aa0e71f0e20ea62529d6f422c454d0e">Astro::M_S_To_KM_S</a></div><div class="ttdeci">Real M_S_To_KM_S(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:150</div></div>
+<div class="ttc" id="anamespace_astro_html_a527a024aae367f2080238477cdaa5603"><div class="ttname"><a href="namespace_astro.html#a527a024aae367f2080238477cdaa5603">Astro::KG_M_SEC2_TO_KG_AU_DAY2</a></div><div class="ttdeci">static Real const KG_M_SEC2_TO_KG_AU_DAY2</div><div class="ttdef"><b>Definition</b> Utilities.hh:130</div></div>
+<div class="ttc" id="anamespace_astro_html_a52d30c96cc4302668576e128562c935f"><div class="ttname"><a href="namespace_astro.html#a52d30c96cc4302668576e128562c935f">Astro::Deg_To_Rad</a></div><div class="ttdeci">Real Deg_To_Rad(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:72</div></div>
+<div class="ttc" id="anamespace_astro_html_a5850e001245d3d7b57892804649a1bc6"><div class="ttname"><a href="namespace_astro.html#a5850e001245d3d7b57892804649a1bc6">Astro::AU_DAY_To_M_S</a></div><div class="ttdeci">Real AU_DAY_To_M_S(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:159</div></div>
+<div class="ttc" id="anamespace_astro_html_a5d433fe4552c854e79e84c80d556d24b"><div class="ttname"><a href="namespace_astro.html#a5d433fe4552c854e79e84c80d556d24b">Astro::Power4</a></div><div class="ttdeci">Real Power4(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:49</div></div>
+<div class="ttc" id="anamespace_astro_html_a61a086f3c79ef9cd6487cfe3ea752009"><div class="ttname"><a href="namespace_astro.html#a61a086f3c79ef9cd6487cfe3ea752009">Astro::AU_DAY3_To_KM_S3</a></div><div class="ttdeci">Real AU_DAY3_To_KM_S3(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:173</div></div>
+<div class="ttc" id="anamespace_astro_html_a6390a0d2c06a79e7712fdeb7221ec6f1"><div class="ttname"><a href="namespace_astro.html#a6390a0d2c06a79e7712fdeb7221ec6f1">Astro::RAD_TO_DEG</a></div><div class="ttdeci">static Real const RAD_TO_DEG</div><div class="ttdef"><b>Definition</b> Utilities.hh:64</div></div>
+<div class="ttc" id="anamespace_astro_html_a64e50dbc72fa6d35a0c362a321890aa6"><div class="ttname"><a href="namespace_astro.html#a64e50dbc72fa6d35a0c362a321890aa6">Astro::Power3</a></div><div class="ttdeci">Real Power3(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:42</div></div>
+<div class="ttc" id="anamespace_astro_html_a7500e12a3b03df976622d855daf92794"><div class="ttname"><a href="namespace_astro.html#a7500e12a3b03df976622d855daf92794">Astro::DEG_TO_RAD</a></div><div class="ttdeci">static Real const DEG_TO_RAD</div><div class="ttdef"><b>Definition</b> Utilities.hh:63</div></div>
+<div class="ttc" id="anamespace_astro_html_a79ee792dcfacc089a1192bb5c6652a0a"><div class="ttname"><a href="namespace_astro.html#a79ee792dcfacc089a1192bb5c6652a0a">Astro::AngleInRange</a></div><div class="ttdeci">Real AngleInRange(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:88</div></div>
+<div class="ttc" id="anamespace_astro_html_a7de6dacf098eb6a5fe4dede874a9bd37"><div class="ttname"><a href="namespace_astro.html#a7de6dacf098eb6a5fe4dede874a9bd37">Astro::AU_To_M</a></div><div class="ttdeci">Real AU_To_M(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:145</div></div>
+<div class="ttc" id="anamespace_astro_html_a7e08e0d3cc4cc6fcc27abb780870b7c0"><div class="ttname"><a href="namespace_astro.html#a7e08e0d3cc4cc6fcc27abb780870b7c0">Astro::KM_TO_M</a></div><div class="ttdeci">static Real const KM_TO_M</div><div class="ttdef"><b>Definition</b> Utilities.hh:121</div></div>
+<div class="ttc" id="anamespace_astro_html_a7eadcef23533d0f4c15cdd6bf3985127"><div class="ttname"><a href="namespace_astro.html#a7eadcef23533d0f4c15cdd6bf3985127">Astro::AU_TO_KM</a></div><div class="ttdeci">static Real const AU_TO_KM</div><div class="ttdef"><b>Definition</b> Utilities.hh:119</div></div>
+<div class="ttc" id="anamespace_astro_html_a80b479e35f42f126d2cb89bb3388c462"><div class="ttname"><a href="namespace_astro.html#a80b479e35f42f126d2cb89bb3388c462">Astro::Rad_To_Deg</a></div><div class="ttdeci">Real Rad_To_Deg(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:80</div></div>
+<div class="ttc" id="anamespace_astro_html_a80dbb253e8d8a1156486f06e31541747"><div class="ttname"><a href="namespace_astro.html#a80dbb253e8d8a1156486f06e31541747">Astro::KM_DAY_To_M_S</a></div><div class="ttdeci">Real KM_DAY_To_M_S(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:165</div></div>
+<div class="ttc" id="anamespace_astro_html_a817580cfb3bb1951030b52d2cc276a6e"><div class="ttname"><a href="namespace_astro.html#a817580cfb3bb1951030b52d2cc276a6e">Astro::MJD_To_Date</a></div><div class="ttdeci">void MJD_To_Date(Real MJD, Integer &amp;year, Integer &amp;month, Integer &amp;day)</div><div class="ttdef"><b>Definition</b> Utilities.hh:272</div></div>
+<div class="ttc" id="anamespace_astro_html_a8c8267f3ca9c6117ef78e1781f12e180"><div class="ttname"><a href="namespace_astro.html#a8c8267f3ca9c6117ef78e1781f12e180">Astro::AngleInRangeSym</a></div><div class="ttdeci">Real AngleInRangeSym(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:102</div></div>
+<div class="ttc" id="anamespace_astro_html_a9383c950271cc6fed61837e4b5301ae1"><div class="ttname"><a href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Astro::Real</a></div><div class="ttdeci">double Real</div><div class="ttdef"><b>Definition</b> Astro.hh:84</div></div>
+<div class="ttc" id="anamespace_astro_html_a9c302ba5440c1c459f57d56ab6867b9d"><div class="ttname"><a href="namespace_astro.html#a9c302ba5440c1c459f57d56ab6867b9d">Astro::KM_S_To_M_S</a></div><div class="ttdeci">Real KM_S_To_M_S(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:149</div></div>
+<div class="ttc" id="anamespace_astro_html_aa2c7495992553b0ffc9d0a55ac5f807f"><div class="ttname"><a href="namespace_astro.html#aa2c7495992553b0ffc9d0a55ac5f807f">Astro::M_To_KM</a></div><div class="ttdeci">Real M_To_KM(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:139</div></div>
+<div class="ttc" id="anamespace_astro_html_aa35830c2ed19a891d1ae634a6a877c4a"><div class="ttname"><a href="namespace_astro.html#aa35830c2ed19a891d1ae634a6a877c4a">Astro::M_S_To_AU_DAY</a></div><div class="ttdeci">Real M_S_To_AU_DAY(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:158</div></div>
+<div class="ttc" id="anamespace_astro_html_aacdbbe946b1f6e3b1b1c1003fb02d0a9"><div class="ttname"><a href="namespace_astro.html#aacdbbe946b1f6e3b1b1c1003fb02d0a9">Astro::M_S_To_KM_DAY</a></div><div class="ttdeci">Real M_S_To_KM_DAY(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:164</div></div>
+<div class="ttc" id="anamespace_astro_html_ab2d6d4aaf6bdd767c43acf6f9ee7d425"><div class="ttname"><a href="namespace_astro.html#ab2d6d4aaf6bdd767c43acf6f9ee7d425">Astro::KM_S_To_AU_DAY</a></div><div class="ttdeci">Real KM_S_To_AU_DAY(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:161</div></div>
+<div class="ttc" id="anamespace_astro_html_ab426bdfaa1fac96129a308f5c4b2fcaa"><div class="ttname"><a href="namespace_astro.html#ab426bdfaa1fac96129a308f5c4b2fcaa">Astro::JD_To_Date</a></div><div class="ttdeci">void JD_To_Date(Real JD, Integer &amp;year, Integer &amp;month, Integer &amp;day)</div><div class="ttdef"><b>Definition</b> Utilities.hh:237</div></div>
+<div class="ttc" id="anamespace_astro_html_ab541d658dcb96df178435acb46e9760b"><div class="ttname"><a href="namespace_astro.html#ab541d658dcb96df178435acb46e9760b">Astro::AU_To_KM</a></div><div class="ttdeci">Real AU_To_KM(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:142</div></div>
+<div class="ttc" id="anamespace_astro_html_ac664678852372a3a6c314970fa26e843"><div class="ttname"><a href="namespace_astro.html#ac664678852372a3a6c314970fa26e843">Astro::gravity_kg_AU_DAY2</a></div><div class="ttdeci">static Real const gravity_kg_AU_DAY2</div><div class="ttdef"><b>Definition</b> Utilities.hh:133</div></div>
+<div class="ttc" id="anamespace_astro_html_ac8fc0044b2733010a1ed5802df94edaf"><div class="ttname"><a href="namespace_astro.html#ac8fc0044b2733010a1ed5802df94edaf">Astro::KM3_S2_To_AU3_DAY2</a></div><div class="ttdeci">Real KM3_S2_To_AU3_DAY2(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:181</div></div>
+<div class="ttc" id="anamespace_astro_html_aca4e188db99bf3acebbfc75427ec6a1f"><div class="ttname"><a href="namespace_astro.html#aca4e188db99bf3acebbfc75427ec6a1f">Astro::ModifiedJulianDate</a></div><div class="ttdeci">Real ModifiedJulianDate(Integer year, Integer month, Integer day)</div><div class="ttdef"><b>Definition</b> Utilities.hh:223</div></div>
+<div class="ttc" id="anamespace_astro_html_ad1eea55394385dcc1b8daff0201b5491"><div class="ttname"><a href="namespace_astro.html#ad1eea55394385dcc1b8daff0201b5491">Astro::PIMUL2</a></div><div class="ttdeci">static Real const PIMUL2</div><div class="ttdef"><b>Definition</b> Utilities.hh:61</div></div>
+<div class="ttc" id="anamespace_astro_html_ad2f31f7799625eb632fe42e6be4cb504"><div class="ttname"><a href="namespace_astro.html#ad2f31f7799625eb632fe42e6be4cb504">Astro::gravity_kg_m_s2</a></div><div class="ttdeci">static Real const gravity_kg_m_s2</div><div class="ttdef"><b>Definition</b> Utilities.hh:132</div></div>
+<div class="ttc" id="anamespace_astro_html_ae65d4d982ef45e7da2e3453205c9ff12"><div class="ttname"><a href="namespace_astro.html#ae65d4d982ef45e7da2e3453205c9ff12">Astro::KM_To_M</a></div><div class="ttdeci">Real KM_To_M(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:138</div></div>
+<div class="ttc" id="anamespace_astro_html_af4c2ab652740110d4b1757a588b33190"><div class="ttname"><a href="namespace_astro.html#af4c2ab652740110d4b1757a588b33190">Astro::AU_DAY2_To_KM_S2</a></div><div class="ttdeci">Real AU_DAY2_To_KM_S2(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:169</div></div>
+<div class="ttc" id="anamespace_astro_html_afe8e0905e44c8f78593083bb2517db85"><div class="ttname"><a href="namespace_astro.html#afe8e0905e44c8f78593083bb2517db85">Astro::PIDIV2</a></div><div class="ttdeci">static Real const PIDIV2</div><div class="ttdef"><b>Definition</b> Utilities.hh:62</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_945246ed06ec64eff2daa17eb769e096.html">Astro</a></li><li class="navelem"><a href="_utilities_8hh.html">Utilities.hh</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

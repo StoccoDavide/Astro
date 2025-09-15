@@ -1,6 +1,30 @@
 var searchData=
 [
-  ['translate_0',['Translate',['../namespace_astro.html#ae8e7952781ea4f7123ad68c38ab30077',1,'Astro']]],
-  ['type_1',['Type',['../namespace_astro.html#a6c1157f85a680ad32cba5b9a5ecf038b',1,'Astro']]],
-  ['type_2',['type',['../class_astro_1_1_orbit.html#a7e0bfdad52876fc14cc1935291bbea49',1,'Astro::Orbit::type() const'],['../class_astro_1_1_orbit.html#aea48fdac49b84acec7ed162c8b889977',1,'Astro::Orbit::type(Real e)']]]
+  ['sanity_5fcheck_0',['sanity_check',['../class_astro_1_1_orbit.html#ac07bcd01ac0abcc321f6513510b3bc13',1,'Astro::Orbit::sanity_check()'],['../struct_astro_1_1_orbital_elements_1_1_cartesian.html#ab76ee4bc68b3fd40a1197699493d8c16',1,'Astro::OrbitalElements::Cartesian::sanity_check()'],['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#afbbcef6e11f669a37bf118cc6a6c8e24',1,'Astro::OrbitalElements::Keplerian::sanity_check()'],['../struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a85c80e3380ac505d157df615beb7e867',1,'Astro::OrbitalElements::Equinoctial::sanity_check()'],['../struct_astro_1_1_orbital_elements_1_1_quaternionic.html#a87c7b20cf8394c79aa8bc6dcf6747a65',1,'Astro::OrbitalElements::Quaternionic::sanity_check()'],['../struct_astro_1_1_orbital_elements_1_1_anomaly.html#a0d2779e82c864490983a5029547a9cd9',1,'Astro::OrbitalElements::Anomaly::sanity_check()']]],
+  ['scale_1',['Scale',['../namespace_astro.html#ac486b91209d84f353acd637507f9d0df',1,'Astro']]],
+  ['set_5fcartesian_2',['set_cartesian',['../class_astro_1_1_orbit.html#a850788379761fdba0bdf990420a5187e',1,'Astro::Orbit::set_cartesian(Real r_x, Real r_y, Real r_z, Real v_x, Real v_y, Real v_z)'],['../class_astro_1_1_orbit.html#a37fd61961a1bcf97ee1dd013484570ee',1,'Astro::Orbit::set_cartesian(Vector3 const &amp;t_r, Vector3 const &amp;t_v)'],['../class_astro_1_1_orbit.html#ac4242911d566765d502218cd78a3d378',1,'Astro::Orbit::set_cartesian(Vector6 const &amp;t_cart)'],['../class_astro_1_1_orbit.html#a3effe8b8c4627124642edf5f1c1b0365',1,'Astro::Orbit::set_cartesian(Cartesian const &amp;t_cart)']]],
+  ['set_5fcartesian_5fstate_3',['set_cartesian_state',['../class_astro_1_1_body.html#a629d109ed86e10d6e6b15fe30aff6621',1,'Astro::Body']]],
+  ['set_5fe_4',['set_E',['../struct_astro_1_1_orbital_elements_1_1_anomaly.html#a122d2ef0f2c3e155bec945d64930d9d1',1,'Astro::OrbitalElements::Anomaly']]],
+  ['set_5fepoch_5',['set_epoch',['../class_astro_1_1_body.html#a7a091975d5546a2bd2def30b29caaa2a',1,'Astro::Body']]],
+  ['set_5fepoch_5fanomaly_6',['set_epoch_anomaly',['../class_astro_1_1_body.html#aa33aec2dcbef66b7f5efcc376b23a55d',1,'Astro::Body::set_epoch_anomaly()'],['../class_astro_1_1_body.html#a402aa9bbd65b10f2eb8626ffc971a3ea',1,'Astro::Body::set_epoch_anomaly(Anomaly const &amp;t_epoch_anomaly)']]],
+  ['set_5fequinoctial_7',['set_equinoctial',['../class_astro_1_1_orbit.html#a7d6efa011f01b2b968424ba6d1f310a9',1,'Astro::Orbit::set_equinoctial(Real const t_p, Real const t_f, Real const t_g, Real const t_h, Real const t_k, Real const L)'],['../class_astro_1_1_orbit.html#a8cfe2828c39393fecd9cc1a1e3062f40',1,'Astro::Orbit::set_equinoctial(Vector5 const &amp;t_equi, Real const L)'],['../class_astro_1_1_orbit.html#a44bfa7dacf04dc3e1a09f93af122b1a2',1,'Astro::Orbit::set_equinoctial(Equinoctial const &amp;t_equi, Real const L)']]],
+  ['set_5fequinoctial_5fstate_8',['set_equinoctial_state',['../class_astro_1_1_body.html#a8ad31041d226074de44ca927f69a1f42',1,'Astro::Body']]],
+  ['set_5ffactor_9',['set_factor',['../class_astro_1_1_orbit.html#ae062656cbf56d99a6af3661b9d977816',1,'Astro::Orbit']]],
+  ['set_5fh_10',['set_H',['../struct_astro_1_1_orbital_elements_1_1_anomaly.html#a031bab83c4ccf119956d42e46f1fdfe1',1,'Astro::OrbitalElements::Anomaly']]],
+  ['set_5fkeplerian_11',['set_keplerian',['../class_astro_1_1_orbit.html#aebb6b5d945e95c48e0ef4d76dd2dbff2',1,'Astro::Orbit::set_keplerian(Real const t_a, Real const t_e, Real const t_i, Real const t_Omega, Real const t_omega, Real const nu)'],['../class_astro_1_1_orbit.html#aa4a3c4356413ce32fd924f2d4ddba9e4',1,'Astro::Orbit::set_keplerian(Vector5 const &amp;t_kepl, Real const nu)'],['../class_astro_1_1_orbit.html#a3655fa30a0eff6998705483ad9ab5f15',1,'Astro::Orbit::set_keplerian(Keplerian const &amp;t_kepl, Real const nu)']]],
+  ['set_5fkeplerian_5fstate_12',['set_keplerian_state',['../class_astro_1_1_body.html#afa190fcaab7791338d4847821591f628',1,'Astro::Body']]],
+  ['set_5fl_13',['set_L',['../struct_astro_1_1_orbital_elements_1_1_anomaly.html#ad6c524f83600956bd119d8895c39abc9',1,'Astro::OrbitalElements::Anomaly']]],
+  ['set_5flambda_14',['set_lambda',['../struct_astro_1_1_orbital_elements_1_1_anomaly.html#a4c1483d02695408350480607a68443d4',1,'Astro::OrbitalElements::Anomaly']]],
+  ['set_5fm_15',['set_M',['../struct_astro_1_1_orbital_elements_1_1_anomaly.html#a82340ab6dd7a7a7421e03bba8622b512',1,'Astro::OrbitalElements::Anomaly']]],
+  ['set_5fmu_16',['set_mu',['../class_astro_1_1_orbit.html#a8d3df9daa4221c8a2ace57c5a59be5b1',1,'Astro::Orbit']]],
+  ['set_5fnu_17',['set_nu',['../struct_astro_1_1_orbital_elements_1_1_anomaly.html#a8dd7b11df546dab605a7237e46e1b6e8',1,'Astro::OrbitalElements::Anomaly']]],
+  ['set_5forbit_18',['set_orbit',['../class_astro_1_1_body.html#a86e162f02726819a813855d189ab9179',1,'Astro::Body']]],
+  ['set_5fquaternionic_19',['set_quaternionic',['../class_astro_1_1_orbit.html#a9c579e8cfc6e110ec851cc5a523199c8',1,'Astro::Orbit::set_quaternionic(Real const t_q_1, Real const t_q_2, Real const t_q_3, Real const t_q_4)'],['../class_astro_1_1_orbit.html#a60c66c57fddcb602ebf46e87260dcfa5',1,'Astro::Orbit::set_quaternionic(Quaternion const &amp;t_quat)']]],
+  ['set_5ftype_20',['set_type',['../class_astro_1_1_orbit.html#a747a88e7d9380a2e726ea9d174a73a0f',1,'Astro::Orbit']]],
+  ['sqrt_5fepsilon_21',['SQRT_EPSILON',['../namespace_astro.html#a51d78d1b03f0d5e745924991254e7f28',1,'Astro']]],
+  ['sun_5fmass_5fkg_22',['Sun_mass_KG',['../namespace_astro_1_1_planets.html#a2a9943439d26f2d33fbe14fb73f26603',1,'Astro::Planets']]],
+  ['sun_5fmu_5fau3_5fday2_23',['Sun_mu_AU3_DAY2',['../namespace_astro_1_1_planets.html#a2d625ab7b19ea2da6ebd612605f40d8c',1,'Astro::Planets']]],
+  ['sun_5fmu_5fkm3_5fs2_24',['Sun_mu_KM3_S2',['../namespace_astro_1_1_planets.html#af137cabf29e593193c0908d87c35f839',1,'Astro::Planets']]],
+  ['sun_5fradius_5fau_25',['Sun_radius_AU',['../namespace_astro_1_1_planets.html#a6c1b325b1297deef4368e2869d4f2195',1,'Astro::Planets']]],
+  ['sun_5fradius_5fkm_26',['Sun_radius_KM',['../namespace_astro_1_1_planets.html#ac21923b2347cdd973aea9e140d90f308',1,'Astro::Planets']]]
 ];

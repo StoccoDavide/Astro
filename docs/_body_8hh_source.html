@@ -1,0 +1,662 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>Astro: include/Astro/Body.hh Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.png"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/StoccoDavide/Astro" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Astro
+   &#160;<span id="projectnumber">0.0.0</span>
+   </div>
+   <div id="projectbrief">A C++ library for space dynamics</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('_body_8hh_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Body.hh</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_body_8hh.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2025, Davide Stocco and Enrico Bertolazzi.                  *</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *                                                                           *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * The Astro project is distributed under the GNU GPLv3.                     *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *                                                                           *</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * Davide Stocco                                           Enrico Bertolazzi *</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * University of Trento                                 University of Trento *</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * e-mail: davide.stocco@unitn.it         e-mail: enrico.bertolazzi@unitn.it *</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">\* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef ASTRO_BODY_HH</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="_body_8hh.html#a90d3a44e8eebc9ad231edfa4f58ba822">   14</a></span><span class="preprocessor">#define ASTRO_BODY_HH</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="_orbit_8hh.html">Astro/Orbit.hh</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">// Sandals library</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;Sandals/RungeKutta.hh&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;Sandals/Solution.hh&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_astro.html">Astro</a></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="namespace_astro.html#a0f048f4a9727eeb8a55341f3e02387ec">   26</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="namespace_astro.html#a0f048f4a9727eeb8a55341f3e02387ec">Coordinates</a> = <span class="keyword">enum class</span> <a class="code hl_typedef" href="namespace_astro.html#a0f048f4a9727eeb8a55341f3e02387ec">Coordinates</a> : <a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> {CARTESIAN = 0, KEPLERIAN = 1, EQUINOCTIAL = 2, QUATERNIONIC = 3};</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="comment">/*\</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">   |   ____            _</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">   |  | __ )  ___   __| |_   _</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">   |  |  _ \ / _ \ / _` | | | |</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">   |  | |_) | (_) | (_| | |_| |</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">   |  |____/ \___/ \__,_|\__, |</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">   |                     |___/</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">  \*/</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span></div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="};">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html">   44</a></span>  <span class="keyword">class </span><a class="code hl_function" href="class_astro_1_1_body.html#a63894521158578bf268c7a01dcd3d7a9">Body</a></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a932baa9bed7c9ec824d220f0a2046134">   47</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="class_astro_1_1_body.html#a932baa9bed7c9ec824d220f0a2046134">Anomaly</a> = <a class="code hl_struct" href="struct_astro_1_1_orbital_elements_1_1_anomaly.html">OrbitalElements::Anomaly</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#ab831b40be210c3ce5c678f0accb33660">   50</a></span>    std::string <a class="code hl_variable" href="class_astro_1_1_body.html#ab831b40be210c3ce5c678f0accb33660">m_name</a>{<span class="stringliteral">&quot;(undefined)&quot;</span>}; </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a3d6935900068065db6e1719eece510a0">   51</a></span>    <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>        <a class="code hl_variable" href="class_astro_1_1_body.html#a3d6935900068065db6e1719eece510a0">m_epoch</a>{0.0};          </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a9458de80b381232919ba96ec3ad7763b">   52</a></span>    <a class="code hl_typedef" href="class_astro_1_1_body.html#a932baa9bed7c9ec824d220f0a2046134">Anomaly</a>     <a class="code hl_variable" href="class_astro_1_1_body.html#a9458de80b381232919ba96ec3ad7763b">m_epoch_anom</a>;         </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#ae277b76d7ae6798bd212f6c0b14e7236">   53</a></span>    <a class="code hl_class" href="class_astro_1_1_orbit.html">Orbit</a>       <a class="code hl_variable" href="class_astro_1_1_body.html#ae277b76d7ae6798bd212f6c0b14e7236">m_orbit</a>;               </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a2a241af239ec88bddf667c19d927d05b">   54</a></span>    <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>        <a class="code hl_variable" href="class_astro_1_1_body.html#a2a241af239ec88bddf667c19d927d05b">m_radius</a>{<a class="code hl_variable" href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">QUIET_NAN</a>};   </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a02959c9e2236015cdb7fec3ec0cc6c07">   55</a></span>    <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>        <a class="code hl_variable" href="class_astro_1_1_body.html#a02959c9e2236015cdb7fec3ec0cc6c07">m_mass</a>{<a class="code hl_variable" href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">QUIET_NAN</a>};     </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a63894521158578bf268c7a01dcd3d7a9">   61</a></span>    <a class="code hl_function" href="class_astro_1_1_body.html#a63894521158578bf268c7a01dcd3d7a9">Body</a>() {}</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="foldopen" id="foldopen00067" data-start="{" data-end="}">
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#aaba3e431ed67d8daa55df1b2e1ac70c6">   67</a></span>    <a class="code hl_function" href="class_astro_1_1_body.html#aaba3e431ed67d8daa55df1b2e1ac70c6">Body</a>(std::string <span class="keyword">const</span> &amp; t_name, <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> t_mass, <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> t_radius = 0.0)</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a5bd95e774f194619cb1299be98336947">name</a>(t_name);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a6ce6187634d6b718faca6133ad401921">mass</a>(t_mass);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a8197701a9db797417d62c67e87d67520">radius</a>(t_radius);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
+</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a8b1f4a7a934d276822e94a79e5019966">   77</a></span>    <a class="code hl_function" href="class_astro_1_1_body.html#a8b1f4a7a934d276822e94a79e5019966">Body</a>(<a class="code hl_function" href="class_astro_1_1_body.html#a63894521158578bf268c7a01dcd3d7a9">Body</a> <span class="keyword">const</span> &amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#aca26c3bf7d01aab1534ac5cc317bfcbc">   82</a></span>    <a class="code hl_function" href="class_astro_1_1_body.html#aca26c3bf7d01aab1534ac5cc317bfcbc">Body</a>(<a class="code hl_function" href="class_astro_1_1_body.html#a63894521158578bf268c7a01dcd3d7a9">Body</a> &amp;&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#aeca1b0b850bdc18c3f877c1402ef7e27">   87</a></span>    <a class="code hl_function" href="class_astro_1_1_body.html#a63894521158578bf268c7a01dcd3d7a9">Body</a> &amp; <a class="code hl_function" href="class_astro_1_1_body.html#aeca1b0b850bdc18c3f877c1402ef7e27">operator=</a>(<span class="keyword">const</span> <a class="code hl_function" href="class_astro_1_1_body.html#a63894521158578bf268c7a01dcd3d7a9">Body</a> &amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a3f2aa0d766e9854208053809218fa435">   92</a></span>    <a class="code hl_function" href="class_astro_1_1_body.html#a63894521158578bf268c7a01dcd3d7a9">Body</a> &amp; <a class="code hl_function" href="class_astro_1_1_body.html#a3f2aa0d766e9854208053809218fa435">operator=</a>(<a class="code hl_function" href="class_astro_1_1_body.html#a63894521158578bf268c7a01dcd3d7a9">Body</a> &amp;&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a5bd95e774f194619cb1299be98336947">   98</a></span>    std::string <a class="code hl_function" href="class_astro_1_1_body.html#a5bd95e774f194619cb1299be98336947">name</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;m_name;}</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span></div>
+<div class="foldopen" id="foldopen00104" data-start="{" data-end="}">
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a04fafee0914a741b4f713666db829760">  104</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_astro_1_1_body.html#a04fafee0914a741b4f713666db829760">name</a>(std::string <span class="keyword">const</span> &amp; t_name)</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    {</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="preprocessor">      #define CMD &quot;Astro::Body::name(...): &quot;</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      <a class="code hl_define" href="_astro_8hh.html#a1b7667184555a6b9680d06de39169ccf">ASTRO_ASSERT</a>(!t_name.empty(), <a class="code hl_define" href="_orbit_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a> <span class="stringliteral">&quot;name cannot be empty.&quot;</span>);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      this-&gt;m_name = t_name;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">      #undef CMD</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    }</div>
+</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">  118</a></span>    <a class="code hl_class" href="class_astro_1_1_orbit.html">Orbit</a> <span class="keyword">const</span> &amp; <a class="code hl_function" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">orbit</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;m_orbit;}</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a86e162f02726819a813855d189ab9179">  124</a></span>    <a class="code hl_class" href="class_astro_1_1_orbit.html">Orbit</a> &amp; <a class="code hl_function" href="class_astro_1_1_body.html#a86e162f02726819a813855d189ab9179">set_orbit</a>() {<span class="keywordflow">return</span> this-&gt;m_orbit;}</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a049a8927ce8db59a622d96d83eaa7c3b">  130</a></span>    <a class="code hl_typedef" href="class_astro_1_1_body.html#a932baa9bed7c9ec824d220f0a2046134">Anomaly</a> <span class="keyword">const</span> &amp; <a class="code hl_function" href="class_astro_1_1_body.html#a049a8927ce8db59a622d96d83eaa7c3b">epoch_anomaly</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;m_epoch_anom;}</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#aa33aec2dcbef66b7f5efcc376b23a55d">  136</a></span>    <a class="code hl_typedef" href="class_astro_1_1_body.html#a932baa9bed7c9ec824d220f0a2046134">Anomaly</a> &amp; <a class="code hl_function" href="class_astro_1_1_body.html#aa33aec2dcbef66b7f5efcc376b23a55d">set_epoch_anomaly</a>() {<span class="keywordflow">return</span> this-&gt;m_epoch_anom;}</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span></div>
+<div class="foldopen" id="foldopen00142" data-start="{" data-end="}">
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a402aa9bbd65b10f2eb8626ffc971a3ea">  142</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_astro_1_1_body.html#a402aa9bbd65b10f2eb8626ffc971a3ea">set_epoch_anomaly</a>(<a class="code hl_typedef" href="class_astro_1_1_body.html#a932baa9bed7c9ec824d220f0a2046134">Anomaly</a> <span class="keyword">const</span> &amp; t_epoch_anomaly)</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    {</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>      <a class="code hl_define" href="_astro_8hh.html#a1b7667184555a6b9680d06de39169ccf">ASTRO_ASSERT</a>(t_epoch_anomaly.<a class="code hl_function" href="struct_astro_1_1_orbital_elements_1_1_anomaly.html#a0d2779e82c864490983a5029547a9cd9">sanity_check</a>(),</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        <span class="stringliteral">&quot;Astro::Orbit::epoch_anomaly(...): invalid orbital anomalies detected.&quot;</span>);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>      this-&gt;m_epoch_anom = t_epoch_anomaly;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    }</div>
+</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span></div>
+<div class="foldopen" id="foldopen00154" data-start="{" data-end="}">
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#ad5d990c1cb5bb19a5f8c3b347406bdf5">  154</a></span>    <a class="code hl_typedef" href="class_astro_1_1_body.html#a932baa9bed7c9ec824d220f0a2046134">Anomaly</a> <a class="code hl_function" href="class_astro_1_1_body.html#ad5d990c1cb5bb19a5f8c3b347406bdf5">anomaly</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> t)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>      <a class="code hl_typedef" href="class_astro_1_1_body.html#a932baa9bed7c9ec824d220f0a2046134">Anomaly</a> anom;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>      anom.<a class="code hl_function" href="struct_astro_1_1_orbital_elements_1_1_anomaly.html#a4c1483d02695408350480607a68443d4">set_lambda</a>(</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        this-&gt;m_orbit.compute_lambda(this-&gt;m_epoch+t, this-&gt;m_epoch_anom), this-&gt;m_orbit.<a class="code hl_function" href="class_astro_1_1_orbit.html#a6e570a5333d2e56a71094608616df283">keplerian</a>(), this-&gt;m_orbit.factor()</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>      );</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>      <span class="keywordflow">return</span> anom;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    }</div>
+</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a590e3f44b660ea1f29c78ad29ef6a7e8">  167</a></span>    <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="class_astro_1_1_body.html#a590e3f44b660ea1f29c78ad29ef6a7e8">epoch</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;m_epoch;}</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a7a091975d5546a2bd2def30b29caaa2a">  173</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_astro_1_1_body.html#a7a091975d5546a2bd2def30b29caaa2a">set_epoch</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> t_epoch) {this-&gt;m_epoch = t_epoch;}</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a6ce6187634d6b718faca6133ad401921">  179</a></span>    <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="class_astro_1_1_body.html#a6ce6187634d6b718faca6133ad401921">mass</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;m_mass;}</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span></div>
+<div class="foldopen" id="foldopen00185" data-start="{" data-end="}">
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#aabe0a3aaf6558b9e6d4e39cbfae15137">  185</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_astro_1_1_body.html#aabe0a3aaf6558b9e6d4e39cbfae15137">mass</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> t_mass) {</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="preprocessor">      #define CMD &quot;Astro::Body::mass(...): &quot;</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>      <a class="code hl_define" href="_astro_8hh.html#a1b7667184555a6b9680d06de39169ccf">ASTRO_ASSERT</a>(t_mass &gt; 0.0, <a class="code hl_define" href="_orbit_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a> <span class="stringliteral">&quot;mass must be positive.&quot;</span>);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>      this-&gt;m_mass = t_mass;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="preprocessor">      #undef CMD</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    }</div>
+</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a8197701a9db797417d62c67e87d67520">  198</a></span>    <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <a class="code hl_function" href="class_astro_1_1_body.html#a8197701a9db797417d62c67e87d67520">radius</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;m_radius;}</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span></div>
+<div class="foldopen" id="foldopen00204" data-start="{" data-end="}">
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a58a620527d6e40a32ac4af2d71c17fe1">  204</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_astro_1_1_body.html#a58a620527d6e40a32ac4af2d71c17fe1">radius</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> t_radius) {</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="preprocessor">      #define CMD &quot;Astro::Body::radius(...): &quot;</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>      <a class="code hl_define" href="_astro_8hh.html#a1b7667184555a6b9680d06de39169ccf">ASTRO_ASSERT</a>(t_radius &gt;= 0.0, <a class="code hl_define" href="_orbit_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a> <span class="stringliteral">&quot;radius must be non-negative.&quot;</span>);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>      this-&gt;m_radius = t_radius;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="preprocessor">      #undef CMD</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    }</div>
+</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span></div>
+<div class="foldopen" id="foldopen00217" data-start="{" data-end="}">
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a57486a2c6f5939a9e8673bb83a1e4b69">  217</a></span>    <a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <a class="code hl_function" href="class_astro_1_1_body.html#a57486a2c6f5939a9e8673bb83a1e4b69">cartesian_state</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>      <a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> cart(this-&gt;m_orbit.<a class="code hl_function" href="class_astro_1_1_orbit.html#af7815da97addf27e17538f8182125bb3">cartesian</a>().<a class="code hl_function" href="struct_astro_1_1_orbital_elements_1_1_cartesian.html#ace892387479d19b9d9fc20de1ac4b9da">vector</a>());</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>      <a class="code hl_define" href="_astro_8hh.html#a1b7667184555a6b9680d06de39169ccf">ASTRO_ASSERT</a>(cart.allFinite(),</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        <span class="stringliteral">&quot;Astro::Body::cartesian(...): invalid cartesian state vector detected.&quot;</span>);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>      <span class="keywordflow">return</span> cart;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    }</div>
+</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span></div>
+<div class="foldopen" id="foldopen00230" data-start="{" data-end="}">
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#aebe0bb9998ded3ef65db62130c96e49e">  230</a></span>    <a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <a class="code hl_function" href="class_astro_1_1_body.html#aebe0bb9998ded3ef65db62130c96e49e">cartesian_state</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> t)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>      <span class="comment">// Compute the anomaly at time t</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>      <a class="code hl_typedef" href="class_astro_1_1_body.html#a932baa9bed7c9ec824d220f0a2046134">Anomaly</a> anom;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>      anom.<a class="code hl_function" href="struct_astro_1_1_orbital_elements_1_1_anomaly.html#a4c1483d02695408350480607a68443d4">set_lambda</a>(</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        this-&gt;m_orbit.compute_lambda(this-&gt;m_epoch+t, this-&gt;m_epoch_anom), this-&gt;m_orbit.<a class="code hl_function" href="class_astro_1_1_orbit.html#a6e570a5333d2e56a71094608616df283">keplerian</a>(), this-&gt;m_orbit.factor()</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>      );</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>      <span class="comment">// Compute the cartesian state vector</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>      <a class="code hl_struct" href="struct_astro_1_1_orbital_elements_1_1_cartesian.html">OrbitalElements::Cartesian</a> cart;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>      <a class="code hl_function" href="namespace_astro_1_1_orbital_elements.html#ad331c9280f11166de8fac96ae93b2b8d">OrbitalElements::equinoctial_to_cartesian</a>(this-&gt;m_orbit.<a class="code hl_function" href="class_astro_1_1_orbit.html#af6d29b1568f7ed2152413297ddf1f8aa">equinoctial</a>(), anom.<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_anomaly.html#ac7b6d12dbfc946712471e0ed37296971">L</a>, this-&gt;m_orbit.mu(), cart);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>      <span class="keywordflow">return</span> cart.<a class="code hl_function" href="struct_astro_1_1_orbital_elements_1_1_cartesian.html#ace892387479d19b9d9fc20de1ac4b9da">vector</a>();</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    }</div>
+</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a68f2ebb9de61d01fd6f0676f445fa1eb">  249</a></span>    <a class="code hl_typedef" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> <a class="code hl_function" href="class_astro_1_1_body.html#a68f2ebb9de61d01fd6f0676f445fa1eb">cartesian_position</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> t)<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a57486a2c6f5939a9e8673bb83a1e4b69">cartesian_state</a>(t).head&lt;3&gt;();}</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#ad6e9bad660e22e90dfe31ebcb8256fb7">  256</a></span>    <a class="code hl_typedef" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> <a class="code hl_function" href="class_astro_1_1_body.html#ad6e9bad660e22e90dfe31ebcb8256fb7">cartesian_velocity</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> t)<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a57486a2c6f5939a9e8673bb83a1e4b69">cartesian_state</a>(t).tail&lt;3&gt;();}</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span></div>
+<div class="foldopen" id="foldopen00262" data-start="{" data-end="}">
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a629d109ed86e10d6e6b15fe30aff6621">  262</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_astro_1_1_body.html#a629d109ed86e10d6e6b15fe30aff6621">set_cartesian_state</a>(<a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <span class="keyword">const</span> &amp; cart)</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    {</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>      this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a86e162f02726819a813855d189ab9179">set_orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#a850788379761fdba0bdf990420a5187e">set_cartesian</a>(cart);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    }</div>
+</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span></div>
+<div class="foldopen" id="foldopen00272" data-start="{" data-end="}">
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a0f1683476bfe409565599d08d9a80180">  272</a></span>    <a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <a class="code hl_function" href="class_astro_1_1_body.html#a0f1683476bfe409565599d08d9a80180">keplerian_state</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> t)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>      <a class="code hl_typedef" href="class_astro_1_1_body.html#a932baa9bed7c9ec824d220f0a2046134">Anomaly</a> anom{this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#ad5d990c1cb5bb19a5f8c3b347406bdf5">anomaly</a>(t)};</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>      <a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> kepl;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>      kepl &lt;&lt;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#a6e570a5333d2e56a71094608616df283">keplerian</a>().<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#ae274708901536058bd254a79d8e0fbbf">a</a>,</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>        this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#a6e570a5333d2e56a71094608616df283">keplerian</a>().<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#a9dfc26a7411f2ff51d299b0b11842780">e</a>,</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>        this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#a6e570a5333d2e56a71094608616df283">keplerian</a>().<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#a0b20b3b4dd99e33fa50b7eb3aa8cad9b">i</a>,</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>        this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#a6e570a5333d2e56a71094608616df283">keplerian</a>().<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#aa3e17f4396afcaf0d70172818cc3402c">Omega</a>,</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>        this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#a6e570a5333d2e56a71094608616df283">keplerian</a>().<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#a76fea831f3d67041f2e06c54d51bca71">omega</a>,</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>        anom.<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_anomaly.html#acd40cff020c42a93b3a81e850cf05244">M</a>;</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>      <a class="code hl_define" href="_astro_8hh.html#a1b7667184555a6b9680d06de39169ccf">ASTRO_ASSERT</a>(kepl.allFinite(),</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>        <span class="stringliteral">&quot;Astro::Body::keplerian(...): invalid keplerian state vector detected.&quot;</span>);</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>      <span class="keywordflow">return</span> kepl;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    }</div>
+</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span></div>
+<div class="foldopen" id="foldopen00292" data-start="{" data-end="}">
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#afa190fcaab7791338d4847821591f628">  292</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_astro_1_1_body.html#afa190fcaab7791338d4847821591f628">set_keplerian_state</a>(<a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <span class="keyword">const</span> &amp; state)</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    {</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> E{<a class="code hl_function" href="namespace_astro_1_1_orbital_elements.html#a77c43b077d8557ad07ad536397ab3301">OrbitalElements::M_to_E</a>(state(5), state(1))};</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> nu{<a class="code hl_function" href="namespace_astro_1_1_orbital_elements.html#a096d1d8fd212180c7a88253cb9d6bfd0">OrbitalElements::E_to_nu</a>(E, state(1))};</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>      this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a86e162f02726819a813855d189ab9179">set_orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#aebb6b5d945e95c48e0ef4d76dd2dbff2">set_keplerian</a>(state.head&lt;5&gt;(), nu);</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    }</div>
+</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span></div>
+<div class="foldopen" id="foldopen00304" data-start="{" data-end="}">
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a89b63f364d8182847c56bb482a73007b">  304</a></span>    <a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <a class="code hl_function" href="class_astro_1_1_body.html#a89b63f364d8182847c56bb482a73007b">equinoctial_state</a>(<a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> t)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>      <a class="code hl_typedef" href="class_astro_1_1_body.html#a932baa9bed7c9ec824d220f0a2046134">Anomaly</a> anom{this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#ad5d990c1cb5bb19a5f8c3b347406bdf5">anomaly</a>(t)};</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>      <a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> equi;</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>      equi &lt;&lt;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#af6d29b1568f7ed2152413297ddf1f8aa">equinoctial</a>().<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a5e528e9032ed9574d41b0afc50c35d84">p</a>,</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>        this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#af6d29b1568f7ed2152413297ddf1f8aa">equinoctial</a>().<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a71523582c41fbe21239f87d6bb1d8b4f">f</a>,</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>        this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#af6d29b1568f7ed2152413297ddf1f8aa">equinoctial</a>().<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a101d1b8e9fa18b098504ec07097f20d7">g</a>,</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>        this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#af6d29b1568f7ed2152413297ddf1f8aa">equinoctial</a>().<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a0a00a2a9c04937859715d80677d7d7f3">h</a>,</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>        this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#af6d29b1568f7ed2152413297ddf1f8aa">equinoctial</a>().<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_equinoctial.html#ae5caf9ead05ee1f75108db04dcc7ffb5">k</a>,</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>        anom.<a class="code hl_variable" href="struct_astro_1_1_orbital_elements_1_1_anomaly.html#ac7b6d12dbfc946712471e0ed37296971">L</a>;</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>      <a class="code hl_define" href="_astro_8hh.html#a1b7667184555a6b9680d06de39169ccf">ASTRO_ASSERT</a>(equi.allFinite(),</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        <span class="stringliteral">&quot;Astro::Body::equinoctial(...): invalid equinoctial state vector detected.&quot;</span>);</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>      <span class="keywordflow">return</span> equi;</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    }</div>
+</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span></div>
+<div class="foldopen" id="foldopen00324" data-start="{" data-end="}">
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a8ad31041d226074de44ca927f69a1f42">  324</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_astro_1_1_body.html#a8ad31041d226074de44ca927f69a1f42">set_equinoctial_state</a>(<a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <span class="keyword">const</span> &amp; state)</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    {</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>      this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a86e162f02726819a813855d189ab9179">set_orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#a7d6efa011f01b2b968424ba6d1f310a9">set_equinoctial</a>(state.head&lt;5&gt;(), state(5));</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    }</div>
+</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00337" data-start="{" data-end="}">
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#aa7f1fa4c315c1356e524dd55edecc07a">  337</a></span>    Eigen::Matrix&lt;T, 6, 1&gt; <a class="code hl_function" href="class_astro_1_1_body.html#aa7f1fa4c315c1356e524dd55edecc07a">cartesian_eom</a>(Eigen::Matrix&lt;T, 6, 1&gt; <span class="keyword">const</span> &amp; x, Eigen::Matrix&lt;T, 3, 1&gt; <span class="keyword">const</span> &amp; thrust_rtn)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>      <span class="comment">// Compute the cartesian perturbation</span></div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>      Eigen::Matrix&lt;T, 3, 1&gt; thrust_xyz(this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">orbit</a>().cartesian_rtn_to_xyz(thrust_rtn));</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>      thrust_xyz /= this-&gt;m_mass;</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span> </div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>      <span class="comment">// Compute the equations of motion</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>      T mur3{this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#a652083b33952a395c3c3ce0a1326a473">mu</a>()/<a class="code hl_function" href="namespace_astro.html#a64e50dbc72fa6d35a0c362a321890aa6">Power3</a>(x.template head&lt;3&gt;().norm())};</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>      <span class="keywordflow">return</span> Eigen::Matrix&lt;T, 6, 1&gt;(</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>        <span class="comment">/* dx/dt   */</span> x[3],</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>        <span class="comment">/* dy/dt   */</span> x[4],</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>        <span class="comment">/* dz/dt   */</span> x[5],</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>        <span class="comment">/* dv_x/dt */</span> thrust_xyz[0] - mur3*x[0],</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>        <span class="comment">/* dv_y/dt */</span> thrust_xyz[1] - mur3*x[1],</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>        <span class="comment">/* dv_z/dt */</span> thrust_xyz[2] - mur3*x[2]</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>      );</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>    }</div>
+</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span></div>
+<div class="foldopen" id="foldopen00362" data-start="{" data-end="}">
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#aadb57d39d4ea883a1bebda10c218a2f9">  362</a></span>    <a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <a class="code hl_function" href="class_astro_1_1_body.html#aadb57d39d4ea883a1bebda10c218a2f9">keplerian_eom</a>(<a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <span class="keyword">const</span> &amp; x, <a class="code hl_typedef" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> <span class="keyword">const</span> &amp; thrust)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>      <span class="comment">// https://farside.ph.utexas.edu/teaching/celestial/Celestial/node164.html</span></div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> &amp; a{x[0]};</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> &amp; e{x[1]};</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> &amp; i{x[2]};</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>      <span class="comment">// Real const &amp; Omega{x[3]};</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> &amp; omega{x[4]};</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> &amp; M{x[5]};</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> &amp; mu{this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#a652083b33952a395c3c3ce0a1326a473">mu</a>()};</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span> </div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> C_rad{thrust[0]/this-&gt;m_mass};</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> C_tan{thrust[1]/this-&gt;m_mass};</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> C_nor{thrust[2]/this-&gt;m_mass};</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span> </div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>      <span class="comment">// Mean motion</span></div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> n{std::sqrt(mu / std::pow(a, 3))};</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> e2{e*e};</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> ecc{std::sqrt(1.0 - e2)};</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span> </div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>      <span class="comment">// Anomalies calculations</span></div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> E{<a class="code hl_function" href="namespace_astro_1_1_orbital_elements.html#a77c43b077d8557ad07ad536397ab3301">OrbitalElements::M_to_E</a>(M, e)};</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> cos_E{std::cos(E)};</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> nu{<a class="code hl_function" href="namespace_astro_1_1_orbital_elements.html#a096d1d8fd212180c7a88253cb9d6bfd0">OrbitalElements::E_to_nu</a>(E, e)};</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> cos_nu{std::cos(nu)};</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> sin_nu{std::sin(nu)};</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span> </div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>      <span class="comment">// Other parameters</span></div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> p{a*(1.0 - e2)};</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> r{p / (1.0 + e*cos_nu)};</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> u{omega + nu};</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> h{ecc * std::sqrt(mu*a)}; <span class="comment">// Specific angular momentum</span></div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span> </div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> sin_i{std::sin(i)};</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> cos_i{std::cos(i)};</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> sin_u{std::sin(u)};</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> cos_u{std::cos(u)};</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span> </div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>      <a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> res;</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>      res &lt;&lt;</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>        <span class="comment">/* da/dt */</span> 2.0*a*h/(mu*(1.0 - e2))*(e*sin_nu*C_rad + (1.0 + e*cos_nu)*C_tan),</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>        <span class="comment">/* de/dt */</span> h/mu*(sin_nu*C_rad + (cos_nu + cos_E)*C_tan),</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>        <span class="comment">/* di/dt */</span> cos_u*r*C_nor/h,</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>        <span class="comment">/* dO/dt */</span> sin_u*r*C_nor/(h*sin_i),</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>        <span class="comment">/* do/dt */</span> -h/(mu*e)*(cos_nu*C_rad - (2.0 + e*cos_nu)/(1.0 + e*cos_nu)*sin_nu*C_tan) - cos_i*sin_u*r*C_nor/(h*sin_i),</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>        <span class="comment">/* dM/dt */</span> n + h*ecc/(mu*e) * ((cos_nu - 2.0*e*r/p)*C_rad - (1.0 + r/p)*sin_nu*C_tan);</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span> </div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>      <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>    }</div>
+</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span></div>
+<div class="foldopen" id="foldopen00420" data-start="{" data-end="}">
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a80e5025bf5163214b7b7a4fd07d1c9c1">  420</a></span>    <a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <a class="code hl_function" href="class_astro_1_1_body.html#a80e5025bf5163214b7b7a4fd07d1c9c1">equinoctial_eom</a>(<a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <span class="keyword">const</span> &amp; x, <a class="code hl_typedef" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a> <span class="keyword">const</span> &amp; thrust)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>      <span class="comment">// Source: https://spsweb.fltops.jpl.nasa.gov/portaldataops/mpg/MPG_Docs/Source%20Docs/EquinoctalElements-modified.pdf</span></div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span> </div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> &amp; p{x[0]};</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> &amp; f{x[1]};</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> &amp; g{x[2]};</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> &amp; h{x[3]};</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> &amp; k{x[4]};</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> &amp; L{x[5]};</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> &amp; mu{this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">orbit</a>().<a class="code hl_function" href="class_astro_1_1_orbit.html#a652083b33952a395c3c3ce0a1326a473">mu</a>()};</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span> </div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> sin_L{std::sin(L)};</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> cos_L{std::cos(L)};</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span> </div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> w{1.0 + (f*cos_L + g*sin_L)};</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> s2{1.0 + (h*h + k*k)};</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> sqrt_p_mu{std::sqrt(p/mu)};</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span> </div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> C_rad{thrust[0]/this-&gt;m_mass};</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> C_tan{thrust[1]/this-&gt;m_mass};</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>      <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> C_nor{thrust[2]/this-&gt;m_mass};</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span> </div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>      <a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> res;</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>      res &lt;&lt;</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>        <span class="comment">/* dp/dt */</span> 2.0*p*sqrt_p_mu/w*C_tan,</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>        <span class="comment">/* df/dt */</span> sqrt_p_mu*(+C_rad*sin_L + ((w + 1.0)*cos_L + f)*C_tan/w - (h*sin_L - k*cos_L)*g/w*C_nor),</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>        <span class="comment">/* dg/dt */</span> sqrt_p_mu*(-C_rad*cos_L + ((w + 1.0)*sin_L + g)*C_tan/w + (h*sin_L - k*cos_L)*g/w*C_nor),</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>        <span class="comment">/* dh/dt */</span> sqrt_p_mu*s2*C_nor*cos_L/(2.0*w),</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>        <span class="comment">/* dk/dt */</span> sqrt_p_mu*s2*C_nor*sin_L/(2.0*w),</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>        <span class="comment">/* dL/dt */</span> std::sqrt(mu*p) * <a class="code hl_function" href="namespace_astro.html#a358161157a64a7527b915d6329d895c4">Power2</a>(w/p) + sqrt_p_mu/w*(h*sin_L - k*cos_L)*C_nor;</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span> </div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>      <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>    }</div>
+</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span></div>
+<div class="foldopen" id="foldopen00464" data-start="{" data-end="}">
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a96331b929e685335005482bf09c16610">  464</a></span>    <a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <a class="code hl_function" href="class_astro_1_1_body.html#a96331b929e685335005482bf09c16610">equinoctial_eom</a>(<a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <span class="keyword">const</span> &amp; x, <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> thrust_rad, <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> thrust_tan, <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> thrust_nor)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>      <span class="keywordflow">return</span> this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a80e5025bf5163214b7b7a4fd07d1c9c1">equinoctial_eom</a>(x, <a class="code hl_typedef" href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Vector3</a>(thrust_rad, thrust_tan, thrust_nor));</div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>    }</div>
+</div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span></div>
+<div class="line"><a id="l00484" name="l00484"></a><span class="lineno">  484</span>    <span class="keyword">template</span> &lt;Coordinates IntCoords, Coordinates OutCoords = Coordinates::CARTESIAN, Integer S&gt;</div>
+<div class="foldopen" id="foldopen00485" data-start="{" data-end="}">
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno"><a class="line" href="class_astro_1_1_body.html#a9a2f96612723bfddbc4248d24caed8f2">  485</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_astro_1_1_body.html#a9a2f96612723bfddbc4248d24caed8f2">integrate</a>(Sandals::RungeKutta&lt;Real, S, 6, 0&gt; &amp; rk, <a class="code hl_typedef" href="namespace_astro.html#add8eff2615fda1aedc14a9aaa4ee0c7b">VectorX</a> <span class="keyword">const</span> &amp;t_mesh, <a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <span class="keyword">const</span> &amp;ics,</div>
+<div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span>      Sandals::Solution&lt;Real, 6, 0&gt; &amp; sol, <span class="keywordtype">bool</span> <span class="keyword">const</span> adaptive = <span class="keyword">false</span>)</div>
+<div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span>    {</div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span><span class="preprocessor">      #define CMD &quot;Astro::Body::integrate(...): &quot;</span></div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span> </div>
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span>      <span class="comment">// Create the solution object according to the integration coordinates</span></div>
+<div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span>      <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (IntCoords == Coordinates::CARTESIAN) {</div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span>        rk.explicit_system(</div>
+<div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span>          [<span class="keyword">this</span>](<a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <span class="keyword">const</span> &amp; x, <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>) -&gt; <a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> {<span class="keywordflow">return</span> this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#aa7f1fa4c315c1356e524dd55edecc07a">cartesian_eom&lt;Real&gt;</a>(x, 50.0*Vector3::UnitZ());}, <span class="comment">// f(x, t)</span></div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span>          [](<a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <span class="keyword">const</span> &amp;, <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>) -&gt; <a class="code hl_typedef" href="namespace_astro.html#a9a8e035112166ee2b9ded298922847d0">Matrix6</a> {<span class="keywordflow">return</span> <a class="code hl_variable" href="namespace_astro.html#ae5dabb1a8a9a957db6fc3782d91b6522">ZEROS_MAT6</a>;} <span class="comment">// Jf_x(x, t)</span></div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span>        );</div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (IntCoords == Coordinates::KEPLERIAN) {</div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>        rk.explicit_system(</div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>          [<span class="keyword">this</span>](<a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <span class="keyword">const</span> &amp; x, <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>) -&gt; <a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> {<span class="keywordflow">return</span> this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#aadb57d39d4ea883a1bebda10c218a2f9">keplerian_eom</a>(x, 50.0*Vector3::UnitZ());}, <span class="comment">// f(x, t)</span></div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span>          [](<a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <span class="keyword">const</span> &amp;, <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>) -&gt; <a class="code hl_typedef" href="namespace_astro.html#a9a8e035112166ee2b9ded298922847d0">Matrix6</a> {<span class="keywordflow">return</span> <a class="code hl_variable" href="namespace_astro.html#ae5dabb1a8a9a957db6fc3782d91b6522">ZEROS_MAT6</a>;} <span class="comment">// Jf_x(x, t)</span></div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span>        );</div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span>      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (IntCoords == Coordinates::EQUINOCTIAL) {</div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span>        rk.explicit_system(</div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span>          [<span class="keyword">this</span>](<a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <span class="keyword">const</span> &amp; x, <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>) -&gt; <a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> {<span class="keywordflow">return</span> this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a80e5025bf5163214b7b7a4fd07d1c9c1">equinoctial_eom</a>(x, 50.0*Vector3::UnitZ());}, <span class="comment">// f(x, t)</span></div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>          [](<a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <span class="keyword">const</span> &amp;, <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a>) -&gt; <a class="code hl_typedef" href="namespace_astro.html#a9a8e035112166ee2b9ded298922847d0">Matrix6</a> {<span class="keywordflow">return</span> <a class="code hl_variable" href="namespace_astro.html#ae5dabb1a8a9a957db6fc3782d91b6522">ZEROS_MAT6</a>;} <span class="comment">// Jf_x(x, t)</span></div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>        );</div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span>      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (IntCoords == Coordinates::QUATERNIONIC) {</div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>        <a class="code hl_define" href="_astro_8hh.html#a7ab0b512b80ae4d9b01b6f76eba84088">ASTRO_ERROR</a>(<a class="code hl_define" href="_orbit_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a> <span class="stringliteral">&quot;quaternionic integration not implemented yet.&quot;</span>);</div>
+<div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span>      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span>        <a class="code hl_define" href="_astro_8hh.html#a7ab0b512b80ae4d9b01b6f76eba84088">ASTRO_ERROR</a>(<a class="code hl_define" href="_orbit_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a> <span class="stringliteral">&quot;unknown coordinate system for the integration.&quot;</span>);</div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>      }</div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span> </div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>      <span class="comment">// Transform the internal state to the output coordinate system</span></div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>      rk.step_callback([<span class="keyword">this</span>, &amp;sol](<a class="code hl_typedef" href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Integer</a> <span class="keyword">const</span> i, <a class="code hl_typedef" href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Vector6</a> <span class="keyword">const</span> &amp; x, <a class="code hl_typedef" href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Real</a> <span class="keyword">const</span> t) {</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span> </div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>        (void)sol; <span class="comment">// Avoid unused variable warning</span></div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span> </div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>        <span class="comment">// Set the internal state according to the output coordinate system</span></div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (IntCoords == Coordinates::CARTESIAN) {</div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>          this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a629d109ed86e10d6e6b15fe30aff6621">set_cartesian_state</a>(x);</div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (IntCoords == Coordinates::KEPLERIAN) {</div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span>          this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#afa190fcaab7791338d4847821591f628">set_keplerian_state</a>(x);</div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (IntCoords == Coordinates::EQUINOCTIAL) {</div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span>          this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a8ad31041d226074de44ca927f69a1f42">set_equinoctial_state</a>(x);</div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (IntCoords == Coordinates::QUATERNIONIC) {</div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>          <a class="code hl_define" href="_astro_8hh.html#a7ab0b512b80ae4d9b01b6f76eba84088">ASTRO_ERROR</a>(<a class="code hl_define" href="_orbit_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a> <span class="stringliteral">&quot;quaternionic output not implemented yet.&quot;</span>);</div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span>          <a class="code hl_define" href="_astro_8hh.html#a7ab0b512b80ae4d9b01b6f76eba84088">ASTRO_ERROR</a>(<a class="code hl_define" href="_orbit_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a> <span class="stringliteral">&quot;unknown coordinate system for the output.&quot;</span>);</div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span>        }</div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span> </div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span>        <span class="comment">// Set the output state in the solution object</span></div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (IntCoords != OutCoords) {</div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>          <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (OutCoords == Coordinates::CARTESIAN) {</div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span>            sol.x.col(i) &lt;&lt; this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a57486a2c6f5939a9e8673bb83a1e4b69">cartesian_state</a>(t);</div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span>          } <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (OutCoords == Coordinates::KEPLERIAN) {</div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span>            sol.x.col(i) &lt;&lt; this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a0f1683476bfe409565599d08d9a80180">keplerian_state</a>(t);</div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span>          } <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (OutCoords == Coordinates::EQUINOCTIAL) {</div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>            sol.x.col(i) &lt;&lt; this-&gt;<a class="code hl_function" href="class_astro_1_1_body.html#a89b63f364d8182847c56bb482a73007b">equinoctial_state</a>(t);</div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>          } <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (OutCoords == Coordinates::QUATERNIONIC) {</div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>            <a class="code hl_define" href="_astro_8hh.html#a7ab0b512b80ae4d9b01b6f76eba84088">ASTRO_ERROR</a>(<a class="code hl_define" href="_orbit_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a> <span class="stringliteral">&quot;quaternionic output not implemented yet.&quot;</span>);</div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>          } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>            <a class="code hl_define" href="_astro_8hh.html#a7ab0b512b80ae4d9b01b6f76eba84088">ASTRO_ERROR</a>(<a class="code hl_define" href="_orbit_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a> <span class="stringliteral">&quot;unknown coordinate system for the output.&quot;</span>);</div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>          }</div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>        }</div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span> </div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>      });</div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span> </div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>      <span class="comment">// Solve the equations of motion</span></div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>      <span class="keywordflow">if</span> (adaptive) {</div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>        <span class="keywordflow">return</span> rk.adaptive_solve(t_mesh, ics, sol);</div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span>      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span>        <span class="keywordflow">return</span> rk.solve(t_mesh, ics, sol);</div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span>      }</div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span> </div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span><span class="preprocessor">      #undef CMD</span></div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>    }</div>
+</div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span> </div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>  }; <span class="comment">// class Body</span></div>
+</div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span> </div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>} <span class="comment">// namespace Astro</span></div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span> </div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span><span class="preprocessor">#endif </span><span class="comment">// ASTRO_BODY_HH</span></div>
+<div class="ttc" id="a_astro_8hh_html_a1b7667184555a6b9680d06de39169ccf"><div class="ttname"><a href="_astro_8hh.html#a1b7667184555a6b9680d06de39169ccf">ASTRO_ASSERT</a></div><div class="ttdeci">#define ASTRO_ASSERT(COND, MSG)</div><div class="ttdef"><b>Definition</b> Astro.hh:43</div></div>
+<div class="ttc" id="a_astro_8hh_html_a7ab0b512b80ae4d9b01b6f76eba84088"><div class="ttname"><a href="_astro_8hh.html#a7ab0b512b80ae4d9b01b6f76eba84088">ASTRO_ERROR</a></div><div class="ttdeci">#define ASTRO_ERROR(MSG)</div><div class="ttdef"><b>Definition</b> Astro.hh:32</div></div>
+<div class="ttc" id="a_orbit_8hh_html"><div class="ttname"><a href="_orbit_8hh.html">Orbit.hh</a></div></div>
+<div class="ttc" id="a_orbit_8hh_html_a0a5ceb9ceb914e08d345410b561cb37a"><div class="ttname"><a href="_orbit_8hh.html#a0a5ceb9ceb914e08d345410b561cb37a">CMD</a></div><div class="ttdeci">#define CMD</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a02959c9e2236015cdb7fec3ec0cc6c07"><div class="ttname"><a href="class_astro_1_1_body.html#a02959c9e2236015cdb7fec3ec0cc6c07">Astro::Body::m_mass</a></div><div class="ttdeci">Real m_mass</div><div class="ttdef"><b>Definition</b> Body.hh:55</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a049a8927ce8db59a622d96d83eaa7c3b"><div class="ttname"><a href="class_astro_1_1_body.html#a049a8927ce8db59a622d96d83eaa7c3b">Astro::Body::epoch_anomaly</a></div><div class="ttdeci">Anomaly const &amp; epoch_anomaly() const</div><div class="ttdef"><b>Definition</b> Body.hh:130</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a04fafee0914a741b4f713666db829760"><div class="ttname"><a href="class_astro_1_1_body.html#a04fafee0914a741b4f713666db829760">Astro::Body::name</a></div><div class="ttdeci">void name(std::string const &amp;t_name)</div><div class="ttdef"><b>Definition</b> Body.hh:104</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a0f1683476bfe409565599d08d9a80180"><div class="ttname"><a href="class_astro_1_1_body.html#a0f1683476bfe409565599d08d9a80180">Astro::Body::keplerian_state</a></div><div class="ttdeci">Vector6 keplerian_state(Real const t) const</div><div class="ttdef"><b>Definition</b> Body.hh:272</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a2a241af239ec88bddf667c19d927d05b"><div class="ttname"><a href="class_astro_1_1_body.html#a2a241af239ec88bddf667c19d927d05b">Astro::Body::m_radius</a></div><div class="ttdeci">Real m_radius</div><div class="ttdef"><b>Definition</b> Body.hh:54</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a3d6935900068065db6e1719eece510a0"><div class="ttname"><a href="class_astro_1_1_body.html#a3d6935900068065db6e1719eece510a0">Astro::Body::m_epoch</a></div><div class="ttdeci">Real m_epoch</div><div class="ttdef"><b>Definition</b> Body.hh:51</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a3f2aa0d766e9854208053809218fa435"><div class="ttname"><a href="class_astro_1_1_body.html#a3f2aa0d766e9854208053809218fa435">Astro::Body::operator=</a></div><div class="ttdeci">Body &amp; operator=(Body &amp;&amp;)=default</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a402aa9bbd65b10f2eb8626ffc971a3ea"><div class="ttname"><a href="class_astro_1_1_body.html#a402aa9bbd65b10f2eb8626ffc971a3ea">Astro::Body::set_epoch_anomaly</a></div><div class="ttdeci">void set_epoch_anomaly(Anomaly const &amp;t_epoch_anomaly)</div><div class="ttdef"><b>Definition</b> Body.hh:142</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a5004bec78ca942a30cf90f82bd3cab22"><div class="ttname"><a href="class_astro_1_1_body.html#a5004bec78ca942a30cf90f82bd3cab22">Astro::Body::orbit</a></div><div class="ttdeci">Orbit const &amp; orbit() const</div><div class="ttdef"><b>Definition</b> Body.hh:118</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a57486a2c6f5939a9e8673bb83a1e4b69"><div class="ttname"><a href="class_astro_1_1_body.html#a57486a2c6f5939a9e8673bb83a1e4b69">Astro::Body::cartesian_state</a></div><div class="ttdeci">Vector6 cartesian_state() const</div><div class="ttdef"><b>Definition</b> Body.hh:217</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a58a620527d6e40a32ac4af2d71c17fe1"><div class="ttname"><a href="class_astro_1_1_body.html#a58a620527d6e40a32ac4af2d71c17fe1">Astro::Body::radius</a></div><div class="ttdeci">void radius(Real const t_radius)</div><div class="ttdef"><b>Definition</b> Body.hh:204</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a590e3f44b660ea1f29c78ad29ef6a7e8"><div class="ttname"><a href="class_astro_1_1_body.html#a590e3f44b660ea1f29c78ad29ef6a7e8">Astro::Body::epoch</a></div><div class="ttdeci">Real epoch() const</div><div class="ttdef"><b>Definition</b> Body.hh:167</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a5bd95e774f194619cb1299be98336947"><div class="ttname"><a href="class_astro_1_1_body.html#a5bd95e774f194619cb1299be98336947">Astro::Body::name</a></div><div class="ttdeci">std::string name() const</div><div class="ttdef"><b>Definition</b> Body.hh:98</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a629d109ed86e10d6e6b15fe30aff6621"><div class="ttname"><a href="class_astro_1_1_body.html#a629d109ed86e10d6e6b15fe30aff6621">Astro::Body::set_cartesian_state</a></div><div class="ttdeci">void set_cartesian_state(Vector6 const &amp;cart)</div><div class="ttdef"><b>Definition</b> Body.hh:262</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a63894521158578bf268c7a01dcd3d7a9"><div class="ttname"><a href="class_astro_1_1_body.html#a63894521158578bf268c7a01dcd3d7a9">Astro::Body::Body</a></div><div class="ttdeci">Body()</div><div class="ttdef"><b>Definition</b> Body.hh:61</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a68f2ebb9de61d01fd6f0676f445fa1eb"><div class="ttname"><a href="class_astro_1_1_body.html#a68f2ebb9de61d01fd6f0676f445fa1eb">Astro::Body::cartesian_position</a></div><div class="ttdeci">Vector3 cartesian_position(Real const t) const</div><div class="ttdef"><b>Definition</b> Body.hh:249</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a6ce6187634d6b718faca6133ad401921"><div class="ttname"><a href="class_astro_1_1_body.html#a6ce6187634d6b718faca6133ad401921">Astro::Body::mass</a></div><div class="ttdeci">Real mass() const</div><div class="ttdef"><b>Definition</b> Body.hh:179</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a7a091975d5546a2bd2def30b29caaa2a"><div class="ttname"><a href="class_astro_1_1_body.html#a7a091975d5546a2bd2def30b29caaa2a">Astro::Body::set_epoch</a></div><div class="ttdeci">void set_epoch(Real const t_epoch)</div><div class="ttdef"><b>Definition</b> Body.hh:173</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a80e5025bf5163214b7b7a4fd07d1c9c1"><div class="ttname"><a href="class_astro_1_1_body.html#a80e5025bf5163214b7b7a4fd07d1c9c1">Astro::Body::equinoctial_eom</a></div><div class="ttdeci">Vector6 equinoctial_eom(Vector6 const &amp;x, Vector3 const &amp;thrust) const</div><div class="ttdef"><b>Definition</b> Body.hh:420</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a8197701a9db797417d62c67e87d67520"><div class="ttname"><a href="class_astro_1_1_body.html#a8197701a9db797417d62c67e87d67520">Astro::Body::radius</a></div><div class="ttdeci">Real radius() const</div><div class="ttdef"><b>Definition</b> Body.hh:198</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a86e162f02726819a813855d189ab9179"><div class="ttname"><a href="class_astro_1_1_body.html#a86e162f02726819a813855d189ab9179">Astro::Body::set_orbit</a></div><div class="ttdeci">Orbit &amp; set_orbit()</div><div class="ttdef"><b>Definition</b> Body.hh:124</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a89b63f364d8182847c56bb482a73007b"><div class="ttname"><a href="class_astro_1_1_body.html#a89b63f364d8182847c56bb482a73007b">Astro::Body::equinoctial_state</a></div><div class="ttdeci">Vector6 equinoctial_state(Real const t) const</div><div class="ttdef"><b>Definition</b> Body.hh:304</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a8ad31041d226074de44ca927f69a1f42"><div class="ttname"><a href="class_astro_1_1_body.html#a8ad31041d226074de44ca927f69a1f42">Astro::Body::set_equinoctial_state</a></div><div class="ttdeci">void set_equinoctial_state(Vector6 const &amp;state)</div><div class="ttdef"><b>Definition</b> Body.hh:324</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a8b1f4a7a934d276822e94a79e5019966"><div class="ttname"><a href="class_astro_1_1_body.html#a8b1f4a7a934d276822e94a79e5019966">Astro::Body::Body</a></div><div class="ttdeci">Body(Body const &amp;)=default</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a932baa9bed7c9ec824d220f0a2046134"><div class="ttname"><a href="class_astro_1_1_body.html#a932baa9bed7c9ec824d220f0a2046134">Astro::Body::Anomaly</a></div><div class="ttdeci">OrbitalElements::Anomaly Anomaly</div><div class="ttdef"><b>Definition</b> Body.hh:47</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a9458de80b381232919ba96ec3ad7763b"><div class="ttname"><a href="class_astro_1_1_body.html#a9458de80b381232919ba96ec3ad7763b">Astro::Body::m_epoch_anom</a></div><div class="ttdeci">Anomaly m_epoch_anom</div><div class="ttdef"><b>Definition</b> Body.hh:52</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a96331b929e685335005482bf09c16610"><div class="ttname"><a href="class_astro_1_1_body.html#a96331b929e685335005482bf09c16610">Astro::Body::equinoctial_eom</a></div><div class="ttdeci">Vector6 equinoctial_eom(Vector6 const &amp;x, Real thrust_rad, Real thrust_tan, Real thrust_nor) const</div><div class="ttdef"><b>Definition</b> Body.hh:464</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_a9a2f96612723bfddbc4248d24caed8f2"><div class="ttname"><a href="class_astro_1_1_body.html#a9a2f96612723bfddbc4248d24caed8f2">Astro::Body::integrate</a></div><div class="ttdeci">bool integrate(Sandals::RungeKutta&lt; Real, S, 6, 0 &gt; &amp;rk, VectorX const &amp;t_mesh, Vector6 const &amp;ics, Sandals::Solution&lt; Real, 6, 0 &gt; &amp;sol, bool const adaptive=false)</div><div class="ttdef"><b>Definition</b> Body.hh:485</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_aa33aec2dcbef66b7f5efcc376b23a55d"><div class="ttname"><a href="class_astro_1_1_body.html#aa33aec2dcbef66b7f5efcc376b23a55d">Astro::Body::set_epoch_anomaly</a></div><div class="ttdeci">Anomaly &amp; set_epoch_anomaly()</div><div class="ttdef"><b>Definition</b> Body.hh:136</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_aa7f1fa4c315c1356e524dd55edecc07a"><div class="ttname"><a href="class_astro_1_1_body.html#aa7f1fa4c315c1356e524dd55edecc07a">Astro::Body::cartesian_eom</a></div><div class="ttdeci">Eigen::Matrix&lt; T, 6, 1 &gt; cartesian_eom(Eigen::Matrix&lt; T, 6, 1 &gt; const &amp;x, Eigen::Matrix&lt; T, 3, 1 &gt; const &amp;thrust_rtn) const</div><div class="ttdef"><b>Definition</b> Body.hh:337</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_aaba3e431ed67d8daa55df1b2e1ac70c6"><div class="ttname"><a href="class_astro_1_1_body.html#aaba3e431ed67d8daa55df1b2e1ac70c6">Astro::Body::Body</a></div><div class="ttdeci">Body(std::string const &amp;t_name, Real const t_mass, Real const t_radius=0.0)</div><div class="ttdef"><b>Definition</b> Body.hh:67</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_aabe0a3aaf6558b9e6d4e39cbfae15137"><div class="ttname"><a href="class_astro_1_1_body.html#aabe0a3aaf6558b9e6d4e39cbfae15137">Astro::Body::mass</a></div><div class="ttdeci">void mass(Real const t_mass)</div><div class="ttdef"><b>Definition</b> Body.hh:185</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_aadb57d39d4ea883a1bebda10c218a2f9"><div class="ttname"><a href="class_astro_1_1_body.html#aadb57d39d4ea883a1bebda10c218a2f9">Astro::Body::keplerian_eom</a></div><div class="ttdeci">Vector6 keplerian_eom(Vector6 const &amp;x, Vector3 const &amp;thrust) const</div><div class="ttdef"><b>Definition</b> Body.hh:362</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_ab831b40be210c3ce5c678f0accb33660"><div class="ttname"><a href="class_astro_1_1_body.html#ab831b40be210c3ce5c678f0accb33660">Astro::Body::m_name</a></div><div class="ttdeci">std::string m_name</div><div class="ttdef"><b>Definition</b> Body.hh:50</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_aca26c3bf7d01aab1534ac5cc317bfcbc"><div class="ttname"><a href="class_astro_1_1_body.html#aca26c3bf7d01aab1534ac5cc317bfcbc">Astro::Body::Body</a></div><div class="ttdeci">Body(Body &amp;&amp;)=default</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_ad5d990c1cb5bb19a5f8c3b347406bdf5"><div class="ttname"><a href="class_astro_1_1_body.html#ad5d990c1cb5bb19a5f8c3b347406bdf5">Astro::Body::anomaly</a></div><div class="ttdeci">Anomaly anomaly(Real const t) const</div><div class="ttdef"><b>Definition</b> Body.hh:154</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_ad6e9bad660e22e90dfe31ebcb8256fb7"><div class="ttname"><a href="class_astro_1_1_body.html#ad6e9bad660e22e90dfe31ebcb8256fb7">Astro::Body::cartesian_velocity</a></div><div class="ttdeci">Vector3 cartesian_velocity(Real const t) const</div><div class="ttdef"><b>Definition</b> Body.hh:256</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_ae277b76d7ae6798bd212f6c0b14e7236"><div class="ttname"><a href="class_astro_1_1_body.html#ae277b76d7ae6798bd212f6c0b14e7236">Astro::Body::m_orbit</a></div><div class="ttdeci">Orbit m_orbit</div><div class="ttdef"><b>Definition</b> Body.hh:53</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_aebe0bb9998ded3ef65db62130c96e49e"><div class="ttname"><a href="class_astro_1_1_body.html#aebe0bb9998ded3ef65db62130c96e49e">Astro::Body::cartesian_state</a></div><div class="ttdeci">Vector6 cartesian_state(Real const t) const</div><div class="ttdef"><b>Definition</b> Body.hh:230</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_aeca1b0b850bdc18c3f877c1402ef7e27"><div class="ttname"><a href="class_astro_1_1_body.html#aeca1b0b850bdc18c3f877c1402ef7e27">Astro::Body::operator=</a></div><div class="ttdeci">Body &amp; operator=(const Body &amp;)=default</div></div>
+<div class="ttc" id="aclass_astro_1_1_body_html_afa190fcaab7791338d4847821591f628"><div class="ttname"><a href="class_astro_1_1_body.html#afa190fcaab7791338d4847821591f628">Astro::Body::set_keplerian_state</a></div><div class="ttdeci">void set_keplerian_state(Vector6 const &amp;state)</div><div class="ttdef"><b>Definition</b> Body.hh:292</div></div>
+<div class="ttc" id="aclass_astro_1_1_orbit_html"><div class="ttname"><a href="class_astro_1_1_orbit.html">Astro::Orbit</a></div><div class="ttdoc">Orbit class container.</div><div class="ttdef"><b>Definition</b> Orbit.hh:39</div></div>
+<div class="ttc" id="aclass_astro_1_1_orbit_html_a652083b33952a395c3c3ce0a1326a473"><div class="ttname"><a href="class_astro_1_1_orbit.html#a652083b33952a395c3c3ce0a1326a473">Astro::Orbit::mu</a></div><div class="ttdeci">Real mu() const</div><div class="ttdef"><b>Definition</b> Orbit.hh:316</div></div>
+<div class="ttc" id="aclass_astro_1_1_orbit_html_a6e570a5333d2e56a71094608616df283"><div class="ttname"><a href="class_astro_1_1_orbit.html#a6e570a5333d2e56a71094608616df283">Astro::Orbit::keplerian</a></div><div class="ttdeci">Keplerian const &amp; keplerian() const</div><div class="ttdef"><b>Definition</b> Orbit.hh:140</div></div>
+<div class="ttc" id="aclass_astro_1_1_orbit_html_a7d6efa011f01b2b968424ba6d1f310a9"><div class="ttname"><a href="class_astro_1_1_orbit.html#a7d6efa011f01b2b968424ba6d1f310a9">Astro::Orbit::set_equinoctial</a></div><div class="ttdeci">void set_equinoctial(Real const t_p, Real const t_f, Real const t_g, Real const t_h, Real const t_k, Real const L)</div><div class="ttdef"><b>Definition</b> Orbit.hh:203</div></div>
+<div class="ttc" id="aclass_astro_1_1_orbit_html_a850788379761fdba0bdf990420a5187e"><div class="ttname"><a href="class_astro_1_1_orbit.html#a850788379761fdba0bdf990420a5187e">Astro::Orbit::set_cartesian</a></div><div class="ttdeci">void set_cartesian(Real r_x, Real r_y, Real r_z, Real v_x, Real v_y, Real v_z)</div><div class="ttdef"><b>Definition</b> Orbit.hh:96</div></div>
+<div class="ttc" id="aclass_astro_1_1_orbit_html_aebb6b5d945e95c48e0ef4d76dd2dbff2"><div class="ttname"><a href="class_astro_1_1_orbit.html#aebb6b5d945e95c48e0ef4d76dd2dbff2">Astro::Orbit::set_keplerian</a></div><div class="ttdeci">void set_keplerian(Real const t_a, Real const t_e, Real const t_i, Real const t_Omega, Real const t_omega, Real const nu)</div><div class="ttdef"><b>Definition</b> Orbit.hh:151</div></div>
+<div class="ttc" id="aclass_astro_1_1_orbit_html_af6d29b1568f7ed2152413297ddf1f8aa"><div class="ttname"><a href="class_astro_1_1_orbit.html#af6d29b1568f7ed2152413297ddf1f8aa">Astro::Orbit::equinoctial</a></div><div class="ttdeci">Equinoctial const &amp; equinoctial() const</div><div class="ttdef"><b>Definition</b> Orbit.hh:192</div></div>
+<div class="ttc" id="aclass_astro_1_1_orbit_html_af7815da97addf27e17538f8182125bb3"><div class="ttname"><a href="class_astro_1_1_orbit.html#af7815da97addf27e17538f8182125bb3">Astro::Orbit::cartesian</a></div><div class="ttdeci">Cartesian const &amp; cartesian() const</div><div class="ttdef"><b>Definition</b> Orbit.hh:85</div></div>
+<div class="ttc" id="anamespace_astro_1_1_orbital_elements_html_a096d1d8fd212180c7a88253cb9d6bfd0"><div class="ttname"><a href="namespace_astro_1_1_orbital_elements.html#a096d1d8fd212180c7a88253cb9d6bfd0">Astro::OrbitalElements::E_to_nu</a></div><div class="ttdeci">Real E_to_nu(Real const E, Real const e)</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:963</div></div>
+<div class="ttc" id="anamespace_astro_1_1_orbital_elements_html_a77c43b077d8557ad07ad536397ab3301"><div class="ttname"><a href="namespace_astro_1_1_orbital_elements.html#a77c43b077d8557ad07ad536397ab3301">Astro::OrbitalElements::M_to_E</a></div><div class="ttdeci">Real M_to_E(Real M, Real const e)</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:865</div></div>
+<div class="ttc" id="anamespace_astro_1_1_orbital_elements_html_ad331c9280f11166de8fac96ae93b2b8d"><div class="ttname"><a href="namespace_astro_1_1_orbital_elements.html#ad331c9280f11166de8fac96ae93b2b8d">Astro::OrbitalElements::equinoctial_to_cartesian</a></div><div class="ttdeci">void equinoctial_to_cartesian(Equinoctial const &amp;equi, Real const L, Real const mu, Cartesian &amp;cart)</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:1487</div></div>
+<div class="ttc" id="anamespace_astro_html"><div class="ttname"><a href="namespace_astro.html">Astro</a></div><div class="ttdoc">The namespace for the Astro library.</div><div class="ttdef"><b>Definition</b> Astro.hh:73</div></div>
+<div class="ttc" id="anamespace_astro_html_a0f048f4a9727eeb8a55341f3e02387ec"><div class="ttname"><a href="namespace_astro.html#a0f048f4a9727eeb8a55341f3e02387ec">Astro::Coordinates</a></div><div class="ttdeci">enum class Coordinates :Integer {CARTESIAN=0, KEPLERIAN=1, EQUINOCTIAL=2, QUATERNIONIC=3} Coordinates</div><div class="ttdef"><b>Definition</b> Body.hh:26</div></div>
+<div class="ttc" id="anamespace_astro_html_a2abb027fdf4847d2c58d32f5aa8f0d13"><div class="ttname"><a href="namespace_astro.html#a2abb027fdf4847d2c58d32f5aa8f0d13">Astro::Integer</a></div><div class="ttdeci">int Integer</div><div class="ttdef"><b>Definition</b> Astro.hh:85</div></div>
+<div class="ttc" id="anamespace_astro_html_a358161157a64a7527b915d6329d895c4"><div class="ttname"><a href="namespace_astro.html#a358161157a64a7527b915d6329d895c4">Astro::Power2</a></div><div class="ttdeci">Real Power2(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:34</div></div>
+<div class="ttc" id="anamespace_astro_html_a5dcbfeecea8fa998e1ef1f265b0ca1b8"><div class="ttname"><a href="namespace_astro.html#a5dcbfeecea8fa998e1ef1f265b0ca1b8">Astro::QUIET_NAN</a></div><div class="ttdeci">static Real const QUIET_NAN</div><div class="ttdef"><b>Definition</b> Astro.hh:134</div></div>
+<div class="ttc" id="anamespace_astro_html_a64e50dbc72fa6d35a0c362a321890aa6"><div class="ttname"><a href="namespace_astro.html#a64e50dbc72fa6d35a0c362a321890aa6">Astro::Power3</a></div><div class="ttdeci">Real Power3(Real x)</div><div class="ttdef"><b>Definition</b> Utilities.hh:42</div></div>
+<div class="ttc" id="anamespace_astro_html_a7b0198756f8bd16a3ce62d192a1611fa"><div class="ttname"><a href="namespace_astro.html#a7b0198756f8bd16a3ce62d192a1611fa">Astro::Vector6</a></div><div class="ttdeci">Eigen::Vector&lt; Real, 6 &gt; Vector6</div><div class="ttdef"><b>Definition</b> Astro.hh:99</div></div>
+<div class="ttc" id="anamespace_astro_html_a9383c950271cc6fed61837e4b5301ae1"><div class="ttname"><a href="namespace_astro.html#a9383c950271cc6fed61837e4b5301ae1">Astro::Real</a></div><div class="ttdeci">double Real</div><div class="ttdef"><b>Definition</b> Astro.hh:84</div></div>
+<div class="ttc" id="anamespace_astro_html_a9a8e035112166ee2b9ded298922847d0"><div class="ttname"><a href="namespace_astro.html#a9a8e035112166ee2b9ded298922847d0">Astro::Matrix6</a></div><div class="ttdeci">Eigen::Matrix&lt; Real, 6, 6 &gt; Matrix6</div><div class="ttdef"><b>Definition</b> Astro.hh:100</div></div>
+<div class="ttc" id="anamespace_astro_html_ab9e5196f2fc3e730d83d112e9cfbe1bc"><div class="ttname"><a href="namespace_astro.html#ab9e5196f2fc3e730d83d112e9cfbe1bc">Astro::Vector3</a></div><div class="ttdeci">Eigen::Vector&lt; Real, 3 &gt; Vector3</div><div class="ttdef"><b>Definition</b> Astro.hh:93</div></div>
+<div class="ttc" id="anamespace_astro_html_add8eff2615fda1aedc14a9aaa4ee0c7b"><div class="ttname"><a href="namespace_astro.html#add8eff2615fda1aedc14a9aaa4ee0c7b">Astro::VectorX</a></div><div class="ttdeci">Eigen::Vector&lt; Real, Eigen::Dynamic &gt; VectorX</div><div class="ttdef"><b>Definition</b> Astro.hh:108</div></div>
+<div class="ttc" id="anamespace_astro_html_ae5dabb1a8a9a957db6fc3782d91b6522"><div class="ttname"><a href="namespace_astro.html#ae5dabb1a8a9a957db6fc3782d91b6522">Astro::ZEROS_MAT6</a></div><div class="ttdeci">static Matrix6 const ZEROS_MAT6</div><div class="ttdef"><b>Definition</b> Astro.hh:179</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_anomaly_html"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_anomaly.html">Astro::OrbitalElements::Anomaly</a></div><div class="ttdoc">Structure container for the orbital anomalies.</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:1110</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_anomaly_html_a0d2779e82c864490983a5029547a9cd9"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_anomaly.html#a0d2779e82c864490983a5029547a9cd9">Astro::OrbitalElements::Anomaly::sanity_check</a></div><div class="ttdeci">bool sanity_check() const</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:1323</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_anomaly_html_a4c1483d02695408350480607a68443d4"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_anomaly.html#a4c1483d02695408350480607a68443d4">Astro::OrbitalElements::Anomaly::set_lambda</a></div><div class="ttdeci">void set_lambda(Real t_lambda, Keplerian const &amp;kepl, Factor const I)</div><div class="ttdoc">Set the mean longitude .</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:1248</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_anomaly_html_ac7b6d12dbfc946712471e0ed37296971"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_anomaly.html#ac7b6d12dbfc946712471e0ed37296971">Astro::OrbitalElements::Anomaly::L</a></div><div class="ttdeci">Real L</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:1115</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_anomaly_html_acd40cff020c42a93b3a81e850cf05244"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_anomaly.html#acd40cff020c42a93b3a81e850cf05244">Astro::OrbitalElements::Anomaly::M</a></div><div class="ttdeci">Real M</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:1112</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_cartesian_html"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_cartesian.html">Astro::OrbitalElements::Cartesian</a></div><div class="ttdoc">Structure container for the cartesian orbital elements.</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:59</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_cartesian_html_ace892387479d19b9d9fc20de1ac4b9da"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_cartesian.html#ace892387479d19b9d9fc20de1ac4b9da">Astro::OrbitalElements::Cartesian::vector</a></div><div class="ttdeci">Vector6 vector() const</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:118</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_equinoctial_html_a0a00a2a9c04937859715d80677d7d7f3"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a0a00a2a9c04937859715d80677d7d7f3">Astro::OrbitalElements::Equinoctial::h</a></div><div class="ttdeci">Real h</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:443</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_equinoctial_html_a101d1b8e9fa18b098504ec07097f20d7"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a101d1b8e9fa18b098504ec07097f20d7">Astro::OrbitalElements::Equinoctial::g</a></div><div class="ttdeci">Real g</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:442</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_equinoctial_html_a5e528e9032ed9574d41b0afc50c35d84"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a5e528e9032ed9574d41b0afc50c35d84">Astro::OrbitalElements::Equinoctial::p</a></div><div class="ttdeci">Real p</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:440</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_equinoctial_html_a71523582c41fbe21239f87d6bb1d8b4f"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a71523582c41fbe21239f87d6bb1d8b4f">Astro::OrbitalElements::Equinoctial::f</a></div><div class="ttdeci">Real f</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:441</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_equinoctial_html_ae5caf9ead05ee1f75108db04dcc7ffb5"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_equinoctial.html#ae5caf9ead05ee1f75108db04dcc7ffb5">Astro::OrbitalElements::Equinoctial::k</a></div><div class="ttdeci">Real k</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:444</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_keplerian_html_a0b20b3b4dd99e33fa50b7eb3aa8cad9b"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#a0b20b3b4dd99e33fa50b7eb3aa8cad9b">Astro::OrbitalElements::Keplerian::i</a></div><div class="ttdeci">Real i</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:233</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_keplerian_html_a76fea831f3d67041f2e06c54d51bca71"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#a76fea831f3d67041f2e06c54d51bca71">Astro::OrbitalElements::Keplerian::omega</a></div><div class="ttdeci">Real omega</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:235</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_keplerian_html_a9dfc26a7411f2ff51d299b0b11842780"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#a9dfc26a7411f2ff51d299b0b11842780">Astro::OrbitalElements::Keplerian::e</a></div><div class="ttdeci">Real e</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:232</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_keplerian_html_aa3e17f4396afcaf0d70172818cc3402c"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#aa3e17f4396afcaf0d70172818cc3402c">Astro::OrbitalElements::Keplerian::Omega</a></div><div class="ttdeci">Real Omega</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:234</div></div>
+<div class="ttc" id="astruct_astro_1_1_orbital_elements_1_1_keplerian_html_ae274708901536058bd254a79d8e0fbbf"><div class="ttname"><a href="struct_astro_1_1_orbital_elements_1_1_keplerian.html#ae274708901536058bd254a79d8e0fbbf">Astro::OrbitalElements::Keplerian::a</a></div><div class="ttdeci">Real a</div><div class="ttdef"><b>Definition</b> OrbitalElements.hh:231</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_945246ed06ec64eff2daa17eb769e096.html">Astro</a></li><li class="navelem"><a href="_body_8hh.html">Body.hh</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

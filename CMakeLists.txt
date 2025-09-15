@@ -42,13 +42,13 @@ endif()
 # Dependencies
 include(AstroEigen3)
 include(AstroSandals)
-include(AstroAutoDiff)
+#include(AstroAutoDiff)
 
 # Library definition
 add_library(Astro INTERFACE)
 add_library(Astro::Astro ALIAS Astro)
 
-target_link_libraries(Astro INTERFACE Eigen3::Eigen Sandals::Sandals autodiff::autodiff)
+target_link_libraries(Astro INTERFACE Eigen3::Eigen Sandals::Sandals) #autodiff::autodiff
 
 target_include_directories(Astro INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

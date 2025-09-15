@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['u_0',['u',['../struct_astro_1_1_orbital_elements_1_1_keplerian.html#afc2bb38d83a9bedce995a59aa51a9c92',1,'Astro::OrbitalElements::Keplerian::u()'],['../struct_astro_1_1_orbital_elements_1_1_equinoctial.html#a6b34edcf6277b496a123ac0da7a3ed61',1,'Astro::OrbitalElements::Equinoctial::u()']]],
-  ['utilities_2ehxx_1',['Utilities.hxx',['../_utilities_8hxx.html',1,'']]]
+  ['translate_0',['Translate',['../namespace_astro.html#ae8e7952781ea4f7123ad68c38ab30077',1,'Astro']]],
+  ['type_1',['Type',['../namespace_astro.html#a9ddaecb7b6cccaa1d57e443e86e7c5f0',1,'Astro']]],
+  ['type_2',['type',['../class_astro_1_1_orbit.html#a7e0bfdad52876fc14cc1935291bbea49',1,'Astro::Orbit']]]
 ];

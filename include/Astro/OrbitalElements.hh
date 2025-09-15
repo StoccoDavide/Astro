@@ -802,13 +802,26 @@ namespace Astro
     * \param[in] kepl The keplerian orbital elements.
     * \return The mean anomaly \f$ M \f$.
     */
-    Real nu_to_M(Real const nu, Keplerian const & kepl)
+    Real nu_to_M(Real const nu, Real const e)
     {
-      Real e{kepl.e};
       Real beta{(1.0 + std::sqrt(1.0 - e*e)) / e};
       return AngleInRange(nu - 2.0 * std::atan(std::sin(nu) / (beta + std::cos(nu))) -
         (e * std::sqrt(1.0 - e*e) * std::sin(nu)) / (1.0 + e * std::cos(nu)));
     }
+
+    /**
+    * Compute the mean anomaly \f$ M \f$ from the eccentric anomaly \f$ E \f$ as
+    * \f[ M = \nu - 2\arctan\left(\frac{\sin(\nu)}{\beta + \cos(\nu)}\right) -
+    * \displaystyle\frac{e\sqrt{1 - e^2}\sin(\nu)}{1 + e\cos(\nu)} \text{,} \f]
+    * with \f$ \beta = \displaystyle\frac{1 + \sqrt{1 - e^2}}{e} \f$. That is equivalent to
+    *
+    * \note Refer to  Broucke and P. Cefola, Celestial, *A note on the relations between true and eccentric anomalies in  problethe two-body
+    * m"* b Mechnics, Vol. 7, pp. 300-389, 1973.
+    * \param[in] nu The true anomaly \f$ \nu \f$.
+    * \param[in] kepl The keplerian orbital elements.
+    * \return The mean anomaly \f$ M \f$.
+    */
+    Real nu_to_M(Real const nu, Keplerian const & kepl) {return nu_to_M(nu, kepl.e);}
 
     /**
     * Compute the true anomaly \f$ \nu \f$ from the eccentric anomaly \f$ E \f$ as
@@ -841,15 +854,15 @@ namespace Astro
       return AngleInRange(nu + kepl.omega + kepl.Omega*static_cast<Real>(I));
     }
 
-    /**
+        /**
     * Compute the eccentric anomaly \f$ E \f$ from the mean anomaly \f$ M \f$ through a the solution
     * of the nonlinear equation \f$ E = M + e\sin(E) \f$ for \f$ E \f$. The solution is found through
     * a basic Newton method.
     * \param[in] M The mean anomaly \f$ M \f$.
-    * \param[in] kepl The keplerian orbital elements.
+    * \param[in] e The eccentricity \f$ e \f$.
     * \return The eccentric anomaly \f$ E \f$.
     */
-    Real M_to_E(Real M, Keplerian const & kepl)
+    Real M_to_E(Real M, Real const e)
     {
       #define CMD "Astro::OrbitalElements::Anomaly::M_to_E(...): "
 
@@ -857,7 +870,7 @@ namespace Astro
       M = AngleInRange(M);
 
       // Solve Kepler equation through a basic Newton method
-      Real dE{0.0}, E{M}, e{kepl.e};
+      Real dE{0.0}, E{M};
       for (Integer k{0}; k < 100; ++k)
       {
         dE = (E - e * std::sin(E) - M) / (1.0 - e * std::cos(E));
@@ -873,6 +886,19 @@ namespace Astro
       return AngleInRange(E);
 
       #undef CMD
+    }
+
+    /**
+    * Compute the eccentric anomaly \f$ E \f$ from the mean anomaly \f$ M \f$ through a the solution
+    * of the nonlinear equation \f$ E = M + e\sin(E) \f$ for \f$ E \f$. The solution is found through
+    * a basic Newton method.
+    * \param[in] M The mean anomaly \f$ M \f$.
+    * \param[in] kepl The keplerian orbital elements.
+    * \return The eccentric anomaly \f$ E \f$.
+    */
+    Real M_to_E(Real M, Keplerian const & kepl)
+    {
+      return M_to_E(M, kepl.e);
     }
 
     /**
@@ -931,13 +957,42 @@ namespace Astro
     \note Refer to R. Broucke and P. Cefola, *A note on the relations between true and eccentric
     * anomalies in the two-body problem*, Celestial Mechanics, Vol. 7, pp. 300-389, 1973.
     * \param[in] E The eccentric anomaly \f$ E \f$.
+    * \param[in] e The eccentricity \f$ e \f$.
+    * \return The true anomaly \f$ \nu \f$.
+    */
+    Real E_to_nu(Real const E, Real const e)
+    {
+      Real beta{(1.0 + std::sqrt(1.0 - e*e)) / e};
+      return AngleInRange(E + 2.0 * std::atan(std::sin(E) / (beta - std::cos(E))));
+    }
+
+    /**
+    * Compute the true anomaly \f$ \nu \f$ from the eccentric anomaly \f$ E \f$ as
+    * \f[ \tan\left(\frac{\nu - E}{2}\right) = \displaystyle\frac{\sin(E)}{\beta - \cos(E)} \text{,} \f]
+    * with \f$ \beta = \displaystyle\frac{1 + \sqrt{1 - e^2}}{e} \f$. That is equivalent to
+    * \f[ \nu = E + 2\arctan\left(\frac{\sin(E)}{\beta - \cos(E)}\right) \text{.} \f]
+    *
+    \note Refer to R. Broucke and P. Cefola, *A note on the relations between true and eccentric
+    * anomalies in the two-body problem*, Celestial Mechanics, Vol. 7, pp. 300-389, 1973.
+    * \param[in] E The eccentric anomaly \f$ E \f$.
     * \param[in] kepl The keplerian orbital elements.
     * \return The true anomaly \f$ \nu \f$.
     */
     Real E_to_nu(Real const E, Keplerian const & kepl)
     {
-      Real beta{(1.0 + std::sqrt(1.0 - kepl.e*kepl.e)) / kepl.e};
-      return AngleInRange(E + 2.0 * std::atan(std::sin(E) / (beta - std::cos(E))));
+      return E_to_nu(E, kepl.e);
+    }
+
+    /**
+    * Compute the mean anomaly \f$ M \f$ from the eccentric anomaly \f$ E \f$ as
+    * \f[ M = E - e\sin(E) \text{.} \f]
+    * \param[in] E The eccentric anomaly \f$ E \f$.
+    * \param[in] e The eccentricity \f$ e \f$.
+    * \return The true anomaly \f$ \nu \f$.
+    */
+    Real E_to_M(Real const E, Real const e)
+    {
+      return AngleInRange(E - e * std::sin(E));
     }
 
     /**
@@ -949,7 +1004,7 @@ namespace Astro
     */
     Real E_to_M(Real const E, Keplerian const & kepl)
     {
-      return AngleInRange(E - kepl.e * std::sin(E));
+      return E_to_M(E, kepl.e);
     }
 
     /**
@@ -1194,6 +1249,7 @@ namespace Astro
       {
         #define CMD "Astro::OrbitalElements::Anomaly::lambda(...): "
 
+        t_lambda = AngleInRange(t_lambda);
         this->set_M<Hyperbolic>(lambda_to_M(t_lambda, kepl, I), kepl, I);
 
         ASTRO_ASSERT(std::abs(this->lambda - t_lambda) < EPSILON_HIGH,
@@ -1222,7 +1278,6 @@ namespace Astro
 
         #undef CMD
       }
-
 
       /**
       * Print the orbit anomialies on a string.
@@ -1372,11 +1427,11 @@ namespace Astro
     /**
     * Convert the keplerian orbital elements to the cartesian state (position and velocity) vectors.
     * \param[in] kepl The keplerian orbital elements.
-    * \param[in] anom The orbital anomalies.
+    * \param[in] nu The true anomaly \f$ \nu \f$.
     * \param[in] mu The gravitational parameter.
     * \param[out] cart The cartesian state (position and velocity) vectors.
     */
-    void keplerian_to_cartesian(Keplerian const & kepl, Anomaly const & anom, Real const mu, Cartesian & cart)
+    void keplerian_to_cartesian(Keplerian const & kepl, Real const nu, Real const mu, Cartesian & cart)
     {
       #define CMD "Astro::OrbitalElements::keplerian_to_cartesian(...): "
 
@@ -1384,7 +1439,6 @@ namespace Astro
       cart.reset();
 
       // Retrieve some keplerian orbital elements
-      Real const & nu{anom.nu};
       Real const & e{kepl.e};
       Real const & i{kepl.i};
       Real const & Omega{kepl.Omega};
@@ -1426,11 +1480,11 @@ namespace Astro
     /**
     * Convert the equinoctial orbital elements to the cartesian state (position and velocity) vectors.
     * \param[in] equi The equinoctial orbital elements.
-    * \param[in] anom The orbital anomalies.
+    * \param[in] L The true longitude \f$ L \f$.
     * \param[in] mu The gravitational parameter.
     * \param[out] cart The cartesian state (position and velocity) vectors.
     */
-    void equinoctial_to_cartesian(Equinoctial const & equi, Anomaly const & anom, Real const mu,
+    void equinoctial_to_cartesian(Equinoctial const & equi, Real const L, Real const mu,
       Cartesian & cart)
     {
       #define CMD "Astro::OrbitalElements::equinoctial_to_cartesian(...): "
@@ -1446,7 +1500,7 @@ namespace Astro
       Real const & p{equi.p};
 
       // Compute the distance to the central body
-      Real c_L{std::cos(anom.L)}, s_L{std::sin(anom.L)};
+      Real c_L{std::cos(L)}, s_L{std::sin(L)};
       Real alpha_2{h*h - k*k};
       Real s_2{1.0 + h*h + k*k};
       Real w{1.0 + f*c_L + g*s_L};
@@ -1583,13 +1637,13 @@ namespace Astro
     /**
     * Convert the equinoctial orbital elements to cartesian state (position and velocity) vectors.
     * \param[in] equi The equinoctial orbital elements.
-    * \param[in] anom The orbital anomalies.
+    * \param[in] L The true longitude \f$ L \f$.
     * \param[in] I The posigrade (+1)/retrograde (-1) factor.
     * \param[in] mu The gravitational parameter.
     * \param[out] cart The cartesian state (position and velocity) vectors.
     */
-    void equinoctial_to_cartesian(Equinoctial const & equi, Anomaly const & anom, Factor const I,
-      Real const mu, Cartesian & cart)
+    void equinoctial_to_cartesian(Equinoctial const & equi, Real const L, Factor const I, Real const mu,
+      Cartesian & cart)
     {
       #define CMD "Astro::OrbitalElements::equinoctial_to_cartesian(...): "
 
@@ -1604,7 +1658,7 @@ namespace Astro
       Real k{equi.k};
 
       // Compute the distance to the central body
-      Real c_L{std::cos(anom.L)}, s_L{std::sin(anom.L)};
+      Real c_L{std::cos(L)}, s_L{std::sin(L)};
       Real h2{h*h}, k2{k*k}, hk{h*k};
       Real bf{p / ((1.0+f*c_L+g*s_L) * (1.0+h2+k2))};
       Real x{bf*c_L}, y{bf*s_L};

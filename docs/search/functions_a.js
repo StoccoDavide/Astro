@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['m_5fto_5fe_0',['M_to_E',['../namespace_astro_1_1_orbital_elements.html#a2ee06f2ac73a3c9496b51bc53082e9eb',1,'Astro::OrbitalElements']]],
-  ['m_5fto_5fh_1',['M_to_H',['../namespace_astro_1_1_orbital_elements.html#a2b37470dc9dcbce5a5b9a169ca1aa841',1,'Astro::OrbitalElements']]],
-  ['m_5fto_5flambda_2',['M_to_lambda',['../namespace_astro_1_1_orbital_elements.html#aeea52b0220c3bc950a01471768cdf10e',1,'Astro::OrbitalElements']]],
-  ['mass_3',['mass',['../class_astro_1_1_body.html#a6ce6187634d6b718faca6133ad401921',1,'Astro::Body::mass() const'],['../class_astro_1_1_body.html#adaa6867e0bbd2d05cc2bf6d5dc406463',1,'Astro::Body::mass(Real t_mass)']]],
-  ['mu_4',['mu',['../class_astro_1_1_orbit.html#a652083b33952a395c3c3ce0a1326a473',1,'Astro::Orbit::mu() const'],['../class_astro_1_1_orbit.html#a09b69124c349ff259919796bf1138e8d',1,'Astro::Orbit::mu(Real t_mu)']]]
+  ['l_5fto_5flambda_0',['L_to_lambda',['../namespace_astro_1_1_orbital_elements.html#af7990fa03e214db0b5902327076ed915',1,'Astro::OrbitalElements']]],
+  ['l_5fto_5fnu_1',['L_to_nu',['../namespace_astro_1_1_orbital_elements.html#a646ef8c70c63272ffd43ee3313bac7b1',1,'Astro::OrbitalElements']]],
+  ['lambda_5fto_5fl_2',['lambda_to_L',['../namespace_astro_1_1_orbital_elements.html#ac8b0613da3dedd70ac2f055816a044be',1,'Astro::OrbitalElements']]],
+  ['lambda_5fto_5fm_3',['lambda_to_M',['../namespace_astro_1_1_orbital_elements.html#a94e949ebc99fd6c83bbaeffe71d9fbe4',1,'Astro::OrbitalElements']]]
 ];

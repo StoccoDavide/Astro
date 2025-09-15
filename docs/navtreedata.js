@@ -64,9 +64,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_astro_8hh.html",
-"namespace_astro.html#a7eadcef23533d0f4c15cdd6bf3985127",
-"struct_astro_1_1_orbital_elements_1_1_keplerian.html#aad6de417e4b5443b593b97ce6904dd83"
+"namespace_astro.html#a11ef0cbfde7f41635bcf06d22da153a4",
+"struct_astro_1_1_orbital_elements_1_1_cartesian.html#a5695fe7e609e03b0f2f7f25bd5e6137e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';
 var SYNCOFFMSG = 'click to enable panel synchronization';
+var LISTOFALLMEMBERS = 'List of all members';

@@ -186,9 +186,9 @@ namespace Astro
     * \param[in] line_width The width of the lines.
     * \return A TObjArray containing the drawn axes of the Frenet-Serret frame.
     */
-    TObjArray* DrawFrenetSerretAxes(Orbit const & orbit, Real const length = 0.1, Real const line_width = 1.0) {
-      return DrawAxes(orbit.cartesian().r, orbit.cartesian_to_frenet_rtn(), length, line_width);
-    }
+    //TObjArray* DrawFrenetSerretAxes(Orbit const & orbit, Real const length = 0.1, Real const line_width = 1.0) {
+    //  return DrawAxes(orbit.cartesian().r, orbit.cartesian_to_frenet_rtn(), length, line_width); // FIXME cartesian_to_frenet_rtn()
+    //}
 
     /**
     * \brief Plot a marker in 3D space.
@@ -219,7 +219,7 @@ namespace Astro
     * \return A TPolyMarker3D pointer to the drawn marker.
     */
     TPolyMarker3D* DrawMarker(Body const & body, Color_t const color, Real const size = 1.0) {
-      return DrawMarker(body.cartesian().r, color, size);
+      return DrawMarker(body.orbit().cartesian().r, color, size);
     }
 
     /**
@@ -280,7 +280,7 @@ namespace Astro
     * \return A TGeoVolume pointer to the drawn sphere.
     */
     TGeoVolume* DrawSphere(Body const & body, Color_t const color, Real const line_width = 1.0) {
-      return DrawSphere(body.cartesian().r, body.radius(), color, line_width);
+      return DrawSphere(body.orbit().cartesian().r, body.radius(), color, line_width);
     }
 
 

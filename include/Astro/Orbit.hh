@@ -48,8 +48,6 @@ namespace Astro
     Keplerian    m_kepl;                      /**< Keplerian orbit parameters. */
     Equinoctial  m_equi;                      /**< Equinoctial orbit parameters. */
     Quaternionic m_quat;                      /**< Quaternionic orbit parameters. */
-    Anomaly      m_anom;                      /**< Anomaly orbit parameters. */
-    Real         m_epoch{0.0};                /**< Epoch of the orbital elements (in days). */
     Type         m_type{Type::UNDEFINED};     /**< Orbit type. */
     Factor       m_factor{Factor::UNDEFINED}; /**< Orbit posigrade (+1)/retrograde (-1) factor. */
     Real         m_mu{QUIET_NAN};             /**< Gravitational constant of the central body. */
@@ -100,8 +98,7 @@ namespace Astro
       this->sanity_check();
       this->m_cart.r << r_x, r_y, r_z;
       this->m_cart.v << v_x, v_y, v_z;
-      Real nu{OrbitalElements::cartesian_to_keplerian(this->m_cart, this->m_mu, this->m_kepl)};
-      this->m_anom.set_nu(nu, this->m_kepl, this->m_factor);
+      OrbitalElements::cartesian_to_keplerian(this->m_cart, this->m_mu, this->m_kepl);
       OrbitalElements::cartesian_to_equinoctial(this->m_cart, this->m_mu, this->m_equi);
       // TODO: OrbitalElements::cartesian_to_quaternionic(this->m_cart, this->m_quat);
       this->set_type(this->m_kepl.e);
@@ -149,8 +146,10 @@ namespace Astro
     * \param[in] t_i The inclination \f$ i \f$.
     * \param[in] t_Omega The longitude of the ascending node \f$ \Omega \f$.
     * \param[in] t_omega The argument of periapsis \f$ \omega \f$.
+    * \param[in] nu The true anomaly \f$ \nu \f$.
     */
-    void set_keplerian(Real t_a, Real t_e, Real t_i, Real t_Omega, Real t_omega)
+    void set_keplerian(Real const t_a, Real const t_e, Real const t_i, Real const t_Omega,
+      Real const t_omega, Real const nu)
     {
       this->sanity_check();
       this->m_kepl.a     = t_a;
@@ -158,7 +157,7 @@ namespace Astro
       this->m_kepl.i     = t_i;
       this->m_kepl.Omega = t_Omega;
       this->m_kepl.omega = t_omega;
-      OrbitalElements::keplerian_to_cartesian(this->m_kepl, this->m_anom, this->m_mu, this->m_cart);
+      OrbitalElements::keplerian_to_cartesian(this->m_kepl, nu, this->m_mu, this->m_cart);
       //OrbitalElements::keplerian_to_equinoctial(this->m_kepl, this->m_factor, this->m_equi);
       OrbitalElements::cartesian_to_equinoctial(this->m_cart, this->m_mu, this->m_equi);
       // TODO: OrbitalElements::keplerian_to_quaternionic(this->m_kepl, this->m_quat);
@@ -168,20 +167,22 @@ namespace Astro
     /**
     * Set the keplerian orbital elements.
     * \param[in] t_kepl The vector of keplerian orbital elements \f$ [a, e, i, \Omega, \omega]^\top \f$.
+    * \param[in] nu The true anomaly \f$ \nu \f$.
     * \note The vector \f$ t_{\text{keplerian}} \f$ must have 5 elements.
     */
-    void set_keplerian(Vector5 const & t_kepl)
+    void set_keplerian(Vector5 const & t_kepl, Real const nu)
     {
-      this->set_keplerian(t_kepl(0), t_kepl(1), t_kepl(2), t_kepl(3), t_kepl(4));
+      this->set_keplerian(t_kepl(0), t_kepl(1), t_kepl(2), t_kepl(3), t_kepl(4), nu);
     }
 
     /**
     * Set the keplerian orbital elements.
     * \param[in] t_kepl The keplerian orbital elements.
+    * \param[in] nu The true anomaly \f$ \nu \f$.
     */
-    void set_keplerian(Keplerian const & t_kepl)
+    void set_keplerian(Keplerian const & t_kepl, Real const nu)
     {
-      this->set_keplerian(t_kepl.a, t_kepl.e, t_kepl.i, t_kepl.Omega, t_kepl.omega);
+      this->set_keplerian(t_kepl.a, t_kepl.e, t_kepl.i, t_kepl.Omega, t_kepl.omega, nu);
     }
 
     /**
@@ -197,8 +198,10 @@ namespace Astro
       * \param[in] t_g The \f$ y \f$-axis component of the eccentricity vector in the orbital frame.
       * \param[in] t_h The \f$ x \f$-axis component of the node vector in the orbital frame.
       * \param[in] t_k The \f$ y \f$-axis component of the node vector in the orbital frame.
+      * \param[in] L The true longitude \f$ L \f$.
       */
-    void set_equinoctial(Real t_p, Real t_f, Real t_g, Real t_h, Real t_k)
+    void set_equinoctial(Real const t_p, Real const t_f, Real const t_g, Real const t_h,
+      Real const t_k, Real const L)
     {
       this->sanity_check();
       this->m_equi.p = t_p;
@@ -206,7 +209,7 @@ namespace Astro
       this->m_equi.g = t_g;
       this->m_equi.h = t_h;
       this->m_equi.k = t_k;
-      OrbitalElements::equinoctial_to_cartesian(this->m_equi, this->m_anom, this->m_mu, this->m_cart);
+      OrbitalElements::equinoctial_to_cartesian(this->m_equi, L, this->m_mu, this->m_cart);
       //OrbitalElements::equinoctial_to_keplerian(this->m_equi, this->m_kepl);
       OrbitalElements::cartesian_to_keplerian(this->m_cart, this->m_mu, this->m_kepl);
       // TODO: OrbitalElements::equinoctial_to_quaternionic(this->m_equi, this->m_quat);
@@ -216,20 +219,22 @@ namespace Astro
     /**
     * Set the (modified) equinoctial orbit parameters.
     * \param[in] t_equi The vector of equinoctial orbit parameters \f$ [p, f, g, h, k]^\top \f$.
+    * \param[in] L The true longitude \f$ L \f$.
     * \note The vector \f$ t_{\text{equinoctial}} \f$ must have 5 elements.
     */
-    void set_equinoctial(Vector5 const & t_equi)
+    void set_equinoctial(Vector5 const & t_equi, Real const L)
     {
-      this->set_equinoctial(t_equi(0), t_equi(1), t_equi(2), t_equi(3), t_equi(4));
+      this->set_equinoctial(t_equi(0), t_equi(1), t_equi(2), t_equi(3), t_equi(4), L);
     }
 
     /**
     * Set the equinoctial orbital elements.
     * \param[in] t_equi The equinoctial orbital elements.
+    * \param[in] L The true longitude \f$ L \f$.
     */
-    void set_equinoctial(Equinoctial const & t_equi)
+    void set_equinoctial(Equinoctial const & t_equi, Real const L)
     {
-      this->set_equinoctial(t_equi.p, t_equi.f, t_equi.g, t_equi.h, t_equi.k);
+      this->set_equinoctial(t_equi.p, t_equi.f, t_equi.g, t_equi.h, t_equi.k, L);
     }
 
     /**
@@ -245,7 +250,7 @@ namespace Astro
     * \param[in] t_q_3 The third quaternionic orbit parameter.
     * \param[in] t_q_4 The fourth quaternionic orbit parameter.
     */
-    void set_quaternionic(Real t_q_1, Real t_q_2, Real t_q_3, Real t_q_4)
+    void set_quaternionic(Real const t_q_1, Real const t_q_2, Real const t_q_3, Real const t_q_4)
     {
       this->sanity_check();
       this->m_quat.q.x() = t_q_1;
@@ -254,7 +259,7 @@ namespace Astro
       this->m_quat.q.w() = t_q_4;
       // TODO: OrbitalElements::quaternionic_to_keplerian(this->m_quat, this->m_kepl);
       // TODO: OrbitalElements::quaternionic_to_equinoctial(this->m_quat, this->m_factor, this->m_equi);
-      // TODO: OrbitalElements::quaternionic_to_cartesian(this->m_quat, this->m_anom, this->m_mu, this->m_cart);
+      // TODO: OrbitalElements::quaternionic_to_cartesian(this->m_quat, anom, this->m_mu, this->m_cart);
       this->set_type(this->m_kepl.e);
     }
 
@@ -268,41 +273,6 @@ namespace Astro
     }
 
     /**
-    * Get the orbital anomalies.
-    * \return The orbital anomalies.
-    */
-    Anomaly const & anomaly() const {return this->m_anom;}
-
-    /**
-    * Set the orbital anomalies.
-    * \return The orbital anomalies.
-    */
-    Anomaly & set_anomaly() {return this->m_anom;}
-
-    /**
-    * Set the orbital anomalies.
-    * \param[in] t_anom The orbital anomalies.
-    */
-    void set_anomaly(Anomaly const & t_anom)
-    {
-      ASTRO_ASSERT(t_anom.sanity_check(),
-        "Astro::Orbit::anomaly(...): invalid orbital anomalies detected.");
-      this->m_anom = t_anom;
-    }
-
-    /**
-    * Get the epoch of the orbital elements (in days).
-    * \return The epoch of the orbital elements (in days).
-    */
-    Real epoch() const {return this->m_epoch;}
-
-    /**
-    * Set the epoch of the orbital elements (in days).
-    * \param[in] t_epoch The epoch of the orbital elements (in days).
-    */
-    void set_epoch(Real t_epoch) {this->m_epoch = t_epoch;}
-
-    /**
     * Get the type of the orbit.
     * \return The type of the orbit.
     */
@@ -312,7 +282,7 @@ namespace Astro
     * Set the type of the orbit.
     * \param[in] e The eccentricity of the orbit.
     */
-    void set_type(Real e)
+    void set_type(Real const e)
     {
       if (e > EPSILON_MEDIUM && e < 1.0 - EPSILON_MEDIUM) {
         this->m_type = Type::ELLIPTIC;
@@ -349,7 +319,7 @@ namespace Astro
     * Set the gravitational constant of the central body.
     * \param[in] t_mu The gravitational constant of the central body.
     */
-    void set_mu(Real t_mu) {this->m_mu = t_mu;}
+    void set_mu(Real const t_mu) {this->m_mu = t_mu;}
 
     /**
     * Print the orbit information on a string.
@@ -366,8 +336,6 @@ namespace Astro
         this->m_equi.info() << std::endl <<
         "Quaternionic orbit parameters:" << std::endl <<
         this->m_quat.info() << std::endl <<
-        "Orbital anomalies:" << std::endl <<
-        this->m_anom.info() << std::endl <<
         "Orbit:" << std::endl <<
         "µ: grav. const. = " << this->m_mu << " (UA³/day²)" << std::endl <<
         "type            = " << (this->m_type == Type::UNDEFINED ? "undefined" :
@@ -394,7 +362,6 @@ namespace Astro
       this->m_kepl.reset();
       this->m_equi.reset();
       this->m_quat.reset();
-      this->m_anom.reset();
       this->m_type   = Type::UNDEFINED;
       this->m_factor = Factor::UNDEFINED;
     }
@@ -492,25 +459,16 @@ namespace Astro
 
     /**
     * Compute the Frenet-Serret frame of the orbit (radial, tangential, normal)
-    * through the cartesian orbital elements.
-    * \return The Frenet-Serret frame of the orbit.
-    */
-    Rotation cartesian_to_frenet_rtn() const
-    {
-      return this->cartesian_to_frenet_rtn(this->m_cart.r, this->m_cart.v);
-    }
-
-    /**
-    * Compute the Frenet-Serret frame of the orbit (radial, tangential, normal)
     * through the equinoctial orbital elements.
+    * \param[in] L The true longitude \f$ L \f$.
     * \return The Frenet-Serret frame of the orbit.
     */
-    Rotation equinoctial_to_frenet_rtn() const
+    Rotation equinoctial_to_frenet_rtn(Real const L) const
     {
       Real h{this->m_equi.h};
       Real k{this->m_equi.k};
-      Real c_L{std::cos(this->m_anom.L)};
-      Real s_L{std::sin(this->m_anom.L)};
+      Real c_L{std::cos(L)};
+      Real s_L{std::sin(L)};
       Real h2{h*h};
       Real k2{k*k};
       Real hk{h*k};
@@ -528,25 +486,14 @@ namespace Astro
     /**
     * Transform a vector in the Frent-Serret frame of the orbit (radial, tangential, normal) to
     * a vector in the cartesian frame given the cartesian orbital elements.
-    * \param[in] vec The vector in Frenet-Serret frame.
     * \param[in] r The position vector \f$ \mathbf{r} \f$.
     * \param[in] v The velocity vector \f$ \mathbf{v} \f $.
-    * \return The vector in the cartesian frame.
-    */
-    Vector3 cartesian_rtn_to_xyz(Vector3 const & vec, Vector3 const & r, Vector3 const & v) const
-    {
-      return this->cartesian_to_frenet_rtn(r, v) * vec;
-    }
-
-    /**
-    * Transform a vector in the Frent-Serret frame of the orbit (radial, tangential, normal) to
-    * a vector in the cartesian frame through the cartesian orbital elements.
     * \param[in] vec The vector in Frenet-Serret frame.
     * \return The vector in the cartesian frame.
     */
-    Vector3 cartesian_rtn_to_xyz(Vector3 const & vec) const
+    Vector3 cartesian_rtn_to_xyz(Vector3 const & r, Vector3 const & v, Vector3 const & vec) const
     {
-      return this->cartesian_to_frenet_rtn() * vec;
+      return this->cartesian_to_frenet_rtn(r, v) * vec;
     }
 
     /**
@@ -557,18 +504,21 @@ namespace Astro
     */
     Vector3 equinoctial_rtn_to_xyz(Vector3 const & vec) const
     {
-      return this->equinoctial_to_frenet_rtn() * vec;
+      Real L{0.0}; // FIXME: true longitude is needed here
+      return this->equinoctial_to_frenet_rtn(L) * vec;
     }
 
     /**
     * Transform a vector in the cartesian frame to a vector in the Frent-Serret frame of the orbit
     * (radial, tangential, normal) through the cartesian orbital elements.
+    * \param[in] r The position vector \f$ \mathbf{r} \f$.
+    * \param[in] v The velocity vector \f$ \mathbf{v} \f $.zz
     * \param[in] vec The vector in the cartesian frame.
     * \return The vector in the Frenet-Serret frame.
     */
-    Vector3 cartesian_xyz_to_rtn(Vector3 const & vec) const
+    Vector3 cartesian_xyz_to_rtn(Vector3 const & r, Vector3 const & v, Vector3 const & vec) const
     {
-      return this->cartesian_to_frenet_rtn().transpose() * vec;
+      return this->cartesian_to_frenet_rtn(r, v).transpose() * vec;
     }
 
     /**
@@ -579,41 +529,8 @@ namespace Astro
     */
     Vector3 equinoctial_xyz_to_rtn(Vector3 const & vec) const
     {
-      return this->equinoctial_to_frenet_rtn().transpose() * vec;
-    }
-
-    /**
-    * Propagate the orbit to a new time.
-    * \param[in] dt The time step to propagate the orbit.
-    * \param[in, out] anom The anomaly to be updated.
-    * \return The propagated orbit.
-    */
-    void propagate(Real const dt, Anomaly & anom) const
-    {
-      // Check if the orbit is valid
-      ASTRO_ASSERT(this->sanity_check(),
-        "Astro::Orbit::propagate(...): invalid orbit detected.");
-
-      // Mean motion
-      Real n{std::sqrt(this->m_mu / Power3(this->m_kepl.a))};
-
-      // Compute the mean anomaly at the new time
-      Real M_new{this->m_anom.M + n * dt};
-
-      // Update the anomaly
-      anom.set_M(M_new, this->m_kepl, this->m_factor);
-    }
-
-    /**
-    * Propagate the orbit to a new time given the reference time.
-    * \param[in] t The reference time.
-    * \param[in] dt The time step to propagate the orbit.
-    * \param[in, out] anom The anomaly to be updated.
-    * \return The propagated orbit.
-    */
-    void propagate(Real const t, Real const dt, Anomaly & anom) const
-    {
-      this->propagate(t + dt - this->m_epoch, anom);
+      Real L{0.0}; // FIXME: true longitude is needed here
+      return this->equinoctial_to_frenet_rtn(L).transpose() * vec;
     }
 
     /**
@@ -675,15 +592,16 @@ namespace Astro
     /**
     * Compute the mean longitude \f$ \lambda \f$ at time \f$ t \f$ .
     * \param[in] t The time at which to evaluate the mean longitude.
+    * \param[in] epoch_anom The anomaly at epoch.
     * \return The mean longitude \f$ \lambda \f$.
     *
-    * \warning For elliptic orbits, solves E - e*sin(E) = M and computes true anomaly.
-    * For hyperbolic orbits, solves H - e*sinh(H) = M and computes true anomaly.
+    * \warning For elliptic orbits, solves \f$ E - e*\sin(E) = M \f$ and computes true anomaly.
+    * For hyperbolic orbits, solves \f$ H - e*\sinh(H) = M \f$ and computes true anomaly.
     */
-    Real eval_L(Real t) const
+    Real compute_lambda(Real t, Anomaly const & epoch_anom) const
     {
       Real n{std::sqrt(this->m_mu / Power3(this->m_kepl.a))};
-      Real M{this->m_anom.M + n * t}; // Assuming t is time since epoch
+      Real M{epoch_anom.M + n * t}; // Assuming t is time since epoch
 
       Real nu{0.0};
       if (this->m_type == Type::ELLIPTIC || this->m_type == Type::CIRCULAR) {
@@ -705,26 +623,18 @@ namespace Astro
     }
 
     /**
-    * Compute the mean longitude L at time t.
-    * \param[in] t The time at which to evaluate the mean longitude.
-    * \return The mean longitude L at time t.
-    */
-    Real L_orbital(Real t) const
-    {
-      return this->eval_L(t);
-    }
-
-    /**
-    * Compute the mean longitude L at time t0 + dt, handling angle wrapping for elliptic orbits.
-    * \param[in] t0 Initial time.
+    * Compute the mean longitude \f$ L \f$ at time \f$ t + dt \f$, handling angle wrapping for
+    * elliptic orbits.
+    * \param[in] t Initial time.
     * \param[in] dt Time increment.
-    * \return The mean longitude L at time t0 + dt.
+    * \param[in] epoch_anom The anomaly at epoch.
+    * \return The mean longitude \f$ L \f$ at time \f$ t + dt \f$.
     */
-    Real L_orbital(Real t0, Real dt) const
+    Real compute_lambda(Real t, Real dt, Anomaly const & epoch_anom) const
     {
       if (this->m_kepl.e < 1.0) {
-        Real L0{this->L_orbital(t0)};
-        Real L1{this->L_orbital(t0 + dt)};
+        Real L0{this->compute_lambda(t, epoch_anom)};
+        Real L1{this->compute_lambda(t + dt, epoch_anom)};
         Real dL{L1 - L0};
         Real pf{dt / this->period()}; // Fraction of period
 
@@ -739,7 +649,7 @@ namespace Astro
         return L0 + dL;
         } else {
           // For hyperbolic orbits, no wrapping needed
-          return this->L_orbital(t0 + dt);
+          return this->compute_lambda(t + dt, epoch_anom);
       }
     }
 
