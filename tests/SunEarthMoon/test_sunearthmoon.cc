@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
 #include "Astro/Body.hh"
 #include "Astro/Planets.hh"
@@ -106,9 +107,12 @@ using namespace Astro;
   std::ofstream of_moon("satellite_positions_moon_coords.csv");
   std::ofstream of_earth("satellite_positions_earth_coords.csv");
   std::ofstream of_sun("satellite_positions_sun_coords.csv");
-  of_moon << "T,X,Y,Z,RX,RY,RZ,TX,TY,TZ,NX,NY,NZ\n";
+  of_moon  . precision(20);
+  of_earth . precision(20);
+  of_sun   . precision(20);
+  of_moon  << "T,X,Y,Z,RX,RY,RZ,TX,TY,TZ,NX,NY,NZ\n";
   of_earth << "T,X,Y,Z,RX,RY,RZ,TX,TY,TZ,NX,NY,NZ\n";
-  of_sun << "T,X,Y,Z,RX,RY,RZ,TX,TY,TZ,NX,NY,NZ\n";
+  of_sun   << "T,X,Y,Z,RX,RY,RZ,TX,TY,TZ,NX,NY,NZ\n";
   Vector3 pos, vel;
   Matrix3 rtn;
   for (int i{0}; i < t_mesh.size(); ++i) {
