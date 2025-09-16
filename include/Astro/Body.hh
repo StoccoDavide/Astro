@@ -155,7 +155,7 @@ namespace Astro
     {
       Anomaly anom;
       anom.set_lambda(
-        this->m_orbit.compute_lambda(this->m_epoch+t, this->m_epoch_anom), this->m_orbit.keplerian(), this->m_orbit.factor()
+        this->m_orbit.compute_lambda(t, this->m_epoch_anom), this->m_orbit.keplerian(), this->m_orbit.factor()
       );
       return anom;
     }
@@ -232,7 +232,7 @@ namespace Astro
       // Compute the anomaly at time t
       Anomaly anom;
       anom.set_lambda(
-        this->m_orbit.compute_lambda(this->m_epoch+t, this->m_epoch_anom), this->m_orbit.keplerian(), this->m_orbit.factor()
+        this->m_orbit.compute_lambda(t, this->m_epoch_anom), this->m_orbit.keplerian(), this->m_orbit.factor()
       );
 
       // Compute the cartesian state vector
@@ -337,7 +337,9 @@ namespace Astro
     Eigen::Matrix<T, 6, 1> cartesian_eom(Eigen::Matrix<T, 6, 1> const & x, Eigen::Matrix<T, 3, 1> const & thrust_rtn) const
     {
       // Compute the cartesian perturbation
-      Eigen::Matrix<T, 3, 1> thrust_xyz(this->orbit().cartesian_rtn_to_xyz(thrust_rtn));
+      Eigen::Matrix<T, 3, 1> thrust_xyz(this->orbit().cartesian_rtn_to_xyz(
+        this->orbit().cartesian().r, this->orbit().cartesian().v, thrust_rtn
+      ));
       thrust_xyz /= this->m_mass;
 
       // Compute the equations of motion
@@ -490,17 +492,17 @@ namespace Astro
       // Create the solution object according to the integration coordinates
       if constexpr (IntCoords == Coordinates::CARTESIAN) {
         rk.explicit_system(
-          [this](Vector6 const & x, Real) -> Vector6 {return this->cartesian_eom<Real>(x, 50.0*Vector3::UnitZ());}, // f(x, t)
+          [this](Vector6 const & x, Real) -> Vector6 {return this->cartesian_eom<Real>(x, 0*Vector3::UnitZ());}, // f(x, t)
           [](Vector6 const &, Real) -> Matrix6 {return ZEROS_MAT6;} // Jf_x(x, t)
         );
       } else if constexpr (IntCoords == Coordinates::KEPLERIAN) {
         rk.explicit_system(
-          [this](Vector6 const & x, Real) -> Vector6 {return this->keplerian_eom(x, 50.0*Vector3::UnitZ());}, // f(x, t)
+          [this](Vector6 const & x, Real) -> Vector6 {return this->keplerian_eom(x, 0*Vector3::UnitZ());}, // f(x, t)
           [](Vector6 const &, Real) -> Matrix6 {return ZEROS_MAT6;} // Jf_x(x, t)
         );
       } else if constexpr (IntCoords == Coordinates::EQUINOCTIAL) {
         rk.explicit_system(
-          [this](Vector6 const & x, Real) -> Vector6 {return this->equinoctial_eom(x, 50.0*Vector3::UnitZ());}, // f(x, t)
+          [this](Vector6 const & x, Real) -> Vector6 {return this->equinoctial_eom(x, 0*Vector3::UnitZ());}, // f(x, t)
           [](Vector6 const &, Real) -> Matrix6 {return ZEROS_MAT6;} // Jf_x(x, t)
         );
       } else if constexpr (IntCoords == Coordinates::QUATERNIONIC) {
@@ -541,6 +543,22 @@ namespace Astro
             ASTRO_ERROR(CMD "unknown coordinate system for the output.");
           }
         }
+
+        // Fake time update to visualize the orbit at time t
+        if constexpr (OutCoords == Coordinates::CARTESIAN) {
+          this->m_epoch_anom.set_nu(OrbitalElements::cartesian_to_keplerian(
+            this->m_orbit.cartesian(), this->m_orbit.mu()), this->m_orbit.keplerian()
+          );
+        } else if constexpr (OutCoords == Coordinates::KEPLERIAN) {
+          this->m_epoch_anom.set_M(x(5), this->m_orbit.keplerian(), this->m_orbit.factor());
+        } else if constexpr (OutCoords == Coordinates::EQUINOCTIAL) {
+          this->m_epoch_anom.set_L(x(5), this->m_orbit.keplerian(), this->m_orbit.factor());
+        } else if constexpr (OutCoords == Coordinates::QUATERNIONIC) {
+          ASTRO_ERROR(CMD "quaternionic output not implemented yet.");
+        } else {
+          ASTRO_ERROR(CMD "unknown coordinate system for the output.");
+        }
+        this->m_epoch = t;
 
       });
 

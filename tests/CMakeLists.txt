@@ -18,6 +18,10 @@ file(GLOB_RECURSE TEST_SUNEARTHMOON "${CMAKE_CURRENT_SOURCE_DIR}/SunEarthMoon/te
 add_executable(test_sunearthmoon ${TEST_SUNEARTHMOON})
 target_link_libraries(test_sunearthmoon PRIVATE Astro)
 
+file(GLOB_RECURSE ORBIT_BODY "${CMAKE_CURRENT_SOURCE_DIR}/Body/test_*.cc")
+add_executable(test_body ${ORBIT_BODY})
+target_link_libraries(test_body PRIVATE Astro)
+
 if(ASTRO_ENABLE_PLOTTING)
   #file(GLOB_RECURSE ORBIT_TESTS "${CMAKE_CURRENT_SOURCE_DIR}/Orbit/test_*.cc")
   #add_executable(test_orbit ${ORBIT_TESTS})
@@ -26,10 +30,6 @@ if(ASTRO_ENABLE_PLOTTING)
   #file(GLOB_RECURSE ORBIT_PLOTTING "${CMAKE_CURRENT_SOURCE_DIR}/Plotting/test_*.cc")
   #add_executable(test_plotting ${ORBIT_PLOTTING})
   #target_link_libraries(test_plotting PRIVATE Astro)
-
-  #file(GLOB_RECURSE ORBIT_BODY "${CMAKE_CURRENT_SOURCE_DIR}/Body/test_*.cc")
-  #add_executable(test_body ${ORBIT_BODY})
-  #target_link_libraries(test_body PRIVATE Astro)
 
   #file(GLOB_RECURSE ORBIT_MAGNETICFIELD "${CMAKE_CURRENT_SOURCE_DIR}/MagneticField/test_*.cc")
   #add_executable(test_magneticfield ${ORBIT_MAGNETICFIELD})

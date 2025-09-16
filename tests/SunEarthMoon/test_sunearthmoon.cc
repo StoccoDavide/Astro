@@ -21,7 +21,7 @@ using namespace Astro;
 
 
 #ifdef ASTRO_ENABLE_PLOTTING
-  int main(int argc, char** argv)
+  int main(int argc, char** argv) {
 
     // Initialize the ROOT application
   TApplication app("app", &argc, argv);
@@ -39,9 +39,8 @@ using namespace Astro;
   TObjArray* abs_axes = Astro::Plotting::DrawAbsoluteAxes(0.25);
   abs_axes->SetOwner(kTRUE); // Ensure axes are deleted with the canvas
 #else
-  int main()
+  int main() {
 #endif // ASTRO_ENABLE_PLOTTING
-  {
 
   // Create the Sun-Earth-Moon system
   Body earth(Planets::Earth());

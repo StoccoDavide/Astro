@@ -499,12 +499,13 @@ namespace Astro
     /**
     * Transform a vector in the Frent-Serret frame of the orbit (radial, tangential, normal) to
     * a vector in the cartesian frame through the equinoctial orbital elements.
+    * \param[in] t The time at which to evaluate the true longitude.
     * \param[in] vec The vector in Frenet-Serret frame.
     * \return The vector in the cartesian frame.
     */
-    Vector3 equinoctial_rtn_to_xyz(Vector3 const & vec) const
+    Vector3 equinoctial_rtn_to_xyz(Real const t, Vector3 const & vec) const
     {
-      Real L{0.0}; // FIXME: true longitude is needed here
+      Real L{t}; // FIXME
       return this->equinoctial_to_frenet_rtn(L) * vec;
     }
 
@@ -633,20 +634,20 @@ namespace Astro
     Real compute_lambda(Real t, Real dt, Anomaly const & epoch_anom) const
     {
       if (this->m_kepl.e < 1.0) {
-        Real L0{this->compute_lambda(t, epoch_anom)};
-        Real L1{this->compute_lambda(t + dt, epoch_anom)};
-        Real dL{L1 - L0};
+        Real lambda_0{this->compute_lambda(t, epoch_anom)};
+        Real lambda_1{this->compute_lambda(t + dt, epoch_anom)};
+        Real dl{lambda_1 - lambda_0};
         Real pf{dt / this->period()}; // Fraction of period
 
         // Wrap angle for positive/negative dt
         if (dt > 0) {
-          while (dL < 0.0) {dL += 2.0 * M_PI;}
-          while (pf > 1.0) {dL += 2.0 * M_PI; pf -= 1.0;}
+          while (dl < 0.0) {dl += 2.0 * M_PI;}
+          while (pf > 1.0) {dl += 2.0 * M_PI; pf -= 1.0;}
         } else {
-          while (dL > 0.0) {dL -= 2.0 * M_PI;}
-          while (pf < -1.0) {dL -= 2.0 * M_PI; pf += 1.0;}
+          while (dl > 0.0) {dl -= 2.0 * M_PI;}
+          while (pf < -1.0) {dl -= 2.0 * M_PI; pf += 1.0;}
         }
-        return L0 + dL;
+        return lambda_0 + dl;
         } else {
           // For hyperbolic orbits, no wrapping needed
           return this->compute_lambda(t + dt, epoch_anom);
